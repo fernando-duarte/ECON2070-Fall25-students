@@ -1,0 +1,73 @@
+# OS junk and editor temp files
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+Icon?
+.Spotlight-V100
+.Trashes
+.fseventsd
+.nfs*
+*~
+*.swp
+*.swo
+*.tmp
+*.bak
+
+# IDE and project metadata
+.Rproj.user/
+.vscode/
+.idea/
+*.code-workspace
+
+# R and RStudio artifacts
+.Rhistory
+.Rapp.history
+.RData
+.Ruserdata
+.Rprofile
+Rplots.pdf
+
+# renv local libraries (restore via renv::restore)
+renv/library/
+renv/profiles/*/library/
+renv/staging/
+renv/local/
+
+# Quarto / R Markdown generated output
+.quarto/
+_cache/
+*_cache/
+cache/
+*_files/
+/site_libs/
+_site/
+_book/
+*.utf8.md
+*.knit.md
+*.log
+
+# Python helper byproducts
+__pycache__/
+*.py[cod]
+*.so
+*.dylib
+*.egg-info/
+.eggs/
+.python-version
+.ipynb_checkpoints/
+
+# Node / tooling directories
+node_modules/
+.npm/
+.yarn/
+.pnpm-store/
+
+# Misc build artifacts
+*.tar
+*.tar.gz
+*.tgz
+*.zip
