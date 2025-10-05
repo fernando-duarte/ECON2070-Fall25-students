@@ -1,0 +1,263 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amsfonts,wrapfig,hyperref}
+\usepackage[left=1in, right=1in, top=1in, bottom=1in]{geometry}
+\usepackage{titlesec}
+\usepackage{amssymb,amsbsy}
+\usepackage{amsthm}
+\usepackage{enumitem,graphicx,enumerate}
+\usepackage{authblk,bm,xcolor,color,cancel}
+\usepackage{changepage}
+\usepackage{MnSymbol}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\p}{\mathbb{P}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\G}{\mathcal{G}}
+\newcommand{\Om}{\Omega}
+\newcommand{\tp}{\tilde{\p}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
+\newcommand{\sign}{\mathrm{sign}}
+\newcommand{\infint}{\int_{-\infty}^{\infty}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\eps}{\epsilon}
+\DeclareMathOperator{\Ima}{Im}
+\newcommand{\fa}{\; \forall \;}
+\newcommand{\df}[1]{\textbf{Def. #1:}}
+\newcommand{\pspace}{\left(\Omega,\F,\p\right)}
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\st}{\text{ s.t. }}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\veps}{\varepsilon}
+\newcommand{\exs}{\exists \;}
+\newcommand{\mylabel}[2]{#2\def\@currentlabel{#2}\label{#1}}
+\newcommand{\pr}[1]{ \item[\mylabel{}{#1.}]}
+\newcommand{\isgeq}{\stackrel{?}{\geq}}
+\newcommand{\isleq}{\stackrel{?}{\leq}}
+\newcommand{\limit}[1]{\underset{#1}{\lim}}
+\newcommand{\cont}{\Rightarrow\!\Leftarrow}
+\newcommand{\seq}[1]{\left\{ #1 \right\}}
+\newtheorem{prop}{Proposition}
+\newtheorem*{remark}{Remark}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[]{Lemma}
+\newtheorem{corollary}{Corollary}[theorem]
+\theoremstyle{definition}
+\newtheorem{exmp}{\Example}[section]
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\title{Shreve Stochastic Calculus Homework: Chapter 6 \vspace{-1eX}}
+\author{Benjamin Marrow \vspace{-1.5eX}}
+\date{ August 2018  \vspace{-1eX}}
+\begin{document}
+
+\maketitle
+
+% \tableofcontents
+% \clearpage
+
+\section*{Chapter 6}
+
+\begin{enumerate}
+    \pr{6.1} Consider the stochastic differential equation
+    \begin{equation}
+        dX(u) = (a(u)+b(u)X(u)) du + (\gamma(u)+\sigma(u)X(u))dW(u) \tag{6.2.4}
+    \end{equation}
+    where $W(u)$ is a Brownian motion relative to a filtration $\F(u), u \geq 0$ and we allow $a(u),b(u), \gamma(u)$ and $\sigma(u)$ to be processes adapted to this filtration. Fix an initial time $t \geq 0$ and an initial position $x \in \R$. Define
+    \begin{align*}
+        Z(u) &= \exp \seq{\int_t^u \sigma(v)dW(v) + \int_t^u \left( b(v)-\frac{1}{2}\sigma^2(v)\right)} \\
+        Y(u) &= x+ \int_t^u \frac{a(v)-\sigma(v)\gamma(v)}{Z(v)}dv + \int_t^u \frac{\gamma(v)}{Z(v)}dW(v)
+    \end{align*}
+    \begin{enumerate}[(i)]
+        \item Show that $Z(t)=1$ and 
+        $$ dZ(u) = b(u)Z(u)du + \sigma(u)Z(u)dW(u), u \geq t$$
+        
+        \begin{proof}
+        We have that $Z(t)= \exp\seq{0}=1$ (as both integrals are integrals over $0$ distance). We now apply It\^{o}'s Lemma to $Z(u)$. For parsimony, define the exponent in $Z(u)$ as $A(u)$
+        \begin{align*}
+            dZ(u,A(u)) &= Z'(u)dA(u) + \frac{1}{2}Z''(u)du\\
+            &= Z(u)dA(u) + \frac{1}{2}Z(u)dA(u)dA(u)
+        \end{align*}
+        Note that:
+        $$ dA(u) = \sigma(u)dW(u) +\big(b(u)-\frac{1}{2}\sigma^2(u)\big)du$$
+        $$ \left(d(A(u))\right)^2= \sigma^2(u)du$$
+        Hence,
+        \begin{align*}
+            dZ(u,A(u)) &= Z(u)\left( \sigma(u)dW(u) +\big(b(u)-\frac{1}{2}\sigma^2(u)\big)\right) + \frac{1}{2}Z(u)\sigma^2(u)du \\
+            &= b(u)Z(u)du + \sigma(u)Z(u)dW(u)
+        \end{align*}
+        
+        \end{proof}
+    \item By it's very definition, $Y(u)$ satisfies $Y(t)=x$ and 
+    $$ dY(u) = \frac{a(u)-\sigma(u)\gamma(u)}{Z(u)} du + \frac{\gamma(u)}{Z(u)}dW(u), u \geq t $$
+    Show that $X(u) = Y(u)Z(u)$ solves the stochastic differential (6.2.4) and satisfies the initial condition $X(t) =x$.
+    
+    \begin{proof} We use the It\^{o} Product rule:
+    \begin{align*}
+        dX(u) &= Y(u)dZ(u) + Z(u)dY(u) +dY(u)dZ(u) \\ 
+              &= Y(u)\bigg( b(u)Z(u)du + \sigma(u)Z(u)dW(u)\bigg) + Z(u)\left( \frac{a(u)-\sigma(u)\gamma(u)}{Z(u)} du+ \frac{\gamma(u)}{Z(u)}dW(u)\right) \\
+              &\hspace{1cm} + \bigg( b(u)Z(u)du + \sigma(u)Z(u)dW(u)\bigg)\left( \frac{a(u)-\sigma(u)\gamma(u)}{Z(u)} du+ \frac{\gamma(u)}{Z(u)}dW(u)\right)  \\
+              &= Y(u)\bigg( b(u)Z(u)du + \sigma(u)Z(u)dW(u)\bigg) + \left( a(u)-\sigma(u)\gamma(u)\right) du + \gamma(u)dW(u) + \sigma(u)\gamma(u)du  \\
+              &= X(u)b(u)du + \sigma(u)X(u)dW(u)+ a(u)du +\gamma(u)dW(u)\\
+              &= (a(u)+b(u)X(u))du + \left(\gamma(u)+\sigma(u)X(u) \right)dW(u)
+    \end{align*}
+    We now check the initial condition:
+    \begin{align*}
+        X(t) &= Y(t)Z(t)= (x)(1)  = x
+    \end{align*}\end{proof}
+    \end{enumerate}
+\pr{6.8} (Kolgomorov backward equation). Consider the stochastic differential equation
+$$ dX(u) = \beta(u,X(u))du + \gamma(u,X(u))dW(u)$$
+We assume that, just as with a geometric Brownian motion, if we begin a process at an arbitrary initial positive value $X(t) =x$ at an arbitrary initial time $t$ and evolve it forward using this equation, its value at each time $T>t$ could be any positive number but cannot be less than or equal to $0$. For $0 \leq t < T$, let $p(t,T,x,y)=0$ be the transition density for the solution to this equation (i.e., if we solve the equation with the initial condition $X(t)=x$, then the random variable $X(T)$ has density $p(t,T,x,y)$ in the $y$ variable). We are assuming that $p(t,T,x,y)=0$ for $0 \le t < T$
+ and $y \le 0$.
+ 
+ Show that $p(t,T,x,y)$ satisfies the Kolgomorov backward equation
+ \begin{equation}
+     -p_t(t,T,x,y)= \beta(t,x) p_x(t,T,x,y)+ \frac{1}{2}\gamma^2(t,x) p_{xx}(t,T,x,y) \tag{6.9.43}
+ \end{equation}
+(Hint: We know from the Feynman-Kac Theorem, Theorem 6.4.1, that, for any function $h(y)$, the function
+\begin{equation}
+    g(t,x) = \E^{t,x}h(X(T)) = \int_0^\infty h(y) p(t,T,x,y)dy \tag{6.9.44}
+\end{equation}
+satisfies the partial differential equation
+\begin{equation}
+    g_t(t,x) + \beta(t,x)g_x(t,x) + \frac{1}{2}\gamma^2(t,x) g_{xx}(t,x) = 0 \tag{6.9.45}
+\end{equation}
+Use (6.9.44) to compute $g_t$, $g_x$, and $g_{xx}$ and then argue that the only way (6.9.45) can hold regardless of the choice of the function $h(y)$ is for $p(t,T,x,y)$ to satisfy the Kolgomorov backward equation.
+
+We compute the partials of $g$:
+\begin{align*}
+    g_t(t,x) &= \int_0^\infty h(y) p_t(t,T,x,y) dy \\
+    g_x(t,x) &= \int_0^\infty h(y) p_x(t,T,x,y) dy \\
+    g_{xx}(t,x) &= \int_0^\infty h(y) p_{xx}(t,T,x,y) dy 
+\end{align*}
+
+Now, since $g(t,x)$ is a conditional expectation, it is a martingale, hence it satisfies the partial differential equation (6.9.45). By substitution, we obtain:
+\begin{align*}
+    \int_0^\infty \left[ h(y) p_t(t,T,x,y) + h(y) \beta(t,x)p_x(t,T,x,y) + \frac{1}{2} \gamma^2(t,x)h(y) p_{xx}(t,T,x,y)  \right] dy &= 0 \\
+    \int_0^\infty h(y)\left[  p_t(t,T,x,y) + \beta(t,x) p_x(t,T,x,y) +  \frac{1}{2} \gamma^2(t,x)p_{xx}(t,T,x,y)  \right] dy &=0 
+\end{align*}
+
+Since $h(y)$ can be any function, the bracketed part must be $0$ for the equation to hold for \textit{all} $h(y)$. Hence
+\begin{align*}
+      p_t(t,T,x,y) + \beta(t,x) p_x(t,T,x,y) +  \frac{1}{2} \gamma^2(t,x)p_{xx}(t,T,x,y)   &= 0 \\
+      - p_t(t,T,x,y) = \beta(t,x) p_x(t,T,x,y) +  \frac{1}{2} \gamma^2(t,x)p_{xx}(t,T,x,y)    \\
+\end{align*}
+
+\pr{6.9} (Kolgomorov forward equation). (Also called the Fokker-Planck Equation). We begin with the same stochastic differential equation
+$$ dX(u) = \beta(u,X(u))du + \gamma(u,X(u))dW(u)$$
+as in Exercise 6.8, use the same notation $p(t,T,x,y)$ for the transition density, and again assume that $p(t,T,x,y)=0$ for $0 \le t < T$ and $y\le 0$. In this problem, we show that $p(t,T,x,y)$ satisfies the \textit{Kolgomorov forward equation}
+\begin{equation}
+    \frac{\partial}{\partial T}p(t,T,x,y) = -\frac{\partial}{\partial y}\left( \beta(T,y) p(t,T,x,y)\right)+ \frac{1}{2}\frac{\partial^2}{\partial y^2}\left( \gamma^2(T,y) p(t,T,x,y)\right) \tag{6.9.47}
+\end{equation}
+In contrast to the Kolgomorov backward equation, in which $T$ and $y$ were held constant, and the variables were $t$ and $x$, here $t$ and $x$ are held constant and the variables are $y$ and $T$. The variables $t$ and $x$ are soemtimes called the \textit{backward variables}, and $T$ and $y$ are called the \textit{forward variables}.
+\begin{enumerate}[(i)]
+    \item Let $b$ be a positive constant, and let $h_b(y)$ be a function with continuous first and second derivatives such that $h_b(x)=0$ for all $x \leq 0$, $h_b'(x)=0$ for all $x \geq b$, and $h_b(b)=h'_b(b)=0$. Let $X(u)$ be the solution to the stochastic differential equation with initial condition $X(t) = x \in (0,b)$, and use It\^{o}'s formula to compute $dh_b(X(u))$.
+    
+    \begin{proof}
+        We use It\^{o}'s Lemma:
+        \begin{align*}
+            dh_b(X(u)) &= h'_b(X(u))dX(u) + \frac{1}{2}h''_b(X(u) dX(u)dX(u) \\
+            &= h'_b(X(u))\left[ \beta(u,X(u))du + \gamma(u,X(u))dW(u) \right] +  \frac{1}{2}h''_b(X(u) \gamma^2(u,X(u))du \\
+            &= \left[  h'_b(X(u))\beta(u,X(u)) +  \frac{1}{2}h''_b(X(u) \gamma^2(u,X(u)) \right]du + h'_b(X(u))\gamma(u,X(u))dW(u) 
+        \end{align*}
+    \end{proof}
+    
+    \item Let $0 \leq t < T$ be given, and integrate the equation you obtained in (i) from $t$ to $T$. Take expectations and use the fact that $X(u)$ has density $p(t,u,x,y)$ in the y variable to obtain
+    \begin{align}
+        \int_0^b h_b(y) p(t,T,x,y) dy &= h_b(x) + \int_t^T \int_0^b \beta(u,y)p(t,u,x,y) h_b'(y) dy du  \notag \\
+        & \hspace{1cm} + \frac{1}{2}\int_t^T \int_0^b \gamma^2(u,y) p(t,u,x,y)h_b''(y) dy du \tag{6.9.48}
+    \end{align}
+    
+    \begin{proof}
+    \begin{align*}
+        \E[h_b] &= \E\left[ \int_t^T \left[  h'_b(X(u))\beta(u,X(u)) +  \frac{1}{2}h''_b(X(u) \gamma^2(u,X(u)) \right]du\right] \\
+        &\hspace{2cm} + \E\left[ \int_t^T h'_b(X(u))\gamma(u,X(u))dW(u) \right]
+    \end{align*}
+    Note that the second term is an It\^{o} integral and so will have expectation $0$. This leaves:
+    \begin{align*}
+        \E[h_b] &= \E\left[ \int_t^T \left[  h'_b(X(u))\beta(u,X(u)) +  \frac{1}{2}h''_b(X(u)) \gamma^2(u,X(u)) \right]du\right] \\
+        &=  \int_t^T \left[ \E\left[   h'_b(X(u))\beta(u,X(u)) +  \frac{1}{2}h''_b(X(u)) \gamma^2(u,X(u)) \right]\right] du \\
+        &= \int_t^T \int_{-\infty}^\infty  \left( h'_b(y)\beta(u,y) +  \frac{1}{2}h''_b(y) \gamma^2(u,y)\right) p(t,u,x,y)   dy du  \\
+        \int_0^b h_b(y) p(t,T,x,y) &= \int_t^T\int_0^b  h'_b(y)\beta(u,y)p(t,u,x,y) dy du \\ &\hspace{1cm} + \int_t^T\int_0^b \frac{1}{2}h''_b(y)p(t,u,x,y) \gamma^2(u,y) dy du
+    \end{align*}
+    where in the second line, we switched the order of integration; in the third line we used the formula for expectation; and in the fourth line we separated the integrals and used the fact that the integrand has nonzero mass in only $[0,b]$ to change the region of integration without effect.
+    
+    \end{proof}
+    
+    \item Integrate the integrals $\int_0^b \hdots dy$ on the right-hand side of (6.9.48) by parts to obtain
+       \begin{align}
+        \int_0^b h_b(y) p(t,T,x,y) dy &= h_b(x) - \int_t^T \int_0^b \frac{\partial}{\partial y} \left[ \beta(u,y)p(t,u,x,y) \right] h_b(y) dy du  \notag \\
+        & \hspace{1cm} + \frac{1}{2}\int_t^T \int_0^b  \frac{\partial^2}{\partial y^2} \left[ \gamma^2(u,y) p(t,u,x,y)\right] h_b(y) dydu \tag{6.9.49}
+    \end{align}
+    \begin{proof}
+    Integration by parts allows us to express $\int u dv = uv -\int v du$. Let us first deal with the integral: $\int_0^b h'_b(y) \beta(u,y) p(t,u,x,y)dy$. Let $u=\beta(u,y)p(t,u,x,y)$, and let $dv=h'_b(y)$. Then,
+    \begin{align*}
+        \int_0^b h'_b(y) \beta(u,y) p(t,u,x,y)dy &= \underset{=0}{\underbrace{\beta(u,y)p(t,u,x,y)h_b(y) |^b_0}} - \int_0^b h_b(y) \frac{\partial}{\partial y}\beta(u,y)p(t,u,x,y)dy \\
+        &=- \int_0^b h_b(y) \frac{\partial}{\partial y}\beta(u,y)p(t,u,x,y)dy
+    \end{align*}
+    We now evaluate the second integral by parts, letting $u =\gamma^2(u,y)p(t,u,x,y) $, and letting $dv=h''_b(u)$. Then,
+    \begin{align*}\int_0^b h''_b(y)p(t,u,x,y) \gamma^2(u,y)&=\underset{=0}{\underbrace{\gamma^2(u,y)p(t,u,x,y)h'_b(y)|^b_0}} - \int_0^b \frac{\partial}{\partial y} \left[\gamma^2(u,y)p(t,u,x,y)\right]h'_b(y)dy \\
+    &=- \int_0^b \frac{\partial}{\partial y} \left[\gamma^2(u,y)p(t,u,x,y)\right]h'_b(y)dy 
+    \end{align*}
+    We again integrate by parts, letting $u=\frac{\partial}{\partial y}\gamma^2(u,y)p(t,u,x,y)$ and $dv = h'_b(y)$. Then, from above,
+    \begin{align*}
+        \int_0^b h''_b(y)p(t,u,x,y) \gamma^2(u,y)&=\int_0^b \frac{\partial}{\partial y} \left[\gamma^2(u,y)p(t,u,x,y)\right]h'_b(y)dy  \\
+        &= -\left( \underset{=0}{\underbrace{\frac{\partial}{\partial y}\left[\gamma^2(u,y)p(t,u,x,y)\right]h_b(y)|^b_0}} -\int_0^b \frac{\partial^2}{\partial y^2} \left[ \gamma^2(u,y) p(t,u,x,y)\right] h_b(y) dy \right) \\
+        &= \int_0^b \frac{\partial^2}{\partial y^2} \left[ \gamma^2(u,y) p(t,u,x,y)\right] h_b(y) dy 
+    \end{align*}
+    We make the substitutions into (6.9.48) to obtain
+    \begin{align*}
+        \int_0^b h_b(y) p(t,T,x,y) dy &= h_b(x) - \int_t^T \int_0^b \frac{\partial}{\partial y} \left[ \beta(u,y)p(t,u,x,y) \right] h_b(y) dy du  \notag \\
+        & \hspace{1cm} + \frac{1}{2}\int_t^T \int_0^b  \frac{\partial^2}{\partial y^2} \left[ \gamma^2(u,y) p(t,u,x,y)\right] h_b(y) dy du
+    \end{align*}
+    \end{proof}
+    
+    
+
+    
+    
+    \item Differentiate (6.9.49) with respect to $T$ to obtain
+    \begin{align}
+        \int_0^b h_b(y) \left[ \frac{\partial }{\partial T} p(t,T,x,y) + \frac{\partial }{\partial y} \left( \beta(T,y) p(t,T,x,y) \right) - \frac{1}{2}\frac{\partial^2}{\partial y^2} \left( \gamma^2(T,y) p(t,T,x,y)\right) \right] dy=0 \tag{6.9.50}
+    \end{align}
+    \begin{proof}    
+    \begin{align*}
+        \frac{\partial }{\partial T} \left[ \int_0^b h_b(y) p(t,T,x,y) dy \right] &=  \frac{\partial }{\partial T} \bigg[ h_b(x) - \int_t^T \int_0^b \frac{\partial}{\partial y} \left[ \beta(u,y)p(t,u,x,y) \right] h_b(y) dy du \\
+        & \hspace{1cm} + \frac{1}{2}\int_t^T \int_0^b  \frac{\partial^2}{\partial y^2} \left[ \gamma^2(u,y) p(t,u,x,y)\right] h_b(y) dy du \bigg] \\
+    \int_0^b h_b(y)  \frac{\partial }{\partial T} p(t,T,x,y) dy  &=   (0) -  \int_0^b \frac{\partial}{\partial y} \left[ \beta(T,y)p(t,T,x,y) \right] h_b(y) dy  \\
+        & \hspace{1cm} + \frac{1}{2}\int_0^b  \frac{\partial^2}{\partial y^2} \left[ \gamma^2(T,y) p(t,T,x,y)\right] h_b(y) dy  \\
+    0&=\int_0^b h_b(y) \bigg[\frac{\partial }{\partial T} p(t,T,x,y) + \frac{\partial }{\partial y} \left( \beta(T,y) p(t,T,x,y) \right) \\
+    &\hspace{1cm}- \frac{1}{2}\frac{\partial^2}{\partial y^2} \left( \gamma^2(T,y) p(t,T,x,y)\right)  \bigg]dy
+    \end{align*}
+    The second step merely used the fundamental theorem of calculus, while the third step added the additive inverse of the RHS to both sides of the equation.
+    \end{proof}
+    \item Use (6.9.50) to show that there cannot be number $0 <y_1 < y_2$ such that 
+    \begin{align*}
+        \frac{\partial }{\partial T} p(t,T,x,y) + \frac{\partial }{\partial y} \left( \beta(T,y) p(t,T,x,y) \right) - \frac{1}{2}\frac{\partial^2}{\partial y^2} \left( \gamma^2(T,y) \right)>0 \fa y \in (y_1,y_2)
+    \end{align*}
+    Similarly, there cannot be number $0< y_1<y_2$ such that
+        \begin{align*}
+        \frac{\partial }{\partial T} p(t,T,x,y) + \frac{\partial }{\partial y} \left( \beta(T,y) p(t,T,x,y) \right) - \frac{1}{2}\frac{\partial^2}{\partial y^2} \left( \gamma^2(T,y) \right)<0 \fa y \in (y_1,y_2)
+    \end{align*}
+    This is as much as you need to do for this problem. It is now obvious that if 
+    \begin{align*}
+        \frac{\partial }{\partial T} p(t,T,x,y) + \frac{\partial }{\partial y} \left( \beta(T,y) p(t,T,x,y) \right) - \frac{1}{2}\frac{\partial^2}{\partial y^2} \left( \gamma^2(T,y) \right)
+    \end{align*}
+    is a continuous function of $y$, then this expression must be zero for every $y>0$, and hence $p(t,T,x,y)$ satisfies the Kolgomorov forward equation stated at the beginning of this problem.
+    
+    \begin{proof}
+        Since the choice of $h(\cdot)$ was arbitrary, and the integral in 6.9.50 evaluates to $0$, it must be the case that the integrand always evaluates to $0$, hence it must be true that for any $y>0$,  $$\frac{\partial }{\partial T} p(t,T,x,y) + \frac{\partial }{\partial y} \left( \beta(T,y) p(t,T,x,y) \right) - \frac{1}{2}\frac{\partial^2}{\partial y^2} \left( \gamma^2(T,y) \right) = 0$$
+    \end{proof}
+    
+\end{enumerate}
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,701 @@
+\providecommand{\topdir}{../..} 
+\documentclass[\topdir/lecture\_notes.tex]{subfiles}
+\graphicspath{{\subfix{./images/}}}
+
+\begin{document}
+\section{Optimal Control in Discrete Time}
+
+\subsection{Discrete Time Markov Processes}
+Let $\{x_{n}\}$ be a discrete-time stochastic process, that is, a sequence of random variables, with values in a space $X$ and  $n=0,1, \ldots$. We assume that $X$ is a Borel space.
+
+The process $\{x_{n}\}$ is called a \emph{Markov chain} or a \emph{discrete-time Markov process} if, for every $k \geq 0$ and $B \in \mathcal{B}(X)$,
+\begin{align}
+P(x_{k+1} \in B \mid x_{0}, \ldots, x_{k})=P(x_{k+1} \in B \mid x_{k}). \label{eq: C.2}
+\end{align}
+The interpretation of (\ref{eq: C.2}) is that $k$ is the present (or current) period, $k+1$ is in the future, and $n \leq$ $k-1$ constitutes the past; then (\ref{eq: C.2}) states that the distribution of $x_{k+1}$ given the history of the process up to the current time $k$ depends only on the current state $x_{k}$.
+
+The right-hand side of (\ref{eq: C.2}) defines the \emph{one-step transition probabilities}
+\begin{align*}
+P_{k}(x, B):=P(x_{k+1} \in B \mid x_{k}=x)
+\end{align*}
+for all $x \in X$, $B \in \mathcal{B}(X)$, and $k=0,1, \ldots$. We interpret them as the probability of the state belonging to the set $B$ at time $k+1$ given that the value of the state at time $k$ is $x$, i.e., the probability of transitioning from $x$ to $B$. If the transition probabilities are independent of $k$, that is,
+\begin{align*}
+P(x, B) := P(x_{k+1} \in B \mid x_{k}=x) \quad \forall k \geq 0
+\end{align*}
+then $\{x_{n}\}$ is said to be a \emph{stationary} or \emph{time-homogeneous} Markov chain. When the state space $X$ is finite (a finite number of states), we can define a Markov process without the machinery of Borel spaces. When $X$ is finite, ${x_n}$ is a Markov process if, for every $k\geq 0$ and $y \in X$, 
+\begin{align*}
+    P(x_{k+1} = y \mid x_{0}, \ldots, x_{k})=P(x_{k+1} = y \mid x_{k}). 
+\end{align*}
+which is a restatement of equation (\ref{eq: C.2}) for the case with finite $X$. The corresponding one-step transition probabilities from state $x$ at time $k$ to state $y$ at $k+1$ are
+\begin{align*}
+P_{k}(x, y):=P(x_{k+1} = y \mid x_{k}=x)
+\end{align*}
+or, if the process is stationary,
+\begin{align*}
+P(x, y) := P(x_{k+1} = y \mid x_{k}=x) \quad \forall k \geq 0
+\end{align*}
+A useful characterization of discrete-time Markov processes is:
+\begin{proposition}\label{prop: mc}
+Let $\{x_{n}\}$ and $\{\xi_{n}\}$ be discrete-time stochastic processes in Borel spaces $X$ and $S$, respectively. Suppose that $\xi_{0}, \xi_{1}, \ldots$ are independent, and also independent of $x_{0}$. If there is a measurable function $F: X \times S \rightarrow X$ such that
+\begin{align}
+x_{n+1}=F(x_{n}, \xi_{n}) \quad \forall n \geq 0, \label{eq: C.4}
+\end{align}
+then $\{x_{n}\}$ is a Markov process. The converse is also true.
+\end{proposition}
+\begin{example}
+Let $\{\xi_{n}\}$ be a sequence of independent random variables, and $x_{0}$ a given random variable independent of $\{\xi_{n}\}$. By Proposition \ref{prop: mc}, the following are examples of Markov chains:
+\begin{enumerate}[label=(\alph*)]
+\item  A Markov chain that evolves as
+\begin{align*}
+x_{n+1}=F(x_{n})+\xi_{n} \quad \forall n=0,1, \ldots
+\end{align*}
+is called a first order autoregressive process, and $\{\xi_{n}\}$ is said to be an additive noise. 
+\item The inventory-production system
+\begin{align*}
+x_{n+1}=x_{n}+f(x_{n})-\xi_{n},\quad n=0,1, \ldots,
+\end{align*}
+where $x_{n}$ is the inventory level of a product at time $n$, $f(x)$ is the production strategy given the stock level $x$, and $\xi_{n}$ is the demand of the product in period $n$.
+\end{enumerate}
+\end{example}
+
+\subsection{Discrete Time Controlled Markov Processes}
+When solving discrete-time optimal control problems, there are two formulations. The first one is a ``system model'' formulation in which the controlled system evolves according to a difference equation of the form
+\begin{align}
+x_{t+1}=F(x_{t}, a_{t}, \xi_{t}) \quad \forall t=0,1, \ldots, T-1, \label{eq: 3.1.1}
+\end{align}
+for $T \leq \infty$, with a given --- possibly random --- initial condition $x_{0}$. Here, the state and control variables $x_{t}$, $a_{t}$ take values in a state space $X$ and an action set $A$, respectively, both assumed to be Borel spaces. Moreover, the $\xi_{t}$ are independent random variables with values in a Borel space $S$, and they denote random perturbations. The idea of (\ref{eq: 3.1.1}) is that the evolution of the state process $\{x_t\}$ can be influenced by the sequence of actions $\{a_t\}$. 
+
+The second formulation is a ``control model'' formulation in which the transition probabilities are given by
+\begin{align}
+Q(B \mid x, a):=\operatorname{Prob}\left[x_{t+1} \in B \mid x_{t}=x, a_{t}=a\right]. \label{eq: 3.1.4}
+\end{align}
+where  $B \in \mathcal{B}(X)$ and, as in the system model, $x_{t}\in X$, and $a_{t}\in A$ for all $t$. The idea behind (\ref{eq: 3.1.1}) is that the sequence of actions $\{a_t\}$ can influence the likelihood of future states, conditional on the current state. Thus, in the control model formulation, the actions influence the evolution of the state process only indirectly through probabilities.
+
+For a large class of models, both formulations are equivalent, so we usually work with whichever one is more convenient.
+
+\begin{example}\label{ex: 3.1}
+Consider the system model (\ref{eq: 3.1.1}), and suppose that the $\xi_{t}$ are independent and identically distributed (i.i.d.) random variables with a common distribution $\mu$ on $S$. We can go from the system model (\ref{eq: 3.1.1}) to the control model (\ref{eq: 3.1.4}). From (\ref{eq: 3.1.4}), we can see that $Q$ is given by
+\begin{align*}
+Q(B \mid x, a) & =\operatorname{Prob}[F(x, a, \xi) \in B] \\
+& =\mu(\{s \in S: F(x, a, s) \in B\}) \\
+& =E[I_{B}(F(x, a, \xi))]
+\end{align*}
+where $I_{B}$ is the indicator function of the set $B$, that is,
+\begin{align*}
+I_{B}(x):= \begin{cases}
+    1 & \text { if } x \in B \\ 
+    0 & \text { otherwise }
+    \end{cases}
+\end{align*}
+It is also possible to prove that we can go the other way around, from (\ref{eq: 3.1.4}) to (\ref{eq: 3.1.1}), but the proof is nonconstructive, so not very helpful in practical terms.
+\end{example}
+
+\subsection{Setup of Control Problem}
+We now describe a general stochastic discrete-time control problem. Our notation defers the issue of choosing between the system model and the control model until we pick particular functional forms, admissible control sets, etc. Thus, we don't need to make the distinction between the two formulations at this stage. Later on, when we work with specific concrete problems, we will inevitably write each problem in either system model or control model forms.
+
+Let $(\Omega, \mathcal{F}, P, \mathbf{F})$ be a filtered probability space, where $\mathbf{F}=\{\mathcal{F}_{n}\}_{n=0}^{\infty}$. On this space we consider a discrete-time controlled Markov process $X$ living on the state space $\mathbf{X}$, with controls $u$ in some control space $\mathcal{U}$. Time is indexed by non-negative integers $\mathcal{T}=\{0,1,2,\ldots\,T\}$, and we use the notation $[n, m]$ to denote a discrete time interval, so $[n, m]=\{n, n+1, \ldots, m-1, m\}$, where $n<m$. We also have some exogenously given objects:
+\begin{itemize}
+  \item A reward functional of the form
+\begin{align*}
+E\left[\sum_{n=0}^{T-1} H_{n}(X_{n}, u_{n})+F(X_{T})\right]
+\end{align*}
+  \item An indexed family $\{U_{n}(x): x \in \mathbf{X},n\in\mathcal{T}\}$ of subsets of $\mathcal{U}$, so $U_{n}(x) \subseteq \mathcal{U}$ for all $x \in \mathbf{X}$ and all $n=0,1,2, \ldots, T$. This family provides us with control restrictions in the sense that if $X_{n}=x$ then we must choose the control $u_{n}$ such that $u_{n} \in U_{n}(x)$.
+\end{itemize}
+The problem to be solved is to choose an adapted control process $u$ that maximizes
+\begin{align*}
+E\left[\sum_{n=0}^{T-1} H_{n}(X_{n}, u_{n})+F(X_{T})\right]
+\end{align*}
+subject to the constraints
+\begin{align*}
+u_{n} \in U_{n}(X_{n}), \quad n=0,1,2, \ldots
+\end{align*}
+We can accommodate infinite horizon problems by letting $T=\infty$ and $F(\cdot)\equiv0$. In principle the control process $u$ is allowed to be any adapted process satisfying the constraints above, but we will restrict ourselves to the case of feedback control laws. 
+\begin{defn}[A feedback control law]
+A \emph{feedback control law} is a mapping $\mathbf{u}: \mathcal{T} \times \mathbf{X} \rightarrow \mathcal{U}$.
+\end{defn}
+The interpretation is that, given the control law $\mathbf{u}$, the control process $u$ will be of the form
+\begin{align*}
+u_{n}=\mathbf{u}_{n}(X_{n}).
+\end{align*}
+The class of feedback control laws is of course smaller than the class of adapted controls. However, it is possible to prove that the optimal control is always realized by a feedback law, so from an optimality point of view there is no restriction to limiting ourselves to feedback laws. On the other hand, the economic implications of following a feedback control law or an ``open loop'' control law (i.e., a control law that depends on time and exogenous disturbances but not on the state) can be quite important \textit{for equilibrium determination}. For example, in standard New Keynesian models, if the central bank sets interest rates according to an open loop control law, then there always is indeterminacy (multiple equilibria). In contrast, with a feedback control law that depends on inflation, it is possible for the central bank to guarantee determinacy (a unique equilibrium). In either case, however, the optimal path that solves the control problem is the same.
+
+The class $\mathbf{U}$ of \emph{admissible feedback laws} is defined as the class of feedback laws $\mathbf{u}$ satisfying the constraints
+\begin{align*}
+u_{n} \in U_{n}(X_{n}), \quad n=0,1,2, \ldots
+\end{align*}
+
+\subsection{The Bellman Equation}
+\subsubsection*{The Value Function}
+The way to approach our optimization problem is construct a family of problems indexed by time and initial conditions. Then we can connect all these problems by a recursive equation, the Bellman equation. Solving the Bellman equation is equivalent to solving the optimal control problem.
+
+\begin{defn}
+For each fixed initial point $(n, x)$ we define the problem $\mathcal{P}_{n, x}$ as the problem of maximizing
+\begin{align*}
+E_{n, x}\left[\sum_{k=n}^{T-1} H_{k}(X_{k}, \mathbf{u}_{k}(X_{k}))+F(X_{T})\right]
+\end{align*}
+over the class of feedback laws $\mathbf{u}$ satisfying the constraints
+\begin{align*}
+\mathbf{u}_{k}(x) \in U_{k}(x), \quad \text { for all } k \geq n, \quad x \in \mathbf{X}
+\end{align*}
+\end{defn}
+We will need the following:
+\begin{defn}
+The \emph{value function}
+\begin{align*}
+J: \mathcal{T} \times \mathbf{X} \times \mathbf{U} \rightarrow \mathbb{R}
+\end{align*}
+is defined by
+\begin{align*}
+J_{n}(x, \mathbf{u})=E_{n, x}\left[\sum_{k=n}^{T-1} H_{k}(X_{k}, \mathbf{u}_{k}(X_{k}))+F(X_{T})\right]
+\end{align*}
+The \emph{optimal value function}
+\begin{align*}
+V: \mathcal{T} \times \mathbf{X} \rightarrow \mathbb{R}
+\end{align*}
+is defined by
+\begin{align*}
+V_{n}(x)=\sup_{\mathbf{u} \in \mathbf{U}} J_{n}(x, \mathbf{u})
+\end{align*}
+\end{defn}
+The interpretation is that $J_{n}(x, \mathbf{u})$ yields the expected utility of employing the control law $\mathbf{u}$ for the time interval $[n, T]$ if you start in state $x$ at time $n$. The optimal value function $V_{n}(x)$ gives you the optimal utility over $[n, T]$ if you start in state $x$ at time $n$.
+
+\begin{remark}
+It is common to use the term value function for both the value function and the \textit{optimal} value function, and we will sometimes follow that practice when the context does not allow for confusion.
+\end{remark}
+
+\subsubsection*{Time Consistency and the Bellman Principle}
+We assume that for every initial point $(n, x)$ there exists an optimal control law for problem $\mathcal{P}_{n, x}$. This control law is denoted by $\hat{\mathbf{u}}^{n, x}$.
+
+The object $\hat{\mathbf{u}}^{n, x}$ is a mapping $\hat{\mathbf{u}}^{n, x}:[n, T] \times \mathbf{X} \rightarrow \mathbb{R}$, where the upper index $(n, x)$ denotes the fixed initial point for problem $\mathcal{P}_{n, x}$. Consequently, the control applied at some time $k \geq n$ will be given by
+\begin{align*}
+\hat{\mathbf{u}}_{k}^{n, x}(X_{k}).
+\end{align*}
+The optimal law for the problem $\mathcal{P}_{n, x}$ could very well depend on the choice of the starting point $(n, x)$. However, it turns out that the optimal law is independent of this choice:
+\begin{theorem}[The Bellman Optimality Principle]\label{thm: bellman_opti}
+Fix an initial point $(n, x)$ and consider the corresponding optimal law $\hat{\mathbf{u}}^{n, x}$. Then the law $\hat{\mathbf{u}}^{n, x}$ is also optimal for any subinterval of the form $[m, T]$ where $m \geq n$. In other words,
+\begin{align*}
+\hat{\mathbf{u}}_{k}^{n, x}(y)=\hat{\mathbf{u}}_{k}^{m, X_{m}}(y)
+\end{align*}
+for all $k \geq m$ and all $y \in \mathbf{X}$. In particular, the optimal law for the initial point $n=0$ will be optimal for all subintervals. This law will be denoted by $\hat{\mathbf{u}}$.
+\end{theorem}
+The Bellman optimality principle says that a plan for the future deemed optimal at an earlier point in time will also remain optimal. Suppose that you optimize at time $n=0$ and follow control law $\hat{\mathbf{u}}$ up to time $n$, where you now have reached the state $X_{n}$. At time $n$ you reconsider, and now decide to forget your original problem and instead solve problem $\mathcal{P}_{n, X_{n}}$. What the Bellman Principle tells you is that the law $\hat{\mathbf{u}}$ (restricted to the time interval $[n, T]$) is optimal, not only for your original problem, but also for your new problem. We could say that our family of problems is \emph{time consistent}.
+
+As a consequence of the Bellman Principle, we can obtain the Bellman equation, which is the recursive relation for the optimal value function.
+\begin{theorem}[The Bellman Equation]\label{thm: bellman_eq}
+The optimal value function satisfies the recursive equation
+\begin{align*}
+& V_{n}(x)=\sup _{u \in U_{n}(x)}\{H_{n}(x, u)+E_{n, x}\left[V_{n+1}(X_{n+1}^{u})\right]\}, \\
+& V_{T}(x)=F(x) .
+\end{align*}
+Furthermore, the supremum in the equation is realized by the optimal control law $\hat{\mathbf{u}}_{n}(x)$.
+\end{theorem}
+
+\begin{optional}
+\subsection[Proof of Principle of Optimality and Bellman Equation]{Proofs of Theorems \ref{thm: bellman_opti} and \ref{thm: bellman_eq}}
+
+\begin{proof}[Proof of Theorem \ref{thm: bellman_opti}]
+The proof is by contradiction. Let us assume that for some $n>0$ there exists a law $\overline{\mathbf{u}}$ on the interval $[n, T]$ such that
+\begin{align*}
+E_{n, x}\left[\sum_{k=n}^{T-1} H_{k}(X_{k}, \overline{\mathbf{u}}_{k}(X_{k}))+F(X_{T})\right] \geq E_{n, x}\left[\sum_{k=n}^{T-1} H_{k}(X_{k}, \hat{\mathbf{u}}_{k}(X_{k}))+F(X_{T})\right]
+\end{align*}
+for all $x \in \mathbf{X}$ with strict inequality for some $x \in \mathbf{X}$. We can then construct a new law $\mathbf{u}^{\star}$ on $[0, T]$ by the following formula
+\begin{align*}
+\mathbf{u}_{k}^{\star}(y)=\left\{\begin{array}{l}
+\hat{\mathbf{u}}_{k}(y) \text { for } 0 \leq k<n-1 \\
+\overline{\mathbf{u}}_{k}(y) \text { for } n \leq k<T-1
+\end{array}\right.
+\end{align*}
+We then have
+\begin{align*}
+ J_{0}(x_{0}, \mathbf{u}^{\star})=&E_{0, x_{0}}\left[\sum_{k=0}^{T-1} H_{k}(X_{k}, \mathbf{u}_{k}^{\star})+F(X_{T})\right] \\
+= & E_{0, x_{0}}\left[\sum_{k=0}^{n-1} H_{k}(X_{k}, \hat{\mathbf{u}}_{k})\right]+E_{0, x_{0}}\left[\sum_{k=n}^{T-1} H_{k}(X_{k}, \overline{\mathbf{u}}_{k})+F(X_{T})\right] \\
+= & E_{0, x_{0}}\left[\sum_{k=0}^{n-1} H_{k}(X_{k}, \hat{\mathbf{u}}_{k})\right]+E_{0, x_{0}}\left[E_{n, X_{n}}\left[\sum_{k=n}^{T-1} H_{k}(X_{k}, \overline{\mathbf{u}}_{k})+F(X_{T})\right]\right],
+\end{align*}
+where we have used the law of iterated expectations and the Markov property to obtain the last term. It now follows from the assumption concerning $\overline{\mathbf{u}}$ that we have
+\begin{align*}
+E_{n, X_{n}}\left[\sum_{k=n}^{T-1} H_{k}(X_{k}, \overline{\mathbf{u}}_{k})+F(X_{T})\right] \geq E_{n, X_{n}}\left[\sum_{k=n}^{T-1} H_{k}(X_{k}, \hat{\mathbf{u}}_{k})+F(X_{T})\right].
+\end{align*}
+with strict inequality with positive probability so, again using iterated expectations and the Markov property, we obtain
+\begin{align*}
+J_{0}(x_{0}, \mathbf{u}^{\star}) & >E_{0, x_{0}}\left[\sum_{k=0}^{n-1} H_{k}(X_{k}, \hat{\mathbf{u}}_{k})\right]+E_{0, x_{0}}\left[E_{n, X_{n}}\left[\sum_{k=n}^{T-1} H_{k}(X_{k}, \hat{\mathbf{u}}_{k})\right]+F(X_{T})\right] \\
+& =E_{0, x_{0}}\left[\sum_{k=0}^{n-1} H_{k}(X_{k}, \hat{\mathbf{u}}_{k})\right]+E_{0, x_{0}}\left[\sum_{k=n}^{T} H_{k}(X_{k}, \hat{\mathbf{u}}_{k})\right] \\
+& =E_{0, x_{0}}\left[\sum_{k=0}^{T} H_{k}(X_{k}, \hat{\mathbf{u}}_{k})+F(X_{T})\right]=J_{0}(x_{0}, \hat{\mathbf{u}}).
+\end{align*}
+We have thus obtained the inequality
+\begin{align*}
+J_{0}(x_{0}, \mathbf{u}^{\star})>J_{0}(x_{0}, \hat{\mathbf{u}}),
+\end{align*}
+which contradicts the optimality of $\hat{\mathbf{u}}$ on the interval $[0, T]$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem \ref{thm: bellman_eq}]
+We fix an arbitrary initial point $(n, x)$ and consider the control law $\mathbf{u}^{\star}$ that deviates from the optimal control only at time $n$. That is, at time $n$ we use an arbitrary control value $u \in U_{n}(x)$, and from time $n+1$ onwards we use the optimal control $\hat{\mathbf{u}}$. Formally, the law $\mathbf{u}^{\star}$ on $[n, T]$ is defined by
+\begin{align*}
+\mathbf{u}_{n}^{\star}(x)&=u, \\
+\mathbf{u}_{k}^{\star}(y)&=\hat{\mathbf{u}}_{k}(y), \quad \text { for all } k \in[n+1, T] \text { and for all } y \in \mathbf{X}.
+\end{align*}
+The idea now is, given the initial point $(n, x)$, to compare the following two control laws on $[n, T]$:
+\begin{enumerate}
+  \item The optimal law $\hat{\mathbf{u}}$.
+  \item The law $\mathbf{u}^{\star}$ defined above.
+\end{enumerate}
+In order to do this, we will compute the expected utilities generated by the two laws. Using the fact that the utility from $\hat{\mathbf{u}}$ must be greater than or equal to the utility from $\mathbf{u}^{\star}$ will allow us to obtain our recursive relation.
+\begin{enumerate}
+  \item Since $\hat{\mathbf{u}}$ is the optimal law we know that the expected utility for $\hat{\mathbf{u}}$ is given by
+    \begin{align*}
+    J_{n}(x, \hat{\mathbf{u}})=V_{n}(x).
+    \end{align*}
+  \item From the definition of $\mathbf{u}^{\star}$ we also know that the expected utility for $\mathbf{u}^{\star}$ is
+    \begin{align*}
+    J_{n}(x, \mathbf{u}^{\star}) & =E_{n, x}\left[\sum_{k=n}^{T-1} H_{k}(X_{k}^{\mathbf{u}^{\star}}, \mathbf{u}_{k}^{\star}(X_{k}))+F(X_{T})\right] \\
+    & =H_{n}(x, u)+E_{n, x}\left[\sum_{k=n+1}^{T-1} H_{k}(X_{k}^{\mathbf{u}^{\star}}, \mathbf{u}_{k}^{\star}(X_{k}))+F(X_{T})\right],
+    \end{align*}
+    where the notation $X_{k}^{\mathbf{u}^{\star}}$ emphasizes the dependence of the distribution of the $X$-process on the control law $\mathbf{u}^{\star}$. Using the law of iterated expectations and the Markov property gives
+    \begin{equation*}
+        \begin{split}
+        &E_{n, x}\left[\sum_{k=n+1}^{T-1} H_{k}(X_{k}^{\mathbf{u}^{\star}}, \mathbf{u}_{k}^{\star}(X_{k}))+F(X_{T})\right]  \\
+        &= E_{n, x}\left[E_{n+1, X_{n+1}^{u}}\left[\sum_{k=n+1}^{T-1} H_{k}(X_{k}^{\mathbf{u}^{\star}}, \mathbf{u}_{k}^{\star}(X_{k}))+F(X_{T})\right]\right],
+        \end{split}
+    \end{equation*}
+    where we note that the distribution of $X_{n+1}$ depends only on the chosen control value $u$ at time $n$, which is captured by the notation $X_{n+1}^{u}$. Using the fact that $\mathbf{u}^{\star}=\hat{\mathbf{u}}$ on the time interval $[n+1, T]$ we obtain
+    \begin{align*}
+    E_{n+1, X_{n+1}^{u}}\left[\sum_{k=n+1}^{T} H_{k}(X_{k}^{\mathbf{u}^{\star}}, \mathbf{u}_{k}^{\star}(X_{k}))+F(X_{T})\right]=V_{n+1}(X_{n+1}^{u}).
+    \end{align*}
+    This gives us the following result for the expected utility from the ``deviation'' law $\mathbf{u}^{\star}$:
+    \begin{align*}
+    J_{n}(x, \mathbf{u}^{\star})=H_{n}(x, u)+E_{n, x}\left[V_{n+1}(X_{n+1}^{u})\right].
+    \end{align*}
+\end{enumerate}
+
+Finally, when comparing the two control laws $\hat{\mathbf{u}}$ and $\mathbf{u}^{\star}$, a clear ranking of the expected utilities emerges,
+\begin{align*}
+J_{n}(x, \hat{\mathbf{u}}) \geq J_{n}(x, \mathbf{u}^{\star}), \quad \text { for all } u \in U_{n}(x)
+\end{align*}
+with equality when $u=\hat{\mathbf{u}}_{n}(x)$. Plugging in the results from above gives us the following inequality:
+\begin{align*}
+V_{n}(x) \geq H_{n}(x, u)+E_{n, x}\left[V_{n+1}(X_{n+1}^{u})\right]
+\end{align*}
+This relation holds for all $u \in U_{n}(x)$ (recall that $u$ was chosen arbitrarily), with equality for $u=\hat{\mathbf{u}}_{n}(x)$, which completes the proof.
+\end{proof}
+\end{optional}
+
+\subsection{On State Variables}
+We do not give a completely formal definition of a state variable, but for our purposes the following imprecise heuristic definition will be enough.
+
+\begin{defn}
+Consider a process $X$ (deterministic or stochastic). A \emph{state variable} $Z$ is a process such that knowledge of $Z_{n}$ at time $n$ is sufficient to calculate the probability distribution of $X_{m}$ at any time $m \geq n$.
+\end{defn}
+The concept of a state variable is thus very close to the concept of a sufficient statistic and to the Markov property. We usually encounter the following:
+\begin{itemize}
+  \item $X$ is a Markov process itself, which implies that $X$ is a state variable.
+  \item $X$ is not Markovian, but if we enlarge the state space by adding a process $Y$ such that the process $Z=(X, Y)$ is Markov, then $Z$ acts a state variable.
+\end{itemize}
+Given a fixed feedback law $\mathbf{u}$, the process $X^{\mathbf{u}}$ is a state variable. Given knowledge of $X_{n}^{\mathbf{u}}$ we can, by the Markov property of $X^{\mathbf{u}}$, calculate the distribution of $X_{m}^{\mathbf{u}}$ for any $m \geq n$.
+
+
+
+%\texorpdfstring{text that will appear in the document}{text used in the bookmark}
+\subsection[Deterministic Infinite Horizon Problems in Economics]{Deterministic Infinite Horizon Problems in Economics\footnote{The content of this section is an adaptation of notes created by Pascal Michaillat that are licensed under the \href{https://creativecommons.org/licenses/by/4.0/}{Creative Commons Attribution 4.0 International License}. The original notes can be found at \href{https://github.com/pmichaillat/math-for-macro}{https://github.com/pmichaillat/math-for-macro}. All errors are mine.}}
+
+We now consider the type of deterministic infinite-horizon problem usually encountered in economics and show how to use the Bellman equation to solve it step by step. This problem fits the framework described above, but the notation is somewhat different to more closely align with how economists write these kinds of problems.
+
+Given initial condition $a_{0}$, choose $\bc{c_{t}}_{t=0}^{\infty}$ to maximize
+\begin{align*}
+\sum_{t=0}^{\infty}\beta^{t}u(a_{t},c_{t})
+\end{align*}
+subject to the dynamic system
+\begin{align}
+a_{t+1}=g(a_{t},c_{t}).\label{eq: law_of_motion}
+\end{align}
+where $u(a_{t},c_{t})$ is a twice-differentiable concave period utility function. In economics,
+it is common to refer to equation (\ref{eq: law_of_motion}) as the \emph{law of motion} for $a$. Also note that here $a_t$ stands for ``asset''; the variable $a_t$ is the state variable and \textit{not} the control variable. The control variable is $c_t$, which stands for ``consumption''.
+
+We seek to find a policy function $h$ that maps the state $a_{t}$ into the control $c_{t}$ such that the sequence
+$\{c_{t}\}_{t=0}^{\infty}$ generated by iterating the two functions
+\begin{align*}
+c_{t} & =h(a_{t}) \\
+a_{t+1} & =g(a_{t},c_{t})
+\end{align*}
+solves the original problem.
+
+\textbf{\underline{Step 1}: Write the Bellman Equation}
+
+The Bellman equation for this problem is:
+\begin{equation}
+\tilde{V}_t(a)=\max_{c}\bc{\beta^t u(a,c)+ \tilde{V}_{t+1}(g(a,c))}.\label{eq:bellmansymb_t}
+\end{equation}
+where $\tilde{V}_t$ is the optimal value function. Since the utility function (the stage cost) depends on time only through the $\beta^t$ term, we can simplify the Bellman equation by guessing that the value function is of the form
+\begin{equation*}
+    \tilde{V}_t(a) = \beta^t V(a)
+\end{equation*}
+with $V(\blank)$ a time-invariant function. Using this guess in equation (\ref{eq:bellmansymb_t}) gives
+\begin{equation}
+V(a)=\max_{c}\bc{u(a,c)+\beta V(g(a,c))}.\label{eq:bellmansymb}
+\end{equation}
+
+The optimal consumption is given by the policy function $c=h(a)$. Another representation of the Bellman equation is 
+\begin{equation}
+V(a)=u(a,h(a))+\beta V(g(a,h(a))).\label{eq:bellmansymb2}
+\end{equation}
+
+To highlight the recursive structure of the problem, we can write the symbolic representation of
+the Bellman equation as:
+\begin{align*}
+V(\text{state(t)})&= \max_{\text{control(t)}}\bc{u(\text{control(t)},\text{state(t)})+\beta V(\text{state(t+1)})}
+\end{align*}
+subject to
+\begin{align*}
+\text{state(t+1)}&=g(\text{control(t)},\text{state(t)}),
+\end{align*}
+which is equivalent to
+\begin{align*}
+V(\text{state(t)})&= \max_{\text{control(t)}}\bc{u(\text{control(t)},\text{state(t)})+\beta  V(g(\text{control(t)},\text{state(t)}))},
+\end{align*}
+where $\text{control(t)}$ and $\text{state(t)}$ are vectors of control variables and state variables.
+
+\textbf{\underline{Step 2}: Derive the First-Order Condition}
+
+Taking the first-order condition (FOC) with respect to $c$ in the optimization problem~\eqref{eq:bellmansymb} yields 
+\begin{equation}
+\pd{u}{c}(a,c)+\beta \pd{g}{c}(a,c) V^\prime(g(a,c))=0,\label{eq:focsymb}
+\end{equation}
+where
+\[\pd{u}{c}(a,c)\]
+is the partial derivative of the function $u(a,c)$ with respect to its second argument, evaluated at the pair $(a,c)$;
+\[\pd{g}{c}(a,c)\]
+is the partial derivative of the function $g(a,c)$ with respect to its second argument, evaluated at the pair $(a,c)$;
+and 
+\[V^\prime(g(a,c))\]
+is the derivative of the function $V(a)$ (with respect to its only argument), evaluated at $g(a,c)$.
+
+\textbf{\underline{Step 3}: Benveniste-Scheinkman Equation}
+
+In the FOC \eqref{eq:focsymb}, we do not know the derivative $V^\prime$ of the value function (because we do not yet know the value function). Hence, the next step is to determine what the derivative $V^\prime$ of the value function is. 
+
+
+To do so, we apply the \emph{Benveniste-Scheinkman theorem}. This theorem says that under some regularity conditions,
+\begin{align}
+V^\prime(a)=\pd{u}{a}(a,c)+\beta \pd{g}{a}(a,c) V^\prime(g(a,c)).\label{eq:BSET}
+\end{align}
+The theorem is a version of the \emph{envelope theorem} applied to the Bellman equation~\eqref{eq:bellmansymb}. Roughly speaking, the Benveniste-Scheinkman theorem says we can take the derivative 
+$V^\prime(a)$ by taking the derivative of the right-hand side of equation (\ref{eq:bellmansymb}) as if $c$ did not depend on $a$.
+
+\begin{optional}
+\subsubsection{Intuition for the Envelop Theorem}
+Consider the following simple maximization problem. There are two choice variables $x$ and $y$, and one parameter, $\alpha$. The problem is to maximize
+\begin{align*}
+U=f(x, y, \alpha).
+\end{align*}
+The first order necessary conditions are
+\begin{align*}
+f_x(x, y, \alpha)=f_y(x, y, \alpha)=0.
+\end{align*}
+If second-order conditions are met, these two equations implicitly define the solution
+\begin{align*}
+x=x^*(\alpha) \quad y=x^*(\alpha).
+\end{align*}
+If we substitute these solutions into the objective function, we get a new function
+\begin{align}
+V(\alpha)=f(x^*(\alpha), y^*(\alpha), \alpha), \label{eq: V_env}
+\end{align}
+where this new function is the value of $f$ when the values of $x$ and $y$ are those that maximize $f(x, y, \alpha)$. Therefore, $V(\alpha)$ is the optimal value function. If we differentiate $V$ with respect to $\alpha$, we get
+\begin{align}
+\frac{\partial V}{\partial \alpha}=f_x \frac{\partial x^*}{\partial \alpha}+f_y \frac{\partial y^*}{\partial \alpha}+f_\alpha. \label{eq: dV_da}
+\end{align}
+However, from the first order conditions we know $f_x=f_y=0$. Therefore, the first two terms disappear and the result becomes
+\begin{align}
+\frac{\partial V}{\partial \alpha}=f_\alpha. \label{eq: dV_da_env}
+\end{align}
+
+The last equation says that, the result of varying $\alpha$ when $x^*$ and $y^*$ allowed to adjust optimally is the same as if $x^*$ and $y^*$ were held constant! Note that $\alpha$ enters the value function in equation (\ref{eq: V_env}) in three places: one direct and two indirect (through $x^*$ and $y^*$). Equations (\ref{eq: dV_da}) and (\ref{eq: dV_da_env}) show that, at the optimum, only the direct effect of $\alpha$ on the objective function survives. This is the essence of the envelope theorem. The envelope theorem says that, at the optimum, only the direct effect of a change in a parameter or an exogenous variable need be considered, even though the parameter or exogenous variable may enter the maximum value function indirectly as part of the solution to the endogenous choice variables.
+\end{optional}
+
+\textbf{\underline{Step 3'}: Combine the FOC with the Benveniste-Scheinkman equation}
+
+Use the the first-order condition~\eqref{eq:focsymb} and the Benveniste-Scheinkman equation~\eqref{eq:BSET} to eliminate $V^{\prime}(a^{\prime})$ (e.g., solve \eqref{eq:focsymb} for $V^{\prime}(a^{\prime})$ and plug it into \eqref{eq:BSET}) to get:
+\begin{align}
+V^{\prime}(a)&=\frac{\partial u}{\partial a}(a,c)-\frac{\frac{\partial g}{\partial a}(a,c)\frac{\partial u}{\partial c}(a,c)}{\frac{\partial g}{\partial c}(a,c)} \label{eq:plug}
+\end{align}
+Equation \eqref{eq:plug} gives $V^\prime$ as a function of the known functions $u$ and $g$.
+
+This step is necessary when \[\pd{g(a,c)}{a}\neq 0\] and can be bypassed otherwise. 
+
+\textbf{\underline{Step 4}: One Step Forward}
+
+Equation \eqref{eq:plug} is true for all time periods. In particular, it is true for the next period. Therefore, using the notation $a':=g(a,h(a))$
+\begin{align}
+V^{\prime}(a')&=\pd{u}{a}(a',c')-\frac{\frac{\partial g}{\partial a}(a',c')\frac{\partial u}{\partial c}(a',c')}{\frac{\partial g}{\partial c}(a',c')}.\label{eq:onestep}
+\end{align}
+
+\textbf{\underline{Step 5}: Euler Equation}
+
+We plug equation~\eqref{eq:onestep} into equation~\eqref{eq:focsymb} to get the \emph{Euler equation}
+\begin{equation*}
+\pd{u}{c}(a,c)+\beta \pd{g}{c}(a,c) \bc{\pd{u}{a}(a',c')-\pd{u}{c}(a',c') \frac{\pdx{g(a',c')}{a}}{\pdx{g(a',c')}{c}}}=0.
+\end{equation*}
+Using that $a' = g(a, c)$, we can see that the Euler equation is an equation that, given the current state $a$ and the current control $c$, determines the optimal control $c'$ for the next period. In other words, it gives the dynamics of the control variable.
+
+\textbf{\underline{Step 6}: Find the Initial Control}
+
+The Euler equation allows us to find the control in the next period, $c'$, given the current state $a$ and the current control $c$. However, it does not allow us to find the initial control $c_0$, since there is no Euler equation for the period before $t=0$ (which is a period that does not exist!).
+
+To find the initial $c_0$, we use the condition that the value function must be finite. Without further assumptions, it is difficult to find $c_0$. Additionally, neither the existence nor the uniqueness of $c_0$ are guaranteed. In most cases, the best way to go is to make further assumptions that ensure the existence of a unique $c_0$ and that allow us to find workable conditions to actually find such a $c_0$. For example, we could make assumptions on $u$ and $g$ (e.g., marginal utility goes to $-\infty$ as $c$ goes to $0$), on the behavior of $V'$, or by adding further constraints in the original problem (such as a ``no Ponzi-scheme'' condition, i.e., a condition that precludes accumulation of negative $a$ at a fast enough rate).
+
+\subsection[Stochastic Infinite Horizon Problems in Economics]{Stochastic Infinite Horizon Problems in Economics\footnote{The content of this section is an adaptation of notes created by Pascal Michaillat that are licensed under the \href{https://creativecommons.org/licenses/by/4.0/}{Creative Commons Attribution 4.0 International License}. The original notes can be found at \href{https://github.com/pmichaillat/math-for-macro}{https://github.com/pmichaillat/math-for-macro}. All errors are mine.}}
+We now add some randomness to the deterministic problem of the last section and characterize its solution following the same steps.
+
+Given initial condition $a_{0}$, choose $\bc{c_{t}}_{t=0}^{\infty}$ to maximize
+\begin{align*}
+\sum_{t=0}^{\infty}\beta^{t} \theta_t u(a_{t},c_{t})
+\end{align*}
+subject to the dynamic system
+\begin{align}
+a_{t+1}=g(a_{t},c_{t}).
+\end{align}
+where, as before, $u(a_{t},c_{t})$ is twice-differentiable concave period utility function, $a_t$ is the state variable, and $c_t$ is the control variable. The only new element is the preference shock $\theta_t$ that multiplies $u(a_t,c_t)$. We assume $\theta_t$ is determined at time $t$ and observed before the consumption decision. The shock can take only two values: $\theta_h$ or $\theta_l$ with $\theta_h > \theta_l > 0$. We also assume the preference shock follows a Markov process; therefore, the distribution of $\theta_t$ only depends on the realization $\theta_{t-1}$ of $\theta$ in the previous period. The main difference compared to the deterministic version of the problem considered earlier is that the value function is not only a function of $a$, but also a function of the current realization of the taste shock, $\theta_t$. In other words, there are two state variables: $a$ and $\theta$.
+
+As before, we seek to find a policy function $h$ that maps the state $(a_{t},\theta_t)$ into the control $c_{t}$ such that the sequence
+$\{c_{t}\}_{t=0}^{\infty}$ generated by iterating the two functions
+\begin{align*}
+c_{t} & =h(a_{t},\theta_t) \\
+a_{t+1} & =g(a_{t},c_{t})
+\end{align*}
+solves the original problem.
+
+\textbf{\underline{Step 1}: Bellman Equation}
+
+The Bellman equation for this problem is:
+\begin{equation}
+V(a,\theta)=\max_{c}\bc{\theta u(a,c)+\beta E_t[V(a^\prime,\theta^\prime)]}.\label{eq:bellmansymb_stoch}
+\end{equation}
+Compared to the Bellman equation for the deterministic case in equation (\ref{eq:bellmansymb}), there are three differences:
+\begin{enumerate}
+    \item The value function is a function of $a$ and $\theta$ instead of being a function of $a$ only; on the right-hand side of the Bellman equation, $a^\prime$ is the value of assets in the next period, and $\theta^\prime$ denotes the (random) value of the preference shock next period.
+    \item The period utility $\theta u(a,c)$ has the preference shock $\theta$, which was absent in the deterministic case,
+    \item Since the value function in the next period $V(a^\prime,\theta^\prime)$ is random (because it depends on $\theta^\prime$) there is an expectation $E_t$ in front of it. The subscript $t$ in $E_t$ denotes that we are taking expectations conditional on all information available at time $t$. In the problem we are considering, the information available is the current value $\theta$ of the preference shock. Because the preference shock follows a Markov process, the current value of the preference shock contains information about the probability distribution of tomorrow's value, $\theta^\prime$. In addition, because of the Markov property, the current value of the preference shock is the only relevant information.
+\end{enumerate} 
+Using that $a_{t+1} =g(a_{t},c_{t})$, we can re-write equation (\ref{eq:bellmansymb_stoch}) as
+\begin{equation}
+V(a,\theta)=\max_{c}\bc{\theta u(a,c)+\beta E_t[V(g(a,c),\theta^\prime)]}.\label{eq:bellmansymb_stoch_c}
+\end{equation}
+
+\textbf{\underline{Step 2}: First-Order Condition}
+
+Taking the first-order condition with respect to $c$ in the optimization problem~\eqref{eq:bellmansymb_stoch_c} yields 
+\begin{equation}
+\theta \pd{u}{c}(a,c)+\beta E_t\left[ \pd{g}{c}(a,c) \od{V}{a}(g(a,c),\theta^\prime)\right]=0,
+\end{equation}
+where $dV/da(g(a,c),\theta^\prime)$ is the derivative of $V$ with respect to its first argument, evaluated at $(g(a,c),\theta^\prime)$. Using that $g(a,c)=a'$ and that $\partial g(a,c)/\partial c$ is known at $t$, we get
+\begin{equation}
+\theta \pd{u}{c}(a,c)+\pd{g}{c}(a,c) \beta E_t\left[  \od{V}{a}(a',\theta^\prime)\right]=0,\label{eq:focsymb_stoch}
+\end{equation}
+
+\textbf{\underline{Step 3}: Benveniste-Scheinkman Equation}
+
+By the Benveniste-Scheinkman theorem,
+\begin{align}
+\od{V}{a}(a,\theta)=\theta\pd{u}{a}(a,c)+\beta E_t \left[\pd{g}{a}(a,c) \od{V}{a}(a',\theta') \right].
+\end{align}
+Using that $\partial g(a,c)/\partial a$ is known at $t$, we get
+\begin{align}
+\od{V}{a}(a,\theta)=\theta\pd{u}{a}(a,c)+\pd{g}{a}(a,c) \beta E_t \left[ \od{V}{a}(a',\theta') \right].\label{eq:BSET_stoch}
+\end{align}
+
+\textbf{\underline{Step 3'}: A Combination}
+
+Eliminating $E_t\left[ \od{V}{a}(a',\theta') \right]$ from the FOC \eqref{eq:focsymb_stoch} and the Benveniste-Scheinkman equation~\eqref{eq:BSET_stoch} gives
+\begin{align}
+\frac{\partial V}{\partial a}(a,\theta)&=\theta\frac{\partial u}{\partial a}(a,c)-\frac{\theta\frac{\partial g}{\partial a}(a,c)\frac{\partial u}{\partial c}(a,c)}{\frac{\partial g}{\partial c}(a,c)}.\label{eq:plug_stoch}
+\end{align}
+
+\textbf{\underline{Step 4}: One Step Forward}
+
+Equation \eqref{eq:plug_stoch} is true for any value of the state variable $a$. In particular, it is true for $a'=g(a,h(a))$. Therefore, using that $c = h(a,\theta)$, we have
+\begin{align}
+\frac{\partial V}{\partial a}(a^{\prime},\theta^{\prime})&=\theta\frac{\partial u}{\partial a}(a^{\prime},c^{\prime})-\frac{\theta\frac{\partial g}{\partial a}(a^{\prime},c^{\prime})\frac{\partial u}{\partial c}(a^{\prime},c^{\prime})}{\frac{\partial g}{\partial c}(a^{\prime},c^{\prime})}.\label{eq:onestep_stoch}
+\end{align}
+
+\textbf{\underline{Step 5}: Euler Equation}
+
+We plug equation~\eqref{eq:onestep_stoch} into equation~\eqref{eq:focsymb_stoch} to get the \emph{Euler equation}
+\begin{equation*}
+0=\theta\frac{\partial u}{\partial c}(a,c)+\beta E_{t}\left[\frac{\partial g}{\partial c}(a,c)\left[\theta\frac{\partial u}{\partial a}(a^{\prime},c^{\prime})-\frac{\theta\frac{\partial g}{\partial a}(a^{\prime},c^{\prime})\frac{\partial u}{\partial c}(a^{\prime},c^{\prime})}{\frac{\partial g}{\partial c}(a^{\prime},c^{\prime})}\right]\right]
+\end{equation*}
+or, after some manipulations,
+\begin{equation*}
+1=\beta E_{t}\left[\frac{\frac{\partial u}{\partial c}(a^{\prime},c^{\prime})}{\frac{\partial u}{\partial c}(a,c)}\frac{\frac{\partial g}{\partial c}(a,c)}{\frac{\partial g}{\partial c}(a^{\prime},c^{\prime})}\frac{\partial g}{\partial a}(a^{\prime},c^{\prime})-\frac{\frac{\partial g}{\partial c}(a,c)}{\frac{\partial u}{\partial c}(a,c)}\frac{\partial u}{\partial a}(a^{\prime},c^{\prime})\right] \label{eq: Euler_stoch}
+\end{equation*}
+The last equation, together with $a'=g(a,h(a))$, characterizes the dynamics of $c$.
+
+\textbf{\underline{Step 6}: Find the Initial Control}
+
+As in the deterministic case, the Euler equation does not pin down $c_0$.
+
+\begin{example}
+    If the utility function is CRRA, we have
+    \begin{align*}
+        u(a,c)&=\frac{c^{1-\gamma}}{1-\gamma} \\
+        \pd{u}{c}(a,c)&=c^{-\gamma} \\
+        \pd{u}{a}(a,c)&=0
+    \end{align*}
+    In addition, if the function $g$ is a budget constraint that represents investment in a single asset with returns $R$,
+     \begin{align*}
+        g(a,c)&=R a_t - c_t \\
+        \pd{g}{c}(a,c)&= -1  \\
+        \pd{g}{a}(a,c)&=R
+    \end{align*}
+    Plugging the above expressions into the Euler equation (\ref{eq: Euler_stoch}) gives
+    \begin{align*}
+        1&=\beta E_{t}\left[\left(\frac{c^{\prime}}{c}\right)^{-\gamma}R\right]
+    \end{align*}
+    or
+    \begin{align*}
+        \frac{c^{-\gamma}}{\beta R}&=\beta E_{t}\left[\left(c^{\prime}\right)^{-\gamma}\right].
+    \end{align*}
+    We can make the dependence of $c$ on the two-state Markov process $\theta$ explicit and write
+    \begin{align*}
+        \frac{c(\theta)^{-\gamma}}{(1+r)\beta}&=p(\theta_{h}\mid\theta)c^{\prime}(\theta_{h})^{-\gamma}+(1-p(\theta_{l}\mid\theta))c^{\prime}(\theta_{l})^{-\gamma}
+    \end{align*}
+    Writing the last equation for $\theta=\theta_l$ and $\theta=\theta_h$ gives
+    \begin{align*}
+    \frac{c(\theta_{l})^{-\gamma}}{(1+r)\beta}&=p(\theta_{h}\mid\theta_{l})c^{\prime}(\theta_{h})^{-\gamma}+(1-p(\theta_{l}\mid\theta_{l}))c^{\prime}(\theta_{l})^{-\gamma}\\
+    \frac{c(\theta_{h})^{-\gamma}}{(1+r)\beta}&=p(\theta_{h}\mid\theta_{h})c^{\prime}(\theta_{h})^{-\gamma}+(1-p(\theta_{l}\mid\theta_{h}))c^{\prime}(\theta_{l})^{-\gamma}
+    \end{align*}
+    which is a system of two equations in the two unknowns $c^{\prime}(\theta_{l})^{-\gamma}$ and $c^{\prime}(\theta_{h})^{-\gamma}$.
+\end{example}
+
+\section{Solution Algorithms}
+To develop solution algorithms, we introduce some vector notation and operations. We focus on the case with a finite number of states and a finite number of possible actions. Assume that the states $S=\{1,2, \ldots, n\}$ and actions $X=\{1,2, \ldots, m\}$ are indexed by the first $n$ and $m$ integers, respectively. Let $v \in \mathbb{R}^{n}$ denote an arbitrary value vector:
+\begin{equation*}
+v_{i} \in \mathbb{R}=\text { value in state } i ;
+\end{equation*}
+and let $x \in X^{n}$ denote an arbitrary policy vector:
+\begin{equation*}
+x_{i} \in X=\text { action in state } i .
+\end{equation*}
+Also, for each policy $x \in X^{n}$, let $f(x) \in \mathbb{R}^{n}$ denote the n-vector of rewards earned in each state when one follows the prescribed policy:
+\begin{equation*}
+f_{i}(x)=\text { reward in state } i \text {, given action } x_{i} \text { taken; }
+\end{equation*}
+and let $P(x) \in \mathbb{R}^{n \times n}$ denote the $n$-by-$n$ state transition probabilities when one follows the prescribed policy:
+\begin{equation*}
+P_{i j}(x)=\text { probability of jump from state } i \text { to } j \text {, given action } x_{i} \text { is taken. }
+\end{equation*}
+
+Given this notation, it is possible to express Bellman's equation for the finite horizon model succinctly as a recursive vector equation. Specifically, if $v_{t} \in \mathbb{R}^{n}$ denotes the value function in period $t$, then
+\begin{equation*}
+v_{t}=\max _{x}\left\{f(x)+\beta P(x) v_{t+1}\right\},
+\end{equation*}
+were the maximization is the vector operation induced by maximizing each row individually. Given the recursive nature of the finite horizon Bellman equation, one may compute the optimal value and policy functions $v_{t}$ and $x_{t}$ using backward recursion:
+
+\subsubsection{Algorithm: Backward Recursion}
+\begin{enumerate}
+    \item Initialization: Specify the rewards $f$, transition probabilities $P$, discount factor $\beta$, terminal period $T$, and post-terminal value function $v_{T+1}$; set $t \leftarrow T$.
+  \item Recursion Step: Given $v_{t+1}$, compute $v_{t}$ and $x_{t}$ :
+\begin{equation*}
+\begin{aligned}
+& v_{t} \leftarrow \max _{x}\left\{f(x)+\beta P(x) v_{t+1}\right\} \\
+& x_{t} \leftarrow \underset{x}{\operatorname{argmax}}\left\{f(x)+\beta P(x) v_{t+1}\right\} .
+\end{aligned}
+\end{equation*}
+
+  \item Termination Check: If $t=1$, stop; otherwise set $t \leftarrow t-1$ and return to step 1 .
+\end{enumerate}
+
+Each recursive step involves a finite number of matrix-vector operations, implying that the finite horizon value functions are well-defined for every period. Note however, that it may be possible to have more than one sequence of optimal policies if ties occur in Bellman's equation. Since the algorithm requires exactly $T$ iterations, it terminates in finite time with the value functions precisely computed and at least one optimal policy obtained.
+
+Consider now the infinite horizon Markov decision model. Given the notation above, it is also possible to express the infinite horizon Bellman equation as a vector fixed-point equation
+\begin{equation*}
+v=\max _{x}\{f(x)+\beta P(x) v\} .
+\end{equation*}
+This vector equation may be solved using standard value function iteration methods:
+\subsubsection{Algorithm: Value Function Iteration}
+\begin{enumerate}
+  \item Initialization: Specify the rewards $f$, transition probabilities $P$, discount factor $\beta$, convergence tolerance $\tau$, and initial guess for the value function $v$.
+
+  \item Function Iteration: Update the value function $v$:
+    \begin{equation*}
+    v \leftarrow \max _{x}\{f(x)+\beta P(x) v\} .
+    \end{equation*}
+  \item Termination Check: If $\|\Delta v\|<\tau$, set
+    \begin{equation*}
+    x \leftarrow \underset{x}{\operatorname{argmax}}\{f(x)+\beta P(x) v\}
+    \end{equation*}
+and stop; otherwise return to step 1.
+\end{enumerate}
+
+The Bellman vector fixed-point equation for an infinite horizon model may alternatively be recast at a root finding problem
+\begin{equation*}
+v-\max _{x}\{f(x)+\beta P(x) v\}=0
+\end{equation*}
+and solved using Newton's method. By the Envelope Theorem, the derivative of the left-hand-side with respect to $v$ is $I-\beta P(x)$ where $x$ is optimal for the embedded maximization problem. As such, the Newton iteration rule is
+\begin{equation*}
+v \leftarrow v-(I-\beta P(x))^{-1}(v-f(x)-\beta P(x) v)
+\end{equation*}
+where $P$ and $f$ are evaluated at the optimal $x$. After algebraic simplification the update rule may be written
+\begin{equation*}
+v \leftarrow(I-\beta P(x))^{-1} f(x) .
+\end{equation*}
+Newton's method applied to Bellman's equation traditionally has been referred to as policy iteration:
+
+\subsubsection{Algorithm: Policy Iteration}
+\begin{enumerate}
+\item Initialization: Specify the rewards $f$, transition probabilities $P$, discount factor $\beta$, and an initial guess for $v$.
+
+  \item Policy Iteration: Given the current value approximant $v$, update the policy $x$:
+    \begin{equation*}
+    x \leftarrow \underset{x}{\operatorname{argmax}}\{f(x)+\beta P(x) v\}
+    \end{equation*}
+    and then update the value by setting      
+    \begin{equation*}
+        v \leftarrow(I-\beta P(x))^{-1} f(x)
+    \end{equation*}
+  \item Termination Check: If $\Delta v=0$, stop; otherwise return to step 1.
+\end{enumerate}
+
+At each iteration, policy iteration either finds the optimal policy or offers a strict improvement in the value function. Because the total number of states and actions is finite, the total number of admissible policies is also finite, guaranteeing that policy iteration will terminate after finitely many iterations with an exact optimal solution. Policy iteration, however, requires the solution of a linear equation system. If $P(x)$ is large and dense, the linear equation could be expensive to solve, making policy iteration slow and possibly impracticable. In these instances, the value function iteration algorithm may be the better choice.
+
+\begin{optional}
+\subsection{Dynamic Analysis}
+The path followed by a controlled, finite horizon, deterministic, discrete, Markov decision process is easily computed. Given the state transition function $g$ and the optimal policy functions $x_{t}^{*}$, the path taken by the state from an initial point $s_{1}$ can be computed as follows:
+\begin{equation*}
+\begin{array}{ll}
+s_{2} & =g\left(s_{1}, x_{1}^{*}\left(s_{1}\right)\right) \\
+s_{3} & =g\left(s_{2}, x_{2}^{*}\left(s_{2}\right)\right) \\
+s_{4} & =g\left(s_{3}, x_{3}^{*}\left(s_{3}\right)\right) \\
+\vdots & \\
+s_{T+1} & =g\left(s_{T}, x_{T}^{*}\left(s_{T}\right)\right) .
+\end{array}
+\end{equation*}
+
+Given the path of the controlled state, it is straightforward to derive the path of actions through the relationship $x_{t}=x_{t}^{*}\left(s_{t}\right)$. Similarly, given the path taken by the controlled state and action allows one to derive the path taken by any function of the state and action.
+
+A controlled, infinite horizon, deterministic, discrete Markov decision process can be analyzed similarly. Given the state transition function $g$ and optimal policy function $x^{*}$, the path taken by the controlled state from an initial point $s_{1}$ can be computed from the iteration rule:
+\begin{equation*}
+s_{t+1}=g\left(s_{t}, x^{*}\left(s_{t}\right)\right) .
+\end{equation*}
+The steady-state of the controlled process can be computed by continuing to form iterates until they converge. The path and steady-state values of other endogenous variables, including the action variable, can then be computed from the path and steady-state of the controlled state.
+
+Analysis of controlled, stochastic, discrete Markov decision processes is a bit more complicated because such processes follow a random, not a deterministic, path. Consider a finite horizon process whose optimal policy $x_{t}^{*}$ has been derived for each period $t$. Under the optimal policy, the controlled state will be a finite horizon Markov chain with nonstationary transition probability matrices $P_{t}^{*}$, whose row $i$, column $j$ element is the probability of jumping from state $i$ in period $t$ to state $j$ in period $t+1$, given that the optimal policy $x_{t}^{*}(i)$ is followed in period $t$:
+\begin{equation*}
+P_{t i j}^{*}=\operatorname{Pr}\left(s_{t+1}=j \mid x_{t}=x_{t}^{*}(i), s_{t}=i\right)
+\end{equation*}
+The controlled state of an infinite horizon, stochastic, discrete Markov decision model with optimal policy $x^{*}$ will be an infinite horizon stationary Markov chain with transition probability matrix $P^{*}$ whose row $i$, column $j$ element is the probability of jumping from state $i$ in one period $t$ to state $j$ in the following period, given that the optimal policy $x^{*}(i)$ is followed:
+\begin{equation*}
+P_{i j}^{*}=\operatorname{Pr}\left(s_{t+1}=j \mid x_{t}=x^{*}(i), s_{t}=i\right)
+\end{equation*}
+
+Given the transition probability matrix $P^{*}$ for the controlled state it is possible to simulate a representative state path, or, for that matter, many representative state paths, by performing Monte Carlo simulation. To perform Monte Carlo simulation, one picks an initial state, say $s_{1}$. Having the simulated state $s_{t}=i$, one may simulate a jump to $s_{t+1}$ by randomly picking a new state $j$ with probability $P_{i j}^{*}$.
+
+The path taken by the controlled state of an infinite horizon, stochastic, discrete Markov model may also be described probabilistically. To this end, let $Q_{t}$ denote the matrix whose row $i$, column $j$ entry gives the probability that the process will be in state $j$ in period $t$, given that it is in state $i$ in period 0 . Then the $t$-period transition probability matrices $Q_{t}$ are simply the matrix powers of $P$:
+\begin{equation*}
+Q_{t}=P^{t}
+\end{equation*}
+where $Q_{0}=I$. Given the $t$-period transition probability matrices $Q_{t}$, one can fully describe, in a probabilistic sense, the path taken by the controlled process from any initial state $s_{0}=i$ by looking at the $i^{\text {th }}$ rows of the matrices $Q_{t}$.
+
+In most economic applications, the multiperiod transition matrices $Q_{t}$ will converge to a matrix $Q$ as $t$ goes to infinity. In such cases, each entry of $Q$ will indicate the relative frequency with which the controlled decision process will visit a given state in the longrun, when starting from given initial state. In the event that all the columns of $Q$ are identical and the longrun probability of visiting a given state is independent of initial state, then we say that the controlled state process possesses a steady-state distribution. The steady state distribution is given by the probability vector $\pi$ that is the common row of the matrix $Q$. Given the steady-state distribution of the controlled state process, it becomes possible to compute summary measures about the longrun behavior of the controlled process, such as its longrun mean or variance. Also, it is possible to derive the longrun probability distribution of the optimal action variable or the longrun distribution of any other variables that are functions of the state and action.
+\end{optional}
+
+
+
+\end{document}

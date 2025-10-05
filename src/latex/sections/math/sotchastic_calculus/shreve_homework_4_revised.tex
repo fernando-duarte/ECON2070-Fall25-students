@@ -1,0 +1,874 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amsfonts,wrapfig,hyperref}
+\usepackage[left=1in, right=1in, top=1in, bottom=1in]{geometry}
+\usepackage{titlesec}
+\usepackage{amssymb,amsbsy}
+\usepackage{amsthm}
+\usepackage{enumitem,graphicx,enumerate}
+\usepackage{authblk,bm,xcolor,color,cancel}
+\usepackage{changepage}
+\usepackage{MnSymbol}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\p}{\mathbb{P}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\G}{\mathcal{G}}
+\newcommand{\Om}{\Omega}
+\newcommand{\tp}{\tilde{\p}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
+\newcommand{\sign}{\mathrm{sign}}
+\newcommand{\infint}{\int_{-\infty}^{\infty}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\eps}{\epsilon}
+\DeclareMathOperator{\Ima}{Im}
+\newcommand{\fa}{\; \forall \;}
+\newcommand{\df}[1]{\textbf{Def. #1:}}
+\newcommand{\pspace}{\left(\Omega,\F,\p\right)}
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\st}{\text{ s.t. }}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\veps}{\varepsilon}
+\newcommand{\exs}{\exists \;}
+\newcommand{\mylabel}[2]{#2\def\@currentlabel{#2}\label{#1}}
+\newcommand{\pr}[1]{ \item[\mylabel{}{#1.}]}
+\newcommand{\isgeq}{\stackrel{?}{\geq}}
+\newcommand{\isleq}{\stackrel{?}{\leq}}
+\newcommand{\limit}[1]{\underset{#1}{\lim}}
+\newcommand{\cont}{\Rightarrow\!\Leftarrow}
+\newcommand{\seq}[1]{\left\{ #1 \right\}}
+\newtheorem{prop}{Proposition}
+\newtheorem*{remark}{Remark}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[]{Lemma}
+\newtheorem{corollary}{Corollary}[theorem]
+\theoremstyle{definition}
+\newtheorem{exmp}{\Example}[section]
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\title{Shreve Stochastic Calculus Homework: Chapter 4 \vspace{-1eX}}
+\author{Benjamin Marrow \vspace{-1.5eX}}
+\date{ August 2018  \vspace{-1eX}}
+\begin{document}
+
+\maketitle
+
+% \tableofcontents
+% \clearpage
+
+\section*{Chapter 4}
+
+\begin{enumerate}
+    \pr{4.5} (Solving the generalized geometric Brownian motion equations). Let $S(t)$ be a positive stochastic process that satisfies the generalized GBM differential equation:
+\begin{equation} 
+     dS(t) = \alpha(t) S(t) dt + \sigma(t) S(t) dW(t) \tag{4.10.2}\label{eq:GBM}
+\end{equation}
+    where $\alpha(t)$ and $\sigma(t)$ are processes adapted to the filtration $\F(t), t \geq 0$ associated with Brownian motion $W(t), t \geq 0$. In this exercise we show that $S(t) $ must be given formula (4.4.26) (i.e., that formula provides the only solution to the SDE (4.10.2)). In the process we provide a method for solving this equation.
+    \begin{enumerate}[(i)]
+        \item Using (4.10.2) and the It\^{o}-Doeblin formula, compute $d \log S(t)$. Simplify so that you have a formula for $d \log S(t)$ that does not involve $S(t)$.
+        
+        \begin{proof} We may write $\log S(t) = f(S(t))$, where $f(x) = \log S(0)e^x$, $f'(x) \frac{S(0)e^x}{S(0)e^x}=1$, and $f''(x) = 0$. According to the It\^{o}-Doeblin formula, 
+        \begin{align*}
+            d \log S(t) &= f'(S(t))dS(t) + \frac{1}{2}f''(S(t))dS(t)^2 \\
+            &= \frac{1}{S(t)} dS(t) -\frac{1}{2}\frac{1}{S^2(t)} dS(t)^2 
+        \end{align*}
+        
+        We can obtain $\frac{dS(t)}{S(t)}$ by dividing both sides of equation~\ref{eq:GBM} by $S(t)$:
+        \begin{align*}
+            \frac{dS(t)}{S(t)} & = \alpha(t) dt + \sigma(t) dW(t) \\
+            \left( \frac{dS(t)}{S(t)}\right)^2 &= \alpha^2(t)(dt)^2+ 2\alpha(t)\sigma(t)dW(t)dt +\sigma^2(t)dW^2(t) \\
+            & = \sigma^2(t)dt
+        \end{align*}
+        where the third line exploits the fact that $dt^2 = dWdt = 0$ and $dW^2(t)=dt$.
+        Hence,
+        \begin{align*}
+            d \log S(t) &= \left[ \alpha(t) dt + \sigma(t) dW(t) \right] - \frac{1}{2}\sigma^2(t)dt \\
+                        &= \left( \alpha(t)  - \frac{1}{2}\sigma^2(t) \right) dt+  \sigma(t)   dW(t)
+        \end{align*} \end{proof}
+        
+        \item Integrate the formula you obtained in (i), and then exponentiate the answer to obtain (4.4.26).
+        
+        \begin{proof}
+        
+        Note that (4.4.26) is given by:
+        \begin{equation}
+            S(t) = S(0) \exp{\int_0^t \sigma(s)dW(s) + \int_0^t \left( \alpha(s) - \frac{1}{2}\sigma^2(s) \right) ds} \tag{4.4.26}
+        \end{equation}
+        
+        We have:
+        \begin{align*}
+        \log S(t) - \log S(0) &= \int_0^t \left[  \left( \alpha(s)  - \frac{1}{2}\sigma^2(s) \right) ds+  \sigma(s)   dW(s)  \right] \\
+        \log S(t) &= \log S(0) + \int_0^t  \sigma(s)   dW(s)  +  \int_0^t \left( \alpha(s)  - \frac{1}{2}\sigma^2(s) \right) ds \\
+        S(t) &= S(0) \exp \seq{\int_0^t  \sigma(s)   dW(s)  +  \int_0^t \left( \alpha(s)  - \frac{1}{2}\sigma^2(s) \right) ds }
+        \end{align*}
+            
+            
+        
+        \end{proof}
+        
+    \end{enumerate}
+    
+    \pr{4.6} Let $S(t) = S(0) \exp \seq{\sigma W(t) + \bigg( \alpha-\frac{1}{2}\sigma^2 \bigg)t }$ be a GBM. Let $p$ be a positive constant. Compute $d(S^p(t))$, the differential of $S(t)$ raised to the power $p$.
+    
+    \begin{proof}
+        \begin{align*}
+            d(S^p(t)) &= pS^{p-1}(t)dS(t) + \frac{1}{2}p(p-1)S^{p-2}dS^2(t) \\
+                      &= S^{p-1}(t) \left( pdS(t) + \frac{1}{2}p(p-1)S^{-1} dS^2(t) \right) \\
+                &= S^p(t) \left( p\frac{dS(t)}{S(t)}+ \frac{1}{2}p(p-1)S^{-2} dS^2(t) \right)
+        \end{align*}
+        
+        (To move from line (1) to line (2), we factored out $S^{p-1}(t)$, and to move from lines (2) to (3), we factored out $S(t)$.)
+        
+        From the previous question, we saw that:
+         \begin{align*}
+            \frac{dS(t)}{S(t)} & = \alpha(t) dt + \sigma(t) dW(t) \\
+            \left( \frac{dS(t)}{S(t)}\right)^2 &= \alpha^2(t)(dt)^2+ 2\alpha(t)\sigma(t)dW(t)dt +\sigma^2(t)dW^2(t) \\
+            & = \sigma^2(t)dt
+        \end{align*}
+        
+        Hence,         \begin{align*}
+            d(S^p(t)) &=  S^p(t) \left( p\left[ \alpha(t) dt + \sigma(t) dW(t) \right]+ \frac{1}{2}p(p-1)\sigma^2(t)dt \right) \\
+                        &= pS^p(t) \left(  \left(\alpha(t)+\sigma^2(t)\frac{p-1}{2}\right) dt + \sigma(t)dW(t) \right)
+        \end{align*}
+    \end{proof}
+    
+    
+    \pr{4.7}
+    \begin{enumerate}[(i)]
+        \item Compute $dW^4(t)$ and then write $W^4(T)$ as the sum of an ordinary (Lebesgue) integral with respect to time and an It\^{o} integral.
+        
+        \begin{proof}
+        We apply It\^{o}'s Lemma:
+        \begin{align*}
+            d(W^4(t)) &= 4W^3 dW(t) + \frac{1}{2} (12) W^2(t) dW^2  \\
+                      &= 4W^3 dW(t) + 6W^2 dt \\
+            W^4(T) &= \int_0^T 4W^3 dW(s) + \int_0^T 6W^2 ds \\
+        \end{align*}
+        
+        \end{proof}
+        
+        
+        \item Take expectations on both sides of the formula you obtained in (i), use the fact that $\E W^2(t) = t$, and derive the formula $\E W^4(T) = 3T^2$.
+        
+        \begin{proof}  
+            
+        \begin{align*}
+            \E W^4(T)  &= \E \left[  \int_0^T 4W^3(t) dW(s) + \int_0^T 6W^2(s) ds \right] \\
+            &=  4 \E \left[  \int_0^T W^3(t) dW(s) \right] + 6 \E \left[ \int_0^T W^2 ds  \right] \\
+            &=  0 + 6   \int_0^T \E[ W^2] ds \\
+            &=   6   \int_0^T t ds  \\
+             &=  6 \frac{T^2}{2} = 3T^2 
+        \end{align*}
+            
+            To move from line (1) to line (2), we used linearity of integrals. To move from line (2) to (3) we used two properties: since the first term is an It\^{o} integral and hence a martingale, its expectation is $0$. For the second term, we used Tonelli's theorem, which tells us that for nonnegative functions (of which $W^2(s)$ is one), we can exchange the order of integration, and hence the expectation of the integral is equal to the integral of the expectation. Line (3) to (4) uses the expectation given in the question, and the remaining steps follow trivially.
+            
+        \end{proof}
+        
+        
+        \item Use the method of (i) and (ii) to derive a formula for $\E W^6(T)$
+        \begin{proof}
+        As in step (i) we first calculate $dW^6(t)$ and then integrate:
+        \begin{align*}
+            dW^6(t) &= 6W^5(t) dW(t) + \frac{1}{2}30W^4 dW(t)dW(t) \\
+            &= 6W^5(t) dW(t) + 15W^4(t) dt \\
+            W^6(T) &= \int_0^T 6W^5(t) dW(t) + \int_0^T 15W^4(t) dt
+        \end{align*}
+        As in step (ii) we  take expectations:
+        \begin{align*}
+             \E[W^6(T)] &= \E \left[ \int_0^T 6W^5(t) dW(t) + \int_0^T 15W^4(t) dt \right] \\
+             &= 0 + 15\E\left[ \int_0^T W^4(t) dt \right] \\
+             &= 15 \int_0^T \E[W^4(t)] dt  \\
+             & = 15 \int_0^T 3t^2 dt = 15T^3
+        \end{align*}
+        (To move from the penultimate to final line, we used our result from (ii) for $\E[W^4(t)]$).
+        \end{proof}
+        
+    \end{enumerate}
+    
+    \pr{4.8} (Solving the Vasicek equation). The Vasicek interest rate stochastic differential equation (4.4.32) is:
+    \begin{equation}
+        dR(t) = (\alpha-\beta R(t)) dt + \sigma dW(t) \tag{4.4.32} \label{eq:vasicek}
+    \end{equation}
+    where $\alpha, \beta,$ and $\sigma$ are positive constants. The solution to this equation is given in Example 4.4.10. This exercise shows how to derive this solution.
+    \begin{enumerate}[(i)]
+        \item Use (\ref{eq:vasicek}) and the It\^{o}-Doeblin formula to compute $d\left(e^{\beta t}R(t)\right)$. Simplify it so that you have a formula for $d\left(e^{\beta t}R(t)\right)$ that does not involve $R(t)$.
+        
+        \begin{proof} Recall the It\^{o}-Doeblin formula states:
+        $$ df(t,X(t)) = f_t(t,X(t)) dt + f_x(t,X(t)) dX(t) + \frac{1}{2}f_{xx}(t,X(t))dX(t)dX(t)$$
+        Hence according to the It\^{o}-Doeblin formula with $f(t,x)=e^{\beta t}x$, the differential of the Vasicek equation is given by
+        \begin{align*}
+            d\left(e^{\beta t}R(t)\right) &= d f(t,R(t)) \\
+            &= \beta e^{\beta t} R(t)dt + e^{\beta t}dR(t) \\
+            &= \beta e^{\beta t} R(t)dt + e^{\beta t}\left[(\alpha-\beta R(t)) dt + \sigma dW(t) \right] \\
+            &= e^{\beta t}\left[ \beta R(t)dt + \alpha dt-\beta R(t)) dt + \sigma dW(t) \right] \\
+            &= e^{\beta t}\left[ \alpha dt + \sigma dW(t) \right] 
+        \end{align*}
+        \end{proof}
+        
+        \item Integrate the equation you obtained in (i) and solve for $R(t)$ to obtain (4.4.33).
+        
+        \begin{proof}
+        
+        Note that (4.4.33) is given by:
+        \begin{equation}
+            R(t) = e^{-\beta t}R(0) + \frac{\alpha}{\beta}(1-e^{-\beta t})+ \sigma e^{ -\beta t}\int_0^t e^{\beta s} dW(s) \tag{4.4.33}
+        \end{equation}
+        
+        We integrate our results from step (i):
+        \begin{align*}
+         e^{\beta t} R(t)-e^{\beta (0)}R(0) &= \int_0^t e^{\beta s}\left[ \alpha ds + \sigma dW(s) \right] \\
+         &= \int_0^t \alpha e^{\beta s} + \sigma \int_0^t e^{\beta s} dW(s) \\
+         &= \frac{\alpha}{\beta}(e^{\beta t} - 1)+ \sigma \int_0^t e^{\beta s} dW(s) \\
+       R(t)  &= e^{-\beta t}R(0)+ \frac{\alpha}{\beta}(1-e^{-\beta t} )+ \sigma e^{-\beta t}\int_0^t e^{\beta s} dW(s)
+        \end{align*} \end{proof}
+        
+    \end{enumerate}
+    
+    \pr{4.13} (Decomposition of correlated Brownian motions into independent Brownian motions). Suppose $B_1(t)$ and $B_2(t)$ are Brownian motions and
+    $$ dB_1(t)dB_2(t) = \rho(t)dt$$
+    where $\rho$ is a stochastic process taking values strictly between $-1$ and $1$. Define processes $W_1(t)$ and $W_2(t)$ such that
+    \begin{align*}
+        B_1(t) &= W_1(t) \\
+        B_2(t) &= \int_0^t \rho(s) dW_1(s) + \int_0^t \sqrt{1-\rho^2(s)}dW_2(s)
+    \end{align*}
+    and show that $W_1(t)$ and $W_2(t)$ are independent Brownian motions.
+    
+    \begin{proof}
+    We have that:
+    \begin{align*}
+        dB_1(t) &= dW_1(t) \\
+        dB_2(t) &= \rho(t)dW_1(t) + \sqrt{1-\rho^2(t)}dW_2(t)
+    \end{align*}
+It follows that
+\begin{align*}
+    dB_1(t)dB_2(t) &= dW_1(t) \cdot \left( \rho(t)dW_1(t) + \sqrt{1-\rho^2(t)}dW_2(t) \right) \\
+    &= 
+    \rho(t)dt + \sqrt{1-\rho^2(t)}dW_1(t)dW_2(t) \\
+   \rho(t)dt &= \rho(t)dt + \sqrt{1-\rho^2(t)}dW_1(t)dW_2(t) \\
+   0 &= \sqrt{1-\rho^2(t)}dW_1(t)dW_2(t)
+\end{align*}    
+Since $\sqrt{1-\rho^2(t)}$ cannot be $0$, it follows that $dW_1(t)dW_2(t)=0$ and hence they are independent.
+    \end{proof}
+    
+    \pr{4.15} (Creating correlated Brownian motions from independent ones). Let $(W_1(t),\ldots,W_d(t))$ be a $d$-dimensional Brownian motion. In particular, these Brownian motions are independent of one another. Let $(\sigma_{ij}(t))_{i=1,\ldots,m;j=1,\ldots,d}$ be an $m \times d$ matrix valued process adapted to the filtration associated with the $d$-dimensional Brownian motion. For $i=1,\ldots,m$ define:
+    $$ \sigma_i(t) = \left[ \sum_{j=1}^d \sigma_{ij}^2(t) \right]^{\frac{1}{2}}$$
+    and assume this is never zero. Define also
+    $$ B_i(t) = \sum_{j=1}^d \int_0^t \frac{\sigma_{ij}(u)}{\sigma_i(u)}dW_j(u)$$
+    
+    \begin{enumerate}[(i)]
+        \item Show that, for each $i$, $B_i$ is a Brownian motion.
+        
+        \begin{proof} To show that each $B_i$ is a Brownian motion, we invoke Levy's theorem; specifically, it suffices to show that $dB_i(i)dB_i(t)=dt$. We first note that the sum of an integral is equal to the integral of the sum, i.e.,
+        \begin{align*}
+            B_i(t) &= \sum_{j=1}^d \int_0^t \frac{\sigma_{ij}(u)}{\sigma_i(u)}dW_j(u) \\
+            &= \int_0^t \sum_{j=1}^d  \frac{\sigma_{ij}(u)}{\sigma_i(u)}dW_j(u) 
+        \end{align*}
+        Hence, 
+        \begin{align*}
+            dB_i(t) &= \sum_{j=1}^d  \frac{\sigma_{ij}(t)}{\sigma_i(t)} dW_j(t) \\
+           dB_i(i)dB_i(t)   &= \left(\sum_{j=1}^d  \frac{\sigma_{ij}(t)}{\sigma_i(t)} dW_j(t) \right)^2
+        \end{align*}
+        To proceed from here, note that  each $dW_j$ is independent of $dW_k, k \neq j$, by hypothesis. Since the items in the summand are independent, the squared sum is equal to the sum of the squares\footnote{This is an application of the Binomial Theorem, where the cross products will equal $0$.}, i.e.,
+        \begin{align*}
+                       dB_i(i)dB_i(t)   &= \left(\sum_{j=1}^d  \frac{\sigma_{ij}(t)}{\sigma_i(t)} dW_j(t) \right)^2 = \sum_{j=1}^d  \frac{\sigma_{ij}^2(t)}{\sigma_i^2(t)} dt  = dt
+        \end{align*}
+    
+        
+        \end{proof}
+        
+        \item Show that $dB_i(t)dB_k(t)=\rho_{ik}(t)$, where
+        $$ \rho_{ik}(t) = \frac{1}{\sigma_i(t)\sigma_k(t)}\sum_{j=1}^d \sigma_{ij}(t) \sigma_{kj}(t)$$
+        
+        \begin{proof}
+        We again have independent $W_{j}$,$W_{k}$ hence those cross products will be $0$, leaving
+           \begin{align*}
+                       dB_i(i)dB_k(t)   &= \left(\sum_{j=1}^d  \frac{\sigma_{ij}(t)}{\sigma_i(t)} dW_j(t) \right)  \left(\sum_{j=1}^d  \frac{\sigma_{kj}(t)}{\sigma_k(t)} dW_j(t) \right) \\
+                       &= \sum_{j=1}^d  \frac{\sigma_{ij}(t)\sigma_{kj}(t)}{\sigma_i(t)\sigma_j(t)} dt  = \rho_{ik}(t)
+        \end{align*}
+        \end{proof}
+        
+    \end{enumerate}
+    
+    
+    \pr{4.17} (Instantaneous correlation). Let
+    \begin{align*}
+        X_1(t) &= X_1(0) + \int_0^t \Theta_1(u) du + \int_0^t \sigma_1(u) dB_1(u), \\
+         X_2(t) &= X_2(0) + \int_0^t \Theta_2(u) du + \int_0^t \sigma_2(u) dB_2(u)
+    \end{align*}
+    
+    where $B_1(t)$ and $B_2(t)$ are Brownian motions satisfying $dB_1(t)dB_2(t)=\rho(t)$ and $\rho(t)$, $\Theta_1(t)$, $\Theta_2(t)$, $\sigma_1(t)$, and $\sigma_2(t)$ are adapted processes. Then
+    $$ dX_1(t) dX_2(t) = \sigma_1(t) \sigma_2(t) dB_1(t) dB_2(t) = \rho(t) \sigma_1(t) \sigma_2(t) dt$$
+    We call $\rho(t)$ the \textit{instantaneous correlation} between $X_1(t)$ and $X_2(t)$ for the reason explained by this exercise.
+    
+    We first consider the case when $\rho$, $\Theta_1$, $\Theta_2$, $\sigma_1$, and $\sigma_2$ are constant. Then
+    \begin{align*}
+        X_1(t) &= X_1(0) + \Theta_1 t + \sigma_1 B_1(t) \\
+        X_2(t) &= X_2(0) + \Theta_2 t + \sigma_2 B_2(t)
+    \end{align*}
+    Fix $t_0 > 0,$ and let $\eps >0$ be given.
+    \begin{enumerate}[(i)]
+        \item Use It\^{o}'s product rule to show that
+        $$ \E \left[ \big(B_1(t_0+\eps)-B_1(t_0)\big)\big(B_2(t_0+\eps)-B_2(t_0)\big) | \F(t_0) \right] = \rho \eps$$
+        
+        \begin{proof} We have that:
+        \begin{align*}
+            d(B_1(t)B_2(t)) &= B_1(t)dB_2(t)+B_2(t)dB_1(t)+dB_1(t)dB_2(t) \\
+            &=B_1(t)dB_2(t)+B_2(t)dB_1(t)+\rho(t)dt
+        \end{align*}
+        Next, observe that we can write 
+        \begin{align*}
+            B_1(t_0+\eps)B_2(t_0+\eps) &= B_1(t_0)B_2(t_0)+\int_{t_0}^{t_0+\eps} d(B_1(s)B_2(s)) \\
+            &= B_1(t_0)B_2(t_0) + \int_{t_0}^{t_0+\eps} \left[ B_1(t)dB_2(t)+B_2(t)dB_1(t)+\rho dt \right] \\
+            \E[B_1(t_0+\eps)B_2(t_0+\eps)|\F(t_0)]&= B_1(t_0)B_2(t_0) + (0) + (0) + \rho \eps = B_1(t_0)B_2(t_0) +\rho \eps
+        \end{align*}
+        where the final line uses the fact that all It\^{o} integrals are martingales. Denote $LHS$ as the component in the expectation in the question, i.e.
+        
+        $$ LHS = \big(B_1(t_0+\eps)-B_1(t_0)\big)\big(B_2(t_0+\eps)-B_2(t_0)\big)$$
+        Then
+        \begin{align*}
+            \E[LHS] &= \E[B_1(t_0+\eps)B_2(t_0+\eps)+B_1(t_0)B_2(t_0) \\
+            & \hspace{2cm} -B_1(t_0+\eps)B_2(t_0) -B_1(t_0)B_2(t_0+\eps)|\F(t_0)] \\
+            &= \E[B_1(t_0+\eps)B_2(t_0+\eps)|\F(t_0)]+\E[B_1(t_0)B_2(t_0)|\F(t_0)] \\
+            & \hspace{2cm}  -\E[B_1(t_0+\eps)B_2(t_0)|\F(t_0)]-\E[B_1(t_0)B_2(t_0+\eps)|\F(t_0)] \\
+            &= B_1(t_0)B_2(t_0) + \rho \eps + B_1(t_0)B_2(t_0) - B_2(t_0)\E[B_1(t_0+\eps)|\F(t_0)] -B_1(t_0)\E[B_2(t_0+\eps)|\F(t_0)] \\
+            &= B_1(t_0)B_2(t_0) + \rho \eps + B_1(t_0)B_2(t_0) - B_2(t_0)B_1(t_0) -B_1(t_0)B_2(t_0) = \rho \eps
+        \end{align*}
+        
+        In the first line, we distributed the product of $LHS$; in the second line we used linearity of conditional expectations to distribute the expectation across the elements of the sum; in the third line we took out the $\F(t_0)$-measurable elements out of the expectation; and in the final line, we used the property of Brownian motions that they are martingales, i.e. that $\E[B_1(t_0+\eps)|\F(t_0)]=B_1(t_0)$
+        
+        
+        
+        
+        \end{proof}
+        
+        \item Show that, conditioned on $\F(t_0),$ the pair of random variables
+        $$ \big( X_1(t_0+\eps)-X_1(t_0),X_2(t_0+\eps)-X_2(t_0)\big)$$
+        has means, variances, and covariance
+        \begin{align}
+            M_i(\eps) &= \E\left[ X_i(t_0+\eps)-X_i(t_0)|\F(t_0)\right] = \Theta_i \eps \text{ for } i=1,2 \tag{4.10.28} \\
+            V_i(\eps) &= \E\left[ \big( X_i(t_0+\eps)-X_i(t_0)\big)^2|\F(t_0)\right]-M_i^2 = \sigma_i^2 \eps \text{ for } i=1,2 \tag{4.10.29} \\
+            C(\eps) &= \E\left[ \big( X_1(t_0+\eps)-X_1(t_0)\big)\big( X_2(t_0+\eps)-X_2(t_0)\big)|\F(t_0)\right]-M_1(\eps)M_2(\eps) = \rho \sigma_1 \sigma_2 \eps \tag{4.10.30}
+        \end{align}
+        In particular, conditioned on $\F(t_0)$, the correlation between the increments $X_1(t_0+\eps)-X_1(t_0)$ and $X_2(t_0+\eps)-X_2(t_0)$ is
+        $$ \frac{C(\eps)}{\sqrt{V_1(\eps)V_2(\eps)}}=\rho$$
+        
+        \begin{proof}
+        \begin{align*}
+           M_i(\eps) = \E\big[ X_i(t_0+\eps)-X_i(t_0)|\F(t_0)\big] &= \E\big[ \big(X_i(0) + \Theta_i \cdot (t_0+\eps) + \sigma_1 B_i(t_0+\eps)\big) \\
+            &\hspace{1cm} - \big(X_i(0) + \Theta_i \cdot (t_0) + \sigma_i B_i(t_0)\big) |\F(t_0) \big] \\
+            &= \E[ \Theta_i\cdot(t_0+\eps-t_0)+\sigma_1 \left(B_i(t_0+\eps)-B_i(t_0)\right)|\F(t_0)  ] \\
+            &= \Theta_i\cdot \eps + \sigma_i\cdot \big( \E[B_i(t_0+\eps)|\F(t_0)]-B_i(t_0) \big) \\
+            &= \Theta_i\cdot \eps + \sigma_1(B_i(t_0)-B_i(t_0)) = \Theta_i \eps
+        \end{align*}
+        (To move from the penultimate to final line, we again exploited the fact that $B_i$ is a Brownian motion and hence a martingale.)
+        \begin{align*}
+           V_i(\eps) = \E\big[  \left( X_i(t_0+\eps)-X_i(t_0)\right)^2|\F(t_0)\big]-\Theta_i^2\eps^2 &= \E\big[ \big\{ \big(X_1(0) + \Theta_i \cdot (t_0+\eps) + \sigma_i B_i(t_0+\eps)\big) \\
+            &\hspace{1cm} - \big(X_1(0) + \Theta_i \cdot (t_0) + \sigma_i B_i(t_0)\big) \big\}^2 |\F(t_0) \big]-\Theta_i^2\eps^2 \\
+            &= \E[ \big\{ \Theta_i\eps+\sigma_i \left(B_i(t_0+\eps)-B_i(t_0)\right)\big\}^2|\F(t_0)  ] -\Theta_i^2\eps^2\\
+            &= \E[\Theta_i^2\eps^2|\F(t_0)]+\sigma_i^2\E[(B_i(t_0+\eps)-B_i(t_0))^2|\F(t_0)]-\Theta_i^2\eps^2 \\
+            &= \Theta_i^2\eps^2 + \sigma_i^2 \eps - \Theta_i^2\eps^2  =\sigma_i^2 \eps
+        \end{align*}
+        
+        When we distribute the square to move from 2nd equation to 3rd equation, the cross products are $0$ since Brownian increments have expectation $0$. To move from penultimate to final line, we exploit the fact that the variance of Brownian motion scales with the interval, i.e. $\E[(B_i(t_0+\eps)-B_i(t_0))^2|\F(t_0)]=t_0+\eps-t_0=\eps$.
+        
+        Moving on to the covariance term, we first note that:
+        
+        $$ X_i(t_0+\eps)-X_i(t_0) = \Theta_i \eps +\sigma_i
+        (B_i(t_0+\eps)-B_i(t_0))$$
+        Hence,
+        \begin{align*}
+            C(\eps) &= \E\left[ \big( X_1(t_0+\eps)-X_1(t_0)\big)\big( X_2(t_0+\eps)-X_2(t_0)\big)|\F(t_0)\right]-M_1(\eps)M_2(\eps)  \\
+            &=\E\left[\big( \Theta_1 \eps +\sigma_1
+        (B_1(t_0+\eps)-B_1(t_0))\big) \big( \Theta_2 \eps +\sigma_2
+        (B_2(t_0+\eps)-B_2(t_0)) \big) |\F(t_0)\right]-M_1(\eps)M_2(\eps) \\
+        &= \E\left[ \Theta_1\Theta_2\eps^2+\sigma_1\sigma_2\prod_{i=1}^2\big\{ B_i(t_0+\eps)-B_i(t_0)\big\}\bigg|\F(t_0) \right]- \Theta_1\Theta_2\eps^2 \\
+        &= \Theta_1 \Theta_2 \eps^2+\sigma_1\sigma_2\rho\eps-\Theta_1\Theta_2\eps^2 = \sigma_1 \sigma_2 \rho \eps
+        \end{align*} 
+        
+        In our move from line (2) to (3), when we distributed the square, the cross products again equal zero because we are taking (scaled) expectations of Brownian increments. In our move from line (3) to (4), we recognized that the expectation of the second term was what we solved for in part (i) of this exercise.
+        
+        The remaining result follows in a straightforward fashion:
+        
+        \begin{align*}
+            \frac{C(\eps)}{\sqrt{V_1(\eps)V_2(\eps)}} &= \frac{\rho \sigma_1\sigma_2 \eps}{\sqrt{\sigma_1^2 \sigma_2^2 \eps^2}} = \rho
+        \end{align*}
+        
+        
+        \end{proof}
+        
+        
+        
+       We now allow $\rho(t)$, $\Theta_1(t),$ $\Theta_2(t)$, $\sigma_1(t)$, and $\sigma_2(t)$ to be continuous adapted processes, assuming only that there is a constant $M$ such that
+       \begin{equation} \abs{\Theta_1(t)}\leq M,\; \; \abs{\sigma_1(t)}\leq M, \; \; \abs{\Theta_2(t)}\leq M, \; \; \abs{\sigma_2(t)}\leq M, \; \;
+       \abs{\rho(t)}\leq M \tag{4.10.31} \end{equation}
+       for all $t \geq 0$ almost surely. We again fix $t_0 \geq 0$.
+       
+       \item Show that, conditioned on $\F(t_0)$, we have the conditional mean formulae
+       \begin{equation}
+           M_i(\eps)= \E[X_i(t_0+\eps)-X_i(t_0)|\F(t_0)]= \Theta_i(t_0) \eps + o(\eps) \text{ for } i=1,2 \tag{4.10.32}
+       \end{equation}
+       where we denoted by $o(\eps)$ any quantity that is so small that $\limit{\eps \to 0}\frac{o(\eps)}{\eps}=0$. In other words, show that
+       \begin{equation} \limit{\eps \downarrow 0} \frac{1}{\eps}M_i(\eps) = \Theta_i(t_0) \text{ for } i=1,2 \tag{4.10.33} \end{equation}
+       (Hint: First show that
+       \begin{equation} M_i(\eps) = \E\left[ \int_{t_0}^{t_0+\eps} \Theta_i(u)du|\F(t_0)\right]. \tag{4.10.34} \end{equation}
+       The Dominated Convergence Theorem, Theorem 1.4.9, works for conditional expectations as well as for expectations in the following sense. Let $X$ be a random variable. Suppose that for every $\eps>0$ we have a random variable $X(\eps)$ such that $\limit{\eps \downarrow 0} X(\eps)=X$ almost surely. Finally suppose there is another random variable $Y$ such that $\E[Y]<\infty$ and $\abs{X(\eps)}\leq Y$ almost surely for every $\eps>0$. Then:
+       $$ \limit{\eps \downarrow 0}\E[X(\eps)|\F(t_0)]=\E[X|\F(t_0)].$$
+       Use this to obtain (4.10.33) from (4.10.34).
+       
+       \begin{proof}
+First note that:
+\begin{align*}
+    X_i(t_0+\eps)-X_i(t_0) &= X_i(0) + \int_0^{t_0+\eps} \Theta_i(u) du + \int_0^{t_0+\eps} \sigma_i(u) dB_i(u) \\
+    & \hspace{1cm} - \bigg[ X_i(0) + \int_0^{t_0} \Theta_i(u) du + \int_0^{t_0} \sigma_i(u) dB_i(u) \bigg] \\
+    &= \int_{t_0}^{t_0+\eps} \Theta_i(u) du + \int_{t_0}^{t_0+\eps} \sigma_i(u)dB_i(u)
+\end{align*}
+Hence,
+\begin{align*}
+    M_i(\eps) &= \E[X_i(t_0+\eps)-X_i(t_0)|\F(t_0)] \\
+              &= \E\left[ \int_{t_0}^{t_0+\eps} \Theta_i(u) du + \int_{t_0}^{t_0+\eps} \sigma_i(u)dB_i(u) \bigg| \F(t_0) \right] \\
+              &= \E\left[ \int_{t_0}^{t_0+\eps}  \Theta_i(u) du\bigg| \F(t_0)  \right]+ \underset{=0, \text{ since It\^{o} integral is martingale}}{\underbrace{\E\left[ \int_{t_0}^{t_0+\eps} \sigma_i(u)dB_i(u) \bigg| \F(t_0) \right]}} \\
+              &= \E\left[ \int_{t_0}^{t_0+\eps}  \Theta_i(u) du\bigg| \F(t_0)  \right]
+\end{align*}
+We proceed with the line of thought induced by the hint. Since $M$ bounds the processes, we can consider $M$ as the random variable `upper bound' (i.e. the r.v. $Y$ in the hint) under which we apply the Dominated Convergence Theorem. We then have 
+    \begin{align*}
+        \limit{\eps \downarrow 0} \frac{1}{\eps} M_i(\eps) &= 
+        \limit{\eps \downarrow 0} \E\left[\frac{1}{\eps} \int_{t_0}^{t_0+\eps} \Theta_i(u) du \bigg|\F(t_0) \right] \\
+        &=   \E\left[\limit{\eps \downarrow 0} \frac{1}{\eps} \int_{t_0}^{t_0+\eps} \Theta_i(u) du \bigg|\F(t_0) \right] 
+    \end{align*}
+       For simplicity, define $I(\eps) = \int_{t_0}^{t_0+\eps} \Theta_i(u) du$. Recognize then that we can linearize this function around $0$, so that (as the hint suggests), our error from the linearization -- $o(\eps)$ -- approaches $0$ as $\eps \to 0$. Specifically we have:
+       $$ I(\eps) = I(0) + I'(0)(\eps-0) + o(\eps)$$
+       But note that $I(0) =0$, because we are integrating over $0$ distance, and $I'(0)= \Theta_i(t_0)$. Hence we have:
+       \begin{align*}
+        \limit{\eps \to 0} \frac{1}{\eps} M_i(\eps) 
+        &=   \E\left[\limit{\eps \downarrow 0} \frac{1}{\eps} \int_{t_0}^{t_0+\eps} \Theta_i(u) du \bigg|\F(t_0) \right]  \\
+        &= \E\left[ \limit{\eps \downarrow 0}\frac{1}{\eps}  \left[ I(0) + I'(0) \eps + o(\eps)  \right] \bigg| \F(t_0)  \right] \\
+        &= \E\left[\limit{\eps \downarrow 0}  \left[  \Theta_i(t_0) + \frac{o(\eps)}{\eps} \right] \bigg|\F(t_0) \right] \\
+        &= \E\left[ \Theta_i(t_0) \big|\F(t_0)\right] \\
+        &= \Theta_i(t_0)
+    \end{align*}
+       
+       
+       \end{proof}
+       
+       \item Show that $D_{ij}(\eps)$ defined by
+       $$ D_{ij}(\eps) = \E\left[ \big( X_i(t_0+\eps)-X_i(t_0)\big)\big( X_j(t_0+\eps)-X_j(t_0)\big)|\F(t_0)\right]-M_i(\eps)M_j(\eps)$$
+       for $i=1,2$ and $j=1,2$ satisfies
+       \begin{equation} D_{ij}(\eps) = \rho_{ij}(t_0)\sigma_i(t_0)\sigma_j(t_0)\eps +o(\eps), \tag{4.10.35} \end{equation}
+       where we set $\rho_{11}(t)=\rho_{22}(t)=1$ and $\rho_{12}(t) = \rho_{21}(t)=\rho(t)$. (Hint: You should define the martingales
+       $$ Y_i(t)=\int_0^t \sigma_i(u)dB_i(u) \text{ for } i=1,2$$
+       so you can write
+       \begin{multline}
+           D_{ij}(\eps) = \E \bigg[ \bigg( Y_i(t_0+\eps)-Y_i(t_0)+\int_{t_0}^{t_0+\eps} \Theta_i(u)du \bigg) \\
+           \cdot \bigg( Y_j(t_0+\eps)-Y_j(t_0)+\int_{t_0}^{t_0+\eps} \Theta_j(u)du \bigg) \bigg|\F(t_0) \bigg]-M_i(\eps)M_j(\eps) \tag{4.10.36}
+       \end{multline}
+        Then expand the expression on the right-hand side of (4.10.36). You should use It\^{o}'s product rule to show that the first term in the expansion is
+        \begin{multline*}
+            \E \left[ \big( Y_i(t_0+\eps)-Y_i(t_0) \big) \big( Y_j(t_0+\eps)-Y_j(t_0)\big)  \big| \F(t_0)\right] \\ 
+            = \E\left[ \int_{t_0}^{t_0+\eps} \rho_{ij}(u)\sigma_i(u)\sigma_j(u)df \big| \F(t_0) \right]
+        \end{multline*}
+        This equation is similar to (4.10.34), and you can use the Dominated Convergence Theorem as stated in the hint for (iii) to conclude that 
+        $$ \limit{\eps \downarrow 0}\frac{1}{\eps} \E \left[ \big( Y_i(t_0+\eps)-Y_i(t_0) \big) \big( Y_j(t_0+\eps)-Y_j(t_0)\big)  \big| \F(t_0)\right]=\rho_{ij}(t_0)\sigma_i(t_0)\sigma_j(t_0)$$
+        To handle the other terms that arise from expanding (4.10.36), you will need 4.10.31 and the fact that
+    \begin{equation}
+        \limit{\eps \downarrow 0}\E\left[ \abs{Y_i(t_0+\eps)-Y_1(t_0)} | \F(t_0) \right]=0 \tag{4.10.37}
+    \end{equation}
+    You may use (4.10.37) without proving it.
+    
+    \begin{proof} Define the martingales
+       $$ Y_i(t)=\int_0^t \sigma_i(u)dB_i(u) \text{ for } i=1,2$$
+       As the question indicates, we then have
+      \begin{multline*}
+           D_{ij}(\eps) = \E \bigg[ \bigg( Y_i(t_0+\eps)-Y_i(t_0)+\int_{t_0}^{t_0+\eps} \Theta_i(u)du \bigg) \\
+           \cdot \bigg( Y_j(t_0+\eps)-Y_j(t_0)+\int_{t_0}^{t_0+\eps} \Theta_j(u)du \bigg) \bigg|\F(t_0) \bigg]-M_i(\eps)M_j(\eps) 
+       \end{multline*}
+       
+       Note that $Y_i(t_0)=0,$ so:
+           \begin{multline*}
+           D_{ij}(\eps) = \E \bigg[ \bigg( Y_i(t_0+\eps)+\int_{t_0}^{t_0+\eps} \Theta_i(u)du \bigg) \\
+           \cdot \bigg( Y_j(t_0+\eps)+\int_{t_0}^{t_0+\eps} \Theta_j(u)du \bigg) \bigg|\F(t_0) \bigg]-M_i(\eps)M_j(\eps) 
+       \end{multline*}
+       We expand the expression on the RHS:
+           \begin{multline*}
+           D_{ij}(\eps) = \E \bigg[  Y_i(t_0+\eps)Y_j(t_0+\eps)+Y_i(t_0+\eps)\int_{t_0}^{t_0+\eps} \Theta_j(u)du \\
+           + Y_j(t_0+\eps)\int_{t_0}^{t_0+\eps} \Theta_i(u)du  +\int_{t_0}^{t_0+\eps} \Theta_i(u)du \int_{t_0}^{t_0+\eps} \Theta_j(u)du \bigg) \bigg|\F(t_0) \bigg]-M_i(\eps)M_j(\eps) 
+       \end{multline*}
+    Apply linearity of conditional expectations to separate expectation of the sum into the sum of expectations. Then recognize that integral terms are $\F(t_0)-$measurable (there is no randomness) and so can be taken out of the expectation. Hence for the cross products of the integrals with the martingales, since the expectation of the martingales are $0$, the cross products disappear. That leaves:
+    \begin{align*}
+        D_{ij}(\eps) &= \E\left[Y_i(t_0+\eps)Y_j(t_0+\eps) + \bigg|\F(t_0)  \right] + \underset{M_i(\eps)}{\underbrace{\int_{t_0}^{t_0+\eps} \Theta_i(u)du}} \underset{M_j(\eps)}{\underbrace{\int_{t_0}^{t_0+\eps} \Theta_j(u)du}} - M_i(\eps)M_j(\eps) \\
+        & = \E\left[Y_i(t_0+\eps)Y_j(t_0+\eps)  \big|\F(t_0)  \right]
+    \end{align*}
+    
+    Since both $Y_i$ and $Y_j$ are stochastic processes, we can use the It\^{o} product rule by integrating $d\big(Y_{i}(t_0+\eps)Y_j(t_0+\eps)\big)$ and then taking expectations. Specifically,
+    \begin{align*}
+      \E\left[Y_i(t_0+\eps)Y_j(t_0+\eps)  \big|\F(t_0)  \right] &= \E\left[ \int_{t_0}^{t_0+\eps}  d\big(Y_{i}(u)Y_j(u)\big) | \F(t_0) \right] \\
+      &= \E\left[ \int_{t_0}^{t_0+\eps} Y_i(u) dY_j +\int_{t_0}^{t_0+\eps}Y_j(u)dY_i + \int_{t_0}^{t_0+\eps}dY_i(u)dY_j(u)  \bigg| \F(t_0) \right]
+    \end{align*}
+    The first two terms of the expectation are It\^{o} integrals hence have expectation $0$; to solve the final rule, we use It\^{o}'s rule on simple processes:
+    \begin{align*}
+        dY_i(u) &= d \int_{0}^{u} \sigma_i(u)dB_i(u) = \sigma_i(u) dB_i(u) \\
+        dY_j(u) &= d \int_{0}^{u} \sigma_j(u)dB_j(u) = \sigma_j(u) dB_j(u)  \\
+        dY_i(u)dY_j(u) & = \sigma_i(u)\sigma_j(u) \rho_{ij}(u)
+    \end{align*} 
+    where in the third line we used the fact that $dB_i(t)dB_j(t)=\rho_{ij}(t)dt$, as specified in the question. Returning to our expectation, we have that
+    \begin{align*}
+        \E\left[Y_i(t_0+\eps)Y_j(t_0+\eps)  \big|\F(t_0)  \right] &= \E\left[ \int_{t_0}^{t_0+\eps} \sigma_i(u)\sigma_j(u) \rho(u)du \big| \F(t_0)\right]
+    \end{align*}
+     
+    The remainder of the proof follows as in step (iii) with two modifications. First, we bound the process by $\abs{M}^3$, since we are taking the product of three bounded processes. Second, we take the limit of $\limit{\eps \to 0} D_{ij}(\eps)$ on the LHS and define $I(\eps) = \int_{t_0}^{t_0+\eps}\sigma_i(u)\sigma_j(u) \rho(u)du$. The steps are then identical:
+         \begin{align*}
+        \limit{\eps \downarrow 0} \frac{1}{\eps} D_{ij}(\eps) 
+        &= \E\left[ \limit{\eps \downarrow 0}\frac{1}{\eps}  \left[ I(0) + I'(0) \eps + o(\eps)  \right] \bigg| \F(t_0)  \right] \\
+        &= \E\left[\limit{\eps \downarrow 0}  \left[  \rho_{ij}(t_0)\sigma_i(t_0)\sigma_j(t_0) + \frac{o(\eps)}{\eps} \right] \bigg|\F(t_0) \right] \\
+        &= \E\left[ \rho_{ij}(t_0)\sigma_i(t_0)\sigma_j(t_0)  \big|\F(t_0)\right] \\
+        &= \rho_{ij}(t_0)\sigma_i(t_0)\sigma_j(t_0)
+    \end{align*}
+    
+    
+    \end{proof}
+    
+    \item Show that, conditioned on $\F(t_0)$, the pair of random variables
+    $$ \big(X_1(t_0+\eps)-X_1(t_0),X_2(t_0+\eps)-X_2(t_0)\big)$$
+    has variances and covariance
+    \begin{align}
+        V_i(\eps) &= \E\left[ \big(X_i(t_0+\eps)-X_i(t_0) \big)^2 \big| \F(t_0) \right]-M_i^2(\eps) \notag \\
+            &= \sigma_i^2(t_0) \eps + o(\eps) \text{ for } i=1,2 \tag{4.10.38} \\
+        C(\eps) &= \E\left[ \big(X_1(t_0+\eps)-X_1(t_0) \big)\big(X_2(t_0+\eps)-X_2(t_0) \big)\big| \F(t_0) \right]-M_1(\eps)M_2(\eps) \notag \\
+            &= \rho(t_0)\sigma_1(t_0)\sigma_2(t_0)\eps + o(\eps) \tag{4.10.39}
+    \end{align}
+    
+    \begin{proof}
+    In the previous question we showed that
+    \begin{align*}
+        D_{ij}(\eps) &= \rho_{ij}(t_0)\sigma_i(t_0)\sigma_j(t_0)\eps + o(\eps)
+    \end{align*}
+    Note that $C(\eps) = D_{ij}(\eps)$ where $i=1,j=2$, so our proof from that follows trivially. Meanwhile, $V_i(\eps)=D_{ij}(\eps)$ where $i=j$, so we have
+    $$ V_i(\eps) = (1)(\sigma_i)(\sigma_i)\eps+o(\eps) = \sigma_i^2(t_0)\eps +o(\eps)$$\end{proof}
+    
+    \item Show that 
+    \begin{equation}
+        \limit{\eps \to 0} \frac{C(\eps)}{\sqrt{V_1(\eps)V_2(\eps)}}=\rho(t_0) \tag{4.10.40}
+    \end{equation}
+    In other words, for small values of $\eps>0$, conditioned on $\F(t_0)$, the correlation between the increments $X_1(t_0+\eps)-X_1(t_0)$ and $X_2(t_0+\eps)-X_2(t_0)$ is approximately equal to $\rho(t_0)$, and this approximation becomes exact as $\eps \to 0$. 
+
+    
+    \begin{proof}
+We substitute in the values we previously solved for:    
+\begin{align*}
+    \limit{\eps \to 0} \frac{C(\eps)}{\sqrt{V_1(\eps)V_2(\eps)}} &= \limit{\eps \to 0} \frac{\rho(t_0)\sigma_1(t_0)\sigma_2(t_0)\eps + o(\eps)}{\sqrt{(\sigma_1^2(t_0)\eps +o(\eps))(\sigma_2^2(t_0)\eps +o(\eps))}} \\
+    &= \frac{\rho(t_0)\sigma_1(t_0)\sigma_2(t_0)\eps}{\sqrt{(\sigma_1^2(t_0)\sigma_2^2(t_0))}}\\
+    &= \rho(t_0)
+\end{align*}
+    \end{proof}
+    \end{enumerate}
+    
+    \pr{4.18} Let a stock price be a geometric Brownian motion
+    $$ dS(t) = \alpha S(t) dt+ \sigma S(t) dW(t)$$
+    and let $r$ denote the interest rate. We define the \textit{market price of risk} to be
+    $$ \theta=\frac{\alpha-r}{\sigma}$$
+    and the \textit{state price density process} to be
+    $$ \zeta(t) = \exp\seq{-\theta W(t)- \left( r+\frac{1}{2}\theta^2 \right)t}.$$
+    \begin{enumerate}[(i)]
+        \item Show that:
+        $$ d\zeta(t) = -\theta \zeta(t) dW(t)-r \zeta(t) dt$$
+        \begin{proof} It\^{o}'s Lemma states $$ df(t,X(t)) = f_t(t,X(t)) dt + f_x(t,X(t)) dX(t) + \frac{1}{2}f_{xx}(t,X(t))dX(t)dX(t)$$
+We have $f(t,x) = \exp\seq{-\theta x - \left( r+\frac{1}{2}\theta^2 \right)t}$, such that $f_t (t,x) = (-r+\frac{1}{2}\theta^2 )f(t,x)$; $f_x(t,x) = -\theta f(t,x) $; and $f_{xx} = \theta^2 f(t,x)$. Then:
+\begin{align*}d\zeta(t) &= - \left( r+\frac{1}{2}\theta^2 \right)dt + -\theta \zeta(t)dW(t) + \frac{1}{2}\theta^2 \zeta(t)dt \\
+&=-\theta \zeta(t) dW(t)-r \zeta(t) dt
+\end{align*}
+        \end{proof}
+        
+        \item Let $X$ denote the value of an investor's portfolio when he uses a profolio process $\Delta(t).$ From (4.5.2), we have:
+        $$ dX(t) = rX(t) dt + \Delta(t) (\alpha-r)S(t)dt + \Delta(t)\sigma S(t) dW(t)$$
+        Show that $\zeta(t)X(t)$ is a martingale. (Hint: show that the differential $d(\zeta(t)X(t))$ has no $dt$ term.)
+        
+        \begin{proof} As the hint suggests, we use It\^{o} product rule to show that the differential has no $dt$ term:
+        \begin{align*}
+            d(\zeta(t)X(t)) &= \zeta(t)dX(t) + X(t)d\zeta(t) +dX(t)d\zeta(t) \\
+            &= \zeta(t) \big[  rX(t) dt + \Delta(t) (\alpha-r)S(t)dt + \Delta(t)\sigma S(t) dW(t) \big] \\
+            & \hspace{1cm} + X(t)\big[ -\theta \zeta(t) dW(t)-r \zeta(t) dt \big] + \big[ -\theta \zeta(t) dW(t)-r \zeta(t) dt \big] \cdot \\
+            &\hspace{1cm} \big[  rX(t) dt + \Delta(t) (\alpha-r)S(t)dt + \Delta(t)\sigma S(t) dW(t) \big]
+        \end{align*}
+        
+        Note that in the final product, all the terms cancel except the two with the $dW(t)$. Hence we get:
+        
+        \begin{align*}
+             d(\zeta(t)X(t)) &= \zeta(t)  rX(t) dt + \zeta(t)  \Delta(t) (\alpha-r)S(t)dt + \zeta(t)  \Delta(t)\sigma S(t) dW(t) \\
+             & \hspace{1cm}   -X(t)\theta \zeta(t) dW(t)- r X(t) \zeta(t) dt -\theta \zeta(t)\Delta(t)\sigma S(t) dt \\
+             &= \zeta(t)  rX(t) dt + \zeta(t)  \Delta(t) (\theta \sigma)S(t)dt + \zeta(t)  \Delta(t)\sigma S(t) dW(t) \\
+             & \hspace{1cm}   -X(t)\theta \zeta(t) dW(t)- r X(t) \zeta(t) dt -(\theta\sigma) \zeta(t)\Delta(t) S(t) dt \\
+             &=   \zeta(t)  \Delta(t)\sigma S(t) dW(t)    -X(t)\theta \zeta(t) dW(t)  
+        \end{align*}
+        There is no $dt$ term, hence $\zeta(t)X(t)$ is a martingale.
+        
+        
+        
+        \end{proof}
+        \item Let $T > 0 $ be a fixed terminal time. Show that if an investor wants to begin with some initial capital $X(0)$ and invest in order to have portfolio value $V(T)$ at time $T$, where $V(T)$ is a given $\F(T)-$measurable random variable, then he must begin with initial capital
+        $$X(0)= \E[\zeta(T)V(T)]$$
+        In other words, the \textit{present value} at time zero of the random payment $V(T)$ at time $T$ is $\E[\zeta(T)V(T)]$. This justifies calling $\zeta(t)$ the state price density process.
+        
+        \begin{proof} We just established that $\zeta(t)X(t)$ is a martingale. Hence the expectation $\E[\zeta(T)X(T)] = \zeta(0)X(0)$. We can calculate $\zeta(0)$ as $$\zeta(0)=\exp\seq{-\theta W(0)- \left( r+\frac{1}{2}\theta^2 \right)(0)}= \exp\seq{0}=1.$$
+        Hence,
+        $$ \E[\zeta(t)X(t)] = X(0)$$
+        \end{proof}
+    \end{enumerate}
+    \pr{4.19} Let $W(t)$ be a Brownian motion, and define
+$$ B(t) = \int_0^t \sign(W(s))dW(s)$$
+where
+$$ \sign(x) = \begin{cases} 1 \text{ if } x \geq 0 \\
+                            -1 \text{ if } x <0 \end{cases}$$
+            
+    \begin{enumerate}[(i)]
+        \item Show that $B(t)$ is a Brownian motion.
+        
+        \begin{proof} By Levy's Theorem, it suffices to show that $B(t)$ is a (i) continuous (ii) martingale with (iii) quadratic variation $[B,B]=t$. We first note that $B(t)$ is an It\^{o} integral, as such it satisfies the continuity and martingale properties (Theorem 4.3.1(i) and 4.3.1.(iv)). It remains to show that $B(t)$ has quadratic variation equal to $t$. We take:
+        \begin{align*}
+            dB(t)dB(t) &= [\sign (W(t)) dW(t)][\sign (W(t)) dW(t)] \\
+            &= \sign^2(W(t)) dt \\
+            &= dt
+        \end{align*}
+        where the last line follows form the fact that $\sign^2(\cdot)$ can only take on a value of $1 \fa W(s)$. Hence $B(t)$ is a Brownian motion.
+        \end{proof}
+        
+        \item Use It\^{o}'s product rule to compute $d\left[ B(t)W(t)\right]$. Integrate both sides of the resulting equation and take expectations. Show that $\E[B(t)W(t)]=0$ (i.e., $B(t)$ and $W(t)$ are uncorrelated).
+        
+        \begin{proof} 
+        \begin{align*}
+            d[B(t)W(t)] &= B(t)dW(t) +W(t)dB(t)+dB(t)dW(t) \\
+            &= B(t) dW(t) + W(t) [\sign (W(t)) dW(t)] + [\sign (W(t)) dW(t)]dW(t) \\
+            &= B(t) dW(t) + W(t) [\sign (W(t)) dW(t)] + \sign (W(t))  dt \\
+            \int_0^t d[B(t)W(t)] &= \int_0^t B(s)dW(s) + \int_0^t W(s)\sign(W(s))dW(s) + \int_0^t \sign(W(s))ds \\
+            \E[B(t)W(t)] &= \underset{=0,\text{ bcs It\^{o} integral}}{\underbrace{\E\left[\int_0^t B(s)dW(s)\right]}} + \underset{=0,\text{ bcs It\^{o} integral}}{\underbrace{\E\left[\int_0^t W(s)\sign(W(s))dW(s)\right]}} + \E\left[\int_0^s \sign(W(s))ds \right] \\
+            &= \E\left[\int_0^t \sign(W(s))ds \right] \\
+            &= \int_0^t \E[\sign(W(s))] ds = \int_0^t \left( \frac{1}{2}(1)+\frac{1}{2}(-1)\right)ds = 0
+        \end{align*}
+        
+        Some notes on the above steps: we were able to set the It\^{0} integral to $0$, as noted, because It\^{o} integrals are martingales. In the final line, we were able to exchange the integral and the expectation using Fubini's theorem, since the integral is finite. 
+            
+        \end{proof}
+        
+        
+        \item Verify that
+        $$dW^2(t) = 2W(t)dW(t)+dt$$
+        
+        \begin{proof} Using the It\^{o} product rule,
+        \begin{align*}
+            d(W(t)W(t)) &= W(t)dW(t)+W(t)dW(t)+dW(t)dW(t) \\
+            &= 2W(t)dW(t) +dt
+        \end{align*}
+        \end{proof}
+        
+        \item Use It\^{o}'s product rule to compute $d\left[ B(t)W^2(t)\right]$. Integrate both sides of the resulting equation and take expectations to conclude that 
+        $$ \E[B(t)W^2(t)] \neq \E B(t) \cdot \E W^2(t).$$
+        Explain why this shows that, although they are uncorrelated normal random variables, $B(t)$ and $W(t)$ are not independent.
+        
+        \begin{proof} Again using It\^{o} product rule,
+        \begin{align*}
+            d[B(t)W^2(t)] &= B(t) (2W(t)dW(t)+dt) + W^2(t)dB(t)\\
+            &\hspace{1cm}+ dB(t)(2W(t)dW(t)+dt) \\
+            &=2 B(t)W(t)dW(t) + B(t)dt + W^2(t)dB(t) + 2W(t)dt
+        \end{align*}
+        Integrating and taking expectations, we obtain
+        \begin{align*}
+            \E[B(t)W^2(t)] &= \E\left[2 \int_0^t B(s)W(s)dW(s) \right] + \E\left[\int_0^t B(s) ds \right] + \E\left[\int_0^t W^2(s)dB(s) \right] \\
+            &\hspace{1cm}+ 2\E\left[ \int_0^t W(s)\sign(W(s))ds \right]
+        \end{align*}
+        The first and third terms are It\^{o} integrals and so evaluate to $0$. We end up with two normal (Riemann integrals):
+        \begin{align*}
+            \E[B(t)W^2(t)] &= \E\left[\int_0^t B(s)ds \right]+ 2\E\left[\int_0^t W(s)\sign(W(s))ds \right] \\
+            &= \int_0^t \underset{=0}{\underbrace{\E\left[B(s)\right]}}ds + 2\int_0^t \E\left[W(s)\sign (W(s))\right]ds\\
+            &> 0
+        \end{align*}
+        
+        The last line derives from the fact that the product $W(s)\sign(W(s))$ is nonnegative: when $W(s)\geq 0,$ $\sign(W(s)) > 0$ (and we have the product of two nonnegatives), and when $W(s)<0,$ $\sign(W(s))<0$ (and we have the product of two negatives. Hence $W(s)\sign(W(s))$ is almost surely positive. Hence the expectation of the product is positive, while the product of the expectations, $\E[B(t)]\E[W^2(t)]=(0)\E[W^2(t)]=0$
+        
+        Formally, if $B(t)$ and $W(t)$ are independent then functions of $B(t)$ and $W(t)$ are independent. We can take $f(B(t))=B(t),g(W(t)) = W(t)^2$. Then, if $B(t)$ and $W(t)$ are independent, by Theorem 2.2.7 we would have $\E[f(B(t))g(W(t))]=\E[f(B(t))]\E[g(W(t))]$. But the LHS evaluates to something greater than 0, as we just saw, while  $\E[f(B(t))]\E[g(W(t))] =0$.
+        \end{proof}
+        
+        
+    \end{enumerate}
+
+    \pr{4.20} (Local time) Let $W(t)$ be a Brownian motion. The It\^{o}-Doeblin formula in differential form says that
+    \begin{equation} df(W(t)) = f'(W(t))dW(t)+\frac{1}{2}f''(W(t))dt \tag{4.10.41} \end{equation}
+    In integrated form, this formula is 
+    \begin{equation} f(W(T)) = f(W(0)) + \int_0^T f'(W(t))dW(t)+\frac{1}{2}\int_0^T f''(W(t))dt \tag{4.10.42} \end{equation}
+    The usual statement of this formula assumes that the function $f''(x)$ is defined
+for every $x \in \R$ and is a continuous function of $x$. In fact, the formula still holds if there are finitely many points $x$ where $f''(x)$ is undefined, provided that $f'(x)$ is defined for every $x \in \R$ and is a continuous function of $x$ (and provided that $\abs{f''(x)}$ is bounded so that the integral $\int_0^T f''(W(t)) dt$ is defined). However, if $f'(x)$ is not defined at some point, naive application of the
+It\^{o}-Doeblin formula can give wrong answers, as this problem demonstrates.
+    
+    \begin{enumerate}[(i)]
+        \item Let $K$ be a positive constant and define $f(x) = (x-K)^+$. Compute $f'(x)$ and $f''(x)$. Note there is a point $x$ where $f'(x)$ is not defined, and note also that $f''(x)$ is zero everywhere except at this point, where $f''(x)$ is also undefined.
+        
+        \begin{proof}
+        
+            Since the $+$ superscript denotes the positive part of $(x-K)$, we can rewrite:
+        \begin{align*}
+             f(x) = \begin{cases} (x-K) \text{ if } x\geq K \\
+            0 \hspace{1cm} \text{ if } x < K
+            \end{cases} 
+        \end{align*}
+        Hence the we can compute the derivative piecewise:
+        \begin{align*}
+             f'(x) = \begin{cases} 1 \text{ if } x> K \\
+            0 \text{ if } x < K
+            \end{cases} 
+        \end{align*}
+        
+        At $x=K$, the derivative from the left limit is $0$, while the derivative from the right is $1$, hence the limit is undefined at that point. Similarly,
+        \begin{align*}
+             f''(x) = \begin{cases} 0 \text{ if } x > K \\
+            0  \text{ if } x < K
+            \end{cases} 
+        \end{align*}
+        where $f''(x)$ is undefined at $x=K$ since the first derivative is undefined at that point, it must be that the second derivative is undefined at that point as well.
+        
+        \end{proof}
+        
+        \item Substitute the function $f(x) = (x-K)^+$ into (4.10.42), replacing the term $\frac{1}{2} \int_0^T f'(W(t))dt$ by zero since $f''$ is zero everywhere except at one point, where it is not defined. Show that the two sides of this equation cannot be equal by computing their expected values.
+        
+        \begin{proof}
+        \begin{align*}
+            \E[f(W(T))] = \E\left[ (W(T)-K)^+ \right] 
+        \end{align*}
+        By Jensen's inequality, $\varphi(\E[x])\leq \E[\varphi(x)]$, hence $\E[(W(t)-K)^+]\geq (0-K)^+=0$. Note that Jensen's inequality is a strict inequality for a strictly convex function. Since there is a strictly convex mass of points in the function, we have nonnegative mass in those points, and so a strict inequality.
+        
+        Meanwhile, for the right hand side, we obtain:
+        \begin{align*}
+            \E[RHS] &= \E[f(W(0))] + \E\bigg[\underset{\text{It\^{o} Integral, martingale}}{\underbrace{\int_0^T f'(W(t))dW(t)}}\bigg] \\
+            &= \E[(0-K)^+] = \E[0] = 0
+        \end{align*}
+        
+        \end{proof}
+        
+        \item To get some idea of what is going on here, define a sequence of functions $\seq{f_n}_{n=1}^\infty$ by the formula
+        $$ f_n(x)  = \begin{cases} 
+        0 \text{ if } x \leq K - \frac{1}{2n} \\
+        \frac{n}{2}(x-K)^2+\frac{1}{2}(x-K)+\frac{1}{8n} \text{ if } K-\frac{1}{2n} \leq x \leq K + \frac{1}{2n} \\
+        x-K \text{ if } x \geq K + \frac{1}{2n}
+        \end{cases}$$
+        
+        Show that
+        $$ f'_n(x)  = \begin{cases} 
+        0 \text{ if } x \leq K - \frac{1}{2n} \\
+        n(x-K)+\frac{1}{2} \text{ if } K-\frac{1}{2n} \leq x \leq K + \frac{1}{2n} \\
+        1 \text{ if } x \geq K + \frac{1}{2n}
+        \end{cases}$$
+        
+        In particular, because we get the same value for $f'_n(K-\frac{1}{2n})$ regardless of whether we use the formula for $x \le K - \frac{1}{2n}$ or the formula $K-\frac{1}{2n}\le x \le K+ \frac{1}{2n}$, the derivative $f'(K-\frac{1}{2n})$ is also defined. Verify that
+        $$ f''_n(x)  = \begin{cases} 
+        0 \text{ if } x \leq K - \frac{1}{2n} \\
+        n \text{ if } K-\frac{1}{2n} \leq x \leq K + \frac{1}{2n} \\
+        0 \text{ if } x \geq K + \frac{1}{2n}
+        \end{cases}$$
+        The second derivative $f''(x)$ is not defined when $x = K \pm \frac{1}{2n}$ because the formulas above disagree at those points.
+        
+        \begin{proof} There's not really anything to verify; i
+        it's just taking elementary derivatives of the different pieces of the piecewise function.
+        \end{proof}
+        
+        \item Show that 
+        $$ \limit{n \to \infty} f_n(x) = (x-K)^+$$
+        for every $x \in \R$ and
+        $$
+        \limit{n \to \infty} f'_n(x) =
+        \begin{cases}
+            0 \text{ if } x < K \\
+            \frac{1}{2} \text{ if } x = K \\
+            1 \text{ if } x > K 
+        \end{cases}
+        $$
+        The value of $\limit{n \to \infty} f'_n(x)$ at a single point will not matter when we integrate in part (v) below, so instead of using the formula just derived, we will replace $\limit{n \to \infty}f'_n(x)$ by 
+        $$
+        \mathbb{I}_{K,\infty}(x)=
+        \begin{cases}
+            0 \text{ if } x \le K \\
+            1 \text{ if } x > K 
+        \end{cases}
+        $$
+        in (4.10.44) below. The two functions $\limit{n \to \infty} f'_n(x)$ and $\mathbb{I}_{(K,\infty)}(x)$ agree except at a single point $x =K$.
+        
+        \begin{proof}
+             \begin{align*} \limit{n \to \infty} f_n(x)  &= \begin{cases} 
+        \limit{n\to \infty}\left[ 0 \text{ if } x \leq K - \frac{1}{2n} \right] \\
+         \limit{n\to \infty} \left[ \frac{n}{2}(x-K)^2+\frac{1}{2}(x-K)+\frac{1}{8n}  \text{ if } K-\frac{1}{2n} \leq x \leq K + \frac{1}{2n}\right]\\
+         \limit{n\to \infty} \left[ x-K \text{ if } x \geq K + \frac{1}{2n} \right]
+        \end{cases} \\
+        &=\begin{cases} 
+        \limit{n\to \infty}\left[0\right] \text{ if } x \leq K  \\
+         \limit{n\to \infty} \left[ \frac{n}{2}(x-K)^2+\frac{1}{2}(x-K)+\frac{1}{8n} \right] \text{ if } x=K \\
+         \limit{n\to \infty} \left[ x-K \right] \text{ if } x \geq K 
+        \end{cases} \\
+        &=\begin{cases} 
+        0\text{ if } x \leq K  \\
+        0 \text{ if } x=K \\
+         x-K \text{ if } x \geq K 
+        \end{cases}  \\ &= (x-K)^+
+        \end{align*}
+We take limits on the first derivative sequences:
+        \begin{align*}
+           \limit{n \to \infty} f'_n(x)  &= \begin{cases} 
+        \limit{n \to \infty} \left[ 0 \text{ if } x \leq K - \frac{1}{2n} \right] \\
+       \limit{n \to \infty} \left[ n(x-K)+\frac{1}{2} \text{ if } K-\frac{1}{2n} \leq x \leq K + \frac{1}{2n}  \right] \\
+        \limit{n \to \infty} \left[ 1 \text{ if } x \geq K + \frac{1}{2n} \right]
+        \end{cases} \\
+          &= \begin{cases} 
+        \limit{n \to \infty} \left[ 0 \right] \text{ if } x \leq K   \\
+       \limit{n \to \infty} \left[ n(x-K)+\frac{1}{2} \right] \text{ if } x=K \\
+        \limit{n \to \infty} \left[ 1\right] \text{ if } x \geq K   \end{cases} \\
+        &= \begin{cases} 
+         0 \text{ if } x \leq K   \\
+      \frac{1}{2} \text{ if } x=K \\
+        1 \text{ if } x \geq K  
+        \end{cases}
+        \end{align*}
+
+        
+        \end{proof}
+        For each $n$, the It\^{o}-Doeblin formula applies to the function $f_n$ because $f'_n(x)$ is defined for every $x$ and is a continuous function of $x$, $f''_n(x)$ is defined for every $x$ except the two points $x=K \pm \frac{1}{2n}$ and $\abs{f''(x)}$ is bounded above by $n$. In integrated form, the It\^{o}-Doeblin formula applied to $f_n$ gives
+        \begin{equation}
+            f_n(W(T)) = f_n(W(0)) +  \int_0^T f'_n(W(t))dW(t)+\int_0^T f''_n(W(t))dt \tag{4.10.43}
+        \end{equation}
+        If we now let $n \to \infty$ in this fomula, we obtain
+        \begin{multline}
+            (W(T)-K)^+ = (W(0)-K)^+ + \int_0^T  \mathbb{I}_{(K,\infty)}(W(t))dW(t) \\
+            + \limit{n \to \infty}n \int_0^T \mathbb{I}_{\left(K-\frac{1}{2n},K+\frac{1}{2n}\right)}(W(t))dt \tag{4.10.44}
+        \end{multline}
+        Let us define the \textit{local time of the Brownian motion at} $K$ to be 
+        $$ L_K(t) = \limit{n \to \infty} n \int_0^T \mathbb{I}_{\left(K-\frac{1}{2n},K+\frac{1}{2n}\right)}(W(t))dt$$
+        
+        (This formula is sometimes written as 
+        $$ L_K(T) = \int_0^T \delta_K(W(t))dt$$
+        where $\delta_K$ is the so called ``Dirac delta function" at $K$.) For a fixed $n$ the expression 
+        $\mathbb{I}_{\left(K-\frac{1}{2n},K+\frac{1}{2n}\right)}(W(t))dt$ measures how much time between time $0$ and time $T$ the Brownian motion spends in the band of length $\frac{1}{n}$ centered at $K$. As $n \to \infty$, this has limit zero because the width of the band is approaching zero. However, before taking thelimit, we multiply by $n$, and now it is not clear whether the limit will be zero, $+\infty$, or something in between. The limit will, of course, be random; it depends on the path of the Brownian motion.
+        
+        \item Show that if the path of the Brownian motion stays strictly below $K$ on the time interval $[0,T]$, we have $L_K(T)=0$.
+        
+        \begin{proof} 
+            On the finite horizon $[0,T]$, $W(t)$ achieves a maximum value $M$ such that $M<K$, as specified by the question. Then there exists an $n_k$ such that $M< K-\frac{1}{2n_k}<K$. Hence the indicator function will evaluate to $0$ since $W(t)$ is alway less than the lower bound of the indicator's `domain' (not sure what to call it). Hence the integrand is always $0$, and so the integral evaluates to $0$.
+        \end{proof}
+        
+        \item We may solve (4.10.44) for $L_K(T)$, using the fact that $W(0)=0$ and $K>0$, to obtain:
+        
+          \begin{equation} L_K(T) = (W(T)-K)^+- \int_0^T \mathbb{I}_{(K,\infty)}(W(t))dt \tag{4.10.45}
+          \end{equation}
+        From this we see that $L_K(T)$ is never $+\infty$. Show that we cannot have $L_K(T)=0$ almost surely. In other words, for some paths of the Brownian motion, we must have $L_K(T)>0$. (It turns out the paths that reach level $K$ are those for which $L_K(T)>0$.)
+        
+        \begin{proof}
+        We can take expectations on both sides of (4.10.45)
+        \begin{align*}
+            \E\left[ L_K(T) \right] & = \E\left[[(W(T)-K))^+ \right] - \E \left[ \int_0^T \mathbb{I}_{(K,\infty)}(W(t))dt\right]
+        \end{align*}
+        Since the second term is a form of an It\^{o} integral, it is a martingale, and its expectation is equal to value at time $0$, i.e. $0$, hence we have $E[L_k(T)]=E[(W(T)-K)^+]>0$. Since the expectation is greater than $0$, I believe it follows that there are paths for which $L_K(T)>0$.
+        \end{proof}
+        
+    \end{enumerate}
+
+\end{enumerate}
+\end{document}

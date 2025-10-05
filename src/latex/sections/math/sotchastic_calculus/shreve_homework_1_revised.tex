@@ -1,0 +1,361 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amsfonts,wrapfig,hyperref}
+\usepackage[left=1in, right=1in, top=1in, bottom=1in]{geometry}
+\usepackage{titlesec}
+\usepackage{amssymb,amsbsy}
+\usepackage{amsthm}
+\usepackage{enumitem,graphicx,enumerate}
+\usepackage{authblk,bm,xcolor,color,cancel}
+\usepackage{changepage}
+\usepackage{MnSymbol}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\p}{\mathbb{P}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\G}{\mathcal{G}}
+\newcommand{\Om}{\Omega}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\eps}{\epsilon}
+\DeclareMathOperator{\Ima}{Im}
+\newcommand{\fa}{\; \forall \;}
+\newcommand{\df}[1]{\textbf{Def. #1:}}
+\newcommand{\pspace}{\left(\Omega,\F,\p\right)}
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\st}{\text{ s.t. }}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\veps}{\varepsilon}
+\newcommand{\exs}{\exists \;}
+\newcommand{\mylabel}[2]{#2\def\@currentlabel{#2}\label{#1}}
+\newcommand{\pr}[1]{ \item[\mylabel{}{#1.}]}
+\newcommand{\isgeq}{\stackrel{?}{\geq}}
+\newcommand{\isleq}{\stackrel{?}{\leq}}
+\newcommand{\limit}[1]{\underset{#1}{\lim}}
+\newcommand{\cont}{\Rightarrow\!\Leftarrow}
+\newcommand{\seq}[1]{\{ #1 \}}
+\newtheorem{prop}{Proposition}
+\newtheorem*{remark}{Remark}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[]{Lemma}
+\newtheorem{corollary}{Corollary}[theorem]
+\theoremstyle{definition}
+\newtheorem{exmp}{Example}[section]
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\title{Shreve Stochastic Calculus Homework: Chapter 1 \vspace{-1eX}}
+\author{Benjamin Marrow \vspace{-1.5eX}}
+\date{ July 2018  \vspace{-1eX}}
+\begin{document}
+
+\maketitle
+
+% \tableofcontents
+% \clearpage
+
+\section*{Chapter 1}
+
+\begin{enumerate}
+    \pr{1.4 (i)} Construct a standard normal random variable $Z$ on the probability space $(\Omega_\infty,\F_\infty,\p)$ of example 1.1.4 under the assumption that the probability for head is $p=1/2$
+    \begin{proof} Shreve provides a method for the construction a uniform random variable $Y$ on the infinite coin toss space. Specifically, let 
+    $$ X_n(\omega) = \begin{cases} 1, \text{ if } \omega_n = H \\ 0, \text{ if } \omega_n = T  \end{cases}$$
+    Then define: 
+    $$ Y = \sum_{n=1}^\infty \frac{X_n (\omega) }{2^n} $$
+    As Shreve demonstrates, $Y\sim U[0,1]$. We then apply the method in Example 1.2.6 to $Y$. Let $N(x) = \int_{-\infty}^\infty \varphi(\xi) d\xi$ where $\varphi(x)$ is the standard normal density. Define $ Z = N^{-1}(Y)$. Then $Z\sim N(0,1)$.
+    
+    \end{proof}
+    
+    \pr{(ii)} Define a sequence of random variables $\seq{Z_n}_{n=1}^\infty$ on $\Omega_\infty$ such that $\displaystyle \lim_{n \to \infty} Z_n(\omega) = Z(\omega)$ for every $\omega \in \Omega_\infty$ and, for each $n$, $Z_n$ depends only on the first $n$ coin tosses.
+    
+    \begin{proof} Similarly to part (i), define:
+    $$\ds Y_n(\omega) = \sum_{i=1}^n \frac{X_i(\omega)}{2^i}$$
+    
+    Then for a fixed $\omega$, (i.e. removing the randomness), $Y_n(\omega)$ converges to $Y(\omega)$ in the traditional sense of convergence. (Technically its not even convergence, its just the definition of a series that,
+    $$ \underset{\limit{n\to\infty} Y_n(\omega)}{\underbrace{\limit{n \to \infty} \sum_{i=1}^n \frac{X(\omega)}{2^i}}}= \underset{Y(\omega)}{\underbrace{\sum_{i=1}^\infty \frac{X(\omega)}{2^i}}},$$
+    
+    provided the series, i.e. $Y(\omega)$, converges. For a fixed $\omega$, the series must converge by the Monotone Convergence Theorem, since it is bounded above by $1$ (see part (i)) and since the summand is nonnegative, it must be monotonic.
+    
+    Now define $Z_n(\omega) = N^{-1}\left( Y_n(\omega)\right)$. It is clear that $Z_n$ depends only on the first $n$ tosses. First, we have that for a continuous function preserve limits of sequences, i.e. for a function $f: I \to R, c \in I$, if $f$ is continuous then the sequence $\seq{f(x_n)}$ converges to $f(c)$ for each sequence $\seq{x_n}$ in $I$ that converges to $c$. Hence if $N^{-1}(\cdot)$ is continuous (it is) then so long as $Y_n(\omega) \to Y(\omega)$, $N^{-1}(Y_n(\omega)) \to N^{-1}(Y(\omega)) \implies Z_n(\omega) \to Z(\omega)$. 
+    
+    \end{proof}
+    
+    \pr{1.5} When dealing with double Lebesgue integrals, just as with double Riemann integrals, the order of integration can be reversed. The only assumption required is that the function being integrated be either nonnegative or integrable. Let $X$ be a nonnegative random variable with cumulative distribution function $F(x) = \p\seq{X\le x}$. Show that:
+    $$ \E X = \int_0^\infty (1-F(x)) dx$$
+    by showing that 
+    $$\int_\Omega \int_0^\infty \mathbb{I}_{[0,X(\omega))} (x)dx d\p(\omega) $$
+    is equal to both $\E X$ and $\int_0^\infty (1-F(x))dx$
+    
+    \begin{proof} We first show that $\E X$ is equal to the given double integral.:
+    \begin{align*}
+       \E X &=  \int_\Om X(\omega)d\p(\omega) \\
+            &=  \int_\Om  \int_0^{X(\omega)} dx d\p(\omega) \\
+            &= \int_\Om \int_0^\infty  \mathbb{I}_{[0,X(\omega))} (x)dx d\p(\omega) \\
+    \end{align*}
+    
+        where the first line follows from using the definition of $\E X$; the second line rewrites $X(\omega)$ as an integral; and the third line employs the fact that $X$ is nonnegative to integrate over a nonnegative domain ($[0,\infty)$).
+        
+    
+    We now show the second condition. Since:
+    $$ F(x)  = \p\seq{X \leq x}$$ it follows that :
+    \begin{align*}
+        1- F(x) &= 1 - \p\seq{X \leq x} \\
+        &=  \p\seq{X > x} \\    
+        \int_0^\infty (1- F(x)) dx &=  \int_0^\infty \p\seq{X > x} dx \\
+        &= \int_0^\infty \left(\int_x^\infty f_X(u) du \right) dx \\
+        & = \int_0^\infty \int_\Omega \mathbb{I}_{[0,X(\omega))}(x) d\p(\omega) dx \\
+        & = \int_\Omega \int_0^\infty \mathbb{I}_{[0,X(\omega))}(x)  dx d\p(\omega)
+    \end{align*}
+        
+        Note that the final line exploits the reversal of integration stated in the question.
+    
+
+    
+    
+    
+    
+    
+    \end{proof}
+    
+    \pr{1.6} Let $u$ be a fixed number in $\R$, and define the convex function $\phi(x) =e^{ux}$ for all $x \in \R$. Let $X$ be a normal random variable with mean $\mu = \E X$ and standard deviation $\sigma = \left[ \E (X-\mu)^2 \right]^{1/2}$, i.e. with density
+    $$ f(x) =  \frac{1}{\sigma \sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$$
+    \begin{enumerate}
+        \item Verify that 
+        $$ \E e^{uX} = e^{u\mu +\frac{1}{2}u^2\sigma^2}$$
+        
+        \begin{proof} We use the following formula for expected value:
+        $$  \E x = \int_{-\infty}^\infty x f(x) dx $$
+        Hence,
+        \begin{eqnarray*}
+\E\left( e^{uX}\right)  &=&\int_{-\infty }^{\infty }\left( e^{ux}\right)
+\left( \frac{1}{\sigma \sqrt{2\pi }}e^{-\frac{\left( x-\mu \right) ^{2}}{
+2\sigma ^{2}}}\right) dx \\
+&=&\int_{-\infty }^{\infty }\left( e^{ux}\right) \left( \frac{1}{\sigma
+\sqrt{2\pi }}e^{-\frac{\left( x^{2}-2x\mu +\mu ^{2}\right) }{2\sigma ^{2}}%
+}\right) dx \\
+&=&\frac{1}{\sigma \sqrt{2\pi }}\int_{-\infty }^{\infty }\left( e^{\frac{
+2\sigma ^{2}ux-\left( x^{2}-2x\mu +\mu ^{2}\right) }{2\sigma ^{2}}}\right) dx
+\\
+&=&\frac{1}{\sigma \sqrt{2\pi }}\int_{-\infty }^{\infty }\left( e^{-\left(
+\frac{-2\sigma ^{2}ux+x^{2}-2x\mu +\mu ^{2}}{2\sigma ^{2}}\right) }\right) dx
+\\
+&&\text{We add and subtract }\left( u^{2}\sigma ^{4}+2u\sigma ^{2}\mu
+\right) \text{ from the numerator} \\
+&=&\frac{1}{\sigma \sqrt{2\pi }}\int_{-\infty }^{\infty }\left( e^{-\frac{%
+\left( -2\sigma ^{2}ux+x^{2}-2x\mu +\mu ^{2}+u^{2}\sigma ^{4}+2u\sigma
+^{2}\mu \right) -u^{2}\sigma ^{4}-2u\sigma ^{2}\mu }{2\sigma ^{2}}}\right) dx \\
+&=&\frac{1}{\sigma \sqrt{2\pi }}\int_{-\infty }^{\infty }\left( e^{-\frac{%
+\left( x-\left( \mu +\sigma ^{2}u\right) \right) ^{2}-u^{2}\sigma
+^{4}-2u\sigma ^{2}\mu }{2\sigma ^{2}}}\right) dx \\
+&=&\frac{1}{\sigma \sqrt{2\pi }}\int_{-\infty }^{\infty }\left( e^{-\frac{
+\left( x-\left( \mu +\sigma ^{2}u\right) \right) ^{2}}{2\sigma ^{2}}}\right)
+\left( e^{\frac{u^{2}\sigma ^{2}}{2}+\mu u}\right) dx \\
+&=&\left( e^{\frac{u^{2}\sigma ^{2}}{2}+\mu u}\right) \int_{-\infty
+}^{\infty }\frac{1}{\sigma \sqrt{2\pi }}e^{-\frac{\left( x-\left( \mu+\sigma ^{2}u\right) \right) ^{2}}{2\sigma ^{2}}}dx
+\end{eqnarray*}
+        
+        Note that the integrand now gives the density function of a normal distribution with mean $\mu+\sigma^2u$ and standard deviation $\sigma$. Since the normal distribution has measure 1, we are left with just $e^{u\mu+\frac{1}{2}\mu^2\sigma^2}$.
+        \end{proof}
+        
+        \item Verify that Jensen's inequality holds (as it must):
+        $$\E \varphi(x) \geq \varphi (\E X)$$
+        
+        \begin{proof}
+                \begin{align*}
+                    \E \varphi(x) = \E [e^{uX}] &= e^{u\mu +\frac{1}{2}u^2\sigma^2} \\
+                    &\geq e^{u \mu} = \varphi(\E X)
+                \end{align*}
+        where the inequality in the second line follows from the fact that $\frac{1}{2}u^2\sigma^2$ is nonnegative, and $e^x$ is strictly increasing in $x$.
+        \end{proof}
+    \end{enumerate}
+    
+    \pr{1.8}[Moment Generating Function] Let $X$ be a nonnegative random variable and assume that:
+    $$ \phi(t) = \E e^{tX}$$
+    is finite for every $t \in \R$. Assume further that $\E [ Xe^{tX}] <\infty$ for every $t \in \R$. The purpose of this exercise is to show that $\phi'(t) = \E[X e^{tX}]$, and in particular, $\phi'(0)=\E X$. We recall the definition of derivative:
+    $$ \phi'(t) = \limit{s \to t} \frac{\phi(t)-\phi(s)}{t-s} = \limit{s \to t} \frac{\E[ e^{tX}]-\E[ e^{sX}]}{t-s} =  \limit{s \to t} \E \left[ \frac{e^{tX}- e^{sX}}{t-s} \right] $$
+    
+    The limit above is taken over a \textit{continuous} variable $s$, but we can choose a sequence of numbers $\seq{s_n}_{n=1}^\infty$ converging to $t$ and compute
+    $$ \limit{s_n \to t} \E \left[ \frac{e^{tX}- e^{s_nX}}{t-s_n} \right]$$
+    
+    where now we are taking a limit of the expectations of the \textit{sequence} of random variables:
+    $$ Y_n = \frac{e^{tX}- e^{s_nX}}{t-s_n}$$
+    
+    If this limit turns out to be the same, regardless of how we choose the sequence $\seq{s_n}_{n=1}^\infty$ that converges to $t$, then this limit is also the same as $ \limit{s_n \to t} \E \left[ \frac{e^{tX}- e^{sX}}{t-s} \right]$ and is $\phi'(t)$.
+    The Mean Value Theorem from calculus states that if $f(t)$ is a differentiable function, then for any two numbers $s$ and $t$, there is a number $\theta$ between $s$ and $t$ such that:
+    $$ f(t)-f(s) = f'(\theta)(t-s) $$
+    If we fix $\omega \in \Omega$ and define $f(t) = e^{tX(\omega)}$ then this becomes:
+    $$  e^{tX(\omega)}-e^{sX(\omega)} = (t-s)X(\omega)e^{\theta(\omega) X(\omega)} $$
+    where $\theta(\omega)$ is a number depending on $\omega$ (i.e. a random variable lying between $t$ and $s$).
+    
+    \begin{enumerate}
+        \item Use the Dominated Convergence Theorm and equation 1.9.1 to show that 
+        $$ \limit{n \to \infty} \E Y_n = \E \left[ \limit{n \to \infty} Y_n \right] = \E \left[ Xe^{tX} \right]$$
+        
+        \begin{proof} The Dominated Convergence Theorem tells us that given a sequence of random variables $X_1,X_2,\ldots$ converging almost surely to a random variable $X$, If there is another random variable $Y$ such that $\E[Y]<\infty$ and $\abs{X_n}\leq Y$ almost surely for every $n$, then the expectation of the limit equals the limit of the expectation. It suffices then to find a random variable $Z$ such that $\abs{Y_n} \leq Z$ almost surely and $\E[Z]<\infty$.
+        
+        By definition, $Y_n =  \frac{e^{tX(\omega)}-e^{s_nX(\omega)}}{t-s_n}$. Since there is a number $\theta$ such that  $\frac{e^{tX(\omega)}-e^{sX(\omega)}}{t-s} = X(\omega)e^{\theta(\omega)X(\omega)} $, then there is a sequence $\theta_n(\omega)$ such that 
+        $\frac{e^{tX(\omega)}-e^{s_nX(\omega)}}{t-s_n} = X(\omega)e^{\theta_n(\omega)X(\omega)}  $. Note that $\theta_n$ lies between $t$ and $s$, so we can establish the following inequality:
+        $$ Y_n = X(\omega)e^{\theta_n(\omega)X(\omega)} \leq \underset{Z}{\underbrace{X(\omega)e^{\max{\seq{\abs{t},\abs{s},1}}X(\omega)}}} $$
+        
+        (Note that $X$ is stated to be nonnegative, which is why we can use the previous inequality). We now show that $Z$, as defined above, has a finite expectation. This is a consequence of the property, stated in the question, that $\E[Xe^{uX}] <\infty \fa u \in \R$ (Take $u = \max{\seq{\abs{t},\abs{s},1}}$, and we have that $\E[Z]<\infty$. Hence dominated converge holds, and how $\limit{n\to\infty}\E Y_n = \E\left[ \limit{n \to \infty} Y_n\right]$.
+        
+        \end{proof}
+    
+        \item  Suppose the random variable $X$ can take on both positive and negative values and $\E e^{tx} < \infty $ and $\E \left[ \abs{X} e^{tX} \right]<\infty$ for every $t \in \R$. Show that once again, $\phi'(t) =\E\left[ Xe^{tX}\right]$ (Hint: Use the notation (1.3.1) to write $X = X^+ - X^-$).
+        
+        \begin{proof} We can again use dominated convergence theorem. We have that:
+
+        \begin{align*}
+            \abs{Y_n} = \abs{ Xe^{\theta_n X}} \leq \abs{X} \abs{e^{\theta_n X}} \leq \abs{X} e^{\theta_n \abs{X}} \leq  \underset{Z}{\underbrace{\abs{X} e^{\max{\seq{\abs{t},\abs{s},1}}\abs{X}}}}
+        \end{align*}
+        
+        Using 1.3.1 as the question suggests,  also have that:
+        $$\E e^{t\abs{X}} = \E[e^{tX^+}\mathbb{I}_{X\geq0}] + \E[e^{tX^-}\mathbb{I}_{X<0}] < \infty$$
+    Hence by dominated convergence theorem, we have that $\limit{n \to \infty} \E[Y_n] = \E[Xe^{t X}]$.
+        
+        
+                
+        
+        \end{proof}
+    \end{enumerate}
+    
+    
+    
+    
+    
+    \pr{1.11} In Example 1.6.6, we began with a standard normal random variable $X$ under a measure $\p$. According to Exercise 1.6, this random variable has the moment-generating function 
+    $$ \E e^{uX} = e^{\frac{1}{2}u^2} \fa u \in \R$$
+    
+The moment-generating function of a random variable determines its distribution.
+In particular, any random variable that has moment-generating function
+$e^{\frac{1}{2}u^2}$ must be standard normal.
+In Example 1.6.6, we also defined $Y = X + \theta$, where $\theta$ is a constant, we
+set $Z = e^{-\theta X-\frac{1}{2}\theta^2}$ and we defined formula $\tilde{\p}$ by the formula
+$$ \tilde{\p}(A) = \int_A Z(\omega) d \p(\omega) \fa A \in \F$$
+We showed by considering its cumulative distribution function that $Y$ is standard normal variable under $\tilde{\p}$. Give another proof that $Y$ is standard normal under $\tilde{\p}$ by verifying the moment-generating function formula:
+$$ \tilde{\E}e^{uY} = e^{\frac{1}{2}u^2}$$
+
+\begin{proof}
+\begin{align*}
+    \tilde{\E}e^{uY} & = \int_{\Omega}e^{uY}d\tilde{\p}(\omega) \\
+    & = \int_{\Omega}e^{uY}Zd\p(\omega) \\
+    & = \int_{\Omega} e^{uY} e^{-\theta X-\frac{1}{2}\theta^2}  d\p(\omega) \\
+    &= \int_{\Omega} e^{uX+u\theta} e^{-\theta X-\frac{1}{2}\theta^2}  d\p(\omega) \\
+    & = e^{u\theta-\frac{1}{2}\theta^2} \int_{\Omega} e^{(u-\theta)X} d\p(\omega) \\
+    & = e^{u\theta-\frac{1}{2}\theta^2} \E e^{(u-\theta)X} = e^{u\theta-\frac{1}{2}\theta^2}e^{\frac{1}{2}((u-\theta)^2)} = e^{\frac{1}{2} u^2}
+\end{align*}
+The second line follows from the fact that:
+\begin{align*}
+    d\tilde{\p}(B) &= d \int_B Z(\omega)d\p(\omega) =Z d\p(\omega)
+\end{align*}
+(see p. 36 of Shreve where this is formally stated). The third line follows from definition of $Z$ (given in the question). The fourth line follows from the definition of $Y=X+\Theta$, and distributing $u$. In the fifth line, we remove from the integral the constant term by factoring the exponent. Then in the final line, we are left with the formula for expectation (Definition 1.3.3), to which we apply our apply the formula for the moment generating function given in the question.
+
+\end{proof}
+
+\pr{1.13} A
+nonrigorous but informative derivation of the formula for the Radon-Nikodym
+derivative $Z(w)$ in Example 1.6.6 is provided by this exercise. As in that
+example, let $X$ be a standard normal random variable on some probability
+space $\pspace$ , and let $Y = X + \theta$. Our goal is to define a strictly positive
+random variable $Z(\omega)$ so that when we set
+$$\tilde{\p}(A) = \int_\Omega Z(\omega) d\p(\omega) \fa A \in \F$$
+the random variable $Y$ under $\tilde{\p}$ is standard normal. If we fix $\bar{\omega} \in \Omega$ and choose
+a set $A$ that contains $\omega$ and is ``small," then (1.9.4) gives
+ $$ \tilde{\p}(A) \approx Z(\bar{\omega}) \p(A)$$
+ 
+where the symbol $\approx$ means ``is approximately equal to." Dividing by $\p(A)$ we see that
+$$ \frac{\tilde{\p}}{\p} \approx Z$$
+for ``small" sets $A$ containing $\omega$. We use this observation to identify $Z(\omega)$.
+With $\bar{\omega}$ fixed, let $x = X(\omega)$. For $\veps > 0$, we define $B(x, \varepsilon) = [x - \veps/2 , x + \veps/2]$
+to be the closed interval centered at $x$ having length $\veps$. Let $y = x+\theta$ and $B(y,\veps) = [y - \veps/2 , y + \veps/2]$
+
+\begin{enumerate}
+    \item Show that:
+    $$ \frac{1}{\veps} \p \seq{X \in B(x,\veps)} \approx  \frac{1}{\sqrt{2\pi}}\exp \left\{ -\frac{X^2(\bar{\omega})}{2}\right\} $$
+    \begin{proof}
+        \begin{align*}
+         \frac{1}{\veps} \p \seq{X \in B(x,\veps)} &= \frac{1}{\veps}\int_{x-\veps/2}^{x+\veps/2} \varphi(u) du \\
+         & = \frac{1}{\veps}\int_{x-\veps/2}^{x+\veps/2} \frac{1}{ \sqrt{2\pi}}e^{-\frac{u^2}{2}} du \\
+         &= \frac{1}{\veps} \frac{1}{\sqrt{2\pi}}\int_{x-\veps/2}^{x+\veps/2} e^{-\frac{u^2}{2}} du  \\
+         &= \frac{1}{\veps} \frac{1}{\sqrt{2\pi}} (\veps) \left(e^{-\frac{x^2}{2}}\right) \\
+         & = \frac{1}{\sqrt{2\pi}}\exp \left\{ -\frac{X^2(\bar{\omega})}{2}\right\}
+        \end{align*}
+        where the second line comes from substituting the definition of $\varphi(u)$, the density of the standard normal random variable, and the third line come from removing the constant from the integral. To compute the fourth line, we recognize that $\eps$ is defined to be `small', so we approximate the Riemann integral with a rectangle, with base $((x+\eps/2)-(x+\eps/2)) = \eps$ and height $e^{-\frac{x^2}{2}}$.
+        
+    \end{proof}
+    
+    \item In order for $Y$ to be a standard normal random variable under $\tilde{\p}$, show that we must have:
+    $$ \frac{1}{\veps} \tilde{\p} \seq{Y \in B(y,\veps)} \approx  \frac{1}{\sqrt{2\pi}}\exp \left\{ -\frac{Y^2(\bar{\omega})}{2}\right\}  $$
+    
+    \begin{proof}
+        Repeat part (a) but with $Y$ instead of $X$.
+    \end{proof}
+    
+    \item Show that $\seq{X \in B(x,\veps)}$ and $\seq{Y \in B(y,\veps)}$ are the same set, which we call $A(\bar{\omega},\veps)$. This set contains $\bar{\omega}$ and is ``small'' when $\veps>0$ is small.
+    
+    \begin{proof}
+    \begin{align*}
+         \seq{X \in B(x,\veps)} &= \seq{Y-\theta \in B(x,\veps)} \\
+         &= \seq{Y \in B(x+\theta,\veps)} \\
+         &= \seq{Y \in B(y,\veps)} \; \quad \quad \text{        (since $y=x+\theta$)}
+    \end{align*}
+    \end{proof}
+    
+    \item Show that $\ds \frac{\tilde{\p}(A)}{\p(A)} \approx \exp \left\{ -\theta X(\bar{\omega})-\frac{1}{2}\theta^2\right\}$
+    
+    \begin{proof}
+        Since $\seq{X \in B(x,\veps)}$ and $\seq{Y \in B(y,\veps)}$ are the same set, $A$ we can rearrange:
+        \begin{align*} \frac{1}{\veps} \tilde{\p} \seq{Y \in B(y,\veps)} \approx  \frac{1}{\sqrt{2\pi}}\exp \left\{ -\frac{Y^2(\bar{\omega})}{2}\right\} &\implies \tilde{\p}(A) = \frac{\veps}{\sqrt{2\pi}}\exp \left\{ -\frac{Y^2(\bar{\omega})}{2}\right\} \\
+        \frac{1}{\veps} \p \seq{X \in B(x,\veps)} \approx  \frac{1}{\sqrt{2\pi}}\exp \left\{ -\frac{X^2(\bar{\omega})}{2}\right\} &\implies \p(A) = \frac{\veps}{\sqrt{2\pi}}\exp \left\{ -\frac{X^2(\bar{\omega})}{2}\right\}
+        \end{align*}
+        Therefore:
+        \begin{align*}
+     \frac{\tilde{\p}(A)}{\p(A)} &\approx \frac{\frac{\veps}{\sqrt{2\pi}}\exp \left\{ -\frac{Y^2(\bar{\omega})}{2}\right\}}{\frac{\veps}{\sqrt{2\pi}}\exp \left\{ -\frac{X^2(\bar{\omega})}{2}\right\}} \\
+     &= \exp \left\{ -\frac{1}{2}(X(\bar{\omega})+\theta)^2+\frac{1}{2}X^2(\bar{\omega}) \right\} \\
+     & = \exp \left\{ -\frac{1}{2}X^2(\bar{\omega})-X(\bar{\omega})\theta-\frac{1}{2}\theta^2+\frac{1}{2}X^2(\bar{\omega}) \right\} \\
+     &= \exp\left\{ -\theta X(\bar{\omega})-\frac{1}{2}\theta^2\right\}
+        \end{align*}
+    \end{proof}
+    
+\end{enumerate}
+    
+\pr{1.14}[Change of measure for an exponential random variable] Let $X$ be a nonnegative random variable defined on a probability space $\pspace$ with the exponential distribution, which is
+$$ \p\seq{X\leq a} = 1-e^{-\lambda a}, a \geq 0 $$
+where $\lambda$ is a positive constant. Let $\tilde{\lambda}$ be another positive constant, and define $$ Z  = \frac{\tilde{\lambda}}{\lambda}e^{-(\tilde{\lambda}-\lambda)X}$$
+Define $\tilde{\p}$ by:
+$$ \tilde{\p}(A) = \int_{A}Zd\p \text{  for all} A \in \F $$
+\begin{enumerate}
+    \item Show that $\tilde{\p}(\Omega) = 1$
+    
+    \begin{proof}
+    Since we know the cumulative distribution function, $\p\{X\leq a\} = 1-e^{-\lambda a}, a\geq 0$, it follows that $d\p = \lambda e^{-\lambda x}dx$. Then:
+    \begin{align*}
+        \tilde{\p}(\Omega) &= \int_{0}^{\infty} \frac{\tilde{\lambda}}{\lambda}e^{-(\tilde{\lambda}-\lambda)X}d\p \\
+        &= \frac{\tilde{\lambda}}{\lambda} \int_0^\infty e^{-(\tilde{\lambda}-\lambda)x} \lambda e^{-\lambda x}dx \\
+        &= \tilde{\lambda} \int_0^\infty e^{-\tilde{\lambda}x} dx = \frac{\lambda}{\lambda} = 1
+    \end{align*}
+    \end{proof}
+    
+    \item Compute the cumulative distribution function 
+    $$ \tilde{\p} \seq{X \leq a} \text{ for } a\geq 0$$
+    
+    \begin{proof}
+        \begin{align*}
+            \tilde{\p} \seq{X \leq a}  &= \int_{X<a} Z d\p \\
+     &=\int_{0}^a \frac{\tilde{\lambda}}{\lambda}e^{-(\tilde{\lambda}-\lambda)X}( \lambda e^{-\lambda x}dx) \\
+     & = \tilde{\lambda} \int_0^a e^{-\tilde{\lambda}x}dx = \tilde{\lambda} \left( \frac{1-e^{-\tilde{\lambda}a}}{\tilde{\lambda}}\right) =1-e^{-\tilde{\lambda}a}
+        \end{align*}
+    \end{proof}
+    
+    
+\end{enumerate}
+
+
+\end{enumerate}
+
+
+\end{document}

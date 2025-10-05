@@ -1,0 +1,362 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amsfonts,wrapfig,hyperref}
+\usepackage[left=1in, right=1in, top=1in, bottom=1in]{geometry}
+\usepackage{titlesec}
+\usepackage{amssymb,amsbsy}
+\usepackage{amsthm}
+\usepackage{enumitem,graphicx,enumerate}
+\usepackage{authblk,bm,xcolor,color,cancel}
+\usepackage{changepage}
+\usepackage{MnSymbol}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\p}{\mathbb{P}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\G}{\mathcal{G}}
+\newcommand{\Om}{\Omega}
+\newcommand{\tp}{\tilde{\p}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
+\newcommand{\infint}{\int_{-\infty}^{\infty}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\eps}{\epsilon}
+\DeclareMathOperator{\Ima}{Im}
+\newcommand{\fa}{\; \forall \;}
+\newcommand{\df}[1]{\textbf{Def. #1:}}
+\newcommand{\pspace}{\left(\Omega,\F,\p\right)}
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\st}{\text{ s.t. }}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\veps}{\varepsilon}
+\newcommand{\exs}{\exists \;}
+\newcommand{\mylabel}[2]{#2\def\@currentlabel{#2}\label{#1}}
+\newcommand{\pr}[1]{ \item[\mylabel{}{#1.}]}
+\newcommand{\isgeq}{\stackrel{?}{\geq}}
+\newcommand{\isleq}{\stackrel{?}{\leq}}
+\newcommand{\limit}[1]{\underset{#1}{\lim}}
+\newcommand{\cont}{\Rightarrow\!\Leftarrow}
+\newcommand{\seq}[1]{\{ #1 \}}
+\newtheorem{prop}{Proposition}
+\newtheorem*{remark}{Remark}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[]{Lemma}
+\newtheorem{corollary}{Corollary}[theorem]
+\theoremstyle{definition}
+\newtheorem{exmp}{Example}[section]
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\title{Shreve Stochastic Calculus Homework: Chapter 2 \vspace{-1eX}}
+\author{Benjamin Marrow \vspace{-1.5eX}}
+\date{ July 2018  \vspace{-1eX}}
+\begin{document}
+
+\maketitle
+
+% \tableofcontents
+% \clearpage
+
+\section*{Chapter 2}
+
+\begin{enumerate}
+    \pr{2.2} Independence of random variables can be affected by changes of measure. To illustrate this point, consider the space of two coin tosses $\Omega_2 = \seq{HH,HT,TH,TT}$, and let stock prices be given by:
+    \begin{align*}
+       & S_0=4,S_1(H) = 8, S_1(T) = 2,  \\
+       & S_2(HH) = 16, S_2(HT) = S_2(TH) = 4, S_2(TT) =1
+    \end{align*}
+Consider two probability measures given by:
+\begin{align*}
+    & \tilde{\p}(HH) = \frac{1}{4},  \tilde{\p}(HT) = \frac{1}{4},
+     \tilde{\p}(TH) = \frac{1}{4},
+      \tilde{\p}(TT) = \frac{1}{4}, \\
+      & \p(HH) = \frac{4}{9}, 
+      \p(HT) = \frac{2}{9}, 
+      \p(TH) = \frac{2}{9}, 
+      \p(TT) = \frac{1}{9}
+\end{align*}
+Define the random variable:
+$$ X = \begin{cases} 1 \text{ if } S_2= 4\\ 0 \text{ if } S_2 \neq 4 \end{cases} $$
+
+    \begin{enumerate}[(i)]
+        \item List all the sets in $\sigma(X)$
+        
+    
+    \begin{proof} 
+    By Definition 2.1.3, $\sigma \left( X\right) $ is the collection of \emph{all%
+} subsets of $\Omega _{2}$ of the form $\left\{ X\in B\right\} $ where $B$
+ranges over the Borel subsets of $\mathbb{R}$. We therefore have to consider 
+$\emph{all}$ subsets of $\Omega _{2}$ and $\emph{all}$ Borel subsets of $%
+\mathbb{R}$, not just the subsets $\left\{ HH\right\} ,\left\{ HT\right\}
+,\left\{ TH\right\} ,\left\{ TT\right\} $ of $\Omega _{2}$ and not just the
+subsets $\left\{ 0\right\} ,\left\{ 1\right\} ,\emptyset ,\mathbb{R}$ of
+Borel sets. To consider all Borel subsets of $\mathbb{R}$, classify them
+into four classes:%
+\begin{eqnarray*}
+B_{1} &=&\left\{ B\in \mathbb{R};\left\{ 0\right\} \notin B\text{ and }%
+\left\{ 1\right\} \notin B\right\}  \\
+B_{2} &=&\left\{ B\in \mathbb{R};\left\{ 0\right\} \in B\text{ and }\left\{
+1\right\} \notin B\right\}  \\
+B_{3} &=&\left\{ B\in \mathbb{R};\left\{ 0\right\} \notin B\text{ and }%
+\left\{ 1\right\} \in B\right\}  \\
+B_{4} &=&\left\{ B\in \mathbb{R};\left\{ 0\right\} \in B\text{ and }\left\{
+1\right\} \in B\right\} 
+\end{eqnarray*}
+We then have that $\seq{\omega \in \Omega_2 \st X(\omega) \in B_1} = \seq{\emptyset}$, $\seq{\omega \in \Omega_2 \st X(\omega) \in B_2} = \seq{HH,TT}$, $\seq{\omega \in \Omega_2 \st X(\omega) \in B_3} = \seq{HT,TH}$, and $\seq{\omega \in \Omega_2 \st X(\omega) \in B_4} = \seq{\Omega}$. Hence $\sigma(X)$ is given by:
+        $$\sigma(X) = \seq{ \emptyset, \Omega, \seq{HT,TH},\seq{HH,TT}}$$
+    \end{proof}
+    
+    \item List all the sets in $\sigma(S_1)$
+    \begin{proof}
+    Again, we partition the Borel subsets of $\R$ into 4 classes:
+    \begin{eqnarray*}
+B_{1} &=&\left\{ B\in \mathbb{R};\left\{ 2\right\} \notin B\text{ and }%
+\left\{ 8\right\} \notin B\right\}  \\
+B_{2} &=&\left\{ B\in \mathbb{R};\left\{ 2\right\} \in B\text{ and }\left\{
+8\right\} \notin B\right\}  \\
+B_{3} &=&\left\{ B\in \mathbb{R};\left\{ 2\right\} \notin B\text{ and }%
+\left\{ 8\right\} \in B\right\}  \\
+B_{4} &=&\left\{ B\in \mathbb{R};\left\{ 2\right\} \in B\text{ and }\left\{
+8\right\} \in B\right\} 
+\end{eqnarray*}
+We then have that $\seq{\omega \in \Omega_2 \st X(\omega) \in B_1} = \seq{\emptyset}$, $\seq{\omega \in \Omega_2 \st X(\omega) \in B_2} = \seq{TH,TT}$, $\seq{\omega \in \Omega_2 \st X(\omega) \in B_3} = \seq{HT,HH}$, and $\seq{\omega \in \Omega_2 \st X(\omega) \in B_4} = \seq{\Omega}$. Hence,
+    % $S_1$ range over the Borel Sets of $\R$. We have $B = \seq{\emptyset,\Omega,2,8}$. The sets that result in $S_1=2$ are sets for which the first toss is $T$, i.e. $\{TH,TT\}$. Similar for $S_1 = 8$, we have sets for which the first toss is $H$, i.e. $\{HT,HH\}$
+        $$\sigma(S_1) = \seq{\emptyset,\Omega,\seq{HH,HT},\seq{TH,TT}}$$
+    \end{proof}
+    
+    \item Show that $\sigma(X)$ and $\sigma(S_1)$ are independent under the probability measure $\tp$
+    
+    \begin{proof}
+    Two sets are independent under a given probabliity measure $\p$ if $\p\seq{A \cap B} = \p\{A\}\cdot \p\{B\}$. We consider the intersection of all the constituent sets from the two $\sigma$-algebras.
+    \begin{itemize}
+    \item Let $A = \seq{HT,TH},B= \seq{HH,HT}$
+    \begin{align*}
+        &\tp\seq{A \cap B} = \tp\seq{\seq{HT,TH} \cap \seq{HH,HT}} = \tp\seq{HT} = \frac{1}{4} \\
+        &\tp\seq{A} = \tp\seq{HT,TH} = \tp\{HT\}+\tp\{TH\} = \frac{1}{2};\\
+         & \tp\seq{B} =\tp\seq{HH,HT} = \tp\{HH\}+\tp\{HT\} = \frac{1}{2} \\
+         & \implies  \tp\seq{A \cap B} = \tp\seq{A}\cdot \tp\seq{B}
+    \end{align*}
+        \item Let $A = \seq{HT,TH},B= \seq{TH,TT}$
+    \begin{align*}
+        &\tp\seq{A \cap B} = \tp\seq{\seq{HT,TH} \cap \seq{TH,TT}} = \tp\seq{TH} = \frac{1}{4} \\
+        &\tp\seq{A} = \tp\seq{HT,TH} = \tp\{HT\}+\tp\{TH\} = \frac{1}{2};\\
+         & \tp\seq{B} =\tp\seq{TH,TT} = \tp\{TH\}+\tp\{TT\} = \frac{1}{2} \\
+         & \implies  \tp\seq{A \cap B} = \tp\seq{A}\cdot \tp\seq{B}
+    \end{align*}
+            \item Let $A = \seq{HH,TT},B= \seq{HH,HT}$
+    \begin{align*}
+        &\tp\seq{A \cap B} = \tp\seq{\seq{HH,TT} \cap \seq{HH,HT}} = \tp\seq{HH} = \frac{1}{4} \\
+        &\tp\seq{A} = \tp\seq{HH,TT} = \tp\{HH\}+\tp\{TT\} = \frac{1}{2};\\
+         & \tp\seq{B} =\tp\seq{HH,HT} = \tp\{HH\}+\tp\{HT\} = \frac{1}{2} \\
+         & \implies  \tp\seq{A \cap B} = \tp\seq{A}\cdot \tp\seq{B}
+    \end{align*}
+                \item Let $A = \seq{HH,TT},B= \seq{TH,TT}$
+    \begin{align*}
+        &\tp\seq{A \cap B} = \tp\seq{\seq{HH,TT} \cap \seq{HH,HT}} = \tp\seq{TT} = \frac{1}{4} \\
+        &\tp\seq{A} = \tp\seq{HH,TT} = \tp\{HH\}+\tp\{TT\} = \frac{1}{2};\\
+         & \tp\seq{B} =\tp\seq{TH,TT} = \tp\{TH\}+\tp\{TT\} = \frac{1}{2} \\
+         & \implies  \tp\seq{A \cap B} = \tp\seq{A}\cdot \tp\seq{B}
+    \end{align*}
+    \end{itemize}
+    
+    Since intersection of $\Omega$ with any of the subsets is itself, and $\p(\Omega) = 1$, the independence condition holds trivially for those sets. Similarly intersection of $\emptyset$ with any set is $\emptyset$, and since $\p(\emptyset)=0$, the independence condition is vacuously true for those sets as well.
+    \end{proof}
+    
+    \item Show that $\sigma(X)$ and $\sigma(S_1)$ are not independent under the probability measure $\p$
+    
+    \begin{proof} 
+        It suffices to find a single case of the two sets $A\in \sigma(X), B \in \sigma(S_1) $ for which $\p\seq{A \cap B} \neq \p\{A\}\cdot \p\{B\}$. Consider the first case from above, where $A = \seq{HT,TH},B= \seq{HH,HT}$. Then:
+    \begin{align*}
+        &\p\seq{A \cap B} = \p\seq{\seq{HT,TH} \cap \seq{HH,HT}} = \p\seq{HT} = \frac{2}{9} \\
+        &\p\seq{A} = \p\seq{HT,TH} = \tp\{HT\}+\p\{TH\} = \frac{2}{9}+ \frac{2}{9}=\frac{4}{9};\\
+         & \p\seq{B} =\p\seq{HH,HT} = \p\{HH\}+\p\{HT\} = \frac{4}{9}+\frac{2}{9}=\frac{2}{3} \\
+         & \implies  \p\seq{A \cap B} = \frac{2}{9} \neq \left(\frac{4}{9}\right)\left(\frac{2}{3}\right)= \p\seq{A}\cdot \p\seq{B}
+    \end{align*}
+    \end{proof}
+    
+    \item Under $\p$, we have $\p\seq{S_1=8} = \frac{2}{3}$ and $\p\seq{S_1=2} = \frac{1}{3}$. Explain intuitively
+why, if you are told that $X = 1$ , you would want to revise your estimate
+of the distribution of $S_1$.
+
+\begin{proof}
+Intuitively, we showed in (iv) that $S_1$ and $X$ are not independent under $\p$ so knowing $X$ provides information about $S_1$. More specifically, we would revise our as follows:
+ \begin{align*}
+     \p(S_1=8|X=1) &= \frac{\p(S_1=8 \cap X=1)}{\p(X=1)} = \frac{\p(HT)}{\p(HT)+\p(TH)} = \frac{2/9}{4/9} = \frac{1}{2} \\
+     \p(S_1 = 8) &= \p(HH) + \p(HT) = \frac{2}{3} \\
+     \p(S_1=2|X=1) &= \frac{\p(S_1=2 \cap X=1)}{\p(X=1)} = \frac{\p(TH)}{\p(HT)+\p(TH)} = \frac{2/9}{4/9} = \frac{1}{2} \\
+     \p(S_1=2) &=\p(TH) + \p(TT) = \frac{1}{3}
+\end{align*}
+
+
+\end{proof}
+
+    \end{enumerate}
+    
+    \pr{2.3}(Rotating the axes) Let $X$ and $Y$ be independent standard normal random variables. Let $\theta$ be a constant, and define random variables 
+    $$V = X \cos \theta + Y \sin \theta, \text{ and } W = -X \sin\theta + Y \cos\theta.$$
+    Show that $V$ and $W$ are independent standard normal random variables
+    
+    \begin{proof}
+    Since linear combinations of \textit{independent} standard normal random variables are normal, and since $V$ and $W$ are each linear combinations of $X$ and $Y$, we have that $V$ and $W$ are each normal. It remains for us to show that $V$ and $W$ are independent and standard (i.e. mean $0$, variance $1$). To show they are standard we take means:
+    \begin{align*}
+        \E[V] &= \cos\theta\E[X] +\sin\theta\E[Y] = (0)+(0) = 0 \\
+        \E[W] &= -\sin\theta\E[X] +\cos\theta\E[Y] = (0)+(0) = 0 \\
+        \Var(V) = \E[V^2] &=cos^2\theta\E[X^2] +\sin^2\theta\E[Y^2] = \sin^2\theta+\cos^2\theta = 1 \\
+             \Var(V) = \E[V^2] &=\sin^2\theta\E[X^2] +\cos^2\theta\E[Y^2] = \sin^2\theta+\cos^2\theta = 1
+    \end{align*}
+    In computing the variances, the cross products disappeared due to independence of $X$ and $Y$. We now show that $V$ and $W$ are jointly normal. Observe that $X$ and $Y$ are independent standard normal random variables and hence are jointly normal. Since linear combinations of jointly normal random variables are jointly normal, it follows that $V,W$ are jointly normal. The note at the bottom of p. 62 tells us that for two \textit{jointly normal} random variables $X,Y$, the property that $\E[XY]=\E[Y]\E[X]$ \textit{implies} independence. We demonstrate this property:
+    \begin{align}
+        \E[VW] &= \E\left[ \left(X \cos \theta + Y \sin \theta \right) \left(  -X \sin\theta + Y \cos\theta \right) \right]\\
+        &= \E\left[-X^2\sin \theta \cos \theta + XY \cos \theta -XY\sin^2 \theta +Y^2 \sin \theta \cos \theta\right]\\ 
+        & = -\sin \theta \cos \theta \E[X^2] +  (\cos \theta -\sin^2\theta) \E[XY] +\sin \theta \cos \theta\E[Y^2] \\ 
+        & = -\sin \theta \cos \theta (\E[X^2] - \E[X]^2) +  (\cos \theta-\sin^2 \theta) (\E[XY]-\E[X]\E[Y]) +\sin \theta \cos \theta(\E[Y^2]-\E[Y]^2) \\
+        & = -\sin \theta \cos \theta \Var(X) +  (\cos \theta-\sin^2 \theta) \Cov(X,Y) +\sin \theta \cos \theta \Var(Y) \\
+        & = -\sin \theta \cos \theta (1) +  (\cos \theta-\sin^2 \theta) (0) +\sin \theta \cos \theta (1) \\
+        &= -\sin \theta \cos \theta + \sin \theta \cos \theta = 0 \\
+        \E[V] &= \E\left[ X \cos \theta + Y \sin \theta \right]\\
+              &= \cos \theta \E[X]  + \sin \theta \E[Y]  \\
+              & = (0) \cos  \theta + \sin \theta (0)  = 0 \\
+        \E[W] &= \E\left[ -X \sin \theta + Y \cos \theta \right]\\
+              &= - \sin \theta\E[X]  + \cos \theta \E[X]  \\
+              & = - \sin \theta (0)  + \cos \theta (0) = 0 
+    \end{align}
+     Note that to move from (2) to (3), we used linearity of expectations. To move from (3) to (4) we recognized that since $X$ and $Y$ are each standard normal, $\E[X]=\E[Y]=0$ and hence $\E[X]^2=\E[Y]^2=\E[X]\E[Y]=0$, and so we subtracted $0$ from parts of the equation. We then substituted in the values for variance and covariance -- the variance of a standard normal is $1$, and since $X$ and $Y$ are stated to be independent, it follows that $\Cov(X,Y)=0$.
+     
+     Taking everything together, we see that $\E[VW] = 0 =\E[V] \E[W]$, so $V$ and $W$ are independent. 
+    
+    \end{proof}
+    
+    \pr{2.6} Consider a probability space with $4$ elements, which we call $a,b,c,$ and $d$ (i.e. $\Omega = \seq{a,b,c,d}$). The $\sigma$-algebra $\F$ is the collection of all subsets of $\Om$; i.e. the sets in $\F$ are
+\begin{align*}
+    & \Omega,  \seq{a,b,c}, \seq{a,b,d}, \seq{a,c,d}, \seq{b,c,d},\\
+    & \seq{a,b}, \seq{a,c}, \seq{a,d}, \seq{b,c}, \seq{b,d}, \seq{c,d}, \\
+    & \seq{a},\seq{b}, \seq{c}, \seq{d}, \emptyset
+\end{align*}
+We define a probability measure $\p$ by specifying that 
+$$ \p\seq{a} = \frac{1}{6}, \p\seq{b} = \frac{1}{3} , \p\seq{c} = \frac{1}{4}, \p\seq{d} = \frac{1}{4}$$ and, as usual, the probability of every other set in $\F$ is the sum of the probabilities of the elements in the set, e.g., $\p\seq{a,b,c} = \p\seq{a}+\p\seq{b}+\p\seq{c} = \frac{3}{4}$. We next define two random variables, $X$ and $Y$ by the formulas:
+\begin{align*}
+    & X(a) = 1, X(b) = 1 , X(c) = -1, X(d)=-1, \\
+    & Y(a) = 1, Y(b) = -1, Y(c) =  1, Y(d) = -1
+\end{align*}
+We then define $Z = X+Y$
+    \begin{enumerate}[(i)]
+        \item List the sets in $\sigma(X)$
+        \begin{proof}
+        We let $X$ range over the Borel sets of $\R:B=\{-1,1,\Omega,\emptyset\}$. The sets that generate $X=1$ are $\seq{a,b}$, while the sets that generate $X=-1$ are $\seq{c,d}$. Hence: $$\sigma(X) = \seq{\emptyset,\Omega,\seq{a,b},\seq{c,d}}$$
+        \end{proof}
+        \item Determine $\E[Y|X]$ (i.e. specify the values of this random variable for $a,b,c, \text{ and } d$). Verify that the partial-averaging property is satisfied.
+        \begin{proof} We iterate through values of $X$ and specify the expectation of $Y$ conditional on $X$ for each realization: 
+        \begin{align*}
+            \E[Y|X(\omega)=1] &= \E[Y| \omega \in \seq{a,b}]  \\
+                            & = \frac{\p(a) Y(a) + \p(b) Y(b)}{\p(a)+\p(b)} \\
+                            &= \frac{\frac{1}{6} (1) + \frac{1}{3}(-1)}{\frac{1}{2}} = -\frac{1}{3} \\ 
+              \E[Y|X(\omega)=-1] &= \E[Y| \omega \in \seq{c,d}]  \\
+                            & = \frac{\p(c) Y(c) + \p(d) Y(d)}{\p(c)+\p(d)} \\
+                            &= \frac{\frac{1}{4} (1) + \frac{1}{4}(-1)}{\frac{1}{2}} = 0 \\ 
+        \end{align*}
+        Hence $\E[Y|X] = -\frac{1}{3}\mathbb{I}_{\seq{X(\omega)=1}}$. We now verify the partial averaging property holds, i.e that the expectation of a variable is equal the weighted sum of the conditional expectations:
+        \begin{align*}
+        \sum_{i} \p\seq{X=i}E[Y|X=i] &= \p\seq{X=1}\E[Y|X=1]+\p\seq{X=-1}\E[Y|X(\omega)=-1] \\
+        &= (\p\seq{a}+\p\seq{b}) \left( -\frac{1}{3} \right) + (\p\seq{c}+\p\seq{d}) \left( 0\right)  \\
+        &= \left( \frac{1}{2} \right) \left( -\frac{1}{3} \right) = -\frac{1}{6} \\
+        \sum_j \p\seq{j} Y(j) &=  \p\seq{a}Y(a)+\p\seq{b}Y(b)+\p\seq{c}Y(c)+\p\seq{d}Y(d) \\
+        &= \frac{1}{6}(1) + \frac{1}{3}(-1) + \frac{1}{4}(1)+\frac{1}{4}(-1) = -\frac{1}{6}
+        \end{align*}
+        
+        
+        \end{proof}
+        \item Determine $\E[Z|X]$. Again verify the partial averaging property.
+        \begin{proof}
+        \begin{align*}
+            \E[Z|X(\omega)=1] &= \E[Z| \omega \in \seq{a,b}]  \\
+                            & = \frac{\p(a) (X(a)+Y(a)) + \p(b) (X(b)+Y(b))}{\p(a)+\p(b)} \\
+                            &= \frac{\frac{1}{6} (2) + \frac{1}{3}(0)}{\frac{1}{2}} = \frac{2}{3} \\ 
+              \E[Z|X(\omega)=-1] &= \E[Z| \omega \in \seq{c,d}]  \\
+                            & = \frac{\p(c) (X(c)+Y(c)) + \p(d) (X(d)+Y(d))}{\p(c)+\p(d)} \\
+                            &= \frac{\frac{1}{4} (0) + \frac{1}{4}(-2)}{\frac{1}{2}} = -1 \\ 
+        \end{align*}
+        Hence $\E[Z|X] = \frac{2}{3}\mathbb{I}_{\seq{X(\omega)=1}} + (-1) \mathbb{I}_{\seq{X(\omega)=-1}} $. We now verify the partial averaging property:
+        \begin{align*}
+        \sum_{i} \p\seq{X=i}E[Z|X=i] &= \p\seq{X=1}\E[Z|X=1]+\p\seq{X=-1}\E[Z|X(\omega)=-1] \\
+        &= (\p\seq{a}+\p\seq{b}) \left( \frac{2}{3} \right) + (\p\seq{c}+\p\seq{d}) \left( -1\right)  \\
+        &= \left( \frac{1}{2} \right) \left( \frac{2}{3} \right) +\left( \frac{1}{2} \right) \left( -1 \right) = -\frac{1}{6} \\
+        \sum_j \p\seq{j} Z(j) &=  \p\seq{a}Z(a)+\p\seq{b}Z(b)+\p\seq{c}Z(c)+\p\seq{d}Z(d) \\
+        &= \frac{1}{6}(2) + \frac{1}{3}(0) + \frac{1}{4}(0)+\frac{1}{4}(-2) = -\frac{1}{6}
+        \end{align*}
+        \end{proof}
+        \item Compute $\E[Z|X] - \E[Y|X]$. Citing the appropriate properties of conditional expectation from Theorem 2.3.2, explain why you get $X$.
+        
+        \begin{proof}
+        We have that: 
+        \begin{align*}
+            \E[Z|X] - \E[Y|X] &= \frac{2}{3}\mathbb{I}_{\seq{X(\omega)=1}} + (-1) \mathbb{I}_{\seq{X(\omega)=-1}} - (-\frac{1}{3}\mathbb{I}_{\seq{X(\omega)=1}}) \\
+            &= \mathbb{I}_{\seq{X(\omega)=1}} + (-1) \mathbb{I}_{\seq{X(\omega)=-1}} = X
+        \end{align*}
+        Property (i) of Theorem 2.3.2 maintains linearity of conditional expectations, hence:
+        \begin{align*}
+            \E[Z|X] - \E[Y|X] &= \E[Z-Y|X] \\
+            & = \E[X|X] = X
+        \end{align*}
+        Note the second line follows from property (ii) where we can take out what is known ($X$ is $X$-measurable, so formally $\E[X|X] = X\E[1|X] = X$).
+        \end{proof}
+    \end{enumerate}
+    
+    
+    \pr{2.9} Let $X$ be a random variable.
+    \begin{enumerate}[(i)]
+        \item Give an example of a probability space $\pspace$, a random variable $X$ defined on this probability space, and a function $f$ so that the $\sigma-$algebra generated by $f(X)$ is not the trivial $\sigma$-algebra $\seq{\emptyset,\Omega}$ but is strictly smaller than the $\sigma-$algebra generated by $X$.
+        
+        \begin{proof} Intuitively, we are asked to come up with an experiment where $f$ provides information about the outcome of the experiment but never pins down the exact outcome of the exact experiment. (Perhaps I am wrong, but it seems like any function that is not injective will suffice). Consider the probability space given in example 1.1.4 (also the first question of my last homework) where we construct a standard normal random variable on the infinite-coin toss space.\footnote{
+    Specifically, let 
+    $$ X_n(\omega) = \begin{cases} 1, \text{ if } \omega_n = H \\ 0, \text{ if } \omega_n = T  \end{cases}$$
+    Then define: 
+    $$ Y = \sum_{n=1}^\infty \frac{X_n (\omega) }{2^n} $$
+    As Shreve demonstrates, $Y\sim U[0,1]$. We then apply the method in Example 1.2.6 to $Y$. Let $N(x) = \int_{-\infty} \varphi(\xi) d\xi$ where $\varphi(x)$ is the standard normal density. Define $ Z = N^{-1}(Y)$. Then $Z\sim N(0,1)$.} Let $f(X) = \abs{X}$. Then $\sigma(f(X)) \subset \sigma(X)$. (For example, the set $[-1,0]$ is not in $\sigma(f(X))$, but is contained in $\sigma(X)$).
+        
+        \end{proof}
+        \item Can the $\sigma$-algebra generated by $f(X)$ ever be strictly larger than the $\sigma$-algebra generated by $X$?
+        
+        \begin{proof}
+        This is not possible, because the $\sigma$-algebra generated by $X$ provides complete information. We see this by noting that $\sigma(f(X(\omega))) = \seq{\omega \in \Omega \st f(X(\omega)) \in \mathcal{B}(\R)}$. We can define the $\sigma$-algebra of $f(X)$ in terms of the inverse images: $\omega \st \omega \in X^{-1}\circ f^{-1}\mathcal{B(\R)}$. But if $B$ is a Borel set then $f^{-1}(B)$ is a borel set. Hence the $\sigma-$algebra distills to $\omega \st \omega \in X^{-1}(B)$, which defines the $\sigma-$algebra of $X$. Hence any set in $\sigma(f(X))$ is in $\sigma(X)$. 
+        \end{proof}
+    \end{enumerate}
+    
+    \pr{2.10} Let $X$ and $Y$ be random variables (on some unspecified probability space $\pspace$ , assume they have a joint density $f_{X,Y}(x,y)$, and assume $\E[Y]<\infty$. In particular, for every Borel subset $C$ of $\R^2$, we have 
+    $$ \p\seq{(X,Y) \in C} = \int_C f_{X,Y} (x,y) dx dy  $$
+    In elementary probability, one learns to compure $\E[Y|X=x]$, which is a \textit{nonrandom} function of the \textit{dummy variable x}, by the formula:
+    $$ \E[Y|X=x] = \int_{-\infty}^{\infty} yf_{Y|X}(y|x)dy,$$
+where $f_{Y|X}(y|x)$ is the \textit{conditional density} defined by:
+$$ f_{Y|X}(y|x) = \frac{f_{X,Y}(x,y)}{f_X(x)}$$
+The denominator in this expression, $f_X(x)=\int_{-\infty}^{\infty}f_{X,Y}(x,\eta)d\eta$ is the \textit{marginal density} of $X$ and we must assume it is strictly positive for every $x$. We introduce the symbol $g(x)$ for the function $\E[Y|X]$ defined by (2.6.1); i.e.
+\begin{equation} g(x) = \int_{-\infty}^{\infty} y f_{Y|X} (y|x) dy = \int_{-\infty}^{\infty}\frac{yf_{X,Y}(x,y)}{f_X(x)}dy \end{equation}
+In measure-theoretic probability, conditional expectation is a random variable $\E[Y|X]$. This exercise is to show that when there is a joint density for $(X,Y)$, this random variable can be obtained by substituting the random variable $X$ in place of the dummy variable $x$ in the function $g(x)$. In other words, this exercise is to show that
+$$ \E[Y|X] = g(X)$$
+(We introduced the symbol $g(x)$ in order to avoid the mathematically confusing expression $\E[Y|X=X]$.)
+Since $g(X)$ is obviously $\sigma(X)-$measurable, to verify that $\E[Y|X] = g(X)$, we need only check that the partial-averaging property is satisfied. For every Borel-measurable function $h$ mapping $\R$ to $\R$ and satisfying $\E\abs{h(X)}<\infty$, we have:
+\begin{equation} \E h(X) = \int_{-\infty}^{\infty}h(x)f_X(x)dx \end{equation}
+This is Theorem 1.5.2 in Chapter 1. Similarly if $h$ is a function of both $x$ and $y$ then
+\begin{equation} \E h(X) = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} h(x,y)f_{X,Y}(x,y)dxdy \end{equation}
+whenever $(X,Y)$ has joint density $f_{X,Y}(x,y)$. You may use both these equations in your solution to this problem. 
+Let $A$ be a set in $\sigma(X)$. By the definition of $\sigma(X)$, there is a Borel subset $B \in \R$ such that $A \in \seq{\omega \in \Omega; X(\omega) \in B}$, or more simply, $A=\seq{X \in B}$. Show the partial averaging property,
+$$ \int_A g(X) d\p = \int_A Y d\p$$
+
+\begin{proof}
+\begin{align}
+    \int_A g(X) d\p  &= \infint g(x)f_X(x)dx     \\
+                     &= \infint \left( \infint  \frac{y f_{X,Y}(x,y)}{f_{X}(x)} dy  \right) f_X(x) dx  \\
+                     &= \infint \infint y(x) f_{X,Y}(x,y) dy dx \\
+                     &= \E[Y] = \int_A Y d\p
+\end{align}
+Here, line (17) is an application of line (15), where we substitute $g(x)$ for $h(x)$. Line (18) then applies equation (14) to the previous line. Line (19) cancels $f_X(x)$. Finally, line (20) uses the property of line (16) in one variable.
+\end{proof}
+
+
+
+\end{enumerate}
+
+\end{document}
