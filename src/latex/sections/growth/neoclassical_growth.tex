@@ -1,0 +1,754 @@
+% !BIB program = biber
+\providecommand{\topdir}{../..} 
+\documentclass[\topdir/lecture\_notes.tex]{subfiles}
+\graphicspath{{\subfix{./images/}}}
+
+\begin{document}
+% \captionsetup{singlelinecheck=false}
+
+\section{The Neoclassical Growth Model}
+The infinite-horizon neoclassical growth model is one of the fundamental workhorse models of economic growth theory.
+This model, also known as the Ramsey or Cass--Koopmans model, provides a framework for understanding how economies grow over time when savings decisions are made optimally by forward-looking consumers.
+
+The standard neoclassical growth model differs from simpler growth models in one crucial respect: it explicitly models the consumer side and endogenizes savings through consumer optimization.
+Since the model explicitly models utility functions of consumers, it is also possible to study social welfare.
+Beyond its use as a basic growth model, this model contains the kernel of what we will later develop into the real business cycle model.
+
+\subsection{Preferences, Technology and Demographics}
+Consider an infinite--horizon economy in continuous time.
+We assume that the economy admits a representative household with instantaneous utility function
+\begin{equation}
+  u(c(t)),
+  \label{eq:utility}
+\end{equation}
+and we make the following standard assumptions on this utility function:
+\begin{assumption}
+  \label{assumption:utility}
+  $u(c)$ is strictly increasing, concave, twice continuously differentiable with derivatives $u'$ and $u''$, and satisfies the following Inada--type conditions:
+  \[
+    \lim _{c \rightarrow 0} u^{\prime}(c)=\infty \text { and } \lim _{c \rightarrow \infty} u^{\prime}(c)=0.
+  \]
+\end{assumption}
+The representative household represents a set of identical households (with measure normalized to 1).
+Each household has an instantaneous utility function given by \eqref{eq:utility}.
+The number of household members within each household grows at the rate $n$, starting with $L(0)=1$, so that the total population is
+\begin{equation*}
+  L(t)=\exp(nt).
+\end{equation*}
+All members of the household supply their labor inelastically.
+Our baseline assumption is that the household is fully altruistic towards all of its future members, and always makes the allocations of consumption (among household members) cooperatively.
+This implies that the objective function of each household at time $t=0$, $U(0)$, can be written as
+\begin{equation}
+  U(0) := \int_{0}^{\infty} \exp(-(\rho-n) t) u(c(t)) dt,
+  \label{eq:household-objective}
+\end{equation}
+where $c(t)$ is consumption per capita at time $t$, $\rho$ is the subjective discount rate, and the effective discount rate is $\rho-n$, since it is assumed that the household also derives utility from the per-capita consumption of each of its future members.
+
+We also assume throughout that
+\begin{assumption}
+  \label{assumption:discount-basic}
+  $\rho>n$.
+\end{assumption}
+This assumption ensures that there is in fact discounting of future utility streams.
+Otherwise, \eqref{eq:household-objective} would have infinite value.
+Assumption~\ref{assumption:discount-basic} makes sure that in the model without growth, discounted utility is finite.
+When there is growth, we will strengthen this assumption.
+
+We start with an economy without any technological progress.
+Factor and product markets are competitive, and the production possibilities set of the economy is represented by the aggregate production function
+\[
+  Y(t)=F(K(t), L(t)),
+\]
+where $K(t)$ is physical capital.
+We impose the following standard assumptions on the production function, familiar from the Solow-Swan model:
+\begin{assumption}
+  \label{assumption:crs}
+  The production function $F: \mathbb{R}_+ \times \mathbb{R}_+ \to \mathbb{R}_+$ exhibits constant returns to scale: for all $\lambda > 0$, $F(\lambda K, \lambda L) = \lambda F(K, L)$.
+\end{assumption}
+
+\begin{assumption}
+  \label{assumption:inada}
+  The production function is twice continuously differentiable, increasing in both arguments, and exhibits diminishing marginal products. The per capita production function $f(k) = F(k, 1)$ is strictly concave and satisfies the Inada conditions:
+  \[
+    \lim_{k \to 0} f'(k) = \infty \text{ and } \lim_{k \to \infty} f'(k) = 0.
+  \]
+\end{assumption}
+
+The constant returns to scale feature enables us to work with the per capita production function $f(\cdot)$ such that, output per capita is given by
+\[
+  \begin{aligned}
+    y(t) & := \frac{Y(t)}{L(t)}                \\
+         & =F\left(\frac{K(t)}{L(t)}, 1\right) \\
+         & := f(k(t))
+  \end{aligned}
+\]
+where, as before,
+\[
+  k(t) := \frac{K(t)}{L(t)}.
+\]
+We assume that factor markets (for capital and labor) are perfectly competitive.
+
+\subsection{Firms}
+
+The representative competitive firm takes factor prices $(R,w)$ as given and solves
+\begin{equation*}
+  \max_{K\ge 0,L\ge 0} \Pi(K,L):=F(K,L)-RK-wL,
+\end{equation*}
+where $F$ satisfies Assumptions \ref{assumption:crs} and \ref{assumption:inada}.
+Under free entry and perfectly competitive markets, equilibrium profits are zero at the optimum, so for some optimal input vector $(K^{*},L^{*})$,
+\begin{equation}
+  \Pi(K^{*},L^{*})=0,
+  \qquad
+  \Pi(K,L)\le 0 \text{ for all } (K,L)\ge 0.
+  \label{eq:zero-profit-opt}
+\end{equation}
+
+Using $F(K,L)=L f(K/L)$, write profits as
+\begin{equation}
+  \Pi(K,L)=[f(k)-Rk-w]L,\qquad k:=K/L \text{ for } L>0,
+  \label{eq:profit-scale}
+\end{equation}
+and define the per-worker profit function
+\begin{equation*}
+  \phi(k):=f(k)-Rk-w.
+\end{equation*}
+Because $f$ is strictly concave by Assumption \ref{assumption:inada}, $\phi$ is strictly concave, so it has a unique maximizer $k^{*}$.
+If $\max_{k}\phi(k)>0$, then by \eqref{eq:profit-scale} the firm can choose arbitrarily large $L$ and earn unbounded profits, contradicting \eqref{eq:zero-profit-opt}.
+If $\max_{k}\phi(k)<0$, the firm sets $L=0$ and earns zero, again contradicting that $(K^{*},L^{*})$ is an optimum with positive scale.
+Therefore
+\begin{equation}
+  \max_{k}\phi(k)=\phi(k^{*})=0,
+  \label{eq:phi-zero}
+\end{equation}
+and any $(K^{*},L^{*})$ with $K^{*}/L^{*}=k^{*}$ is profit maximizing with zero profits.
+
+Since $\phi$ is strictly concave, the unique maximizer $k^{*}$ satisfies the first-order condition
+\begin{equation*}
+  \phi'(k^{*})=f'(k^{*})-R=0,
+\end{equation*}
+so
+\begin{equation}
+  R=f'(k^{*}).
+  \label{eq:R-equals-mpk-percap}
+\end{equation}
+Evaluating zero profit \eqref{eq:phi-zero} at $k^{*}$ yields
+\begin{equation}
+  w=f(k^{*})-Rk^{*}=f(k^{*})-k^{*} f'(k^{*}),
+  \label{eq:wage-from-zero-profit}
+\end{equation}
+where the second equality uses \eqref{eq:R-equals-mpk-percap}.
+
+To translate \eqref{eq:R-equals-mpk-percap}--\eqref{eq:wage-from-zero-profit} into marginal products of $F$, differentiate $F(K,L)=L f(K/L)$ using the chain rule. For $L>0$ and $k=K/L$,
+\begin{equation}
+  F_{K}(K,L)=\frac{\partial}{\partial K}\big[L f(K/L)\big]=f'(k),
+  \label{eq:FK-equals-fprime}
+\end{equation}
+and
+\begin{equation}
+  F_{L}(K,L)=\frac{\partial}{\partial L}\big[L f(K/L)\big]=f(k)-k f'(k).
+  \label{eq:FL-equals-fminuskfprime}
+\end{equation}
+Combining \eqref{eq:R-equals-mpk-percap} with \eqref{eq:FK-equals-fprime} and \eqref{eq:wage-from-zero-profit} with \eqref{eq:FL-equals-fminuskfprime}, evaluated at any optimal pair $(K^{*},L^{*})$ with $K^{*}/L^{*}=k^{*}$, gives
+\begin{align}
+  R & =F_{K}(K^{*},L^{*}),\label{eq:rental-rate} \\
+  w & =F_{L}(K^{*},L^{*}).\label{eq:wage-rate}
+\end{align}
+
+\subsection{Households}
+The household optimization consists of each household solving a continuous time optimization problem to decide how to use their assets and allocate consumption over time.
+To prepare for this, let us denote the asset holdings of the representative household at time $t$ by $h(t)$.
+Then we have the following law of motion for the total assets of the household
+\begin{equation*}
+  \dot{h}(t)=r(t) h(t)+w(t) L(t)-c(t) L(t),
+\end{equation*}
+where $c(t)$ is consumption per capita of the household, $r(t)$ is the risk--free market flow rate of return on assets, and $w(t) L(t)$ is the flow of labor income of the household.
+Defining per capita assets as
+\[
+  a(t) := \frac{h(t)}{L(t)}
+\]
+we obtain:
+\begin{equation}
+  \dot{a}(t)=(r(t)-n) a(t)+w(t)-c(t).
+  \label{eq:per-capita-asset}
+\end{equation}
+Household assets in this economy consist of capital stock that they rent to firms, $K(t)$, and risk--free bonds, $B(t)$, which are in zero net supply.
+Since bonds are in zero net supply and there is a representative agent, the equilibrium holdings of bonds are zero in equilibrium.
+Consequently, assets per capita will be equal to the capital stock per capita (or the capital--labor ratio in the economy), that is,
+\[
+  a(t)=k(t).
+\]
+Moreover, with a depreciation rate of $\delta$, the market rate of return on assets will be given by the equilibrium rental rate of capital net of depreciation:
+\begin{equation}
+  r(t)=R(t)-\delta.
+  \label{eq:return-on-assets}
+\end{equation}
+
+Equation \eqref{eq:per-capita-asset} is only a flow constraint.
+It is not sufficient as a proper budget constraint on the individual.
+To see this, solve \eqref{eq:per-capita-asset} between times 0 and $T>0$ to get:
+\begin{equation}
+  \begin{aligned}
+      & \int_{0}^{T} c(t) L(t) \exp \left(-\int_{0}^{t} r(s) ds\right) dt+\exp \left(-\int_{0}^{T} r(s) ds\right) a(T) \\
+    = & \int_{0}^{T} w(t) L(t) \exp \left(-\int_{0}^{t} r(s) ds\right) dt+a(0).
+  \end{aligned}
+  \label{eq:lifetime-budget}
+\end{equation}
+Differentiating this expression with respect to $T$ and rearranging gives \eqref{eq:per-capita-asset}.
+The intertemporal budget constraint \eqref{eq:lifetime-budget} states that the household's asset position at time $T$ is given by the present value of total income plus initial assets minus expenditures, where present values are computed by discounting at the rate $r(t)$.
+
+Now imagine that \eqref{eq:lifetime-budget} applies to a finite-horizon economy ending at date $T$.
+In this case, it becomes clear that the flow budget constraint \eqref{eq:per-capita-asset} by itself does not guarantee that $h(T) \geq 0$.
+In a finite-horizon economy, we would simply impose $h(T) \geq 0$ as a boundary condition.
+
+In the infinite-horizon case, we need a similar boundary condition.
+This is generally referred to as the transversality condition.
+One type of transversality condition is the no--Ponzi--game condition, which takes the form
+\begin{equation}
+  \lim _{t \rightarrow \infty} a(t) \exp \left(-\int_{0}^{t}(r(s)-n) ds\right) \geq 0.
+  \label{eq:no-ponzi}
+\end{equation}
+This condition is stated as an inequality, to ensure that the individual household does not asymptotically tend to a negative wealth.
+This no--Ponzi--game condition is necessary to ensure proper budget constraints.
+Furthermore, since utility is increasing, the individual household would never want to have positive wealth asymptotically, so the no--Ponzi--game condition can be alternatively stated as:
+\begin{equation}
+  \lim _{t \rightarrow \infty} a(t) \exp \left(-\int_{0}^{t}(r(s)-n) ds\right)=0.
+  \label{eq:transversality}
+\end{equation}
+
+To see where the transversality condition comes from, take the limit of \eqref{eq:lifetime-budget} as $T \rightarrow \infty$. The transversality condition implies that
+\[
+  \lim_{T\to\infty}\exp \left(-\int_{0}^{T} r(s) ds\right) a(T) =0,
+\]
+so we obtain
+\[
+  \int_{0}^{\infty} c(t) \exp \left(-\int_{0}^{t}(r(s)-n) ds\right) dt=a(0)+\int_{0}^{\infty} w(t) \exp \left(-\int_{0}^{t}(r(s)-n) ds\right) dt.
+\]
+This equation says that the discounted sum of expenditures must be equal to initial income plus the discounted sum of labor income.
+Therefore, this equation is a direct extension of \eqref{eq:lifetime-budget} to infinite horizon.
+This derivation makes it clear that the no--Ponzi--game condition \eqref{eq:transversality} essentially ensures that the individual's lifetime or intertemporal budget constraint holds in infinite horizon.
+
+Let us start with the problem of the representative household.
+From the definition of equilibrium, we know that this is to maximize \eqref{eq:household-objective} subject to \eqref{eq:per-capita-asset} and \eqref{eq:transversality}.
+Let us first ignore \eqref{eq:transversality} and set up the current-value Hamiltonian:
+\[
+  \hat{H}(a, c, \mu)=u(c(t))+\mu(t)[w(t)+(r(t)-n) a(t)-c(t)]
+\]
+with state variable $a$, control variable $c$ and current-value costate variable $\mu$.
+Applying the maximum principle, we obtain the following necessary conditions:
+\begin{align}
+  \hat{H}_{c}(a, c, \mu)                                      & =u^{\prime}(c(t))-\mu(t)=0                    &  & \label{eq:hamiltonian-foc-c}          \\
+  \hat{H}_{a}(a, c, \mu)                                      & =\mu(t)(r(t)-n)=-\dot{\mu}(t)+(\rho-n) \mu(t) &  & \label{eq:hamiltonian-costate}        \\
+  \lim _{t \rightarrow \infty}[\exp(-(\rho-n) t) \mu(t) a(t)] & =0                                            &  & \nonumber
+\end{align}
+and the transition equation \eqref{eq:per-capita-asset}.
+
+Moreover, for any $\mu(t)>0$, $\hat{H}(a, c, \mu)$ is a concave function of $(a, c)$, so the necessary conditions are also sufficient.
+
+Rearranging \eqref{eq:hamiltonian-costate} yields
+\begin{equation}
+  \frac{\dot{\mu}(t)}{\mu(t)}=-(r(t)-\rho),
+  \label{eq:mu-dynamics}
+\end{equation}
+which states that the costate variable changes depending on whether the rate of return on assets is currently greater than or less than the discount rate of the household.
+
+Next, \eqref{eq:hamiltonian-foc-c} implies that
+\begin{equation*}
+  u^{\prime}(c(t))=\mu(t).
+\end{equation*}
+To make more progress, let us differentiate this with respect to time and divide by $\mu(t)$, which yields
+\[
+  \frac{u^{\prime \prime}(c(t)) c(t)}{u^{\prime}(c(t))} \frac{\dot{c}(t)}{c(t)}=\frac{\dot{\mu}(t)}{\mu(t)}.
+\]
+Substituting this into \eqref{eq:mu-dynamics}, we obtain the \new{Euler equation} of this model
+\begin{equation}
+  \frac{\dot{c}(t)}{c(t)}=\frac{1}{\varepsilon_{u}(c(t))}(r(t)-\rho),
+  \label{eq:euler-consumption}
+\end{equation}
+where
+\begin{equation*}
+  \varepsilon_{u}(c(t)) :=-\frac{u^{\prime \prime}(c(t)) c(t)}{u^{\prime}(c(t))}
+\end{equation*}
+is the inverse of the elasticity of intertemporal substitution.
+The elasticity of intertemporal substitution summarizes the willingness of individuals to substitute consumption (or labor, or any other attribute that yields utility) across time.
+The elasticity of intertemporal substitution between dates $t$ and $s>t$ is defined as
+\[
+  \sigma_{u}(t, s):=-\frac{d \log (c(s) / c(t))}{d \log \left(u^{\prime}(c(s)) / u^{\prime}(c(t))\right)}.
+\]
+As $s \downarrow t$, we have
+\begin{equation*}
+  \sigma_{u}(t, s) \rightarrow \sigma_{u}(t)=-\frac{u^{\prime}(c(t))}{u^{\prime \prime}(c(t)) c(t)}=\frac{1}{\varepsilon_{u}(c(t))}.
+\end{equation*}
+This is not surprising, since the concavity of the utility function $u(\cdot)$---or equivalently, the elasticity of marginal utility---determines how willing individuals are to substitute consumption over time.
+
+Next, integrating \eqref{eq:mu-dynamics}, we have
+\[
+  \begin{aligned}
+    \mu(t) & =\mu(0) \exp \left(-\int_{0}^{t}(r(s)-\rho) ds\right)           \\
+           & =u^{\prime}(c(0)) \exp \left(-\int_{0}^{t}(r(s)-\rho) ds\right),
+  \end{aligned}
+\]
+where the second line uses the first optimality condition of the current--value Hamiltonian at time $t=0$.
+Now substituting into the transversality condition, we have
+\[
+  \begin{aligned}
+    \lim _{t \rightarrow \infty}\left[\exp(-(\rho-n) t) a(t) u^{\prime}(c(0)) \exp \left(-\int_{0}^{t}(r(s)-\rho) ds\right)\right] & =0, \\
+    \lim _{t \rightarrow \infty}\left[a(t) \exp \left(-\int_{0}^{t}(r(s)-n) ds\right)\right]                                       & =0,
+  \end{aligned}
+\]
+which implies that the strict no--Ponzi condition, \eqref{eq:transversality} has to hold.
+Also, for future reference, note that, since $a(t)=k(t)$, the transversality condition is also equivalent to
+\[
+  \lim _{t \rightarrow \infty}\left[\exp \left(-\int_{0}^{t}(r(s)-n) ds\right) k(t)\right]=0,
+\]
+which requires that the discounted market value of the capital stock in the very far future is equal to 0.
+This ``market value'' version of the transversality condition is sometimes more convenient to work with.
+
+We can derive further results on the consumption behavior of households. In particular, notice that the term $\exp \left(-\int_{0}^{t} r(s) ds\right)$ is a present-value factor that converts a unit of income at time $t$ to a unit of income at time 0. In the special case where $r(s)=r$, this factor would be exactly equal to $\exp(-rt)$. But more generally, we can define an average interest rate between dates 0 and $t$ as
+\[
+  \bar{r}(t)=\frac{1}{t} \int_{0}^{t} r(s) ds.
+\]
+In that case, we can express the conversion factor between dates 0 and $t$ as
+\[
+  \exp(-\bar{r}(t) t),
+\]
+and the transversality condition can be written as
+\[
+  \lim _{t \rightarrow \infty}[\exp(-(\bar{r}(t)-n) t) a(t)]=0.
+\]
+Now recalling that the solution to the differential equation
+\[
+  \dot{y}(t)=b(t) y(t)
+\]
+is
+\[
+  y(t)=y(0) \exp \left(\int_{0}^{t} b(s) ds\right),
+\]
+we can integrate \eqref{eq:euler-consumption}, to obtain
+\[
+  c(t)=c(0) \exp \left(\int_{0}^{t} \frac{r(s)-\rho}{\varepsilon_{u}(c(s))} ds\right)
+\]
+as the consumption function. Once we determine $c(0)$, the initial level of consumption, the path of consumption can be exactly solved out. In the special case where $\varepsilon_{u}(c(s))$ is constant,
+for example, $\varepsilon_{u}(c(s))=\theta$, this equation simplifies to
+\[
+  c(t)=c(0) \exp \left(\left(\frac{\bar{r}(t)-\rho}{\theta}\right) t\right),
+\]
+and, moreover, the lifetime budget constraint simplifies to
+\[
+  \int_{0}^{\infty} c(t) \exp(-(\bar{r}(t)-n) t) dt=a(0)+\int_{0}^{\infty} w(t) \exp(-(\bar{r}(t)-n) t) dt.
+\]
+Substituting for $c(t)$ into this lifetime budget constraint in the iso-elastic case, we obtain
+\[
+  c(0)=\int_{0}^{\infty} \exp \left(\left(\frac{(1-\theta) \bar{r}(t)}{\theta}-\frac{\rho}{\theta}+n\right) t\right) dt\left[a(0)+\int_{0}^{\infty} w(t) \exp(-(\bar{r}(t)-n) t) dt\right]
+\]
+as the initial value of consumption.
+
+\subsection{Equilibrium}
+We can now define an equilibrium in this dynamic economy.
+We will provide two definitions, the first is somewhat more formal, while the second definition will be more useful in characterizing the equilibrium.
+
+\begin{defn}\label{def:competitive-equilibrium-1}
+  A competitive equilibrium of the Ramsey economy consists of paths of consumption, capital stock, wage rates and rental rates of capital, $[C(t), K(t), w(t), R(t)]_{t=0}^{\infty}$, such that the representative household maximizes its utility given initial capital stock $K(0)$ and the time path of prices $[w(t), R(t)]_{t=0}^{\infty}$, and all markets clear.
+\end{defn}
+
+Notice that in equilibrium we need to determine the entire time path of real quantities and the associated prices.
+This is an important point to bear in mind.
+In dynamic models whenever we talk of ``equilibrium'', this refers to the entire path of quantities and prices.
+In some models, we will focus on the steady--state equilibrium, but equilibrium always refers to the entire path.
+
+Since everything can be equivalently defined in terms of per capita variables, we can state an alternative and more convenient definition of equilibrium:
+
+\begin{defn}\label{def:competitive-equilibrium-2}
+  A competitive equilibrium of the Ramsey economy consists of paths of per capita consumption, capital--labor ratio, wage rates and rental rates of capital, $[c(t), k(t), w(t), R(t)]_{t=0}^{\infty}$, such that the representative household maximizes \eqref{eq:household-objective} subject to \eqref{eq:per-capita-asset} and \eqref{eq:no-ponzi} given initial capital--labor ratio $k(0)$, factor prices $[w(t), R(t)]_{t=0}^{\infty}$ as in \eqref{eq:rental-rate} and \eqref{eq:wage-rate}, and the rate of return on assets $r(t)$ given by \eqref{eq:return-on-assets}.
+\end{defn}
+
+\subsection{Equilibrium Prices}
+Equilibrium prices are straightforward and are given by \eqref{eq:rental-rate} and \eqref{eq:wage-rate}. This implies that the market rate of return for consumers, $r(t)$, is given by \eqref{eq:return-on-assets}, i.e.,
+\[
+  r(t)=f^{\prime}(k(t))-\delta.
+\]
+Substituting this into the consumer's problem, we have
+\begin{equation}
+  \frac{\dot{c}(t)}{c(t)}=\frac{1}{\varepsilon_{u}(c(t))}\left(f^{\prime}(k(t))-\delta-\rho\right)
+  \label{eq:equilibrium-euler}
+\end{equation}
+as the equilibrium version of the consumption growth equation, \eqref{eq:euler-consumption}.
+
+\subsection{Optimal Growth}
+Before characterizing the equilibrium further, it is useful to look at the optimal growth problem, defined as the capital and consumption path chosen by a benevolent social planner trying to achieve a Pareto optimal outcome.
+In an economy that admits a representative household, the optimal growth problem simply involves the maximization of the utility of the representative household subject to technology and feasibility constraints.
+That is,
+\[
+  \max _{[k(t), c(t)]_{t=0}^{\infty}} \int_{0}^{\infty} \exp(-(\rho-n) t) u(c(t)) dt,
+\]
+subject to
+\begin{equation}
+  \dot{k}(t)=f(k(t))-(n+\delta) k(t)-c(t).
+  \label{eq:capital-dynamics}
+\end{equation}
+The First and Second Welfare Theorems for economies with a continuum of commodities would imply that the solution to this problem should be the same as the equilibrium growth problem.
+We can show this equivalence directly.
+
+To do this, let us once again set up the current-value Hamiltonian, which in this case takes the form
+\[
+  \hat{H}(k, c, \mu)=u(c(t))+\mu(t)[f(k(t))-(n+\delta) k(t)-c(t)],
+\]
+with state variable $k$, control variable $c$ and current-value costate variable $\mu$.
+In the relevant range for the capital stock, this problem satisfies all the assumptions for the application of the maximum principle.
+Consequently, the necessary conditions for an optimal path are:
+\[
+  \begin{aligned}
+    \hat{H}_{c}(k, c, \mu)                                      & =0=u^{\prime}(c(t))-\mu(t),                                                  \\
+    \hat{H}_{k}(k, c, \mu)                                      & =-\dot{\mu}(t)+(\rho-n) \mu(t)=\mu(t)\left(f^{\prime}(k(t))-\delta-n\right), \\
+    \lim _{t \rightarrow \infty}[\exp(-(\rho-n) t) \mu(t) k(t)] & =0.
+  \end{aligned}
+\]
+Repeating the same steps as before, it is straightforward to see that these optimality conditions imply
+\[
+  \frac{\dot{c}(t)}{c(t)}=\frac{1}{\varepsilon_{u}(c(t))}\left(f^{\prime}(k(t))-\delta-\rho\right),
+\]
+which is identical to \eqref{eq:equilibrium-euler}, and the transversality condition
+\[
+  \lim _{t \rightarrow \infty}\left[k(t) \exp \left(-\int_{0}^{t}\left(f^{\prime}(k(s))-\delta-n\right) ds\right)\right]=0,
+\]
+which is, in turn, identical to \eqref{eq:transversality}.
+This establishes that the competitive equilibrium is a Pareto optimum and that the Pareto allocation can be decentralized as a competitive equilibrium.
+This result is stated in the next proposition:
+
+\begin{proposition}\label{prop:welfare}
+  In the neoclassical growth model described here, with Assumptions~\ref{assumption:crs}, \ref{assumption:inada}, \ref{assumption:utility} and \ref{assumption:discount-basic}, the equilibrium is Pareto optimal and coincides with the optimal growth path maximizing the utility of the representative household.
+\end{proposition}
+
+\subsection{Steady-State Equilibrium}
+Now we characterize the steady--state.
+A steady state equilibrium is defined as an equilibrium path in which capital--labor ratio, consumption and output are constant.
+Therefore,
+\[
+  \dot{c}(t)=0.
+\]
+From \eqref{eq:equilibrium-euler}, this implies that as long as $f\left(k^{*}\right)>0$, irrespective of the exact utility function, we must have a capital--labor ratio $k^{*}$ such that
+\begin{equation}
+  f^{\prime}\left(k^{*}\right)=\rho+\delta.
+  \label{eq:modified-golden-rule}
+\end{equation}
+This equation pins down the steady--state capital--labor ratio only as a function of the production function, the discount rate and the depreciation rate.\footnote{In addition, if $f(0)=0$, there exists another, economically uninteresting steady state at $k=0$. We ignore this steady state throughout. Moreover, starting with any $k(0)>0$, the economy will always tend to the steady--state capital--labor ratio $k^{*}$ given by \eqref{eq:modified-golden-rule}.} This corresponds to the modified golden rule. The modified golden rule involves a level of the capital stock that does not maximize steady--state consumption, because earlier consumption is preferred to later consumption. This is because of discounting, which means that the objective is not to maximize steady--state consumption, but involves giving a higher weight to earlier consumption.
+
+Given $k^{*}$, the steady--state consumption level is straightforward to determine as:
+\begin{equation}
+  c^{*}=f\left(k^{*}\right)-(n+\delta) k^{*},
+  \label{eq:steady-consumption}
+\end{equation}
+which is similar to the consumption level in the basic Solow model. Moreover, given Assumption~\ref{assumption:discount-basic}, a steady state where the capital--labor ratio and thus output are constant necessarily satisfies the transversality condition.
+
+This analysis therefore establishes:
+\begin{proposition}\label{prop:steady--state}
+  In the neoclassical growth model with Assumptions~\ref{assumption:crs}, \ref{assumption:inada}, \ref{assumption:utility} and \ref{assumption:discount-basic}, the steady--state equilibrium capital--labor ratio, $k^*$, is uniquely determined by \eqref{eq:modified-golden-rule} and is independent of the utility function. The steady--state consumption per capita, $c^*$, is given by \eqref{eq:steady-consumption}.
+\end{proposition}
+
+There are also a number of straightforward comparative static results that show how the steady--state values of capital--labor ratio and consumption per capita change with the underlying parameters. For this reason, let us parameterize the production function as follows
+\[
+  f(k)=a \tilde{f}(k),
+\]
+where $a>0$, so that $a$ is a shift parameter, with greater values corresponding to greater productivity of factors. Since $f(k)$ satisfies the regularity conditions imposed, so does $\tilde{f}(k)$.
+
+\begin{proposition}\label{prop:comparative-statics}
+  Consider the neoclassical growth model with Assumptions~\ref{assumption:crs}, \ref{assumption:inada}, \ref{assumption:utility} and \ref{assumption:discount-basic}, and suppose that $f(k)=a \tilde{f}(k)$. Denote the steady--state level of the capital--labor ratio by $k^*(a, \rho, n, \delta)$ and the steady--state level of consumption per capita by
+
+  $c^*(a, \rho, n, \delta)$ when the underlying parameters are $a, \rho, n$ and $\delta$. Then we have
+  \[
+    \begin{aligned}
+       & \frac{\partial k^{*}(a, \rho, n, \delta)}{\partial a}>0, \frac{\partial k^{*}(a, \rho, n, \delta)}{\partial \rho}<0, \frac{\partial k^{*}(a, \rho, n, \delta)}{\partial n}=0 \text { and } \frac{\partial k^{*}(a, \rho, n, \delta)}{\partial \delta}<0, \\
+       & \frac{\partial c^{*}(a, \rho, n, \delta)}{\partial a}>0, \frac{\partial c^{*}(a, \rho, n, \delta)}{\partial \rho}<0, \frac{\partial c^{*}(a, \rho, n, \delta)}{\partial n}<0 \text { and } \frac{\partial c^{*}(a, \rho, n, \delta)}{\partial \delta}<0.
+    \end{aligned}
+  \]
+\end{proposition}
+
+The new results here relative to the basic Solow model concern the comparative statics with respect to the discount rate. In particular, instead of the saving rate, it is now the discount factor that affects the rate of capital accumulation. There is a close link between the discount rate in the neoclassical growth model and the saving rate in the Solow model. Loosely speaking, a lower discount rate implies greater patience and thus greater saving. In the model without technological progress, the steady--state saving rate is
+\[
+  s^{*}=\frac{\delta k^{*}}{f\left(k^{*}\right)}.
+\]
+
+Another interesting result is that the rate of population growth has no impact on the steady state capital--labor ratio, which contrasts with the basic Solow model. This result depends on the way in which intertemporal discounting takes place. Another important result, which is more general, is that $k^{*}$ and thus $c^{*}$ do not depend on the instantaneous utility function $u(\cdot)$. The form of the utility function only affects the transitional dynamics (which we will study next), but has no impact on steady states. This is because the steady state is determined by the modified golden rule. This result will not be true when there is technological change, however.
+
+\subsection{Transitional Dynamics}
+Next, we can determine the transitional dynamics of this model. Unlike simpler growth models with a single differential equation, the equilibrium here is determined by two differential equations:
+\[
+  \dot{k}(t)=f(k(t))-(n+\delta) k(t)-c(t),
+\]
+and
+\[
+  \frac{\dot{c}(t)}{c(t)}=\frac{1}{\varepsilon_{u}(c(t))}\left(f^{\prime}(k(t))-\delta-\rho\right).
+\]
+Moreover, we have an initial condition $k(0)>0$, also a boundary condition at infinity, of the form
+\[
+  \lim _{t \rightarrow \infty}\left[k(t) \exp \left(-\int_{0}^{t}\left(f^{\prime}(k(s))-\delta-n\right) ds\right)\right]=0.
+\]
+
+We now study the system diagrammatically using Figure~\ref{fig:phase-diagram}.
+
+\begin{figure}[ht]
+  \centering
+  \fbox{\parbox[c][2in][c]{0.9\textwidth}{\centering Phase diagram placeholder}}%
+  \caption{Phase diagram for the neoclassical growth model (schematic).}
+  \label{fig:phase-diagram}
+\end{figure}
+
+The vertical line is the locus of points where $\dot{c}=0$. The reason why the $\dot{c}=0$ locus is just a vertical line is that in view of the consumer Euler equation \eqref{eq:equilibrium-euler}, only the unique level of $k^{*}$ given by \eqref{eq:modified-golden-rule} can keep per capita consumption constant. The inverse U-shaped curve is the locus of points where $\dot{k}=0$ in \eqref{eq:capital-dynamics}. The intersection of these two loci defines the steady state. If the capital stock is too low, steady--state consumption is low, and if the capital stock is too high, then the steady--state consumption is again low. There exists a unique level, $k_{\text{gold}}$ that maximizes the steady--state consumption per capita. The $\dot{c}=0$ locus intersects the $\dot{k}=0$ locus always to the left of $k_{\text{gold}}$. Once these two loci are drawn, the rest of the diagram can be completed by looking at the direction of motion according to the differential equations. Given this direction of movements, it is clear that there exists a unique stable arm, the one-dimensional manifold tending to the steady state. All points away from this stable arm diverge, and eventually reach zero consumption or zero capital stock as shown in the figure. To see this, note that if initial consumption, $c(0)$, started above this stable arm, say at $c^{\prime}(0)$, the capital stock would reach 0 in finite time, while consumption would remain positive. But this would violate feasibility. Therefore, initial values of consumption above this stable arm cannot be part of the equilibrium (or the optimal growth solution). If the initial level of consumption were below it, for example, at $c^{\prime \prime}(0)$, consumption would reach zero, thus capital would accumulate continuously until the maximum level of capital (reached with zero consumption) $\bar{k}>k_{\text{gold}}$. Continuous capital accumulation towards $\bar{k}$ with no consumption would violate the transversality condition. This establishes that the transitional dynamics in the neoclassical growth model will take the following simple form: $c(0)$ will ``jump'' to the saddle path, and then ($k, c$) will monotonically travel along this arm towards the steady state.
+
+An alternative way of establishing the same result is by linearizing the set of differential equations, and looking at their eigenvalues. Recall the two differential equations determining the equilibrium path:
+\[
+  \dot{k}(t)=f(k(t))-(n+\delta) k(t)-c(t),
+\]
+and
+\[
+  \frac{\dot{c}(t)}{c(t)}=\frac{1}{\varepsilon_{u}(c(t))}\left(f^{\prime}(k(t))-\delta-\rho\right).
+\]
+Linearizing these equations around the steady state $\left(k^{*}, c^{*}\right)$, we have (suppressing time dependence)
+\[
+  \begin{aligned}
+    \dot{k} & =\text { constant }+\left(f^{\prime}\left(k^{*}\right)-n-\delta\right)\left(k-k^{*}\right)-c,                                \\
+    \dot{c} & =\text { constant }+\frac{c^{*} f^{\prime \prime}\left(k^{*}\right)}{\varepsilon_{u}\left(c^{*}\right)}\left(k-k^{*}\right).
+  \end{aligned}
+\]
+Moreover, from \eqref{eq:modified-golden-rule}, $f^{\prime}\left(k^{*}\right)-\delta=\rho$, so the eigenvalues of this two-equation system are given by the values of $\xi$ that solve the following quadratic form:
+\[
+  \operatorname{\det}\left(\begin{array}{cc}
+      \rho-n-\xi                                                                          & -1    \\
+      \frac{c^{*} f^{\prime \prime}\left(k^{*}\right)}{\varepsilon_{u}\left(c^{*}\right)} & 0-\xi
+    \end{array}\right)=0.
+\]
+It is straightforward to verify that, since $c^{*} f^{\prime \prime}\left(k^{*}\right) / \varepsilon_{u}\left(c^{*}\right)<0$, there are two real eigenvalues, one negative and one positive. This implies that there exists a one-dimensional stable manifold converging to the steady state, exactly as the stable arm in the figure. Therefore, the local analysis also leads to the same conclusion. However, the local analysis can only establish local stability, whereas the diagrammatic analysis established global stability.
+
+\subsection{Technological Change and the Canonical Neoclassical Model}
+The analysis so far was for the neoclassical growth model without any technological change.
+The neoclassical growth model would not be able to account for long-run growth without some type of exogenous technological change.
+Therefore, the more interesting version of this model is the one that incorporates technological change.
+We now analyze the neoclassical model with exogenous technological change.
+
+We extend the production function to:
+\begin{equation}
+  Y(t)=F(K(t), A(t) L(t)),
+  \label{eq:production-with-tech}
+\end{equation}
+where
+\[
+  A(t)=\exp(g t) A(0).
+\]
+Notice that the production function \eqref{eq:production-with-tech} imposes purely labor-augmenting (Harrod-neutral) technological change.
+Only purely labor-augmenting technological change is consistent with balanced growth, as you will show in a problem set.
+
+We continue to adopt Assumptions~\ref{assumption:crs}, \ref{assumption:inada} and \ref{assumption:utility}.
+Assumption~\ref{assumption:discount-basic} will be strengthened further in order to ensure finite discounted utility in the presence of sustained economic growth.
+
+The constant returns to scale feature again enables us to work with normalized variables.
+Now let us define
+\[
+  \begin{aligned}
+    \hat{y}(t) & := \frac{Y(t)}{A(t) L(t)}                \\
+               & =F\left(\frac{K(t)}{A(t) L(t)}, 1\right) \\
+               & := f(k(t)),
+  \end{aligned}
+\]
+where
+\[
+  k(t) := \frac{K(t)}{A(t) L(t)}
+\]
+is the capital--to--effective--labor ratio, which is defined taking into account that effective labor is increasing because of labor-augmenting technological change.
+
+In addition to the assumptions on technology, we also need to impose a further assumption on preferences in order to ensure balanced growth.
+We define balanced growth as a pattern of growth consistent with the Kaldor facts of constant capital--output ratio and capital share in national income.
+These two observations together also imply that the rental rate on capital, $R(t)$, has to be constant.
+Using \eqref{eq:return-on-assets}, we see that $r(t)$ must then be constant as well.
+
+The Euler equation implies that
+\[
+  \frac{\dot{c}(t)}{c(t)}=\frac{1}{\varepsilon_{u}(c(t))}(r(t)-\rho).
+\]
+If $r(t) \rightarrow r^{*}$, then $\dot{c}(t) / c(t) \rightarrow g_{c}$ is only possible if $\varepsilon_{u}(c(t)) \rightarrow \varepsilon_{u}$, i.e., if the elasticity of intertemporal substitution is asymptotically constant.
+Therefore, balanced growth is only consistent with utility functions that have a constant elasticity of intertemporal substitution as $t \rightarrow \infty$.
+
+The next example shows the family of utility functions with constant elasticity of intertemporal substitution, which are also those with a constant coefficient of relative risk aversion.
+
+\begin{example} (CRRA Utility)\label{ex:crra}
+  Recall that the coefficient of relative risk aversion for a twice-continuously differentiable concave utility function $u(c)$ is
+  \[
+    \mathcal{R}=-\frac{u^{\prime \prime}(c) c}{u^{\prime}(c)}.
+  \]
+  Constant relative risk aversion (CRRA) utility function satisfies the property that $\mathcal{R}$ is constant. Given the restriction that balanced growth is only possible with preferences featuring a constant elasticity of intertemporal substitution, we start with a utility function that has this feature throughout. The unique time-separable utility function with this feature is
+  \begin{equation}
+    u(c(t)) = \begin{cases}
+      \frac{c(t)^{1-\theta}-1}{1-\theta} & \text{if } \theta \neq 1 \text{ and } \theta \geq 0 \\
+      \log c(t)                          & \text{if } \theta = 1
+    \end{cases}
+    \label{eq:crra-utility}
+  \end{equation}
+  where the elasticity of marginal utility of consumption, $\varepsilon_{u}$, is given by the constant $\theta$. When $\theta=0$, these represent linear preferences, whereas when $\theta=1$, we have $\log$ preferences. As $\theta \rightarrow \infty$, these preferences become infinitely risk-averse, and infinitely unwilling to substitute consumption over time.
+\end{example}
+
+More specifically, we now assume that the economy admits a representative household with CRRA preferences
+\[
+  \int_{0}^{\infty} \exp(-(\rho-n) t) \frac{\tilde{c}(t)^{1-\theta}-1}{1-\theta} dt
+\]
+where $\tilde{c}(t) := C(t) / L(t)$ is per capita consumption. We use the notation $\tilde{c}(t)$ in order to preserve $c(t)$ for a further normalization.
+
+We refer to this model, with labor--augmenting technological change and CRRA preferences as given by \eqref{eq:crra-utility} as the canonical model, since it is the model used in almost all applications of the neoclassical growth model. The Euler equation in this case takes the simpler form:
+\begin{equation}
+  \frac{\dot{\tilde{c}}(t)}{\tilde{c}(t)}=\frac{1}{\theta}(r(t)-\rho).
+  \label{eq:crra-euler}
+\end{equation}
+Let us first characterize the steady--state equilibrium in this model with technological progress. Since with technological progress there will be growth in per capita income, $\tilde{c}(t)$ will grow. Instead, in analogy with $k(t)$, let us define
+\[
+  \begin{aligned}
+    c(t) & := \frac{C(t)}{A(t) L(t)}    \\
+         & := \frac{\tilde{c}(t)}{A(t)}
+  \end{aligned}
+\]
+We will see that this normalized consumption level will remain constant along the BGP. In particular, we have
+\[
+  \begin{aligned}
+    \frac{\dot{c}(t)}{c(t)} & := \frac{\dot{\tilde{c}}(t)}{\tilde{c}(t)}-g \\
+                            & =\frac{1}{\theta}(r(t)-\rho-\theta g).
+  \end{aligned}
+\]
+Moreover, for the accumulation of capital stock, we have
+\[
+  \dot{k}(t)=f(k(t))-c(t)-(n+g+\delta) k(t),
+\]
+where $k(t) := K(t) / A(t) L(t)$. The transversality condition, in turn, can be expressed as
+\begin{equation}
+  \lim _{t \rightarrow \infty}\left\{k(t) \exp \left(-\int_{0}^{t}\left[f^{\prime}(k(s))-g-\delta-n\right] d s\right)\right\}=0.
+  \label{eq:transversality-growth}
+\end{equation}
+In addition, the equilibrium interest rate, $r(t)$, is still given by \eqref{eq:return-on-assets}, so
+\[
+  r(t)=f^{\prime}(k(t))-\delta.
+\]
+Since in steady state $c(t)$ must remain constant, we also have
+\[
+  r(t)=\rho+\theta g,
+\]
+or
+\begin{equation}
+  f^{\prime}\left(k^{*}\right)=\rho+\delta+\theta g,
+  \label{eq:steady--state-k}
+\end{equation}
+which pins down the steady--state value of the normalized capital ratio $k^{*}$ uniquely, in a way similar to the model without technological progress. The level of normalized consumption is then given by
+\[
+  c^{*}=f\left(k^{*}\right)-(n+g+\delta) k^{*},
+\]
+while per capita consumption grows at the rate $g$.
+The only additional condition in this case is that because there is growth, we have to make sure that the transversality condition is in fact satisfied. Substituting \eqref{eq:steady--state-k} into \eqref{eq:transversality-growth}, we have
+\[
+  \lim _{t \rightarrow \infty}\left\{k(t) \exp \left(-\int_{0}^{t}[\rho-(1-\theta) g-n] d s\right)\right\}=0,
+\]
+which can only hold if the integral within the exponent goes to zero, i.e., if $\rho-(1-\theta) g-n>0$ or, alternatively, if the following assumption is satisfied:
+\begin{assumption}
+  \label{assumption:discount-growth}
+  $\rho-n>(1-\theta) g$.
+\end{assumption}
+Note that this assumption strengthens Assumption~\ref{assumption:discount-basic} when $\theta<1$. In steady state, we have $r=\rho+\theta g$ and the growth rate of output is $g+n$. Therefore, Assumption~\ref{assumption:discount-growth} is equivalent to requiring that $r>g+n$.
+
+The result that the steady--state capital--labor ratio was independent of preferences is no longer the case, since now $k^{*}$ given by \eqref{eq:steady--state-k} depends on the elasticity of marginal utility (or the inverse of the elasticity of intertemporal substitution), $\theta$. The reason for this is that there is now positive growth in output per capita, and thus in consumption per capita. Since individuals face an upward-sloping consumption profile, their willingness to substitute consumption today for consumption tomorrow determines how much they will accumulate and thus the equilibrium effective capital--labor ratio.
+
+While the steady--state effective capital--labor ratio, $k^{*}$, is determined endogenously, the steady--state growth rate of the economy is given exogenously and is equal to the rate of labor-augmenting technological progress, $g$. Therefore, the neoclassical growth model, like the basic Solow growth model, endogenizes the capital--labor ratio, but not the growth rate of the economy. The advantage of the neoclassical growth model is that the capital--labor ratio and the equilibrium level of (normalized) output and consumption are determined by the preferences of the individuals rather than an exogenously fixed saving rate. This also enables us to compare equilibrium and optimal growth (and in this case conclude that the competitive equilibrium is Pareto optimal and any Pareto optimum can be decentralized). But the determination of the rate of growth of the economy is still outside the scope of analysis.
+
+\begin{example}
+  Consider the model with CRRA utility and labor-augmenting technological progress at the rate $g$. Assume that the production function is given by $F(K, A L)= K^{\alpha}(A L)^{1-\alpha}$, so that
+  \[
+    f(k)=k^{\alpha},
+  \]
+  and thus $r=\alpha k^{\alpha-1}-\delta$. In this case, suppressing time dependence to simplify notation, the Euler equation becomes:
+  \[
+    \frac{\dot{c}}{c}=\frac{1}{\theta}\left(\alpha k^{\alpha-1}-\delta-\rho-\theta g\right),
+  \]
+  and the accumulation equation can be written as
+  \[
+    \frac{\dot{k}}{k}=k^{\alpha-1}-\delta-g-n-\frac{c}{k}.
+  \]
+  Now define $z := c / k$ and $x := k^{\alpha-1}$, which implies that $\dot{x} / x=(\alpha-1) \dot{k} / k$. Therefore, these two equations can be written as
+  \begin{equation}
+    \frac{\dot{x}}{x}=-(1-\alpha)(x-\delta-g-n-z) \label{eq:x-dynamics}
+  \end{equation}
+  and
+  \begin{equation}
+    \begin{aligned}
+      \frac{\dot{z}}{z} & = \frac{\dot{c}}{c}-\frac{\dot{k}}{k}                                                 \\
+                        & =\frac{1}{\theta}(\alpha x-\delta-\rho-\theta g)-x+\delta+g+n+z                       \\
+                        & =\frac{1}{\theta}((\alpha-\theta) x-(1-\theta) \delta+\theta n)-\frac{\rho}{\theta}+z.
+    \end{aligned}
+    \label{eq:z-dynamics}
+  \end{equation}
+  The two differential equations \eqref{eq:x-dynamics} and \eqref{eq:z-dynamics} together with the initial condition $x(0)$ and the transversality condition completely determine the dynamics of the system. This example can be completed for the special case in which $\theta \rightarrow 1$ (i.e., $\log$ preferences).
+\end{example}
+
+\subsection{Comparative Dynamics}
+We now briefly discuss how comparative dynamics are different in the neoclassical growth model than those in the basic Solow model. Recall that while comparative statics refer to changes in steady state in response to changes in parameters, comparative dynamics look at how the entire equilibrium path of variables changes in response to a change in policy or parameters. Since the purpose here is to give a sense of how these results are different, we will only look at the effect of a change in a single parameter, the discount rate $\rho$. Imagine a neoclassical growth economy with population growth at the rate $n$, labor-augmenting technological progress at the rate $g$ and a discount rate $\rho$ that has settled into a steady state
+represented by ($k^{*}, c^{*}$). Now imagine that the discount rate declines to $\rho^{\prime}<\rho$. How does the equilibrium path change?
+
+We know from our previous analysis that at the new discount rate $\rho^{\prime}>0$, there exists a unique steady state equilibrium that is saddle path stable. Let this steady state be denoted by ($k^{* *}, c^{* *}$). Therefore, the equilibrium will ultimately tend to this new steady--state equilibrium. Moreover, since $\rho^{\prime}<\rho$, we know that the new steady--state effective capital--labor ratio has to be greater than $k^{*}$, that is, $k^{* *}>k^{*}$ (while the equilibrium growth rate will remain unchanged). Figure~\ref{fig:discount-change} shows diagrammatically how the comparative dynamics work out. This figure is drawn under the assumption that the change in the discount rate (corresponding to the change in the preferences of the representative household in the economy) is unanticipated and occurs at some date $T$. At this point, the curve corresponding to $\dot{c} / c=0$ shifts to the right and together with this, the laws of motion represented by the phase diagram change (in the figure, the arrows represent the dynamics of the economy after the change). It can be seen that following this decline in the discount rate, the previous steady--state level of consumption, $c^{*}$, is above the stable arm of the new dynamical system. Therefore, consumption must drop immediately to reach the new stable arm, so that capital can accumulate towards its new steady--state level. This is shown in the figure with the arc representing the jump in consumption immediately following the decline in the discount rate. Following this initial reaction, consumption slowly increases along the stable arm to a higher level of (normalized) consumption. Therefore, a decline in the discount rate leads to a temporary decline in consumption, associated with a long-run increase in consumption. We know that the overall level of normalized consumption will necessarily increase, since the intersection between the curve for $\dot{c} / c=0$ and the inverse U-shaped curve for $\dot{k} / k=0$ will necessarily be to the left side of $k_{\text{gold}}$.
+
+Comparative dynamics in response to changes in other parameters, including the rate of labor-augmenting technological progress $g$, the rate of population growth $n$, and other aspects of the utility function, can also be analyzed similarly. Similar analysis can be applied to work through the comparative dynamics in response to a change in the rate of labor-augmenting technological progress, $g$, and in response to an anticipated future change in $\rho$.
+
+\subsection{The Role of Policy}
+In this model, the rate of growth of per capita consumption and output per worker are determined exogenously by the growth rate of labor-augmenting technological progress. The level of income, on the other hand, depends on preferences, in particular, on the elasticity of intertemporal substitution, $1 / \theta$, the discount rate, $\rho$, the depreciation rate, $\delta$, the population growth rate, $n$, and naturally the form of the production function $f(\cdot)$.
+
+\begin{figure}[ht]
+  \centering
+  % Use placeholder if image missing
+  \IfFileExists{images/2025_09_02_6f9ea6af47aa8d324786g-073}{%
+    \includegraphics[width=\textwidth]{2025_09_02_6f9ea6af47aa8d324786g-073}%
+  }{%
+    \fbox{\parbox[c][2in][c]{0.9\textwidth}{\centering Comparative dynamics figure placeholder}}%
+  }
+  \captionsetup{labelformat=empty}
+  \caption{The dynamic response of capital and consumption to a decline in the discount rate from $\rho$ to $\rho' < \rho$.}
+  \label{fig:discount-change}
+\end{figure}
+
+This model gives us a way of understanding differences in income per capita across countries in terms of preference and technology parameters. The elasticity of intertemporal substitution and the discount rate can be viewed as potential determinants of economic growth related to cultural or geographic factors. However, an explanation for cross-country and over-time differences in economic growth based on differences or changes in preferences is unlikely to be satisfactory. A more appealing direction may be to link the incentives to accumulate physical capital (and later to accumulate human capital and technology) to the institutional environment of an economy. For now, it is useful to focus on a particularly simple way in which institutional differences might affect investment decisions, which is through differences in policies. To do this, let us extend the framework in a simple way and introduce
+linear tax policy. Suppose that returns on capital net of depreciation are taxed at the rate $\tau$ and the proceeds of this are redistributed back to the consumers. In that case, the capital accumulation equation, in terms of normalized capital, remains:
+\[
+  \dot{k}(t)=f(k(t))-c(t)-(n+g+\delta) k(t),
+\]
+but the net interest rate faced by households now changes to:
+\[
+  r(t)=(1-\tau)\left(f^{\prime}(k(t))-\delta\right),
+\]
+because of the taxation of capital returns. The growth rate of normalized consumption is then obtained from the consumer Euler equation, \eqref{eq:crra-euler}, as
+\[
+  \begin{aligned}
+    \frac{\dot{c}(t)}{c(t)} & =\frac{1}{\theta}(r(t)-\rho-\theta g)                                                    \\
+                            & =\frac{1}{\theta}\left((1-\tau)\left(f^{\prime}(k(t))-\delta\right)-\rho-\theta g\right).
+  \end{aligned}
+\]
+An identical argument immediately implies that the steady--state capital--to--effective--labor ratio is given by
+\begin{equation}
+  f^{\prime}\left(k^{*}\right)=\delta+\frac{\rho+\theta g}{1-\tau}.
+  \label{eq:steady--state-with-tax}
+\end{equation}
+This equation shows the effects of taxes on steady--state capital--to--effective--labor ratio and output per capita. A higher tax rate $\tau$ increases the right-hand side of \eqref{eq:steady--state-with-tax}, and since from Assumption~\ref{assumption:inada}, $f^{\prime}(\cdot)$ is decreasing, it reduces $k^{*}$. Therefore, higher taxes on capital have the effect of depressing capital accumulation and reducing income per capita. This shows one channel through which policy (thus institutional) differences might affect economic performance. We can also note that similar results would be obtained if instead of taxes being imposed on returns from capital, they were imposed on the amount of investment (see next section). Naturally, we have not so far offered a reason why some countries may tax capital at a higher rate than others, which is again a topic that will be discussed later. Before doing this, in the next section we will also discuss how large these effects can be and whether they could account for the differences in cross-country incomes.
+
+
+% Therefore, differences in capital--output ratios or capital--labor ratios caused by taxes or tax-type distortions, even by very large differences in taxes or distortions, are unlikely to account for the large differences in income per capita that we observe in practice.
+% Large differences in income per capita across countries are unlikely to be accounted for by differences in capital per worker alone. Instead, to explain such large differences in income per capita across countries, we need sizable differences in the efficiency with which these factors are used. Such differences do not feature in this model. Therefore, the simplest neoclassical model does not generate sufficient differences in capital--labor ratios to explain cross-country income differences.
+
+% Nevertheless, many economists have tried (and still try) to use versions of the neoclassical model to go further. The motivation is simple. If instead of using $\alpha=2 / 3$, we take $\alpha=1 / 3$ from the same ratio of distortions, we obtain
+% \[
+% \frac{Y(\tau)}{Y\left(\tau^{\prime}\right)} \approx 8^{2} \approx 64
+% \]
+% Therefore, if there is any way of increasing the responsiveness of capital or other factors to distortions, the predicted differences across countries can be made much larger. How could we have a model in which $\alpha=1 / 3$ ? Such a model must have additional accumulated factors, while still keeping the share of labor income in national product roughly around $2 / 3$. One possibility might be to include human capital. However, human capital differences appear to be insufficient to explain much of the income per capita differences across countries. Another possibility is to introduce other types of capital or perhaps technology that responds to distortions in the same way as capital. While these are all logically possible, a serious analysis of these issues requires models of endogenous technology.
+
+\subsection{Extensions}
+There are many empirically and theoretically relevant extensions of the neoclassical growth model. These include endogenizing the labor supply decisions on individuals by introducing leisure in the utility function, which corresponds to the version of the neoclassical growth model most often employed in short-run and medium-run macroeconomic analyses. Other important extensions include introducing government expenditures and taxation into the basic model, analyzing the behavior of the basic neoclassical growth model with a free capital account (representing borrowing and lending opportunities for the economy at some exogenously given international interest rate $r^{*}$), adding adjustment costs to investment, and exploring versions of the neoclassical model with multiple sectors.
+
+\subsection{Conclusion}
+Unlike the Solow-Swan model, the neoclassical growth model explicitly models consumer and firm optimization.
+Sustained long-term growth can only be generated by technological progress, but technological progress remains exogenous in this model.
+A major contribution is to endogenize capital accumulation decisions by specifying the preferences of consumers, allowing us to link the saving rates to the instantaneous utility function, to the discount rate, and also to technology and prices in the economy.
+
+Perhaps the most important contribution of this model is that it paves the way for further analysis of capital accumulation, human capital and endogenous technological progress.
+This model is a conceptually important step towards the elucidation of the ultimate causes of economic growth, providing a useful scaffolding that allows for many generalizations.
+
+For all of its advantages and accomplishments, the neoclassical growth model is unable to generate the observed dispersion in growth rates and capital-income ratios across countries.
+In addition, the focus is on the more proximate causes of these differences---saving rates, investments in human capital and technology, preferences---which begs the question of what economic factors are the ultimate, more fundamental sources of growth.
+
+\end{document}

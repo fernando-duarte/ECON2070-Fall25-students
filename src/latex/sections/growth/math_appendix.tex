@@ -1,0 +1,298 @@
+% !BIB program = biber
+\providecommand{\topdir}{../..}
+\documentclass[../../lecture_notes.tex]{subfiles}
+\graphicspath{{\subfix{./images/}}}
+
+\begin{document}
+\section{Mathematical Appendix}
+\subsection{System of linear ODEs}
+The goal is to solve the linear system of ODEs given by:
+\begin{equation}
+  \frac{dx(t)}{dt}=B(t)+Ax(t),
+  \label{ODE_system}
+\end{equation}
+where $x(t)$ is an $n\times 1$ vector, $A$ is an $n\times n$ matrix, $B(t)$ is an $n\times 1$ vector that does not depend on $x$ and the operator $\frac{d}{dt}$ takes the derivative of vectors component-wise.
+Sometimes, the notation
+\begin{equation*}
+  \dot{x}(t):= \frac{dx(t)}{dt}
+\end{equation*}
+is more convenient and we will use both options interchangeably.
+
+To solve \eqref{ODE_system}, we first solve the homogeneous part:
+\begin{equation}
+  \frac{dx(t)}{dt}=Ax(t).
+  \label{ODE_homogeneous}
+\end{equation}
+If $A$ is diagonalizable, we can write
+\begin{equation*}
+  A=Q\Lambda Q^{-1},
+\end{equation*}
+where $\Lambda$ is a diagonal $n\times n$ matrix with the eigenvalues of $A$ on its diagonal and $Q$ is an $n\times n$ matrix whose columns are the eigenvectors of $A$.
+By convention, we will always order the eigenvalues in decreasing order (the largest eigenvalue is $\Lambda_{11}$ and the corresponding eigenvector is the first column of $Q$ and so on).
+If $A$ is not diagonalizable, then replace the diagonal matrix $\Lambda$ by the Jordan normal form $J$ of $A$, which can be written $J=D+P$ where $D$ is diagonal and $P$ is nilpotent (there exists $k$ such that $P^{k}=0$).
+For these notes, we will stick to diagonalizable matrices.
+
+Multiplying \eqref{ODE_homogeneous} by $Q^{-1}$ we get:
+\begin{equation}
+  \dot{y}(t)=\Lambda y(t),
+  \label{diagonalODE}
+\end{equation}
+where
+\begin{equation*}
+  y(t):= Q^{-1}x(t).
+\end{equation*}
+The solution to \eqref{diagonalODE} is easy, since all equations are decoupled:
+\begin{equation}
+  y(t)=e^{\Lambda t}y_{0},
+  \label{homogeneousSolution}
+\end{equation}
+where $y_{0}$ is the $n\times 1$ vector of initial conditions, with
+\begin{equation*}
+  y_{0}=Q^{-1}x_{0}.
+\end{equation*}
+The matrix exponential $e^{X}$ for a square matrix $X$ can be defined by the usual Taylor expansion of the exponential function
+\begin{equation*}
+  e^{X}:= \sum_{k=0}^{\infty}\frac{1}{k!}X^{k}.
+\end{equation*}
+Since $\Lambda$ is diagonal, the $i^{th}$ diagonal entry of $e^{\Lambda t}$ is $e^{\Lambda_{ii}t}$.
+Multiplying \eqref{homogeneousSolution} by $Q$ gives the general solution to \eqref{ODE_homogeneous}:
+\begin{align}
+  Qy(t) &=Qe^{\Lambda t}y_{0} \notag \\
+  x(t) &=Qe^{\Lambda t}Q^{-1}x_{0} \notag \\
+  x(t) &=e^{At}x_{0}.
+  \label{x_homogeneousSolution}
+\end{align}
+
+The general solution to the inhomogeneous equation \eqref{ODE_system} is the sum of the general solution \eqref{x_homogeneousSolution} and any particular solution to \eqref{ODE_system}.
+A straightforward particular solution is:
+\begin{equation*}
+  S(t)=\Psi(t)\int_{0}^{t}\Psi(s)^{-1}B(s)ds,
+\end{equation*}
+where $\Psi(t)$ is the fundamental matrix of the homogeneous equation, normalized so that $\Psi(0)=I$:
+\begin{equation*}
+  \Psi(t):= e^{At}.
+\end{equation*}
+If $A$ is diagonalizable with $A=Q\Lambda Q^{-1}$, then $e^{At}=Qe^{\Lambda t}Q^{-1}$.
+Therefore, the general solution is:
+\begin{equation}
+  x(t)=S(t)+e^{At}x_{0}.
+  \label{ODE_system_solution}
+\end{equation}
+We verify that the general solution indeed satisfies \eqref{ODE_system}.
+First, we compute
+\begin{align*}
+  \dot{S}(t) &=\dot{\Psi}(t)\int_{0}^{t}\Psi(s)^{-1}B(s)ds+\Psi(t)\Psi(t)^{-1}B(t) \\
+  &=A\Psi(t)\int_{0}^{t}\Psi(s)^{-1}B(s)ds+B(t) \\
+  &=AS(t)+B(t).
+\end{align*}
+Then we verify that \eqref{ODE_system_solution} satisfies \eqref{ODE_system}:
+\begin{align*}
+  \frac{dx(t)}{dt} &=\dot{S}(t)+\frac{d}{dt}\big(e^{At}x_{0}\big) \\
+  &=\dot{S}(t)+Ae^{At}x_{0} \\
+  &=AS(t)+B(t)+Ae^{At}x_{0} \\
+  &=A\left( S(t)+e^{At}x_{0}\right) +B(t) \\
+  &=Ax(t)+B(t).
+\end{align*}
+
+\subsubsection{The $2\times 2$ case}
+
+If
+\begin{equation*}
+  A=\left[
+  \begin{array}{cc}
+    a & b \\
+    c & d
+  \end{array}
+  \right],
+\end{equation*}
+a few good relations to remember are:
+\begin{align*}
+  \Lambda_{11},\Lambda_{22}& \text{ given by } \frac{\mathrm{tr}(A)\pm \sqrt{(\mathrm{tr}(A))^{2}-4\det(A)}}{2}, \\
+  \Lambda_{11}+\Lambda_{22} &=\mathrm{tr}(A)=a+d, \\
+  \Lambda_{11}-\Lambda_{22} &=\sqrt{(\mathrm{tr}(A))^{2}-4\det(A)}, \\
+  \Lambda_{11}\Lambda_{22} &=\det(A)=ad-bc.
+\end{align*}
+The eigenvectors are:
+\begin{equation*}
+  \left[
+  \begin{array}{c}
+    \frac{b}{\Lambda_{11}-a} \\
+    1
+  \end{array}
+  \right] \text{ and }
+  \left[
+  \begin{array}{c}
+    \frac{b}{\Lambda_{22}-a} \\
+    1
+  \end{array}
+  \right]
+\end{equation*}
+(assuming $b\ne 0$; if $b=0$ choose the corresponding alternatives, e.g., if $b=0$ and $c\ne 0$
+use $\bigl[\,1\;\; (\Lambda_{ii}-d)/c\,\bigr]^T$, and if $b=c=0$ (diagonal $A$) use the standard basis vectors).
+If $B$ is constant,
+\begin{align*}
+  S(t) &=\Psi(t)\int_{t_{start}}^{t}\Psi(s)^{-1}B\,ds \\
+  &=e^{At}\int_{t_{start}}^{t}e^{-As}B\,ds \\
+  &=Qe^{\Lambda t}\int_{t_{start}}^{t}\left[ e^{\Lambda s}\right]^{-1}Q^{-1}B\,ds \\
+  &=Qe^{\Lambda t}\Lambda^{-1}\left( e^{-\Lambda t_{start}}-e^{-\Lambda t}\right) Q^{-1}B
+\end{align*}
+(assuming $\Lambda$ is invertible; if some $\Lambda_{ii}=0$, interpret the corresponding diagonal entry as $t-t_{start}$), where we have used that:
+\begin{align*}
+  \int_{t_{start}}^{t}\left[ e^{\Lambda s}\right]^{-1}ds &=\left[
+  \begin{array}{cc}
+    \int_{t_{start}}^{t}e^{-\Lambda_{11}s}ds & 0 \\
+    0 & \int_{t_{start}}^{t}e^{-\Lambda_{22}s}ds
+  \end{array}
+  \right] \\
+  &=\left[
+  \begin{array}{cc}
+    \frac{e^{-\Lambda_{11}t_{start}}-e^{-\Lambda_{11}t}}{\Lambda_{11}} & 0 \\
+    0 & \frac{e^{-\Lambda_{22}t_{start}}-e^{-\Lambda_{22}t}}{\Lambda_{22}}
+  \end{array}
+  \right] \\
+  &=\Lambda^{-1}\left( e^{-\Lambda t_{start}}-e^{-\Lambda t}\right).
+\end{align*}
+Then the solution is:
+\begin{equation*}
+  x(t)=Qe^{\Lambda t}\Lambda^{-1}\left( e^{-\Lambda t_{start}}-e^{-\Lambda t}\right) Q^{-1}B+Qe^{\Lambda t}Q^{-1}x_{0}.
+\end{equation*}
+We check with $t_{start}=0$:
+\begin{align*}
+  \dot{x}(t) &=\frac{d}{dt}\left[ Qe^{\Lambda t}\Lambda^{-1}\left( e^{-\Lambda t_{start}}-e^{-\Lambda t}\right) Q^{-1}B+Qe^{\Lambda t}Q^{-1}x_{0}\right] \\
+  &=\frac{d}{dt}\left[ Q\Lambda^{-1}\left( e^{\Lambda t}-I\right) Q^{-1}B+Qe^{\Lambda t}Q^{-1}x_{0}\right] \\
+  &=Q\Lambda^{-1}\Lambda e^{\Lambda t}Q^{-1}B+Q\Lambda e^{\Lambda t}Q^{-1}x_{0} \\
+  &=Qe^{\Lambda t}Q^{-1}B+AQe^{\Lambda t}Q^{-1}x_{0} \\
+  &=Qe^{\Lambda t}Q^{-1}B+A\left( Qe^{\Lambda t}Q^{-1}x_{0}\right) \\
+  &=Ax(t)+B.
+\end{align*}
+
+\subsection{The maximum principle}
+
+Consider the infinite-horizon optimal control problem
+\begin{equation*}
+  \max_{u(\cdot)} \int_{0}^{\infty} e^{-\rho t} f(x(t),u(t)) \, dt
+\end{equation*}
+subject to
+\begin{equation*}
+  \dot{x}(t)=\mu(t,x(t),u(t)), \quad x(0)=x_{0}, \quad u(t)\in\mathcal{U} \text{ for all } t \ge 0, \quad G(x(t),u(t))\ge 0,
+\end{equation*}
+where $x(t)\in\mathbb{R}^{n}$ are state variables, $u(t)\in\mathbb{R}^{s}$ are control variables, $u(\cdot)$ is a measurable control function, $\mathcal{U}\subset\mathbb{R}^{s}$ is the control set, $\rho>0$ is the discount rate, $f:\mathbb{R}^{n}\times\mathbb{R}^{s}\to\mathbb{R}$ is the instantaneous payoff, $\mu:\mathbb{R}_{+}\times\mathbb{R}^{n}\times\mathbb{R}^{s}\to\mathbb{R}^{n}$ gives the state dynamics, and $G:\mathbb{R}^{n}\times\mathbb{R}^{s}\to\mathbb{R}^{q}$ is a vector-valued function representing $q$ path constraints.
+
+Define the current-value Hamiltonian
+\begin{equation*}
+  \mathcal{H}(t,x,u,\lambda,\phi)=f(x,u)+\lambda^{T}\mu(t,x,u)+\phi^{T}G(x,u),
+\end{equation*}
+with costate $\lambda(t)\in\mathbb{R}^{n}$ and multipliers $\phi(t)\in\mathbb{R}^{q}$, where $\phi(t)\ge 0$ componentwise.
+
+\medskip
+
+If an admissible pair $(x^{\ast}(\cdot), u^{\ast}(\cdot))$ solves the problem and suitable regularity conditions hold, then there exist an absolutely continuous function $\lambda(\cdot)$ and a measurable function $\phi(\cdot)$ such that, for almost all $t\ge 0$:
+
+\begin{enumerate}
+\item State equation and feasibility:
+\begin{equation*}
+  \dot{x}^{\ast}(t)=\mu(t,x^{\ast}(t),u^{\ast}(t)), \quad x^{\ast}(0)=x_{0}, \quad u^{\ast}(t)\in\mathcal{U}, \quad G(x^{\ast}(t),u^{\ast}(t))\ge 0.
+\end{equation*}
+
+\item Hamiltonian maximization:
+\begin{equation*}
+  u^{\ast}(t)\in\arg\max_{u\in\mathcal{U},\,G(x^{\ast}(t),u)\ge 0}\, \mathcal{H}\bigl(t,x^{\ast}(t),u,\lambda(t),\phi(t)\bigr),
+\end{equation*}
+and, if $u^{\ast}(t)$ is in the interior of the feasible control set, this yields the first-order condition $\partial \mathcal{H}/\partial u=0$ evaluated at $\bigl(t,x^{\ast}(t),u^{\ast}(t),\lambda(t),\phi(t)\bigr)$.
+
+\item Costate dynamics in current value:
+\begin{equation*}
+  \dot{\lambda}(t)=\rho\,\lambda(t)-\frac{\partial \mathcal{H}}{\partial x}\bigl(t,x^{\ast}(t),u^{\ast}(t),\lambda(t),\phi(t)\bigr).
+\end{equation*}
+
+\item Complementary slackness and sign:
+\begin{equation*}
+  \phi_{j}(t)\ge 0, \quad G_{j}(x^{\ast}(t),u^{\ast}(t))\ge 0, \quad \phi_{j}(t)\,G_{j}(x^{\ast}(t),u^{\ast}(t))=0 \quad \text{for } j=1,\dots,q.
+\end{equation*}
+\end{enumerate}
+
+It is sometimes convenient to work with present-value objects.
+Define $p(t)=e^{-\rho t}\lambda(t)$ and $\psi(t)=e^{-\rho t}\phi(t)$, and the present-value Hamiltonian
+\begin{equation*}
+  \mathcal{H}^{pv}(t,x,u,p,\psi)=e^{-\rho t}f(x,u)+p^{T}\mu(t,x,u)+\psi^{T}G(x,u),
+\end{equation*}
+so that the costate equation becomes
+\begin{equation*}
+  \dot{p}(t)=-\frac{\partial \mathcal{H}^{pv}}{\partial x}\bigl(t,x^{\ast}(t),u^{\ast}(t),p(t),\psi(t)\bigr),
+\end{equation*}
+with the relations $p(t)=e^{-\rho t}\lambda(t)$ and $\psi(t)=e^{-\rho t}\phi(t)$ holding pointwise in time.
+
+\medskip
+
+\textbf{Transversality.} As a baseline transversality condition for discounted problems with a finite optimal value, one can impose
+\begin{equation*}
+  \lim_{t\to\infty}\mathcal{H}^{pv}\bigl(t,x^{\ast}(t),u^{\ast}(t),p(t),\psi(t)\bigr)=0,
+\end{equation*}
+that is,
+\begin{align*}
+  \lim_{t\to\infty}\bigl[e^{-\rho t}f(x^{\ast}(t),u^{\ast}(t))&+p(t)^{T}\mu\bigl(t,x^{\ast}(t),u^{\ast}(t)\bigr)\\
+  &\quad+\psi(t)^{T}G\bigl(x^{\ast}(t),u^{\ast}(t)\bigr)\bigr]=0.
+\end{align*}
+On path segments where $G(\cdot)$ is non-binding, the term with $\psi$ vanishes by complementary slackness, and in unconstrained problems this reduces to
+\begin{equation*}
+  \lim_{t\to\infty}\bigl[e^{-\rho t}f(x^{\ast}(t),u^{\ast}(t))+p(t)^{T}\mu\bigl(t,x^{\ast}(t),u^{\ast}(t)\bigr)\bigr]=0.
+\end{equation*}
+
+A useful strengthening is obtained under additional structure.
+Suppose the state space is $\mathbb{R}_{+}^{n}$ with $x^{\ast}(t)\ge 0$ componentwise for all $t$, the value function $V$ is concave and differentiable so that $\lambda(t)=\nabla V\bigl(x^{\ast}(t)\bigr)$, and the problem primitives imply that $\lambda(t)\ge 0$ componentwise (for example, if $f$ and the components of $\mu$ are non-decreasing in $x$).
+Then the baseline condition implies
+\begin{equation*}
+  \lim_{t\to\infty} e^{-\rho t}\lambda(t)^{T}x^{\ast}(t)=\lim_{t\to\infty} p(t)^{T}x^{\ast}(t)=0,
+\end{equation*}
+because concavity of $V$ yields $\lambda(t)^{T}x^{\ast}(t)\le V\bigl(x^{\ast}(t)\bigr)-V(0)$ and hence $0\le p(t)^{T}x^{\ast}(t)\le e^{-\rho t}V\bigl(x^{\ast}(t)\bigr)-e^{-\rho t}V(0)$, with the right-hand side converging to zero if the total value is finite.
+
+\medskip
+
+\textbf{Sufficiency.} The necessary conditions above are also sufficient for optimality if the transversality condition holds, and if, for each $t$, the map $(x,u)\mapsto \mathcal{H}\bigl(t,x,u,\lambda(t),\phi(t)\bigr)$ is concave on the set $\{(x,u) \mid u \in \mathcal{U}, G(x,u) \ge 0\}$ and this set is convex.
+In this case, any admissible path satisfying the conditions is globally optimal.
+
+
+\subsection{Hamilton-Jacobi-Bellman equation (HJB)}
+
+The Hamilton-Jacobi-Bellman (HJB) equation provides a sufficient condition for optimality and is the continuous-time analogue of the Bellman equation.
+Consider the stochastic optimal control problem:
+\begin{align*}
+  V(t,x) &= \max_{u(\cdot)} \mathbb{E}_{t} \left[ \int_{t}^{\infty} e^{-\rho (s-t)} f(s, x(s), u(s)) ds \right] \\
+  \text{s.t.} \quad dx(s) &= \mu(s, x(s), u(s))ds + \sigma(s, x(s), u(s))dZ_{s}, \\
+  u(s) &\in \mathcal{U} \quad \text{for all } s \ge t, \\
+  x(t) &= x.
+\end{align*}
+Here, $V(t,x)$ is the value function, representing the optimal value of the objective starting from state $x$ at time $t$.
+The state variable $x(t) \in \mathbb{R}^n$, the control $u(t) \in \mathcal{U} \subset \mathbb{R}^s$, and $Z_t$ is an $m$-dimensional standard Brownian motion.
+
+The HJB equation is derived from the Bellman principle of optimality, which states that for a small time interval $dt$:
+\begin{equation*}
+  V(t,x) \approx \max_{u \in \mathcal{U}} \left\{ f(t,x,u)dt + e^{-\rho dt} \mathbb{E}_t [V(t+dt, x+dx)] \right\}.
+\end{equation*}
+Using the approximation $e^{-\rho dt} \approx 1 - \rho dt$ and applying Itô's lemma to expand $V(t+dt, x+dx)$, we get:
+\begin{equation*}
+  \mathbb{E}_t[dV] = \left( \frac{\partial V}{\partial t} + (\nabla_x V)^T \mu + \frac{1}{2} \text{tr}\left( \sigma \sigma^T \nabla_x^2 V \right) \right) dt,
+\end{equation*}
+where $\nabla_x V$ is the gradient of $V$ with respect to $x$ (an $n \times 1$ column vector) and $\nabla_x^2 V$ is the $n \times n$ Hessian matrix of second partial derivatives.
+
+Substituting this into the Bellman equation, rearranging, dividing by $dt$, and taking the limit as $dt \to 0$ yields the HJB equation:
+\begin{equation}
+  \rho V(t,x) = \max_{u \in \mathcal{U}} \left\{ f(t,x,u) + \frac{\partial V}{\partial t} + (\nabla_x V)^T \mu(t,x,u) + \frac{1}{2} \text{tr}\left( \sigma(t,x,u) \sigma(t,x,u)^T \nabla_x^2 V \right) \right\}.
+  \label{eq:hjb}
+\end{equation}
+An easy way to remember this is through the economic intuition: the required return on the value function ($\rho V$) must equal the flow payoff ($f$) plus the expected rate of change of the value function ($E[dV]/dt$).
+
+The expression inside the maximization is the Hamiltonian, though definitions can vary.
+The term inside the trace is the variance-covariance matrix of the stochastic process.
+Any path constraints, like $G(x,u) \ge 0$, can be included in the maximization over $u$.
+
+\subsubsection{The Autonomous Case}
+In many economic models, the functions $f$, $\mu$, and $\sigma$ do not depend explicitly on time $t$.
+This is known as an autonomous problem.
+In this case, the value function $V$ will also be independent of time, so $V(t,x) = V(x)$ and its partial derivative with respect to time is zero, $\frac{\partial V}{\partial t} = 0$.
+The HJB equation \eqref{eq:hjb} then simplifies to the stationary HJB equation:
+\begin{equation*}
+  \rho V(x) = \max_{u \in \mathcal{U}} \left\{ f(x,u) + (\nabla_x V)^T \mu(x,u) + \frac{1}{2} \text{tr}\left( \sigma(x,u) \sigma(x,u)^T \nabla_x^2 V \right) \right\}.
+\end{equation*}
+This is a non-linear ordinary or partial differential equation for the value function $V(x)$.
+\end{document}
