@@ -1,0 +1,280 @@
+% !BIB program = biber
+\providecommand{\topdir}{../..} 
+\documentclass[\topdir/lecture\_notes.tex]{subfiles}
+\graphicspath{{\subfix{./images/}}}
+
+\begin{document}
+\chapter{Advanced Topics in the Ramsey-Cass-Koopmans Model}
+
+This chapter extends the basic Ramsey-Cass-Koopmans model to incorporate more realistic features that are essential for understanding modern macroeconomic policy. We explore three major extensions: fiscal policy with endogenous labor supply, search frictions in labor markets, and monetary neutrality.
+
+\section{The RCK Model with Endogenous Labor Supply}
+
+In the basic RCK model, households inelastically supply labor to the market. Here we extend the model by allowing households to optimally choose their labor supply, trading off consumption against leisure. This extension is crucial for understanding the effects of fiscal policy on labor markets and output.
+
+\subsection{Household Preferences with Leisure}
+
+The representative household now derives utility from both consumption $c(t)$ and leisure $1-L(t)$, where total time is normalized to unity. The instantaneous utility function takes the form:
+\begin{equation}
+u(c(t), 1-L(t)) = \frac{c(t)^{1-\theta}}{1-\theta} + \chi \frac{(1-L(t))^{1-\gamma}}{1-\gamma}
+\end{equation}
+where $\chi > 0$ measures the weight on leisure in preferences, $\theta > 0$ is the inverse of the intertemporal elasticity of substitution for consumption, and $\gamma > 0$ governs the elasticity of labor supply.
+
+The household's budget constraint becomes:
+\begin{equation}
+\dot{a}(t) = [\rnet(t)-n]a(t) + \wage(t)L(t) - c(t) - T(t)
+\end{equation}
+where $T(t)$ represents lump-sum taxes.
+
+\subsection{Optimal Labor-Leisure Choice}
+
+The first-order conditions for the household's optimization problem yield two key relationships:
+\begin{equation}
+\frac{\chi(1-L(t))^{-\gamma}}{c(t)^{-\theta}} = \wage(t)
+\end{equation}
+This is the intratemporal optimality condition, equating the marginal rate of substitution between leisure and consumption to the real wage.
+
+The Euler equation for consumption remains:
+\begin{equation}
+\frac{\dot{c}(t)}{c(t)} = \frac{1}{\theta}[\rnet(t) - \rho]
+\end{equation}
+
+\subsection{The Frisch Elasticity of Labor Supply}
+
+A crucial parameter for understanding fiscal policy effects is the Frisch elasticity of labor supply, which measures the percentage change in labor supply in response to a one percent change in wages, holding the marginal utility of wealth constant:
+\begin{equation}
+\omega_L \equiv \frac{\partial \log L}{\partial \log w}\bigg|_{\lambda \text{ constant}} = \frac{1-L}{L} \cdot \frac{1}{\gamma}
+\end{equation}
+
+When $\gamma = 1$ (log utility from leisure), the Frisch elasticity simplifies to $\omega_L = (1-L)/L$, which for realistic labor supply values (e.g., $L = 0.3$) implies $\omega_L \approx 2.33$.
+
+\section{Fiscal Policy with Endogenous Labor Supply}
+
+\subsection{Government Spending Multipliers}
+
+With endogenous labor supply, government spending has fundamentally different effects than in models with fixed labor. The key mechanism is the wealth effect: higher government spending financed by lump-sum taxes makes households poorer, inducing them to work more.
+
+The long-run government spending multiplier on output is:
+\begin{equation}
+\frac{dY}{dG}\bigg|_{\text{long-run}} = \frac{(1-\alpha)\omega_L}{1 + \alpha\omega_L}
+\end{equation}
+where $\alpha$ is capital's share in production. For reasonable parameter values ($\alpha = 0.3, \omega_L = 2$), this implies a long-run multiplier of approximately 0.78.
+
+\subsection{Dynamic Effects of Fiscal Policy}
+
+Consider a permanent, unanticipated increase in government consumption at time $t = 0$. The economy's response involves:
+
+\textbf{Impact Effects:}
+\begin{itemize}
+\item Labor supply jumps up immediately: $\Delta L(0) > 0$
+\item Output increases: $\Delta Y(0) > 0$
+\item Consumption falls due to the negative wealth effect: $\Delta c(0) < 0$
+\item Investment may rise or fall depending on parameters
+\end{itemize}
+
+\textbf{Transitional Dynamics:}
+\begin{itemize}
+\item Capital stock gradually adjusts toward new steady state
+\item If investment rises initially, capital accumulates over time
+\item Labor supply remains elevated throughout transition
+\item Consumption gradually recovers but remains below initial level
+\end{itemize}
+
+\textbf{Long-Run Effects:}
+\begin{itemize}
+\item Capital-labor ratio returns to initial level (due to constant returns)
+\item Both capital and labor are permanently higher
+\item Output is permanently higher
+\item Private consumption is permanently lower (crowding out)
+\end{itemize}
+
+\subsection{Temporary vs. Permanent Fiscal Shocks}
+
+The persistence of fiscal shocks matters crucially for their effects. Define a temporary shock as:
+\begin{equation}
+G(t) - G_0 = \Delta G \cdot e^{-\xi_G t}
+\end{equation}
+where $\xi_G > 0$ governs the rate of decay.
+
+The impact multiplier for temporary shocks is:
+\begin{equation}
+\frac{dY(0)}{dG}\bigg|_{\text{temporary}} = \frac{\rho + \lambda_1}{\rho + \lambda_1 + \xi_G} \cdot \frac{dY(0)}{dG}\bigg|_{\text{permanent}}
+\end{equation}
+where $\lambda_1 < 0$ is the stable eigenvalue of the system. More persistent shocks (lower $\xi_G$) have larger impact effects.
+
+\section{Search Frictions in Labor Markets}
+
+The basic RCK model assumes frictionless labor markets where supply equals demand at every instant. In reality, matching workers with jobs takes time and resources. This section incorporates search and matching frictions following the Diamond-Mortensen-Pissarides framework.
+
+\subsection{The Matching Function}
+
+The number of new matches formed per unit time is given by the matching function:
+\begin{equation}
+M(t) = m_0 S(t)^{1-\phi} V(t)^\phi
+\end{equation}
+where $S(t)$ is the number of searching workers (unemployed), $V(t)$ is the number of vacancies, $m_0 > 0$ is matching efficiency, and $0 < \phi < 1$ governs the relative importance of each side of the market.
+
+Define labor market tightness as:
+\begin{equation}
+\theta(t) \equiv \frac{V(t)}{S(t)}
+\end{equation}
+
+The job-finding rate for workers is:
+\begin{equation}
+p(\theta(t)) = \frac{M(t)}{S(t)} = m_0 \theta(t)^\phi
+\end{equation}
+
+The vacancy-filling rate for firms is:
+\begin{equation}
+q(\theta(t)) = \frac{M(t)}{V(t)} = m_0 \theta(t)^{\phi-1}
+\end{equation}
+
+\subsection{Value Functions and Wage Bargaining}
+
+Let $V_E(t)$ denote the value of being employed and $V_U(t)$ the value of being unemployed. Similarly, let $J_F(t)$ be the value to a firm of a filled job and $J_V(t)$ the value of a vacant job.
+
+The Nash bargaining solution determines wages:
+\begin{equation}
+\wage(t) = \beta[y(t) + \kappa\theta(t)] + (1-\beta)b
+\end{equation}
+where $\beta \in (0,1)$ is workers' bargaining power, $y(t)$ is output per worker, $\kappa$ is the cost of posting a vacancy, and $b$ is the flow value of unemployment (unemployment benefits plus leisure value).
+
+\subsection{The Beveridge Curve and Natural Unemployment}
+
+In steady state, flows into and out of unemployment balance:
+\begin{equation}
+\lambda L = p(\theta)S
+\end{equation}
+where $\lambda$ is the job separation rate and $L$ is employment.
+
+The steady-state unemployment rate is:
+\begin{equation}
+u^* = \frac{\lambda}{\lambda + p(\theta^*)}
+\end{equation}
+
+The Beveridge curve shows the negative relationship between unemployment and vacancies:
+\begin{equation}
+v = \frac{\lambda(1-u)}{q(\theta)}
+\end{equation}
+where $v = V/N$ is the vacancy rate.
+
+\subsection{Efficiency and the Hosios Condition}
+
+The decentralized equilibrium is efficient if and only if the Hosios condition holds:
+\begin{equation}
+\beta = 1 - \phi
+\end{equation}
+This requires workers' bargaining power to equal their contribution to the matching function. When this condition fails, unemployment may be inefficiently high or low, justifying policy intervention.
+
+\section{Monetary Neutrality and Superneutrality}
+
+While the RCK model is fundamentally a real model, we can extend it to incorporate money and examine neutrality propositions.
+
+\subsection{Money in the Utility Function}
+
+One approach is to assume households derive utility from real money balances:
+\begin{equation}
+U\left(c(t), \frac{M(t)}{P(t)}\right) = u(c(t)) + v\left(\frac{M(t)}{P(t)}\right)
+\end{equation}
+where $M(t)$ is nominal money holdings and $P(t)$ is the price level.
+
+The first-order condition for money demand yields:
+\begin{equation}
+\frac{v'(m(t))}{u'(c(t))} = \frac{i(t)}{1+i(t)}
+\end{equation}
+where $m(t) = M(t)/P(t)$ and $i(t)$ is the nominal interest rate.
+
+\subsection{The Fisher Equation and Neutrality}
+
+The Fisher equation relates nominal and real interest rates:
+\begin{equation}
+1 + i(t) = (1 + \rnet(t))(1 + \pi(t))
+\end{equation}
+where $\pi(t)$ is the inflation rate.
+
+\textbf{Monetary Neutrality:} A one-time change in the money supply affects only nominal variables (prices, nominal wages) but not real variables (output, employment, real interest rates).
+
+\textbf{Monetary Superneutrality:} Changes in the growth rate of money supply affect only the inflation rate but not real variables in the long run.
+
+\subsection{The Tobin Effect}
+
+With capital accumulation, higher inflation may not be superneutral due to the Tobin effect. Higher inflation reduces real money balances, leading households to substitute toward real capital, potentially increasing the capital stock and output.
+
+The modified steady-state condition becomes:
+\begin{equation}
+f'(k^*) = \rho + \delta + \tau(\pi)
+\end{equation}
+where $\tau(\pi)$ captures the inflation tax effect on capital accumulation.
+
+\section{Welfare Analysis and Optimal Policy}
+
+\subsection{The Social Planner's Problem}
+
+The social planner maximizes:
+\begin{equation}
+\max \int_0^\infty e^{-\rhoRate t} u(c(t), 1-L(t)) L(t) dt
+\end{equation}
+subject to resource and technology constraints.
+
+The first-order conditions yield:
+\begin{equation}
+U_c(c^{SP}, 1-L^{SP}) = \lambda^{SP}
+\end{equation}
+\begin{equation}
+U_{1-L}(c^{SP}, 1-L^{SP}) = \lambda^{SP} F_L(K^{SP}, L^{SP})
+\end{equation}
+where $\lambda^{SP}$ is the shadow value of resources.
+
+\subsection{Optimal Fiscal Policy}
+
+The Ramsey problem involves choosing taxes to maximize welfare subject to implementability constraints. Key results include:
+\begin{itemize}
+\item Zero capital income tax in the long run (Chamley-Judd result)
+\item Smooth tax rates over time to minimize distortions
+\item Front-loading of labor income taxes when debt is available
+\end{itemize}
+
+\subsection{Implementation through Decentralized Markets}
+
+The social optimum can be implemented through appropriate taxes and transfers:
+\begin{equation}
+\tau_K^* = 0 \quad \text{(long run)}
+\end{equation}
+\begin{equation}
+\tau_L^* = \frac{G}{wL} \quad \text{(balanced budget)}
+\end{equation}
+where $\tau_K$ and $\tau_L$ are capital and labor income tax rates.
+
+\section{Exercises}
+
+\begin{enumerate}
+\item \textbf{Endogenous Labor Supply:} Consider a economy where $u(c, 1-L) = \log c + \chi \log(1-L)$ and $F(K,L) = K^\alpha L^{1-\alpha}$.
+\begin{enumerate}
+\item Derive the steady-state labor supply as a function of parameters.
+\item Calculate the government spending multiplier on output.
+\item Show how the multiplier depends on the preference parameter $\chi$.
+\end{enumerate}
+
+\item \textbf{Search and Matching:} In a model with matching function $M = m_0 S^{0.5} V^{0.5}$:
+\begin{enumerate}
+\item Derive the steady-state unemployment rate as a function of labor market tightness.
+\item Show that the Hosios condition requires $\beta = 0.5$.
+\item Calculate the welfare loss from having $\beta = 0.7$ instead.
+\end{enumerate}
+
+\item \textbf{Money and Inflation:} Suppose $v(m) = \frac{m^{1-\sigma}}{1-\sigma}$ with $\sigma > 0$.
+\begin{enumerate}
+\item Derive the money demand function.
+\item Show how steady-state real balances depend on the inflation rate.
+\item Discuss whether money is superneutral in this economy.
+\end{enumerate}
+
+\item \textbf{Optimal Taxation:} In a model with government spending requirement $G$:
+\begin{enumerate}
+\item Show why taxing capital income is inefficient in the long run.
+\item Derive the optimal labor income tax rate.
+\item Discuss the role of government debt in smoothing taxes over time.
+\end{enumerate}
+\end{enumerate}
+
+\end{document}
