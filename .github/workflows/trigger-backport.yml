@@ -1,0 +1,33 @@
+name: Trigger backport to private repo
+
+on:
+  pull_request:
+    types: [closed]
+    branches: [main]
+
+jobs:
+  trigger-backport:
+    # Only run if PR was actually merged (not just closed)
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger backport in private repo
+        env:
+          GH_TOKEN: ${{ secrets.PRIVATE_REPO_PAT }}
+        run: |
+          curl -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${GH_TOKEN}" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            https://api.github.com/repos/fernando-duarte/ECON2070-Fall25/dispatches \
+            -d '{
+              "event_type": "student-pr-merged",
+              "client_payload": {
+                "pr_number": ${{ github.event.pull_request.number }},
+                "pr_title": "${{ github.event.pull_request.title }}",
+                "pr_author": "${{ github.event.pull_request.user.login }}",
+                "student_repo": "${{ github.repository }}"
+              }
+            }'
+          
+          echo "✓ Backport triggered for PR #${{ github.event.pull_request.number }}"
