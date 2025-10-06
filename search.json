@@ -1,0 +1,72 @@
+[
+  {
+    "objectID": "notes/index.html",
+    "href": "notes/index.html",
+    "title": "Notes (2025)",
+    "section": "",
+    "text": "Lecture Notes PDF"
+  },
+  {
+    "objectID": "changes/index.html",
+    "href": "changes/index.html",
+    "title": "What changed in the last 7 days",
+    "section": "",
+    "text": "Time window: since 2025-09-29T06:59:42Z (UTC).\n\nClass repo commits\nTemporarily unavailable (HTTP 404). Try again later.\n\n\nStudent repo commits\n\n2025-10-06 06:05:30 UTC — CI: update public sources (2025-10-06) (#7)\n\nCo-authored-by: CI Bot ci-bot@users.noreply.github.com (717ab0c) - 2025-10-06 03:55:08 UTC — fix: update backport trigger with complete payload and pagination\nCritical fixes: - Add merge_commit_sha field (required for provenance) - Add files array with pagination support (handles PRs with &gt;100 files) - Add path filter (only trigger on src/latex/** or src/R/** changes) - Use repository-dispatch action instead of curl - Include all file metadata (status, previous_filename, additions, deletions)\nThis matches the specification in STUDENT_REPO_WORKFLOW_UPDATE.md (4a82174) - 2025-10-06 02:19:06 UTC — feat: add workflow to trigger backport on PR merge\nWhen a PR is merged in the student repo, this workflow triggers a repository_dispatch event in the private repo to backport the changes.\nThe backport workflow will: - Fetch the PR patch - Remap paths (src/latex -&gt; overleaf/Fall 2025, src/R -&gt; R) - Apply changes directly if clean, or create PR if conflicts exist - Include attribution: “(students#N by @author)” (75dd489) - 2025-10-06 00:44:54 UTC — Merge pull request #3 from fernando-duarte/ci-update-sources-20251005-222304\nCI: Update public sources (2025-10-05) (8917e1f) - 2025-10-05 22:23:04 UTC — CI: update public sources (2025-10-05) (64bd1c0) - 2025-10-05 18:29:36 UTC — Initial commit to main (464748e)"
+  },
+  {
+    "objectID": "slides/index.html",
+    "href": "slides/index.html",
+    "title": "Slides (2025)",
+    "section": "",
+    "text": "#| error: false\nls -1 static/slides/2025 2&gt;/dev/null | sed 's|^|- [|; s|$|](../static/slides/2025/&)|' || echo \"*No slides available yet*\""
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Course Home",
+    "section": "",
+    "text": "Notes\nSlides\nIn-class Notability notes\nR Code\nSource Code\nWhat changed in the last 7 days"
+  },
+  {
+    "objectID": "notability/2025/index.html",
+    "href": "notability/2025/index.html",
+    "title": "In-class Notability Notes (2025)",
+    "section": "",
+    "text": "Quick links - Latest - All classes (merged)"
+  },
+  {
+    "objectID": "notability/2025/index.html#all-lectures",
+    "href": "notability/2025/index.html#all-lectures",
+    "title": "In-class Notability Notes (2025)",
+    "section": "All lectures",
+    "text": "All lectures\nls -1 static/notability/2025/*-In-class-notes.pdf 2&gt;/dev/null | sort | sed 's|^|- [|; s|$|](../../&){download=true}|'"
+  },
+  {
+    "objectID": "code/index.html",
+    "href": "code/index.html",
+    "title": "Shared R Code (2025)",
+    "section": "",
+    "text": "#| error: false\nfind static/code/2025 -type f -name '*.R' 2&gt;/dev/null | sort | sed 's|^|- [|; s|$|](../&){download=true}|' || echo \"*No R code available yet*\""
+  },
+  {
+    "objectID": "src/index.html",
+    "href": "src/index.html",
+    "title": "Source Code (LaTeX & R)",
+    "section": "",
+    "text": "#| error: false\nfind static/src/latex -type f \\( -name '*.tex' -o -name '*.sty' -o -name '*.cls' \\) 2&gt;/dev/null | sort \\\n  | sed 's|^|- [|; s|$|](../&){download=true}|' || echo \"*No LaTeX sources exported yet*\""
+  },
+  {
+    "objectID": "src/index.html#latex-sources-public-subset",
+    "href": "src/index.html#latex-sources-public-subset",
+    "title": "Source Code (LaTeX & R)",
+    "section": "",
+    "text": "#| error: false\nfind static/src/latex -type f \\( -name '*.tex' -o -name '*.sty' -o -name '*.cls' \\) 2&gt;/dev/null | sort \\\n  | sed 's|^|- [|; s|$|](../&){download=true}|' || echo \"*No LaTeX sources exported yet*\""
+  },
+  {
+    "objectID": "src/index.html#r-sources-public-subset",
+    "href": "src/index.html#r-sources-public-subset",
+    "title": "Source Code (LaTeX & R)",
+    "section": "R sources (public subset)",
+    "text": "R sources (public subset)\n#| error: false\nfind static/src/R -type f -name '*.R' 2&gt;/dev/null | sort \\\n  | sed 's|^|- [|; s|$|](../&){download=true}|' || echo \"*No R sources exported yet*\""
+  }
+]
