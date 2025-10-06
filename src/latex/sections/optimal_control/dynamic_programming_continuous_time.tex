@@ -1,0 +1,701 @@
+\providecommand{\topdir}{../..} 
+\documentclass[\topdir/lecture\_notes.tex]{subfiles}
+\graphicspath{{\subfix{./images/}}}
+
+\begin{document}
+
+\section{Discounted Present Values in Continuous Time}
+Here we consider an economic unit, such as a firm, in a dynamic stochastic setting. Its state at time $t$ is given by a state variable $x_{t}$ that follows a Brownian motion with exogenous parameters $\mu$ and $\sigma$. There is a net \emph{flow payoff} $f(x_{t})$, such as profit or dividend, that depends on the state $x_{t}$. The \emph{expected present value} $F(x)$ of the payoff starting at a given initial position $x_{0}=x$, and using an exogenously specified discount rate $\rho$, is defined by
+\begin{align}
+F(x)=E\left[\int_{0}^{\infty} f(x_{t}) e^{-\rho t} dt \mid x_{0}=x\right]. \label{eq: 2.1}
+\end{align}
+Ultimately, we will be interested in controlling or regulating the motion of $x_{t}$ to optimize such expected present values net of the cost of control.
+
+\subsection{Present Values for Exponential and Polynomials}
+Here we consider the special case when the flow payoff has the form
+\begin{align*}
+f(x)=\exp (\lambda x).
+\end{align*}
+The discounted present value $F(x)$ will be finite when $\lambda$ is in a certain range, which will be found in course of the calculation.
+
+Starting from the initial value $x_{0}=x$, the random position $x_{t}$ at time $t$ has a normal distribution with mean $x+\mu t$ and variance $\sigma^{2} t$. Then
+\begin{align*}
+E\left[\exp (\lambda x_{t}) \mid x_{0}=x\right]=\exp \left[\lambda(x+\mu t)+\frac{1}{2} \lambda^{2} \sigma^{2} t\right]
+\end{align*}
+
+Using this expectation, we have the present value
+\begin{align}
+F(x) & =\int_{0}^{\infty} E\left[\exp \left(\lambda x_{t}\right) \mid x_{0}=x\right] \exp (-\rho t) dt \notag \\
+& =\exp (\lambda x) \int_{0}^{\infty} \exp \left[-\left(\rho-\lambda \mu-\frac{1}{2} \lambda^{2} \sigma^{2}\right) t\right] dt \notag \\
+& =\exp (\lambda x) /\left(\rho-\lambda \mu-\frac{1}{2} \lambda^{2} \sigma^{2}\right)
+\label{eq: 2.3}
+\end{align}
+The integral converges provided the denominator is positive.
+
+
+\subsection{Present Values for Powers of Geometric Brownian Motion}
+Next suppose $X$ follows a geometric Brownian motion, namely
+\begin{align*}
+dX / X=\nu dt+\sigma dw.
+\end{align*}
+We want to find the expected present value when the flow payoff is $g(X)=X^{\lambda}$. Note that $x=\ln (X)$ follows the Brownian motion
+\begin{align*}
+dx=\left(\nu-\frac{1}{2} \sigma^{2}\right) dt+\sigma dw
+\end{align*}
+and $X^{\lambda}=\exp (\lambda x)$. Using (\ref{eq: 2.3}) for this, we have
+\begin{align}
+E\left[\int_{0}^{\infty} X_{t}^{\lambda} e^{-\rho t} dt\right] & =\exp (\lambda x) /\left[\rho-\left(\nu-\frac{1}{2} \sigma^{2}\right) \lambda-\frac{1}{2} \sigma^{2} \lambda^{2}\right] \notag \\
+& =X^{\lambda} /\left[\rho-\nu \lambda-\frac{1}{2} \sigma^{2} \lambda(\lambda-1)\right]
+\label{eq: 2.7}
+\end{align}
+provided the integral converges, for which we need the denominator to be positive.
+
+The convergence condition is now defined in terms of a slightly different quadratic
+\begin{align}
+\psi(\xi) := \rho-\nu \xi-\frac{1}{2} \sigma^{2} \xi(\xi-1) \label{eq: 2.8}
+\end{align}
+I make two economically natural assumptions that help locate the roots: $\rho>0$, which ensures convergence of the expected present value of a constant flow, and $\rho>\nu$, which guarantees the convergence
+of the expected present value of $X_{t}$ itself. Then the roots of the quadratic (\ref{eq: 2.8}) are $-\gamma<0$ and $\delta>1$. For convergence of (\ref{eq: 2.7}) we require that $\lambda$ should lie in the interval $(-\gamma, \delta)$.
+
+Note that the expected present value is finite for all integer powers of an arithmetic Brownian motion, but not for all those of \textit{geometric} Brownian motion. The reason is that a power of geometric Brownian motion is like an exponential of the arithmetic Brownian motion. Applying Ito's Lemma again, we find that $Y=X^{\lambda}$ follows the geometric Brownian motion
+\begin{align*}
+d Y / Y=\left[\lambda \nu+\frac{1}{2} \lambda(\lambda-1) \sigma^{2}\right] dt+\lambda \sigma dw.
+\end{align*}
+For convergence of the expected present value of $Y$, the discount rate must exceed the trend growth rate of $Y$. Inspection shows this to be just the condition $\psi(\lambda)>0$.
+
+Note also the relationship between the two quadratics, (\ref{eq: 2.4}) for an arithmetic Brownian motion $x_{t}$ with parameters $(\mu, \sigma)$ and (\ref{eq: 2.8}) for a geometric Brownian motion $X_{t}$ with parameters $(\nu, \sigma)$. If in fact $x=\ln (X)$, then the two trend parameters will be related to each other by $\mu=\nu-1 / 2 \sigma^{2}$. Substituting in (\ref{eq: 2.8}), we will get
+\begin{align*}
+\psi(\xi) & =\rho-\left(\mu+\frac{1}{2} \sigma^{2}\right) \xi-\frac{1}{2} \sigma^{2} \xi(\xi-1) \\
+& =\rho-\mu \xi-\frac{1}{2} \sigma^{2} \xi^{2}=\phi(\xi)
+\end{align*}
+and then the roots will also correspond, with $\alpha=\gamma$ and $\beta=\delta$.
+
+\begin{optional}
+\subsection{Fundamental Quadratic of Brownian motion}
+The convergence condition appears repeatedly in many calculations. Therefore, it is useful to give it a uniform notation and interpretation. For this purpose, define the function
+\begin{align}
+\phi(\xi) := \rho-\xi \mu-\frac{1}{2} \xi^{2} \sigma^{2} \label{eq: 2.4}
+\end{align}
+which is called the \emph{Fundamental Quadratic of Brownian motion}. Let us examine its properties. Since the coefficient of the quadratic term is negative, $\phi(\xi)$ goes to $-\infty$ as $\xi$ goes to $\pm \infty$. We assume that the discount rate $\rho$ is positive, which is the natural economic condition to ensure a finite present value for a constant flow. With $\phi(0)=\rho>0$, the quadratic equation $\phi(\xi)=0$ has two real roots, one negative, say $-\alpha$, and the other positive, say $\beta$. Then $\phi(\xi)$ is positive when $\xi$ is in the interval $(-\alpha, \beta)$, and negative outside it. 
+
+Thus the condition for the convergence of the integral in (\ref{eq: 2.3}) amounts to requiring that $\lambda$ lies in the interval $(-\alpha, \beta)$. This includes $\lambda=0$.
+\end{optional}
+
+\begin{optional}
+\subsection{Present Value by Series Expansion}
+We can use the formula (\ref{eq: 2.3}) above to derive an expression for $F(x)$ when $f(x)$ is any integer power $x^{n}$. Begin by observing that for the exponential flow function,
+\begin{align*}
+F(x) & =E\left[\left.\int_{0}^{\infty} \sum_{n=0}^{\infty} \frac{1}{n !}\left(\lambda x_{t}\right)^{n} e^{-\rho t} dt \right\rvert\, x_{0}=x\right] \\
+& =\sum_{n=0}^{\infty} \frac{\lambda^{n}}{n !} E\left[\int_{0}^{\infty} x_{t}^{n} e^{-\rho t} dt \mid x_{0}=x\right]
+\end{align*}
+Now we can expand the right hand side of (\ref{eq: 2.3}) in powers of $\lambda$. Since the resulting power series must equal the series just above for all $\lambda$ in a neighborhood that includes $\lambda=0$, we can equate the coefficients of $\lambda^{n}$ on the two sides. This yields an expression for the expected present value of the $n$th power of $x$.
+
+To expand the right hand side of (\ref{eq: 2.3}), note that
+\begin{align*}
+\exp (\lambda x)=\sum_{n=0}^{\infty} \frac{1}{n !} \lambda^{n} x^{n}
+\end{align*}
+and
+\begin{align*}
+\left[\rho-\mu \lambda-\frac{1}{2} \sigma^{2} \lambda^{2}\right]^{-1}=\frac{1}{\rho} \sum_{n=0}^{\infty} \rho^{-n}\left(\mu \lambda+\frac{1}{2} \sigma^{2} \lambda^{2}\right)^{n}
+\end{align*}
+
+For each $n$, the $n$th power of the sum of terms in $\lambda$ and $\lambda^{2}$ in the second of these series must be written out using the binomial theorem. Then the two series can be multiplied together and the coefficients of like powers of $\lambda$ collected to express the product as a single power series. This is tedious to do for higher powers. But the first few powers are not too hard, and yield the following results for the discounted present values of $x$ and $x^{2}$:
+\begin{gather}
+E \int_{0}^{\infty} x_{t} e^{-\rho t} dt=\frac{\mu}{\rho^{2}}+\frac{x}{\rho}, \label{eq: 2.5} \\
+E \int_{0}^{\infty} x_{t}^{2} e^{-\rho t} dt=\left(\frac{\sigma^{2}}{\rho^{2}}+\frac{2 \mu^{2}}{\rho^{3}}\right)+\frac{2 \mu x}{\rho^{2}}+\frac{x^{2}}{\rho} . \label{eq: 2.6}
+\end{gather}
+
+Finally, consider any analytic $f(x)$ with the power series representation
+\begin{align*}
+f(x)=\sum_{n=0}^{\infty} f_{n} x^{n}
+\end{align*}
+assumed uniformly convergent for all $x$. Having found the expected present values of all integer powers, we can integrate term by term to find the $F(x)$ corresponding to this analytic $f(x)$. Thus we can in principle complete the calculation of present values for most common functions of Brownian motion.
+\end{optional}
+
+\subsection{A Differential Equation for Present Value}
+Let us return to the arithmetic Brownian motion $x$ and the flow payoff $f(x)$, and consider an alternative characterization of the expected present value $F(x)$ defined in (\ref{eq: 2.1}). For this purpose, we split the integral into the contribution over the initial infinitesimal time interval from $0$ to $dt$, and the integral from $dt$ to $\infty$. In spirit this is exactly like the decomposition in dynamic programming and in fact, is our first building block towards continuous time dynamic programming. The only difference is that we have no control variables here. Now at time $dt$ the state variable will attain a value $x+dx$ that is not known at time $0$, although its distribution is. The integral from there on will be just $F(x+dx)$, which must be discounted back to time $0$. Thus we have
+\begin{align*}
+F(x)=f(x) dt+e^{-\rho dt} E[F(x+dx)].
+\end{align*}
+Note that this is already an approximation in regarding $f(x)$ as constant over the small interval $dt$. The resulting error in $f(x) dt$ is of order $dt^{2}$, and therefore negligible in the limit as $dt$ goes to zero. We further simplify the expression, continuing to ignore terms that are small relative to $dt$.
+\begin{align*}
+F(x) & =f(x) dt+(1-\rho dt)(F(x)+\{E[F(x+dx)]-F(x)\}) \\
+& =f(x) dt+F(x)-\rho F(x) dt+\{E[F(x+dx)]-F(x)\}
+\end{align*}
+Therefore
+\begin{align}
+\rho F(x) dt & =f(x) dt+\{E[F(x+dx)]-F(x)\} \\
+& =f(x) dt+E[d F]
+\label{eq: 2.9}
+\end{align}
+By Ito's Lemma,
+\begin{align*}
+E[d F]=\mu F^{\prime}(x) dt+\frac{1}{2} \sigma^{2} F^{\prime \prime}(x) dt.
+\end{align*}
+Substituting into (\ref{eq: 2.9}) and dividing by $dt$, we get
+\begin{align}
+\frac{1}{2} \sigma^{2} F^{\prime \prime}(x)+\mu F^{\prime}(x)-\rho F(x)+f(x)=0 . \label{eq: 2.10}
+\end{align}
+
+\subsection{Derivation by Discrete Approximation}
+We regarded Brownian motion as the limit of a discrete random walk, and we can also derive the differential equation (\ref{eq: 2.10}) by that approach.
+
+Label the discrete points in space by $i$, and the discrete time periods by $j$. Let $i_{j}$ denote the position of the particle at time $j$; future positions are of course random variables given our initial information at $j=0$. Then the expected present value can be written as
+\begin{align*}
+F(i)=E\left[\sum_{j=0}^{\infty} f(i_{j}) \Delta t e^{-j \rho \Delta t} \mid i_{0}=i\right]
+\end{align*}
+After the first step, the same problem restarts with a new initial state $i_{1}$, which from the time $0$ perspective can be either $(i+1)$ with probability $p$ or $(i-1)$ with probability $q=1-p$. Thus the expectation on the right hand side becomes
+\begin{align*}
+F(i)=f(i) \Delta t+e^{-\rho \Delta t}[p F(i+1)+q F(i-1)]
+\end{align*}
+Now expand the right hand side, ignoring terms of higher order than $\Delta t$. Note that
+\begin{align*}
+e^{-\rho \Delta t}=1-\rho \Delta t+\ldots
+\end{align*}
+
+Next, using definition of $p$, $q$ and and the relation between the stepsize $\Delta h$ and the time interval $\Delta t$ in the approximation of Brownian motion with a binomial, that is,
+
+\begin{align*}
+p&=\frac{1}{2}\left[1+\frac{\mu}{\sigma^{2}} \Delta h\right],\\
+\quad q&=\frac{1}{2}\left[1-\frac{\mu}{\sigma^{2}} \Delta h\right],\\
+\Delta h&=\sigma \sqrt{\Delta t},
+\end{align*}
+we get
+\begin{align*}
+p F(i+1)+q F(i-1) &= \frac{1}{2}\left[1+(\mu / \sigma) \sqrt{\Delta t}\right] F(x+\Delta h) +\frac{1}{2}\left[1-(\mu / \sigma) \sqrt{\Delta t}\right] F(x-\Delta h) \\
+&= \frac{1}{2}\left[1+(\mu / \sigma) \sqrt{\Delta t}\right]\left[F(x)+F^{\prime}(x) \Delta h+\frac{1}{2} F^{\prime \prime}(x)(\Delta h)^{2}+\ldots\right] + \\
+&\quad +\frac{1}{2}\left[1-(\mu / \sigma) \sqrt{\Delta t}\right]\left[F(x)-F^{\prime}(x) \Delta h+\frac{1}{2} F^{\prime \prime}(x)(\Delta h)^{2}+\ldots\right] \\
+& =  F(x)+\mu F^{\prime}(x) \Delta t+\frac{1}{2} \sigma^{2} F^{\prime \prime}(x) \Delta t+\ldots
+\end{align*}
+Substituting and simplifying yields the same equation as (\ref{eq: 2.10}) above.
+
+
+\begin{optional}
+\subsection{The General Solution to the Present Value Differential Equation}
+The differential equation (\ref{eq: 2.10}) is linear (in the dependent variable and its derivatives). Therefore its general solution is the sum of two parts: any solution of the equation as a whole (the particular integral) and the general solution of the homogeneous part of the equation with the term $f(x)$ omitted (the complementary function).
+
+To find the complementary function, write the homogeneous part of the equation:
+\begin{align*}
+\frac{1}{2} \sigma^{2} F^{\prime \prime}(x)+\mu F^{\prime}(x)-\rho F(x)=0 .
+\end{align*}
+Its general solution can be expressed as a linear combination of two independent solutions. If we try solutions of the form $\exp(\xi x)$, we get
+\begin{align*}
+\exp (\xi x)\left(\frac{1}{2} \sigma^{2} \xi^{2}+\mu \xi-\rho\right)=0
+\end{align*}
+Since the exponential is always positive, this holds if and only if
+\begin{align*}
+\rho-\mu \xi-\frac{1}{2} \sigma^{2} \xi^{2}=0
+\end{align*}
+This is just the quadratic $\phi(\xi)$ introduced in (\ref{eq: 2.4}) above. So $\xi$ must equal $-\alpha$ or $\beta$, the two roots. The two roots are distinct, since $\rho>0$ ensures that the roots have opposite signs. Therefore the two solutions $e^{-\alpha x}$ and $e^{\beta x}$ are independent, and the general solution is
+\begin{align}
+A e^{-\alpha x}+B e^{\beta x}, \label{eq: 2.11}
+\end{align}
+where $A$ and $B$ are undetermined constants.
+
+Finding a particular solution to the full equation (\ref{eq: 2.10}) is often an art, but for the exponential and polynomial forms we tried before, there are obvious choices.
+
+Begin with the exponential case. When $f(x)=\exp (\lambda x)$, the form $F(x)=K \exp (\lambda x)$ suggests itself. Substituting in (\ref{eq: 2.10}), we have
+\begin{align*}
+K\left(\frac{1}{2} \sigma^{2} \lambda^{2}+\mu \lambda-\rho\right) \exp (\lambda x)+\exp (\lambda x)=0
+\end{align*}
+or
+\begin{align*}
+K=-1 /\left(\frac{1}{2} \sigma^{2} \lambda^{2}+\mu \lambda-\rho\right)=1 / \phi(\lambda)
+\end{align*}
+using the notation of our quadratic (\ref{eq: 2.4}). When $\lambda$ lies between the two roots $-\alpha$ and $\beta$ of the quadratic, $\phi(\lambda)$ is positive. Then $K$ is also positive.
+
+Combining this particular solution and the earlier complementary function (\ref{eq: 2.11}), the general solution for the expected present value in the exponential case becomes
+\begin{align}
+F(x)=\frac{1}{\phi(\lambda)} e^{\lambda x}+A e^{-\alpha x}+B e^{\beta x} \label{eq: 2.12}
+\end{align}
+where the constants $A$ and $B$ remain to be determined.
+
+In fact a simple argument based on the definition (\ref{eq: 2.1}) shows that when the flow $f(x)$ is the exponential $\exp (\lambda x)$, the expected present values $F(x)$ must be a multiple of $\exp (\lambda x)$. To prove this, consider $F(x+h)$ for any $h$. This means the initial point of the process $x_{t}$ is now taken as $x_{0}=x+h$. For each path of the Brownian particle starting at $x$, there is an equiprobable parallel path starting at $x+h$.
+
+Along the latter path, the flow is always $\exp (\lambda h)$ times that along the former. Then the same must hold for the expected present values. In particular,
+\begin{align*}
+F(h)=e^{\lambda h} F(0)
+\end{align*}
+To give a somewhat more formal argument, define $y_{t}=x_{t}-h$, and consider the stochastic process $y_{t}$. This is also a Brownian motion with
+\begin{align*}
+d y=dx=\mu dt+\sigma dw
+\end{align*}
+and the initial position $y_{0}=(x+h)-h=x$. The flow benefit can be written
+\begin{align*}
+f(x_{t})=e^{\lambda x_{t}}=e^{\lambda h} e^{\lambda y_{t}}=e^{\lambda h} f\left(y_{t}\right).
+\end{align*}
+Integrating over time and taking expectations, we get
+\begin{align*}
+F(x+h) & =e^{\lambda h} E\left\{\int_{0}^{\infty} f\left(y_{t}\right) e^{-\rho t} dt \mid y_{0}=x\right\} \\
+& =e^{\lambda h} F(x)
+\end{align*}
+Subtracting $F(x)$ from both sides, dividing by $h$, and letting $h$ go to zero, we get
+\begin{align*}
+\lim _{h \rightarrow 0} \frac{F(x+h)-F(x)}{h}=\lim _{h \rightarrow 0} \frac{\exp (\lambda h)-1}{h} F(x),
+\end{align*}
+or
+\begin{align*}
+F^{\prime}(x)=\lambda F(x).
+\end{align*}
+Then $F(x)$ must take the form $K \exp (\lambda x)$ where $K$ is a constant.
+
+The general solution (\ref{eq: 2.12}) above was a combination of three terms, of which only the first, corresponding to the particular solution we guessed initially, had the right exponential form. Thus that guess is in fact the full solution, and both constants $A$ and $B$ in the complementary function (\ref{eq: 2.11}) are zero.
+
+Next consider the polynomial case. When $f(x)=x^{n}$ for a positive integer $n$, a natural guess for the particular integral is
+\begin{align}
+F(x)=\sum_{m=0}^{n} a_{m} x^{m} \label{eq: 2.13}
+\end{align}
+Substituting this in (\ref{eq: 2.10}), we get
+\begin{align*}
+\frac{1}{2} \sigma^{2} \sum_{m=2}^{n} m(m-1) a_{m} x^{m-2} & +\mu \sum_{m=1}^{n} m a_{m} x^{m-1} \\
+& -\rho \sum_{m=0}^{n} a_{m} x^{m}+x^{n}=0
+\end{align*}
+
+Collecting like powers of $x$ together, and equating the coefficient of each separately to zero since the equation must hold as an identity in $x$, we find
+\begin{align*}
+a_{n}=1 / \rho, \quad a_{n-1}=n \mu / \rho^{2}
+\end{align*}
+and for $m=0,1,2, \ldots(n-2)$, the recursive relation
+\begin{align}
+\rho a_{m}=(m+1) \mu a_{m+1}+\frac{1}{2}(m+1)(m+2) \sigma^{2} a_{m+2}. \label{eq: 2.14}
+\end{align}
+This determines all the coefficients $a_{m}$. Once again we can verify that the expected present value cannot have any contribution from the exponentials of the complementary function (\ref{eq: 2.11}), and therefore (\ref{eq: 2.13}) is the full solution. This method, while needing a recursive solution, is usually simpler than the power series expansion we developed above.
+
+\subsection{Differential equation for geometric Brownian motion}
+
+Now suppose the underlying variable is $X$, and it follows the a geometric Brownian motion
+\begin{align*}
+dX / X=\nu dt+\sigma d z.
+\end{align*}
+Given a flow cost function $g(X)$, we want to find
+\begin{align}
+G(X)=E\left[\int_{0}^{\infty} g(x_{t}) e^{-\rho t} dt \mid X_{0}=X\right]. \label{eq: 2.15}
+\end{align}
+Proceeding exactly as before, we get the arbitrage equation
+\begin{align*}
+\rho G(X) dt=g(X) dt+E[dG]
+\end{align*}
+and Ito's Lemma gives
+\begin{align*}
+E[dG]=\nu X G^{\prime}(X) dt+\frac{1}{2}(\sigma X)^{2} G^{\prime \prime}(X) dt.
+\end{align*}
+Therefore the basic differential equation for the case of geometric Brownian motion is
+\begin{align}
+\frac{1}{2} \sigma^{2} X^{2} G^{\prime \prime}(X)+\nu X G^{\prime}(X)-\rho G(X)+g(X)=0 \label{eq: 2.16}
+\end{align}
+The complementary function (the general solution of the homogeneous part) of (\ref{eq: 2.16}) is easily seen to be
+\begin{align}
+C X^{-\gamma}+D X^{\delta} \label{eq: 2.17}
+\end{align}
+where $-\gamma$ and $\delta$ are the roots of the quadratic (\ref{eq: 2.8}) for geometric Brownian, and $C, D$ are constants to be determined.
+
+Once again the particular integral must be guessed. Above we considered a flow function of the form $g(X)=X^{\lambda}$. Using the differential equation method, the natural guess for the corresponding expected present value $G(X)$ is $K X^{\lambda}$ where $K$ is a constant to be determined. Substituting in (\ref{eq: 2.16}) we find
+\begin{align*}
+K\left[\frac{1}{2} \sigma^{2} \lambda(\lambda-1)+\nu \lambda-\rho\right] X^{\lambda}+X^{\lambda}=0,
+\end{align*}
+or
+\begin{align*}
+K=-1 /\left[\frac{1}{2} \sigma^{2} \lambda(\lambda-1)+\nu \lambda-\rho\right]=1 / \psi(\lambda),
+\end{align*}
+where $\psi(\lambda)$ is the quadratic for the geometric case, and is positive when $\lambda$ lies between the two roots $-\lambda$ and $\delta$.
+
+An argument similar to that we made above for the case of the arithmetic Brownian motion and an exponential flow shows in the present case that $G(X)$ must take the form $K X^{\lambda}$, in other words it inherits the homogeneity of degree $\lambda$ from $g(X)$. Then the full solution is just the particular integral we guessed; the constants $C$ and $D$ in the complementary function (\ref{eq: 2.17}) are both zero.
+
+We can change variables to transform geometric Brownian motion into an arithmetic one, and this gives an alternative way to find expected present values. Define $x=\ln (X)$, which then follows the arithmetic Brownian motion
+\begin{align*}
+dx=\mu dt+\sigma dw 
+\end{align*}
+with $\mu=\nu-\frac{1}{2} \sigma^{2}$. Now let $f(x)=g\left(e^{x}\right)$, use the earlier (\ref{eq: 2.1}) to get $F(x)$, and then set $G(X)=F(\ln (X))$. Let us check that the transformation yields the same ultimate result as the direct analysis of geometric Brownian motion above. Note that $F(x)=G\left(e^{x}\right)$, so
+\begin{align*}
+F^{\prime}(x)=e^{x} G^{\prime}\left(e^{x}\right)=X G^{\prime}(X)
+\end{align*}
+and
+\begin{align*}
+F^{\prime \prime}(x)=\left(e^{x}\right)^{2} G^{\prime \prime}\left(e^{x}\right)+e^{x} G^{\prime}\left(e^{x}\right)=X^{2} G^{\prime \prime}(X)+X G^{\prime}(X)
+\end{align*}
+Substituting in (\ref{eq: 2.10}), we find
+\begin{align*}
+0 & =\frac{1}{2} \sigma^{2}\left[X^{2} G^{\prime \prime}(X)+X G^{\prime}(X)\right]+\mu X G^{\prime}(X)-\rho G(X)+g(X) \\
+& =\frac{1}{2} \sigma^{2} X^{2} G^{\prime \prime}(X)+\left[\mu+\frac{1}{2} \sigma^{2}\right] X G^{\prime}(X)-\rho G(X)+g(X) \\
+& =\frac{1}{2} \sigma^{2} X^{2} G^{\prime \prime}(X)+\nu X G^{\prime}(X)-\rho G(X)+g(X)
+\end{align*}
+which is just (\ref{eq: 2.16}). Thus the two approaches are mutually consistent. And the transformation of the differential operators casts a new light on the nonlinearity leading to Ito's Lemma from a somewhat different angle.
+\end{optional}
+
+\subsection{General diffusion processes}
+
+If $x$ follows the general diffusion process\begin{align}
+dx=\mu(x, t) dt+\sigma(x, t) dw \label{eq: 1.9dp}
+\end{align}
+rather than a simple Brownian motion, the expected value function $F(x)$ and the flow function $f(x)$ are linked by a differential equation that is a natural generalization of (\ref{eq: 2.10}), namely
+\begin{align}
+\frac{1}{2} \sigma(x)^{2} F^{\prime \prime}(x)+\mu(x) F^{\prime}(x)-\rho F(x)+f(x)=0.  \label{eq:pdv_no_t}
+\end{align}
+
+If $x$ follows the Ito process (\ref{eq: 1.9dp}) whose parameters depend on time as well as the state $x$, or if the flow payoff is a function $f(x, t)$ likewise, or the process ends at a given time $T$ so the time remaining to the end of the horizon matters, then we must allow the expected present value to depend on time too. Applying Ito's Lemma to $F(x, t)$ introduces an additional term for the time derivative, and then the basic equation becomes a partial differential equation
+\begin{align}
+\frac{1}{2} \sigma(x, t)^{2} F_{x x}(x, t) +\mu(x, t) F_{x}(x, t)-\rho F(x, t)+F_{t}(x, t)
+& +f(x, t)=0. \label{eq:pdv}
+\end{align}
+
+\section{Continuous Time Dynamic Programming}
+On an intuitive level, continuous time optimization methods can be viewed as simple extensions of discrete time methods. In continuous time one replaces the summation over time in the objective function with an integral evaluated over time and the difference equation defining the state variable transition function with a (possibly stochastic) differential equation. The optimization problem is
+\begin{align}
+\max_{u_t}\: & E\left[\int_{0}^{T} e^{-\rho t} f(x_t, u_t) dt+e^{-\rho T} R(x_T) \right]\label{eq: obj}\\
+& \text{ s.t. } \notag \\
+dx_t &= \mu(x_t, u_t) dt+ \sigma(x_t,u_t) dw_t, \quad x_0=x \label{eq: dynS}
+\end{align}
+where $x_t$ is the state variable, $u_t$ the control variable, $f$ the flow reward function, $R$ the terminal reward function, $T$ the time horizon, $\mu$ the drift process and $\sigma$ the diffusion process of the Ito process (\ref{eq: dynS}) that determines the dynamics of the state variable $x_t$, and $w_t$ a Brownian motion. The time horizon, $T$, may be infinite (in which case $R(\blank) \equiv 0$), finite, or state dependent.
+
+\subsection{An Informal Derivation of the Continuous Time Bellman Equation}
+Let $\hat{u}_t = \mathbf{u}_t(x_t,t)$ be an optimal control for the problem (\ref{eq: obj})-(\ref{eq: dynS}). The value function
+\begin{align*}
+    F(x) &:= \max_{u_t}\: E\left[\int_{0}^{T} e^{-\rho t} f(x_t, u_t) dt+e^{-\rho T} R(x_T) \right] \\
+    &= E\left[\int_{0}^{T} e^{-\rho t} f(x_t, \hat{u}_t) dt+e^{-\rho T} R(x_T) \right]
+\end{align*}
+is a present discounted value that depends only on $x$ and $t$. The state dynamics
+\begin{align*}
+dx_t &= \mu(x_t, \hat{u}_t) dt+ \sigma(x_t,\hat{u}_t) dw_t
+\end{align*}
+follow an Ito process for $x_t$. We can therefore apply Equation (\ref{eq:pdv_no_t}) so that $F(x)$ satisfies
+\begin{align*}
+\frac{1}{2} \sigma(x,\hat{u})^{2} F^{\prime \prime}(x)+\mu(x,\hat{u}) F^{\prime}(x)-\rho F(x)+f(x,\hat{u})=0
+\end{align*}
+or, re-arranging,
+\begin{align}
+\rho F(x) = f(x,\hat{u}) + \mu(x,\hat{u}) F^{\prime}(x) + \frac{1}{2} \sigma(x,\hat{u})^{2} F^{\prime \prime}(x). \label{eq: pre_hjb}
+\end{align}
+By Ito's lemma, 
+\begin{align*}
+dF_t = \left[\mu(x_t,\hat{u}_t) F^{\prime}(x_t) + \frac{1}{2} \sigma(x_t,\hat{u}_t)^{2} F^{\prime \prime}(x_t)\right]dt+\sigma(x_t,\hat{u}_t) F^{\prime}(x_t) dw_t,
+\end{align*}
+so that
+\begin{align*}
+E_t[dF_t] = \left[\mu(x_t,\hat{u}_t) F^{\prime}(x_t) + \frac{1}{2} \sigma(x_t,\hat{u}_t)^{2} F^{\prime \prime}(x_t)\right]dt 
+\end{align*}
+The last equation allows us to re-write (\ref{eq: pre_hjb}) as 
+\begin{align*}
+\rho F(x) = f(x,\hat{u}) + E_t[dF(x)]/dt. 
+\end{align*}
+We now take an informal step (that can be justified rigorously with more work) and re-write the last equation as
+\begin{align}
+\rho F(x) = \max_u \left\{ f(x,u) + E_t[dF(x)]/dt \right\}. \label{eq: hjb}
+\end{align}
+Equation (\ref{eq: hjb}) is the continuous time analog of the Bellman equation and is called the \emph{Hamilton-Jacobi-Bellman} equation, or \emph{HJB}.
+
+If $f$ depends on $t$, we get the slightly more general
+\begin{align}
+\rho F(x,t) = \max_u \left\{ f(x,u,t) + E_t[dF(x,t)]/dt \right\}. \label{eq: hjb_t}
+\end{align}
+
+
+\subsection{A Derivation of the HJB from the Discrete Time Bellman Equation}
+We now take a different approach and derive the HJB starting from a discrete time Bellman equation
+\begin{equation}
+V(x, t)=\max_{u}\left\{f(x, u,t) \Delta t+ \beta \Delta t E_{t}[V\left(x_{t+\Delta t}, t+\Delta t\right)]\right\}. \label{eq: bellman_beta}
+\end{equation}
+In discrete time, the discount factor is $\beta^t$ with $\beta \in (0,1)$. In continuous time we instead write $\exp(-\rho t)$ with $\rho>0$, as in equation (\ref{eq: obj}). To translate the discrete time discount rate $\beta$ into the continuous time discount rate $\delta$ we set $\beta \Delta t = \exp(-\rho \Delta t)$ and then use the following first-order approximation (to keep the Bellman equation linear in $\Delta t$):
+\begin{align*}
+    \beta \Delta t &= \exp(-\rho \Delta t) \\
+                  &\approx 1-\rho \Delta t \\
+                  &\approx \frac{1}{1+\rho \Delta t} 
+\end{align*}
+Using this approximation, equation (\ref{eq: bellman_beta}) becomes
+\begin{equation*}
+V(x, t)=\max_{u}\left\{f(x, u,t) \Delta t+ \frac{1}{1+\rho t} E_{t}[V\left(x_{t+\Delta t}, t+\Delta t\right)]\right\}.
+\end{equation*}
+Multiplying this by $(1+\rho \Delta t) / \Delta t$ and rearranging:
+\begin{equation*}
+\rho V(x, t)=\max _{u}\left(f(x, u,t)(1+\rho \Delta t)+\frac{E_{t}\left[V\left(x_{t+\Delta t}, t+\Delta t\right)-V(x, t)\right]}{\Delta t}\right).
+\end{equation*}
+Taking the limits of this expression at $\Delta t \rightarrow 0$ yields the HJB, the continuous time version of Bellman's equation:
+\begin{equation}
+\rho V(x, t)=\max_{u}\left(f(x,u,t)+\frac{E_{t} dV(x, t)}{dt}\right). \label{eq: 10.2}
+\end{equation}
+
+\subsection{The Concentrated HJB}
+Starting from (\ref{eq: 10.2}) (or equivalently from (\ref{eq: 10.2})) our goal is to derive a partial differential equation (PDE) that can be solved.
+
+Applying Ito's lemma to $V(x,t)$,
+\begin{equation*}
+dV_t = \left[\frac{\partial V}{\partial t}(x_t,t)+ g(x_t, u_t) V_{x}(x_t,t)+\frac{1}{2} \sigma(x_t,u_t)^{2} V_{xx}(x_t,t)\right] dt+\sigma(x_t,u_t) V_{x}(x_t,t) dw_t
+\end{equation*}
+where $V_x(x_t,t)$ and $V_{xx}(x_t,t)$ denote, respectively, the first and second partial derivatives of $V$ with respect to its first argument, evaluated at $(x_t,t)$. Taking expectations and ``dividing'' by $dt$ we see that the term $E_{t} dV(x, t) / dt$ can be replaced, resulting in the following form for the Hamilton-Jacobi-Bellman equation
+\begin{equation*}
+\rho V(x,t) = \max_{u} \left\{ f(x, u)+\frac{\partial V}{\partial t}(x,t)+ g(x,u) V_{x}(x,t)+\frac{1}{2} \sigma^{2}(x,u) V_{xx}(x,t) \right\}
+\end{equation*}
+The FOC of the maximization problem is:
+\begin{equation*}
+f_{u}(x, u) + g_{u}(x, u) V_{x}(x,t) + \sigma(x,u) \sigma_u(x,u) V_{xx}(x,t)=0, \label{eq: 10.3}
+\end{equation*}
+where $f_{u}(x, u)$, $g_{u}(x, u)$, and $\sigma_u(x,u)$ are partial derivatives with respect to the second argument of, respectively, $f$, $g$, and $\sigma$, all evaluated at $(x, u)$.
+
+If there are constraints on the control variable, they can be imposed at this maximization stage. For example, one can use Lagrange multipliers and, for inequality constraints, Karush-Kuhn-Tucker type conditions.
+
+Solving the FOC for $u$ allows us to write
+\begin{equation*}
+u(x,t) = u^*(x, t, V_{x}(x,t), V_{xx}(x,t)), \label{eq: ustar}
+\end{equation*}
+for some function $u^*$. In practice, we may not be able to find $u^*$ explicitly and may have to resort to numerical methods.
+
+Plugging $u^*$ into equation (\label{eq: 10.3}) gives the \emph{concentrated HJB equation}:
+\begin{equation}
+\rho V(x,t)=f(x,u^{*})+\frac{\partial V}{\partial t}(x,t)+g(x,u^{*})V_{x}(x,t)+\frac{1}{2}\sigma^{2}(x,u^{*})V_{xx}(x,t),\label{eq: hjb_conc}
+\end{equation}
+where we have suppressed the arguments of $u^*$ for notational convenience. 
+
+The concentrated HJB (\ref{eq: hjb_conc}) is a PDE that we can (attempt to) solve. When the horizon is finite, we solve (\ref{eq: hjb_conc}) subject to the \emph{terminal condition} or \emph{boundary condition}
+\begin{equation*}
+    V(x,T) = R(x), \quad \forall x
+\end{equation*}
+When the horizon is infinite, the HJB is only a necessary condition for optimality. Sufficiency can be established by making further assumptions, just as in the discrete time case in which more assumptions were needed to guarantee the value function is finite. One option is to assume or derive \emph{transversality conditions} which are, informally speaking, boundary conditions ``at infinity''. Another option is to impose smoothness conditions on the value function, e.g., the value function must be square integrable. In stochastic control, such sufficiency results are called \emph{verification theorems}. One needs to first solve the HJB, then apply verification.
+
+Another difference between finite and infinite time horizons is that in finite time horizon problems, the value function is a function of time and the time derivative $V_{t}$ appears in the Bellman's equation. In infinite time horizon problems, however, the value function becomes time invariant, implying that $V$ is a function of $x$ alone and thus $V_{x}=0$. In this case, the HJB simplifies to
+\begin{equation*}
+\rho V(x)=\max_{u}\left\{ f(x,u)+g(x,u)V_{x}(x)+\frac{1}{2}\sigma^{2}(x,u)V_{xx}(x)\right\}.
+\end{equation*}
+
+Notice also that the HJB is not stochastic; the expectation operator and the randomness in the problem have been eliminated by using Ito's Lemma. This effectively transforms a stochastic dynamic problem into a deterministic one.
+
+\subsection{More on Boundary Conditions}
+As mentioned above, satisfying the HJB is a necessary but not sufficient condition for optimality. In general, there will be many solutions, many of which are of no interest to us. Furthermore, from a numerical point of view, without further boundary conditions or other conditions imposed on the problem, it will be luck as to whether the derived solution is indeed the correct one. Unfortunately, there are no general results on this regard and we often resort to economic intuition to add further structure to the problem.
+
+Many problems in economics specify a reward function that has a singularity at an endpoint. Typical examples include utility of consumption functions for which zero consumption is infinitely bad. The commonly used constant relative risk aversion family of utility functions
+\begin{equation*}
+U(c)=\left(c^{\gamma}-1\right) / \gamma
+\end{equation*}
+(with $\ln (c)$ when $\gamma=0$ ) is a case in point. Economic reasoning would suggest that if consumption is derived from a capital or resource stock and that stock goes to zero, consumption must also go to zero and hence the value of a zero stock, which equals the discounted stream of utility from that stock must be $-\infty$. Furthermore, the marginal value of the stock when the stock gets low becomes quite large, with $V_{x}=\infty$ as $x \rightarrow 0$. Although this reasoning makes good sense from an economic perspective, it raises some difficulties for numerical analysis.
+
+As a rule of thumb, one needs to impose a boundary condition for each derivative that appears in Bellman's equation. For a single state problem, this means that there are two boundary conditions needed. In a two-dimensional problem with only one stochastic state variable, we will need two boundary conditions for the stochastic state and one for the non-stochastic one. For example, suppose Bellman's equation has the form
+\begin{equation*}
+\rho V=f(x, R, u)+g(x, R, u) V_{R}+\mu(x) V_{x}+\frac{1}{2} \sigma^{2} x^{2} V_{xx}
+\end{equation*}
+where $x$ and $R$ are state variables. To completely specify the problem we could impose a condition at a point $R=R_{b}$, e.g. $V\left(x, R_{b}\right)=H(x)$ and conditions at $x=\underline{x}$ and $x=\bar{x}$, say $V_{xx}(\underline{x}, R)=V_{xx}(\bar{x}, R)=0$.
+
+Like all rules of thumb, however, there are exceptions. The exceptions tend to arise in problems involving singular processes for which the variance term vanishes at a boundary. For example, it may not be necessary to impose explicit boundary conditions when the state variable is governed by
+\begin{equation*}
+dx=\mu(x, u) dt+\sigma x dw
+\end{equation*}
+where $\mu(0,0)>0$ and $u$ is constrained such that $u=0$ if $x=0$. Zero is a natural boundary for this process, meaning that $x(t) \geq 0$ with probability 1. In this case, it may not be necessary to impose conditions on the boundary at $x=0$. An intuitive way to think of this situation is that a second order differential equation becomes effectively first order as the variance goes to zero. We may, therefore, not need to impose further conditions to achieve a well defined solution.
+
+\subsection{Euler Equation Methods}
+As in the discrete time case, it may be possible to eliminate the value function and express the optimality conditions in terms of the state and control alone, i.e., to derive an Euler equation. In the continuous time case, however, Euler equation methods are most useful in deterministic problems.
+Suppose
+\begin{equation*}
+dx=g(u, x) dt
+\end{equation*}
+The Bellman Equation is
+\begin{equation*}
+\rho V(x)=\max_{u} f(u, x)+g(u, x) V^{\prime}(x)
+\end{equation*}
+with FOC
+\begin{equation*}
+f_{u}(u, x)+g_{u}(u, x) V^{\prime}(x)=0.
+\end{equation*}
+
+Let $h(u, x)=-f_{u}(u, x) / g_{u}(u, x)$, so the FOC can be written
+\begin{equation}
+V^{\prime}(x)=h(u, x) \label{eq: 10.7}
+\end{equation}
+Using the Envelope Theorem applied to the Bellman Equation,
+\begin{equation*}
+\left(\rho-g_{x}(u, x)\right) V^{\prime}(x)-f_{x}(u, x)=g(u, x) V^{\prime \prime}(x)
+\end{equation*}
+
+Using $h$ and its total derivative with respect to $x$:
+\begin{equation*}
+V^{\prime \prime}(x)=h_{x}(u, x)+h_{u}(u, x) \frac{du}{dx}
+\end{equation*}
+the terms involving $V$ can be eliminated:
+\begin{equation}
+(\rho-g_{x}(u, x)) h(u, x)-f_{x}(u, x)=g(u, x)\left[h_{x}(u, x)+h_{u}(u, x) \frac{du}{dx}\right] \label{eq: 10.8}
+\end{equation}
+This is a first-order differential equation that can be solved for the optimal feedback rule, $u(x)$. The ``boundary'' condition is that the solution pass through the steady state at which $dx/dt=0$ and $du/dt=0$. The first of these conditions is that $g(u,x)=0$, which in turn implies that the left hand side of (\ref{eq: 10.8}) equals $0$:
+\begin{equation*}
+(\rho-g_{x}(u, x)) h(u, x)-f_{x}(u, x)=0.
+\end{equation*}
+
+% \section{Stochastic LQ Problems with Constraints}
+% We study the minimization problem of the cost functional with discount rate $\alpha>0$ :
+
+% \begin{equation*}
+% J(c)=E\left[\int_{0}^{\infty} e^{-\alpha t} X_{t}^{2} d t\right]
+% \end{equation*}
+
+% over $\mathcal{A}$ subject to a one-dimensional stochastic differential system
+
+% \begin{equation*}
+% d X_{t}=c_{t} d t+d B_{t}, \quad X_{0}=x \in \mathbf{R} \tag{5.29}
+% \end{equation*}
+
+% where $\mathcal{A}$ is the class of $\left\{\mathcal{F}_{t}^{B}\right\}$-progressively measurable processes $c=\left\{c_{t}\right\}$ with hard constraint
+
+% \begin{equation*}
+% \left|c_{t}\right| \leq 1, \quad \text { a.s., for all } t \geq 0 \text {. }
+% \end{equation*}
+
+% The control $c^{*}=\left\{c_{t}^{*}\right\} \in \mathcal{A}$ is said to be optimal if $J\left(c^{*}\right) \leq J(c)$ for all $c \in \mathcal{A}$. The HJB equation associated with this problem is given by
+
+% \begin{equation*}
+% -\alpha v+\frac{1}{2} v^{\prime \prime}+\min _{|c| \leq 1} c v^{\prime}+x^{2}=0 \quad \text { in } \mathbf{R} \tag{5.30}
+% \end{equation*}
+
+% Theorem 5.4.1. Under $\alpha>0$, there exists a convex solution $v \in C^{2}(\mathbf{R})$ of (5.30) uniquely.
+
+% Proof. Define $v$ by the value function
+
+% \begin{equation*}
+% v(x)=\inf _{c \in \mathcal{A}} E\left[\int_{0}^{\infty} e^{-\alpha t} X_{t}^{2} d t\right] \tag{5.31}
+% \end{equation*}
+
+% where the infimum is taken over all systems $\left(\Omega, \mathcal{F}, P,\left\{\mathcal{F}_{t}\right\} ;\left\{B_{t}\right\},\left\{c_{t}\right\}\right)$.
+
+% (1) We claim that $v$ is convex. Let $x_{i} \in \mathbf{R}, i=1,2$ and $0 \leq \xi \leq 1$. For any $\varepsilon>0$, there is $c^{(i)} \in \mathcal{A}$ such that
+
+% \begin{equation*}
+% E\left[\int_{0}^{\infty} e^{-\alpha t}\left(X_{t}^{(i)}\right)^{2} d t\right]<v\left(x_{i}\right)+\varepsilon
+% \end{equation*}
+
+% where $\left\{X_{t}^{(i)}\right\}$ is the solution of (5.29) corresponding to $c^{(i)}$. We may consider that
+
+% \begin{equation*}
+% d X_{t}^{(i)}=c_{t}^{(i)} d t+d B_{t}, \quad X_{0}^{(i)}=x_{i} \in \mathbf{R},
+% \end{equation*}
+
+% on the same probability space. We set $X_{t}^{(\xi)}=\xi X_{t}^{(1)}+(1-\xi) X_{t}^{(2)}$ and $c_{t}^{(\xi)}=\xi c_{t}^{(1)}+(1-\xi) c_{t}^{(2)}$, which belongs to $\mathcal{A}$. Clearly,
+
+% \begin{equation*}
+% d X_{t}^{(\xi)}=c_{t}^{(\xi)} d t+d B_{t}, \quad X_{0}^{(\xi)}=\xi x_{1}+(1-\xi) x_{2}
+% \end{equation*}
+
+% Hence
+
+% \begin{equation*}
+% \begin{aligned}
+% v\left(\xi x_{1}+(1-\xi) x_{2}\right) \leq & E\left[\int_{0}^{\infty} e^{-\alpha t}\left(X_{t}^{(\xi)}\right)^{2} d t\right] \\
+% \leq & \xi E\left[\int_{0}^{\infty} e^{-\alpha t}\left(X_{t}^{(1)}\right)^{2} d t\right] \\
+% & +(1-\xi) E\left[\int_{0}^{\infty} e^{-\alpha t}\left(X_{t}^{(2)}\right)^{2} d t\right] \\
+% < & \xi v\left(x_{1}\right)+(1-\xi) v\left(x_{2}\right)+\varepsilon
+% \end{aligned}
+% \end{equation*}
+
+% Thus, letting $\varepsilon \rightarrow 0$, we obtain the convexity of $v$.
+
+% (2) By (5.31), we have
+
+% \begin{equation*}
+% 0 \leq v(x) \leq E\left[\int_{0}^{\infty} e^{-\alpha t}\left(x+B_{t}\right)^{2} d t\right] \leq C\left(1+|x|^{2}\right)
+% \end{equation*}
+
+% for some constant $C>0$. By the same line as Proposition 3.3.1, taking $k=2$ and sufficiently small $L>0$, we see that $v$ satisfies the uniformly continuity with 2 weight, that is,
+
+% \begin{equation*}
+% \begin{aligned}
+% & \forall \rho>0, \quad \exists C_{\rho}>0:|v(x)-v(y)| \leq C_{\rho}|x-y|^{2} \\
+% & \quad+\rho\left(1+|x|^{2}+|y|^{2}\right), \quad x, y \in \mathbf{R} .
+% \end{aligned}
+% \end{equation*}
+
+% Hence, by Theorem 3.3.2, the DPP holds for $v$, that is,
+
+% \begin{equation*}
+% v(x)=\inf _{c \in \mathcal{A}} E\left[\int_{0}^{\tau} e^{-\alpha t} X_{t}^{2} d t+e^{-\alpha \tau} v\left(X_{\tau}\right)\right], \quad \tau \in \mathcal{S}_{b}
+% \end{equation*}
+
+% We note that
+
+% \begin{equation*}
+% \begin{aligned}
+% & E\left[\sup _{0 \leq t \leq h}\left|X_{t}-X_{0}\right|^{2}\right] \leq 2 E\left[\left(\int_{0}^{h}\left|c_{t}\right| d t\right)^{2}\right. \\
+% & \left.\quad+\sup _{0 \leq t \leq h}\left|B_{t}\right|^{2}\right] \leq 2\left(h^{2}+4 h\right) \quad \text { as } h \rightarrow 0
+% \end{aligned}
+% \end{equation*}
+
+% and
+
+% \begin{equation*}
+% \begin{aligned}
+% \sup _{0 \leq t \leq h} E\left[\left|X_{t}^{2}-X_{0}^{2}\right|\right] & \leq \sup _{0 \leq t \leq h}\left(E\left[\left|X_{t}-X_{0}\right|^{2}\right]\right)^{1 / 2}\left(E\left[\left|X_{t}+X_{0}\right|^{2}\right]\right)^{1 / 2} \\
+% & \rightarrow 0 \text { as } h \rightarrow 0 .
+% \end{aligned}
+% \end{equation*}
+
+% By the same line as Theorem 4.3.1, $v$ is a unique viscosity solution of (5.30).
+
+% (3) Along (a)-(c), we here show the smoothness of $v$. Let $a<b$ be arbitrary. We consider the boundary value problem:
+
+% \begin{equation*}
+% \left\{\begin{array}{c}
+% -\alpha w+\frac{1}{2} w^{\prime \prime}+\min _{|c| \leq 1} c w^{\prime}+x^{2}=0 \quad \text { in }(a, b)  \tag{5.32}\\
+% w(a)=v(a), \quad w(b)=v(b)
+% \end{array}\right.
+% \end{equation*}
+
+% where the boundary condition is given by the viscosity solution $v$ of (5.30). It is clear that $v$ is a viscosity solution of (5.32) in $(a, b)$. By Theorem 5.3.7,
+
+% (5.32) admits a solution $w \in C^{2}(a, b) \cap C[a, b]$, which is also a viscosity solution of (5.32). By the comparison principle in Theorem 5.3.1, we have $w=v$ in $[a, b]$ and thus $v \in C^{2}(\mathbf{R})$.
+
+% Let us consider
+
+% \begin{equation*}
+% d X_{t}^{*}=F\left(v^{\prime}\left(X_{t}^{*}\right)\right) d t+d B_{t} . \quad X_{0}^{*}=x . \tag{5.33}
+% \end{equation*}
+
+% Here $F(x)$ denotes the minimizer of $\min _{|c| \leq 1} c x$, that is, $F(x)=-\operatorname{sgn}(x)$.
+
+% Theorem 5.4.2. We make the assumption of Theorem 5.4.1. Then the optimal control $\left\{c_{t}^{*}\right\}$ is given by the feedback form:
+
+% \begin{equation*}
+% c_{t}^{*}=F\left(v^{\prime}\left(X_{t}^{*}\right)\right) \text {. }
+% \end{equation*}
+
+% Proof.
+
+% (1) We claim that there exists a unique strong solution $\left\{X_{t}^{*}\right\}$ to (5.33). By Theorem 2.4.6, (5.33) admits a weak solution. Let $\left\{X_{t}^{(i)}\right\}, i=1,2$, be two solutions of (5.33). Then
+
+% \begin{equation*}
+% d\left(X_{t}^{(1)}-X_{t}^{(2)}\right)=\left\{-\operatorname{sgn}\left(v^{\prime}\left(X_{t}^{(1)}\right)\right)+\operatorname{sgn}\left(v^{\prime}\left(X_{t}^{(2)}\right)\right)\right\} d t, \quad X_{0}^{(1)}-X_{0}^{(2)}=0 .
+% \end{equation*}
+
+% By convexity, $-\operatorname{sgn}\left(v^{\prime}(x)\right)$ is nonincreasing and hence
+
+% \begin{equation*}
+% (x-\bar{x})\left\{-\operatorname{sgn}\left(v^{\prime}(x)\right)+\operatorname{sgn}\left(v^{\prime}(\bar{x})\right)\right\} \leq 0, \quad x, \bar{x} \in \mathbf{R} .
+% \end{equation*}
+
+% Thus
+
+% \begin{equation*}
+% \left(X_{t}^{(1)}-X_{t}^{(2)}\right)^{2} \leq 0, \quad \text { for all } t \geq 0 \quad \text { a.s. }
+% \end{equation*}
+
+% This implies that the pathwise uniqueness holds for (5.33). By Theorem 2.5.3, we obtain a strong solution $\left\{X_{t}^{*}\right\}$ to (5.33).
+
+% (2) For optimality, we apply Itô's formula to obtain
+
+% \begin{equation*}
+% \begin{aligned}
+% e^{-\alpha t} v\left(X_{t}^{*}\right)= & v(x)+\int_{0}^{t} e^{-\alpha s}\left\{-\alpha v\left(X_{t}^{*}\right)+v^{\prime}\left(X_{s}^{*}\right) c_{s}^{*}+\frac{1}{2} v^{\prime \prime}\left(X_{s}^{*}\right)\right\} d s \\
+% & +\int_{0}^{t} e^{-\alpha s} v^{\prime}\left(X_{s}^{*}\right) d B_{s}, \quad \text { a.s. }
+% \end{aligned}
+% \end{equation*}
+
+% By (5.30), we have
+
+% \begin{equation*}
+% E\left[e^{-\alpha\left(t \wedge \tau_{n}\right)} v\left(X_{t \wedge \tau_{n}}^{*}\right)\right]+E\left[\int_{0}^{t \wedge \tau_{n}} e^{-\alpha s}\left(X_{s}^{*}\right)^{2} d s\right]=v(x),
+% \end{equation*}
+
+% where $\left\{\tau_{n}\right\}$ is a sequence of localizing stopping times $\tau_{n} \nearrow \infty$ of the local martingale. Note that $\left\{c_{t}^{*}\right\}$ belongs to $\mathcal{A}$ and
+
+% \begin{equation*}
+% E\left[\sup _{n} v\left(X_{t \wedge \tau_{n}}^{*}\right)\right] \leq C\left(1+|x|^{2}+t^{2}+t\right) .
+% \end{equation*}
+
+% Letting $n \rightarrow \infty$ and then $t \rightarrow \infty$, we get
+
+% \begin{equation*}
+% J\left(c^{*}\right)=E\left[\int_{0}^{\infty} e^{-\alpha t}\left(X_{t}^{*}\right)^{2} d t\right]=v(x)
+% \end{equation*}
+
+\end{document}
