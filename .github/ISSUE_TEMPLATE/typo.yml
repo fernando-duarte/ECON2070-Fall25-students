@@ -1,0 +1,21 @@
+name: "Typo / minor fix"
+description: "Report a typo or small formatting issue"
+labels: ["typo"]
+body:
+  - type: input
+    id: page
+    attributes:
+      label: Page URL or PDF page
+      description: "Paste the site URL or note the PDF page number"
+    validations: { required: true }
+  - type: textarea
+    id: details
+    attributes:
+      label: Describe the issue
+      placeholder: "What's wrong? Paste the original text/snippet if helpful."
+    validations: { required: true }
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed fix (optional)
+      placeholder: "Suggest replacement text or attach a patch."

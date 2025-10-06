@@ -1,0 +1,162 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amsfonts,wrapfig,hyperref}
+\usepackage[left=1in, right=1in, top=1in, bottom=1in]{geometry}
+\usepackage{titlesec}
+\usepackage{amssymb,amsbsy}
+\usepackage{amsthm}
+\usepackage{enumitem,graphicx,enumerate}
+\usepackage{authblk,bm,xcolor,color,cancel}
+\usepackage{changepage}
+\usepackage{MnSymbol}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\p}{\mathbb{P}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\G}{\mathcal{G}}
+\newcommand{\Om}{\Omega}
+\newcommand{\tp}{\tilde{\p}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
+\newcommand{\infint}{\int_{-\infty}^{\infty}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\eps}{\epsilon}
+\DeclareMathOperator{\Ima}{Im}
+\newcommand{\fa}{\; \forall \;}
+\newcommand{\df}[1]{\textbf{Def. #1:}}
+\newcommand{\pspace}{\left(\Omega,\F,\p\right)}
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\st}{\text{ s.t. }}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\veps}{\varepsilon}
+\newcommand{\exs}{\exists \;}
+\newcommand{\mylabel}[2]{#2\def\@currentlabel{#2}\label{#1}}
+\newcommand{\pr}[1]{ \item[\mylabel{}{#1.}]}
+\newcommand{\isgeq}{\stackrel{?}{\geq}}
+\newcommand{\isleq}{\stackrel{?}{\leq}}
+\newcommand{\limit}[1]{\underset{#1}{\lim}}
+\newcommand{\cont}{\Rightarrow\!\Leftarrow}
+\newcommand{\seq}[1]{\left\{ #1 \right\}}
+\newtheorem{prop}{Proposition}
+\newtheorem*{remark}{Remark}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[]{Lemma}
+\newtheorem{corollary}{Corollary}[theorem]
+\theoremstyle{definition}
+\newtheorem{exmp}{\Example}[section]
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\title{Shreve Stochastic Calculus Homework: Chapter 3 \vspace{-1eX}}
+\author{Benjamin Marrow \vspace{-1.5eX}}
+\date{ August 2018  \vspace{-1eX}}
+\begin{document}
+
+\maketitle
+
+% \tableofcontents
+% \clearpage
+
+\section*{Chapter 3}
+\begin{enumerate}
+    \pr{3.2} Let $W(t), t \geq 0,$ be a Brownian motion, and let $\F(t), t \geq 0,$ be a filtration for this Brownian motion. Show that $W^2(t)-t$ is a martingale.
+    
+    \begin{proof}
+    \begin{align}
+\E\left[ W^{2}(t)-t|\F(s)\right]  &=\E\left[ \left( \left( W(t)-W(s)\right)
+^{2}+2W(t)W(s)-W^{2}(s)\right) -t|\F(s)\right]  \\
+&=\E\left[ \left( W(t)-W(s)\right) ^{2}|\F(s)\right] +2\E\left[ W(t)W(s)|\F(s)
+\right] -\E\left[ W^{2}(s)|\F(s)\right] -\E\left[ t|\F(s)\right]  \\
+&=\E\left[ \left( W(t)-W(s)\right) ^{2}|\F(s)\right] +2W(s)\E\left[ W(t)|\F(s)
+\right] -W^{2}(s)\E\left[ 1|\F(s)\right] -t \\
+&=\E\left[ \left( W(t)-W(s)\right) ^{2}|\F(s)\right] +2W^{2}(s)-W^{2}(s)-t \\
+&=\Var\left[W(t)-W(s)|\F(s)\right] +W^{2}(s)-t=W^{2}(s)-s \\
+&=\left( t-s\right) +W^{2}(s)-t=W^{2}(s)-s 
+\end{align}
+    In line (1), we make the substitution: $$W^2(t)=\big( W(t)-W(s) \big)^2 + 2W(t)W(s)-W^2(s)$$
+    In line (2), we use linearity of conditional expectations on line (1).
+    In line (3), we ``take out what is known" of the middle term ($W(s)$ and hence $W^2(s)$ is known by $\F(s)$). In line (4), we observe that $\E[W(t)|\F(s)]=W(s)$, as $W(t)$ is a Brownian motion and hence is a martingale. Finally, in line (5) we simplify the first term (Since $\E[W(t)-W(s)|\F(s)]=0,$ it follows that $\Var[W(t)-W(s)|\F(s)]=\E[W(t)-W(s)|\F(s)]^2$.
+    \end{proof}
+    
+    \pr{3.3} (Normal Kurtosis). The \textit{kurtosis} of a random variable is defined to be the ratio of its fourth central moment to the square of its variance. For a normal random variable, the kurtosis is $3$. This exercise verifies this fact.
+    
+    Let $X$ be a normal random variable with mean $\mu$, so that $X-\mu$ has mean $0$. Let the variance of $X$, which is also the variance of $X-\mu$, be $\sigma^2$. In (3.2.13), we computed the moment-generating function of $X-\mu$ to be $\varphi(u) = \E e^{u(X-\mu)}=e^{\frac{1}{2}u^2 \sigma^2}$, where $u$ is a real variable. Differentiating this function with respect to $u$, we obtain:
+    $$ \varphi'(u) = \E\left[ (X-\mu) e^{u(X-\mu)}\right] = \sigma^2 ue^{\frac{1}{2}\sigma^2u^2}$$
+    and, in particular, $\varphi'(0) = \E(X-\mu)=0$. Differentiating again, we obtain:
+    $$ \varphi''(u) = \E\left[ (X-\mu)^2 e^{u(X-\mu)}\right] = (\sigma^2+\sigma^4u^2) e^{\frac{1}{2}\sigma^2u^2}$$
+    and, in particular, $\varphi''(0) = \E(X-\mu)^2=\sigma^2$. Differentiate two more time and obtain the normal kurtosis formula $\E\left[ (X-\mu)^4\right]=3\sigma^4$.
+    
+
+    
+    \begin{proof}
+    This is a straightforward use of the chain rule:
+    \begin{align*}
+\phi ^{\prime }(u) =&E\left[ \left( X-\mu \right) e^{u(X-\mu )}\right] =\sigma ^{2}ue^{\frac{1}{2}\sigma ^{2}u^{2}} \\
+\phi ^{\prime \prime }(u) =&E\left[ \left( X-\mu \right) ^{2}e^{u(X-\mu )}
+\right] =\left( \sigma ^{2}+\sigma ^{4}u^{2}\right) e^{\frac{1}{2}\sigma^{2}u^{2}} \\
+\phi ^{\prime \prime \prime }(u) =&\left( \sigma ^{2}+\sigma^{4}u^{2}\right) e^{\frac{1}{2}\sigma^{2}u^{2}}u\sigma ^{2}+e^{\frac{1}{2}
+\sigma^{2}u^{2}}2\sigma ^{4}u \\
+=&\left( 3\sigma ^{4}u+\sigma ^{6}u^{3}\right) e^{\frac{1}{2}\sigma^{2}u^{2}} \\
+\phi^{^{\prime \prime \prime \prime }}(u) =&\left( 3\sigma ^{4}u+\sigma
+^{6}u^{3}\right) e^{\frac{1}{2}\sigma ^{2}u^{2}}u\sigma ^{2}+e^{\frac{1}{2}%
+\sigma^{2}u^{2}}\left( 3\sigma ^{4}+3\sigma ^{6}u^{2}\right)\\
+=&e^{\frac{1}{2}\sigma ^{2}u^{2}}\left(6\sigma^{6}u^{2}+\sigma^{8}u^{4}+3\sigma ^{4}\right)  \\
+\phi ^{^{\prime \prime \prime \prime }}(0)=&e^{\frac{1}{2}\sigma^{2}\left( 0\right) ^{2}}\left(6\sigma ^{6}\left( 0\right) ^{2}+\sigma^{8}\left(0\right) ^{4}+3\sigma ^{4}\right)=3\sigma ^{4}
+\end{align*}
+    
+    \end{proof}
+    
+    \pr{3.6} Let $W(t)$ be a Brownian motion and let $\F(t), t \geq 0$ be an associated filtration.
+    \begin{enumerate}[(i)]
+        \item For $\mu \in \R$, consider the Brownian motion with drift $\mu$:
+        $$ X(t) = \mu t + W(t)$$
+        Show that for any Borel-measurable function $f(y)$, and for any $0 \le s <t$, the function:
+        $$ g(x) = \frac{1}{\sqrt{2\pi(t-s)}} \infint f(y) \exp \seq{-\frac{(y-x-\mu(t-s))^2}{2(t-s)}}dy$$
+        satisfies $\E[f(X(t))|\F(s)]=g(X(s))$, and hence $X$ has the Markov property. We may rewrite $g(x)$ as $g(x)=\infint f(y) p(\tau,x,y)dy$, where $\tau=t-s$ and
+        $$ p(\tau,x,y) = \frac{1}{\sqrt{2\pi \tau}}\exp \seq{-\frac{(y-x-\mu\tau)^2}{2\tau}}$$ 
+        is the \textit{transition density} for Brownian motion with drift $\mu$.
+        
+        \begin{proof} We follow the example given in the proof of Theorem 3.5.1. Namely, we write:
+        \begin{align*} \E[f(X(t))|\F(s)] &= \E[f(\mu t + W(t))|\F(s)] \\
+        &= \E[f\big((W(t)-W(s))+W(s)+\mu t \big)|\F(s)]
+        \end{align*}
+        
+        
+        We then replace $W(s)+\mu t$ with a dummy variable $x$ and take the unconditional expectation of the remaining random variable (i.e. we define $g(x) = \E[f(W(t)-W(s)+x)] $. Note that $W(t)-W(s)$ is normally distributed with mean zero and variance $t-s$. Therefore,
+        
+        $$ g(x) = \frac{1}{\sqrt{2\pi(t-s)}} \infint f(w+x)e^{-\frac{w^2}{2(t-s)}}dw $$
+        The independence lemma\footnote{We can use this since $x=W(s)+\mu t$ is $\F(s)-$measurable} now lets us replace the dummy variable $x$ by the random variable $W(s)+\mu t$. We make the change of variable $\tau = t-s$ and $y=w+x$ to obtain:
+        
+        \begin{align*} g(x) &= \frac{1}{\sqrt{2\pi\tau}} \infint f(y) e^{-\frac{(y-W(s)-\mu t)^2}{2\tau}}dy \\
+                        &= \frac{1}{\sqrt{2\pi\tau}} \infint f(y) e^{-\frac{(y-W(s)-\mu s - \mu(t-s) )^2}{2\tau}}dy  = g(X(s))
+    \end{align*}        
+
+        
+        \end{proof}
+        
+        \item For $\nu \in \R$ and $\sigma > 0$, consider the \textit{geometric Brownian motion}
+        $$ S(t) = S(0) e^{\sigma W(t)+\nu t}$$
+        Set $\tau = t-s$ and
+        $$ p(\tau,x,y) = \frac{1}{\sigma y\sqrt{2\pi \tau}}\exp \seq{-\frac{(\log\frac{y}{x}-\nu\tau)^2}{2\sigma^2\tau}}$$ 
+        Show that for any Borel-measurable function $f(y)$ and for any $0 \le s < t$ the function $g(x)=\int_0^\infty h(y)p(\tau,x,y)dy$ satisfies $\E[f(S(t))|\F(s)] = g(S(s))$ and hence $S$ has the Markov property and $p(\tau,x,y)$ is its transition density.
+        \begin{proof} We follow the previous example.
+        \begin{align*} \E[f(S(t))|\F(s)] &= \E[f\left( \frac{S(t)}{S(s)}\cdot x \right)|\F(s)] 
+        \end{align*}
+        where $x=S(s)=S(0)e^{\sigma W(s)+\nu s}$ and hence is $\F(s)$-measurable. We can now take the unconditional expectation, with
+        $$g(x) = \E\left[f\left( \frac{S(t)}{S(s)}x \right)\right]$$
+        Note that the ratio $\frac{S(t)}{S(s)} = \exp \seq{ \sigma(W(t)-W(s))+\nu(t-s)}$. Hence it is log-normally distributed with mean $\nu(t-s)$ (since $\sigma(W(t)-W(s))\sim N(0,\sigma^2)$) and variance $\sigma^2(t-s)$. Therefore,
+       $$ g(x) =  \int_0^\infty f(x \cdot w)  \frac{1}{w\sqrt{2\pi \sigma^2 (t-s)}} \exp\seq{-\frac{(\log w-\nu(t-s))^2}{2 \sigma^2(t-s)}}dw$$
+       We now make the change of variable $\tau = t-s$ and $y = w \cdot x$ (hence $dy = d(xw) = x dw$:
+       
+       $$ g(x) =  \int_0^\infty f(y)  \frac{1}{\sigma y\sqrt{ 2\pi \tau}} \exp\seq{-\frac{(\log \frac{y}{x}-\nu\tau)^2}{2 \sigma^2\tau}}dy=g(S(s))$$
+        \end{proof}
+        
+    \end{enumerate}
+\end{enumerate}
+
+\end{document}

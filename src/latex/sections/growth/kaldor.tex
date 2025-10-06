@@ -1,0 +1,239 @@
+% !BIB program = biber
+\providecommand{\topdir}{../..} 
+\documentclass[\topdir/lecture\_notes.tex]{subfiles}
+\graphicspath{{\subfix{./images/}}}
+
+\begin{document}
+\section{Kaldor's Stylized Facts}
+\label{sec:kaldor-overview}
+
+
+In 1961, Nicholas \textcite{kaldor1961capital} proposed six stylized facts of economic growth, broad empirical patterns observed in advanced economies up to the mid-20th century over long periods of time.
+These original Kaldor facts were:
+\begin{enumerate}
+  \item Constant factor income shares: The shares of national income accruing to labor and capital are roughly constant.
+  \item Steady growth of capital per worker: the stock of capital per worker grows at a roughly constant rate.
+  \item Steady growth of output per worker: output per worker grows at a roughly constant rate.
+  \item Stable capital-output ratio: the ratio of capital to output is roughly constant.
+  \item Stable rate of return on capital: the rate of return on capital remains roughly constant.
+  \item Cross-country growth variation: different countries exhibit appreciable variations in growth rates of output and output per worker.
+\end{enumerate}
+Kaldor's intent was not to claim these quantities never change at business-cycle frequency, but that over long periods and across leading industrial nations, these ratios and growth rates appeared surprisingly stable.
+His facts became a foundation for models of long-run growth.
+
+Today, however, we have decades of new data and research for both advanced and emerging economies that shed light on whether these stylized facts still hold.
+Globalization, technological advances, and institutional changes since 1960 have altered growth patterns in many countries.
+We will examine each of Kaldor's six facts in turn, evaluating their validity in light of more recent empirical evidence.
+
+% \medskip
+% \noindent\textit{Measurement note for multi-sector settings.} When relative prices change across sectors, connecting theory and data requires consistency in measurement. Best practice is to compute real aggregates using chained Fisher quantity indexes (as in the national accounts) and to form key ratios such as the capital-output ratio, the rate of return on capital, and factor shares using nominal magnitudes so that these statistics are unit free and independent of the numeraire. This matters for interpreting deviations from Kaldor's facts in multi-sector models and in post-1970s data \cite{herrendorf2019kaldor,duernecker2021productivity}.
+
+\section{Factor Income Shares}
+
+In mid-century evidence assembled by Kaldor for the United States and the United Kingdom, labor's share hovered near two thirds and displayed no persistent trend.%, an observation that motivated the widespread use of Cobb-Douglas production with constant factor shares in growth models.
+This stability is no longer universal.
+In many advanced economies, labor's share trended down from the 1980s---1990s onward; in the United States the decline began in the 1990s and reached historically low levels by the 2010s.
+Research attributes a portion of the decline to technological change that automates routine tasks, globalization, weaker labor institutions, and rising product-market concentration that lead to higher markups.
+Measurement and composition issues qualify the universality of the decline: adjusting for self-employment, housing, and intangible capital attenuates or reverses the downward trend in the labor share in some countries.
+
+In emerging and developing economies, patterns are more heterogeneous: a majority have experienced declining labor income shares since the 1990s, but the research has focused on greater global integration and capital deepening rather than within-country automation as  dominant drivers.
+As countries industrialize and join global value chains, rapid investment raises capital intensity and shifts income toward capital, as illustrated by China's marked labor-share decline during the 2000s and similar episodes in other fast-growing Asian economies and commodity exporters.
+By contrast, economies with slower structural change have tended to display more stable factor shares.
+
+
+
+% Technical box: Cobb---Douglas production function generates constant shares of labor and capital income.
+%
+% Environment
+%
+% There is a single good produced in quantity $Y=F(K,L)$, where $F(\cdot,\cdot)$ is the \new{production function} that describes how much output can be produced with a stock of physical capital $K$ and a quantity of labor $L$. The inputs to production---in this case capital and labor---are called \new{factors of production}.
+%
+% The \new{marginal product of labor} is the amount of output produced by an additional unit of labor, $\frac{\partial F}{\partial L}$, while the \new{marginal product of capital} is the amount of output produced by an additional unit of capital, $\frac{\partial F}{\partial K}$. Consider increasing all factors of production by a factor $k>0$. The production function is said to have \new{constant returns to scale} if output increases by the same factor, $Y(k L, k K) = k Y(L, K)$. It is said to have \new{increasing returns to scale} if $Y(k L, k K) > k Y(L, K)$ and \new{decreasing returns to scale} if $Y(k L, k K) < k Y(L, K)$.
+%
+% A representative firm chooses $(K,L)$ to maximize profits
+% \[
+%     \pi = F(K,L) - wL - rK,
+% \]
+% taking wages $w$ and the rental rate of capital $r$ as given. The first-order conditions (FOC) for this firm problem are
+% \begin{equation}
+%     w=\frac{\partial F}{\partial L},\qquad r=\frac{\partial F}{\partial K},\label{eq:kaldor-foc}
+% \end{equation}
+% which means that each factor is paid its marginal product. Define factor income shares by
+% \begin{equation}
+%     s_{L}:=\frac{w L}{Y},\qquad s_{K}:=\frac{r K}{Y}. \label{eq:kaldor-shares}
+% \end{equation}
+%
+% The production function $F(\cdot,\cdot)$ is said to be \new{Cobb---Douglas} when it has the form
+% \[
+%     F(K,L) = A K^{\alpha}L^{\beta}
+% \]\label{eq:FOC_firm}
+% where $A$ is the level of technology, and $\alpha$, $\beta$ are parameters between zero and one. The Cobb---Douglas production function has constant returns to scale when $\alpha+\beta=1$, increasing returns to scale when $\alpha+\beta>1$, and decreasing returns to scale when $\alpha+\beta<1$. Equation \eqref{eq:kaldor-foc} specialized to Cobb---Douglas gives
+% \begin{equation}
+%     w=\frac{\partial F}{\partial L}=\beta \frac{Y}{L},\qquad r=\frac{\partial F}{\partial K}=\alpha \frac{Y}{K},\label{eq:kaldor-foc-cd}
+% \end{equation}
+% Using \eqref{eq:kaldor-foc-cd} and \eqref{eq:kaldor-shares}, then find constant factor shares
+% \begin{equation}
+%     s_{L}:=\frac{w L}{Y}=\beta \frac{Y}{L}\frac{L}{Y}=\beta,\qquad s_{K}:=\frac{r K}{Y}=\alpha \frac{Y}{K} \frac{K}{Y}=\alpha. \label{eq:kaldor-shares-cd}
+% \end{equation}
+
+\section{Growth of Capital per Worker}
+
+Kaldor's second fact holds that, over long horizons, the stock of physical capital per worker grows at a roughly constant rate.
+
+More recent evidence indicates that the spirit of this fact remains broadly valid while the literal constancy of the growth rate does not.
+In mature advanced economies, capital per worker has continued to increase, but its growth rate varies across subperiods.
+Postwar data for the United States and the United Kingdom show robust capital deepening from the 1950s to the early 1970s, followed by moderation thereafter.
+In the United States, measures of the nonfarm business capital-labor ratio and capital services per hour slowed after the early-1970s, accelerated during the late-1990s, and weakened again after the early 2000s.
+Since then, there has not been a sustained return to the pre-1973 pace.\footnote{See, e.g., \parencite{gordon2016rise,fernald2015productivity,jorgensonstiroh2000,olinersichel2000,jorgensonhostiroh2008,byrneolinersichel2017,herrendorf2014growth,herrendorf2019kaldor,jones2016facts}.}
+
+Patterns in emerging and developing economies are more heterogeneous.
+During catch-up phases, capital per worker often grows at very high rates, whereas in other periods it can be low or volatile.
+China's investment rate averaged on the order of 40 percent of GDP through the 2000s, and standard national accounts and Penn World Table series record double-digit growth of real capital per worker during that decade.
+South Korea and Taiwan likewise experienced exceptionally rapid increases in capital per worker during their industrialization in the 1960s---1980s.
+By contrast, several developing countries have recorded episodes of stagnant or declining capital per worker, and, on average, emerging economies display more volatile and dispersed capital-deepening trajectories than advanced economies.\footnote{See, among others, \parencite{young1995tyranny,collinsbosworth1996,eastasianmiracle1993,jones2016facts,imf2017weo,barrosalaimartin2003,acemoglu2009growth,worldbankwdi,feenstrainklaartimmer2015pwt}.}
+
+Several mechanisms help account for the post-1970s downshift in capital deepening among advanced economies.
+A primary factor is the slowdown in productivity and output growth that began in the 1970s, which reduced the incentive and need for rapid accumulation.
+In addition, a long-run decline in the relative price of investment goods---interpreted as investment-specific technical change---means that a given flow of real capital can be acquired with smaller expenditures.
+Since the 2000s, several advanced economies have also exhibited weak business investment despite historically low borrowing costs, a pattern linked in the literature to rising market power, the growing importance of intangible capital, and corporate-governance considerations.\footnote{See \parencite{greenwoodhercowitzkrusell1997,byrneolinersichel2017,gutierrezphilippon2017,crouzeteberly2019,deloecker2020markups,corradohultensichel2005,karabarbounis2014global,eggertsson2018kaldor,gordon2016rise,fernald2015productivity,oecd2015productivity}.}
+
+Emerging economies display widely varying accumulation paths during development with the observed growth rate of capital per worker attributed to technology, demographics, institutions, and policy, among other factors. \footnote{See \parencite{solow1956contribution,barrosalaimartin2003,acemoglu2009growth,jones2016facts}.}
+
+\section{Growth of Output per Worker}
+
+Kaldor emphasized the remarkable stability of long-run labor productivity growth in industrialized economies, interpreting roughly constant growth of output per worker as evidence for sustained technological progress.
+
+Postwar experience refines the picture.
+For the United States and the United Kingdom, the drivers of growth in output per worker mirror those of capital per worker already discussed.
+Decelerations across other advanced economies following the Global Financial Crisis have been marked by unusually weak productivity growth, prompting debates over secular stagnation, measurement, and the pace of innovation.\parencite{oecd2015productivity,gordon2016rise,byrnefernaldreinsdorf2016,syverson2017}. 
+
+Over sufficiently long horizons, however, frontier economies display striking regularities.
+Many developed countries trace near-linear paths for log GDP per capita, implying similar average growth rates on the order of 2 percent per year and suggesting convergence to a common steady growth path among the leaders.
+The near-parallelism of these long-run trajectories is notable given large sectoral and technological shifts over the twentieth and twenty-first centuries.\footnote{See \parencite{vollrath2020fullygrown,jones2016facts}.}
+
+Cross-country heterogeneity is much larger away from the frontier.
+The dispersion of growth rates is higher for economies farther behind, and outcomes range from prolonged stagnation to multi-decade booms.
+East Asian catch-up experiences illustrate the upper tail: South Korea, Taiwan, and later China and Hong Kong sustained multi-decade growth in output per capita far above frontier rates before decelerating as they approached advanced-economy income levels.
+China, in particular, combined exceptionally high investment with rapid productivity gains after 1980, yielding average growth in GDP per worker well above 5 percent for several decades before its recent slowdown.\footnote{See \parencite{barrosalaimartin2003,jones2016facts,jones2010new,pritchett1997divergence,young1995tyranny,collinsbosworth1996,eastasianmiracle1993,feenstrainklaartimmer2015pwt,worldbankwdi}.}
+
+% A multi-sector perspective helps rationalize observed trend breaks without positing an exogenous halt in frontier technology. When sectors exhibit different productivity trends and expenditure shares evolve over time, aggregate real GDP growth can slow even if each sector continues to follow a steady technological path \parencite{herrendorf2014growth,herrendorf2019kaldor}. Declining relative prices for investment goods, associated with investment-specific technical change, further complicate inference from nominal spending to real quantities \parencite{greenwoodhercowitzkrusell1997,byrneolinersichel2017}. These forces are central to explanations of the post-1970s slowdown and the weak business-sector productivity growth observed in the 2000s \parencite{oecd2015productivity,fernald2015productivity,gordon2016rise}.
+
+% Two-sector measurement perspective commented out for brevity
+% A two-sector measurement perspective makes the mechanisms transparent. Let a consumption sector with TFP $A_{c}$ and an investment sector with TFP $A_{x}$ produce $C$ and $X$, respectively. Under competitive pricing with common factor shares across sectors, the relative price of consumption in units of investment satisfies
+%
+% $$
+%     p_{c}=\frac{A_{x}}{A_{c}}.
+% $$
+%
+% Consider an aggregate balanced growth path expressed in investment units in which $A_{x}$ grows at a constant rate, while the growth rate of $A_{c}$ may vary over time. If real GDP is measured in current investment units as $Y=p_{c}C+X$, then by construction $Y$ grows at the constant rate associated with $A_{x}$, so the one-sector Kaldor relations continue to hold in investment units. In contrast, when statistical agencies measure real GDP with a chained Fisher index, the measured growth rate of GDP per worker slows whenever the growth rate of $p_{c}$ rises, equivalently when the growth rate of $A_{c}$ declines; a persistent slowdown in measured aggregate productivity can therefore arise in a two-sector economy that remains on an aggregate balanced growth path in investment units \parencite{duernecker2021productivity,herrendorf2019kaldor}. Moreover, in this environment the chained Fisher index provides an appropriate welfare metric, whereas the classic result that net domestic product measured in consumption units tracks welfare requires constant sectoral TFP growth and fails when sectoral growth rates vary over time \parencite{weitzman1976welfare,duernecker2021productivity}.
+
+% In sum, sustained growth of output per worker remains a central empirical fact, particularly among frontier economies with long-run average growth near 2 percent, but the presumption of a strictly constant trend is too strong. Since the 1970s, advanced economies have experienced pronounced downshifts and episodic upswings in productivity growth, while emerging economies exhibit much greater dispersion tied to distance from the frontier and structural transformation. Modern growth analysis retains Kaldor's insight as a baseline while allowing for transitions, sectoral reallocation, and measurement effects that produce medium-run departures from a single constant growth rate \parencite{solow1956contribution,herrendorf2014growth,herrendorf2019kaldor,greenwoodhercowitzkrusell1997,byrneolinersichel2017,jones2016facts,vollrath2020fullygrown}.
+
+
+\section{Capital-Output Ratio}
+
+Kaldor's fourth fact posits that the capital-output ratio remains roughly constant over long periods.
+
+The broad order of magnitude of this ratio remains similar in advanced economies, but there have been some drifts and important nuances in how we measure capital.
+Using national accounts data, many developed countries show a capital-output ratio that has been relatively stable, typically in the range of about 2.5 to 3.0 in net terms, or a bit higher in gross terms.
+Analyses of Penn World Table data confirm no dramatic trend for major economies.
+The U.S., Canada, U.K., and others had capital-output ratios around the low-to-mid 2's in 1950, edging up only modestly by the 2010s.
+Slight upward drift might partly be a data artifact related to how international price comparisons are done.
+When measured using each country's own national accounts, avoiding cross-country purchasing power parity issues, the U.S. capital-output ratio appears even flatter over time.
+The largest components of the capital stock in the U.S. show no clear long-term trend in their.
+Only newer categories like intellectual property have trended upward, though that may reflect better accounting of intangibles in recent years.
+
+Some other advanced economies did see changes.
+The U.K.'s capital-output ratio rose after the 1970s, suggesting a departure from strict constancy.
+Looking beyond core capital, Piketty drew attention to a rising wealth-to-income ratio in many wealthy countries.
+If one includes not just machines and buildings but also housing, land, and other assets, the value of capital is close to the value of wealth.
+Wealth relative to national income has increased substantially since the 1970s in countries like France, Germany, and the U.K.
+For example, the wealth-income ratio in Europe grew from about 2.5---3 in 1950 up to 5---6 by 2010, a trend driven largely by booming real estate values and accumulation of private wealth.
+This suggests that broader measures of capital do not follow Kaldor's fact as neatly, as they have shown an upward trend.
+However, it is important to distinguish between replacement-cost measures of productive capital, which are used in growth models and correspond more to Kaldor's concept, and market-value measures of total wealth.
+The former have been much more stable than the latter.\footnote{\textcite{herrendorf2014growth,piketty2014capital}.}
+
+In emerging economies, the capital-output ratio often starts lower and tends to rise during industrialization.
+When a country undergoes heavy investment-led growth, the capital-output ratio can increase in the earlier industrialization stages.
+Countries like Japan and South Korea saw their capital-output ratios increase as they poured resources into building factories and infrastructure.
+In China, some estimates suggest the capital-output ratio rose significantly from the 1970s to recent years amid enormous investment, though high output growth kept it from rising even more.
+Eventually, as growth moderates and investment rates stabilize, the capital-output ratio in successful emerging economies should level off and perhaps even decline slightly if very high investment rates fall to levels closer to those of developed economies.
+
+\section{Rate of Return on Capital}
+
+Kaldor emphasized the near constancy of the aggregate return to capital over long horizons in industrial economies, an observation that can be expressed transparently with national accounting objects.
+Let $Y^K$ denote nominal payments to ``reproducible private capital net of depreciation'', $Y$ nominal value added, $K$ the replacement-cost capital stock, and $\alpha=Y^K/Y$ the net capital share.
+Define the average net return on reproducible capital as $r=Y^K/K$.
+Then, by definition,
+$$
+    r=\frac{Y^K}{K}=\frac{\alpha Y}{K}=\frac{\alpha}{K/Y}.
+$$
+Stability of the net capital share $\alpha$ together with stability of the replacement-cost ratio $K/Y$ mechanically implies stability of the average net return on capital  \parencite{kaldor1957model,kaldor1961capital,solow1956contribution,jones2016facts}.
+
+Long-run evidence is broadly consistent with a roughly stable average return on broad private wealth in advanced economies. 
+
+Data for emerging and developing economies are thinner and returns are more volatile, reflecting greater macroeconomic and institutional risk.
+Nonetheless, the qualitative pattern is consistent with no clear evidence of a systematic long-run trend.\parencite{jones2016facts,reinhartrogoff2009}.
+
+Measurement matters for aligning evidence with the theory.
+The relevant average return is computed as nominal payments to reproducible productive capital divided by the replacement-cost value of that capital, an object that is invariant to the choice of numeraire and avoids mixing market-valuation effects from asset price swings with the quantity of productive capital \parencite{herrendorf2019kaldor}.
+This distinction is essential when comparing replacement-cost returns used in growth accounting with market-value returns.
+
+% Using harmonized data for 16 rich countries since 1870, \textcite{jorda2019rate} find that real returns on risky private assets such as equity and housing have averaged on the order of 6 to 7 percent per year, while real government bond returns average nearer 1 to 3 percent, so that diversified portfolios deliver a fairly stable long-run real return despite large historical shocks. At the same time, business-sector profitability in the United States has shown no secular decline, with several studies documenting elevated profits and markups in recent decades even as the labor share fell or failed to recover, a pattern consistent with sustained returns on private capital \parencite{deloecker2020markups,barkai2020declining,imf2017weo}. These facts align with the identity above: near-constancy of replacement-cost $K/Y$ and the behavior of capital-related income shares together support a roughly stable average return on reproducible capital \parencite{herrendorf2019kaldor,eggertsson2018kaldor}.
+
+% A key evolution, however, is the divergence between the safe real interest rate and the average return on private capital. Estimates of the natural real rate have trended down markedly since the 1980s across advanced economies, reaching historic lows by the 2010s \parencite{holstonlaubachwilliams2017,rachelsmith2015}. Yet measures linked to the return on private capital, including returns on equity and housing and profits net of depreciation, have not fallen commensurately, implying a widening wedge between the risk-free rate and the average return on capital \parencite{jorda2019rate,eggertsson2018kaldor}. The literature attributes this wedge to forces such as rising market power, increased rents, and the growing role of intangibles that are imperfectly captured in measured capital stocks, all of which can sustain high profitability in a low safe-rate environment \parencite{deloecker2020markups,corradohultensichel2005,crouzeteberly2019,eggertsson2018kaldor}. These developments clarify that Kaldor's statement is best interpreted as a claim about the average return on reproducible private capital rather than about the risk-free interest rate.
+
+\section{Cross-Country Growth Variation}
+
+Kaldor underscored that countries exhibit persistently different growth experiences, an observation that anticipated modern debates over drivers of long-term growth.
+The cross-country variation is perhaps the most central empirical regularity in growth economics that still attracts a lot of new research and not a lot of consensus\parencite{kaldor1957model,kaldor1961capital,jones2016facts}.
+Contemporary cross-country data confirm that long-run growth is far from uniform: a subset of economies has sustained rapid catch-up while many others have grown slowly or stagnated, producing large and persistent income gaps \parencite{pritchett1997divergence,feenstrainklaartimmer2015pwt,worldbankwdi}.
+Dispersion is systematically related to distance from the technological frontier, with richer countries displaying relatively similar moderate growth rates and poorer countries exhibiting much greater variance \parencite{jones2010new,jones2016facts,oecd2015productivity}.
+For example, advanced economies have clustered around modest productivity growth in recent decades, whereas developing economies span outcomes from rapid convergence to prolonged decline \parencite{jones2016facts,oecd2015productivity}.
+
+Taking a longer historical view, the global economy first experienced pronounced divergence as industrial leaders pulled away in the nineteenth and early twentieth centuries, followed by partial convergence among late industrializers in recent decades, especially in Asia \parencite{bolt2018rebasing,jones2016facts}.
+The Maddison Project data record rising cross-country dispersion of per capita incomes up to roughly the late twentieth century and stabilization or modest narrowing thereafter, reflecting the acceleration of several large emerging economies \parencite{bolt2018rebasing}.
+Despite this recent narrowing at the top of the distribution, very large income and total factor productivity differences remain, underscoring that growth is not automatic and depends on country-specific fundamentals \parencite{halljones1999,caselli2005,jones2016facts}.
+
+% Theory and empirics reconcile these patterns with conditional, not unconditional, convergence. In the neoclassical framework, economies converge toward their own steady states determined by savings, population dynamics, human capital, and policies; across heterogeneous fundamentals there is no reason to expect a single world steady state \parencite{barrosalaimartin2003,barrosalaimartin1992}. Empirically, conditional convergence is a robust finding across regions and time, while global unconditional convergence fails in samples that mix economies with very different structural characteristics \parencite{barrosalaimartin1992,durlaufjohnsontemple2005,jones2016facts}. Initial conditions and institutions can anchor economies on very different long-run paths, helping to explain why many sub-Saharan African countries converged only recently, if at all, whereas economies such as South Korea and Taiwan achieved rapid catch-up beginning in the mid-twentieth century \parencite{acemoglujohnsonrobinson2001,rodriksubramaniantrebbi2004,young1995tyranny,collinsbosworth1996}.
+
+A broad body of evidence highlights the roles of institutions, human capital, openness, and technology diffusion in shaping cross-country growth differences.
+Cross-country accounting points to the centrality of social infrastructure and human capital for explaining productivity and income gaps \parencite{halljones1999,caselli2005,barro1991}.
+International technology diffusion is incomplete and heterogeneous, with faster integration and adoption associated with stronger growth \parencite{keller2004,cominhobijn2010,cominmestieri2018}.
+Demographic transitions can further tilt growth trajectories by altering labor force growth and savings behavior, as illustrated by episodes of rapid expansion in parts of East and Southeast Asia \parencite{bloomwilliamson1998,jones2016facts}.
+
+\input{kaldor_table}
+
+\section{Conclusion}
+
+Kaldor's six stylized facts provided a stable backdrop for twentieth-century growth theory by highlighting near-constancies in key ratios and growth rates within the industrial core \parencite{kaldor1957model,kaldor1961capital,jones2016facts}.
+Table \ref{tab:kaldor-updates} summarizes how each of Kaldor's facts holds up according to recent evidence in advanced vs. emerging economies.
+Several elements remain broadly intact in long-run data, notably the approximate stability of the capital-output ratio and of average aggregate returns, as well as pronounced and persistent cross-country growth differences \parencite{herrendorf2014growth,herrendorf2019kaldor,jorda2019rate,pritchett1997divergence,bolt2018rebasing}.
+Other elements have been revised by post-1970 evidence, including the decline of labor's income share in many advanced economies and medium-run shifts in the trend growth rates of output per worker and capital per worker \parencite{karabarbounis2014global,elsby2013decline,imf2017weo,gordon2016rise,fernald2015productivity,herrendorf2014growth,byrneolinersichel2017}.
+Global integration and technological change have reshaped income distribution and supported rapid catch-up in parts of Asia, while leaving frontier balanced-growth mechanisms as a useful organizing benchmark for mature economies\parencite{baldwin2016great,young1995tyranny,collinsbosworth1996,feenstrainklaartimmer2015pwt,solow1956contribution,kingrebelo1993,jones2016facts}.
+
+Academic research has responded by extending the growth canon and proposing updated stylized facts.
+New emphases on ideas, institutions, population, and human capital account for features that the original list left implicit, including very large income differences and the lack of diminishing returns to human capital at the aggregate level \parencite{jones2010new}.
+The breakdown of constant factor shares has motivated models with factor-biased technical change and with market power and rents \parencite{acemoglu2002directed,acemoglu2003laborcapaugment,deloecker2020markups,barkai2020declining}.
+Multi-sector frameworks that incorporate structural change and relative-price dynamics can reproduce the empirically measured post-1970 slowdowns\parencite{herrendorf2014growth,herrendorf2019kaldor,duernecker2021productivity}.
+In parallel, finance-and-development work links the easing of financial frictions to innovation-led growth and convergence, supplying microfoundations for cross-country heterogeneity \parencite{aghion2018finance}.
+
+\section{References}
+
+\nocite{karabarbounis2014global}
+\nocite{elsby2013decline}
+\nocite{imf2017weo}
+\nocite{oecd2012labourlosing}
+\nocite{acemoglu2018race}
+\nocite{autor2013china}
+\nocite{autor2020superstar}
+\nocite{deloecker2020markups}
+\nocite{barkai2020declining}
+\nocite{gollin2002getting}
+\nocite{rognlie2015deciphering}
+\nocite{koh2024longrun}
+\nocite{dao2017why}
+
+\printbibliography[heading=none]
+
+\end{document}
