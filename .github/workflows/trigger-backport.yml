@@ -4,30 +4,49 @@ on:
   pull_request:
     types: [closed]
     branches: [main]
+    paths:
+      - 'src/latex/**'
+      - 'src/R/**'
 
 jobs:
-  trigger-backport:
-    # Only run if PR was actually merged (not just closed)
+  dispatch:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
-      - name: Trigger backport in private repo
-        env:
-          GH_TOKEN: ${{ secrets.PRIVATE_REPO_PAT }}
-        run: |
-          curl -X POST \
-            -H "Accept: application/vnd.github+json" \
-            -H "Authorization: Bearer ${GH_TOKEN}" \
-            -H "X-GitHub-Api-Version: 2022-11-28" \
-            https://api.github.com/repos/fernando-duarte/ECON2070-Fall25/dispatches \
-            -d '{
-              "event_type": "student-pr-merged",
-              "client_payload": {
-                "pr_number": ${{ github.event.pull_request.number }},
-                "pr_title": "${{ github.event.pull_request.title }}",
-                "pr_author": "${{ github.event.pull_request.user.login }}",
-                "student_repo": "${{ github.repository }}"
-              }
-            }'
-          
-          echo "✓ Backport triggered for PR #${{ github.event.pull_request.number }}"
+      - name: Collect changed files
+        id: files
+        uses: actions/github-script@v8
+        with:
+          script: |
+            // Use paginate to handle PRs with >100 files (critical!)
+            const allFiles = await github.paginate(github.rest.pulls.listFiles, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.payload.pull_request.number,
+              per_page: 100
+            });
+            return allFiles.map(f => ({
+              filename: f.filename,
+              status: f.status,  // added, modified, removed, renamed
+              previous_filename: f.previous_filename,
+              additions: f.additions,
+              deletions: f.deletions
+            }));
+
+      - name: Dispatch to private repo
+        uses: peter-evans/repository-dispatch@v4
+        with:
+          token: ${{ secrets.PRIVATE_REPO_PAT }}
+          repository: fernando-duarte/ECON2070-Fall25
+          event-type: student-pr-merged
+          client-payload: |
+            {
+              "student_repo": "${{ github.repository }}",
+              "pr_number": ${{ github.event.pull_request.number }},
+              "merge_commit_sha": "${{ github.event.pull_request.merge_commit_sha }}",
+              "pr_title": "${{ github.event.pull_request.title }}",
+              "pr_author": "${{ github.event.pull_request.user.login }}",
+              "files": ${{ steps.files.outputs.result }}
+            }
