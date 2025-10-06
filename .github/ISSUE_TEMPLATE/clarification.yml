@@ -1,0 +1,21 @@
+name: "Clarification Request"
+description: "Request clarification or better explanation of a concept"
+labels: ["clarification"]
+body:
+  - type: input
+    id: location
+    attributes:
+      label: Location
+      description: "Page URL, PDF page number, lecture/topic, or section reference"
+    validations: { required: true }
+  - type: textarea
+    id: concept
+    attributes:
+      label: What needs clarification?
+      description: "Which concept, statement, or section is unclear?"
+    validations: { required: true }
+  - type: textarea
+    id: details
+    attributes:
+      label: Additional context (optional)
+      placeholder: "Anything else that can help us understand what is unclear?"

@@ -1,0 +1,38 @@
+name: "Bug Report"
+description: "Report a technical or code issue"
+labels: ["bug"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the bug
+      description: "What's not working as expected?"
+    validations: { required: true }
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: "How can we reproduce this issue?"
+      placeholder: |
+        1. Go to '...'
+        2. Run code '...'
+        3. See error
+    validations: { required: true }
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: "What should happen instead?"
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment (optional)
+      placeholder: |
+        - OS: [e.g. macOS, Windows, Linux]
+        - Python/R version:
+        - Other relevant software versions:
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional context (optional)
+      placeholder: "Error messages, screenshots, or any other relevant information"

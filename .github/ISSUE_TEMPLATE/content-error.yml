@@ -1,0 +1,34 @@
+name: "Content Error"
+description: "Report an error in lecture notes, problem sets, solutions, slides, or any course material"
+labels: ["content-error"]
+body:
+  - type: dropdown
+    id: content-type
+    attributes:
+      label: Content Type
+      description: "What type of content has the error?"
+      options:
+        - Lecture notes
+        - Problem set
+        - Solutions
+        - Slides
+        - Code/Examples
+        - Other
+    validations: { required: true }
+  - type: input
+    id: location
+    attributes:
+      label: Location
+      description: "Page URL, PDF page number, slide number, or file path"
+    validations: { required: true }
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the error
+      description: "What's incorrect? Include relevant text, equations, or code snippets."
+    validations: { required: true }
+  - type: textarea
+    id: correction
+    attributes:
+      label: Suggested correction (optional)
+      placeholder: "What should it say instead?"
