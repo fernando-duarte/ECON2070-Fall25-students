@@ -1,0 +1,458 @@
+\providecommand{\topdir}{..} 
+\ProvidesPackage{\topdir/classnotes}
+
+%% standard packages
+\RequirePackage{array}
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{amsthm}
+\RequirePackage{booktabs}
+\RequirePackage{longtable} % For multi-page tables
+\RequirePackage{tabularx} % For tables with automatic width adjustment
+\RequirePackage[shortlabels]{enumitem}
+\RequirePackage{graphicx}
+\RequirePackage{multirow}
+\RequirePackage{ragged2e} % For \raggedright
+\RequirePackage[toc,page]{appendix}
+\RequirePackage{dirtytalk}
+\RequirePackage{etoolbox}
+\RequirePackage{rotating}
+\RequirePackage{lscape} % For landscape environment
+\robustify{\footnote} % \footnote is a fragile command so "robustify" from package etoolbox
+\RequirePackage[makeroom]{cancel} % to cross out terms in equations
+
+%% language, fonts
+%\RequirePackage[latin1]{inputenc}
+\RequirePackage[utf8]{inputenc}
+\RequirePackage{csquotes}
+\RequirePackage[ngerman,main=english]{babel}% english is main language
+\useshorthands{"}
+\addto\extrasenglish{\languageshorthands{ngerman}} % to use "= instead of a regular hyphen to allow line breaks in hyphenated words
+\RequirePackage{XCharter} % use the XCharter fonts
+\RequirePackage{textcomp} % text Companion fonts
+\RequirePackage{stmaryrd} % use St Mary Road symbols for theoretical computer science
+
+%% page dimensions and margins 
+\RequirePackage{geometry}
+\geometry{
+	paper=letterpaper, % paper size, change to letterpaper for US letter size
+	top=1in, % top margin
+	bottom=1in, % bottom margin
+	left=1in, % left margin
+	right=1in, % right margin
+	%headheight=14pt, % header height
+	%footskip=1.5cm, % space from the bottom margin to the baseline of the footer
+	%headsep=1.2cm, % space from the top margin to the baseline of the header
+	%showframe, % uncomment to show how the type block is set on the page
+}
+
+%% formatting
+\RequirePackage{microtype} % better line breaks, fewer over/underfull
+\RequirePackage[
+    indention=2em,
+    font=small,
+    margin={0pt,25pt},
+    %width=\textwidth,
+    tableposition=bottom,
+    parindent=1em,
+    parskip=5pt,
+    labelformat=simple
+]{caption}
+\captionsetup[table]{font={stretch=1.2}}    
+\captionsetup[figure]{font={stretch=1.2}}
+% \captionsetup[table]{font={stretch=1.2}, labelfont={bf}, textfont=it, labelsep=period, width=.95\textwidth}    
+% \captionsetup[figure]{font={stretch=1.2}, labelfont={bf}, textfont=it, labelsep=period, width=.95\textwidth}
+
+\RequirePackage[labelformat=simple]{subcaption}
+\renewcommand\thesubfigure{(\alph{subfigure})}
+% \DeclareCaptionLabelFormat{opening}{(#2}
+% \subcaptionsetup[figure]{labelformat=opening}
+
+\newsavebox{\imagebox} % use imagebox to align subfigures vertically
+
+\RequirePackage[bottom,stable]{footmisc}
+\DeclareEmphSequence{\textit}
+
+% command to format new terms in the text
+\newcommand{\new}[1]{\textbf{#1}}
+
+% command for table headers (used in Kaldor facts table)
+\newcommand{\facthead}[1]{\textbf{#1}}
+
+\renewcommand{\thefigure}{\arabic{chapter}.\arabic{figure}}
+
+\RequirePackage{titlesec} % headers spacing
+\titlespacing{\section}{0pt}{2ex}{1ex}
+\titlespacing{\subsection}{0pt}{2ex}{1ex}
+
+\titleformat{name=\subsubsection, numberless}{\normalsize}{}{0cm}{\addul}
+\newcommand{\addul}[1]{\underline{#1}}
+
+%% hyperlinks
+\RequirePackage{xcolor}
+\definecolor{black}{RGB}{0,0,0}
+\definecolor{yellow}{RGB}{255,255,0}
+\definecolor{magenta}{RGB}{255,0,255}
+\definecolor{cyan}{RGB}{0,255,255}
+
+\definecolor{MyBrown}{rgb}{0.3,0,0}
+\definecolor{MyBlue}{rgb}{0,0,0.3}
+\definecolor{MyRed}{rgb}{0.4,0,0.1}
+\definecolor{MyGreen}{rgb}{0,0.4,0}
+
+%% references
+\input{./latex/biblatex-aer} 
+% path for bib file
+\providecommand{\topdir}{.}
+\addbibresource{\topdir/references.bib}
+% pass options to biblatex using PassOptionsToPackage{<option>}{biblatex-chicago}  
+\PassOptionsToPackage{footmarkoff}{biblatex-chicago}  
+\PassOptionsToPackage{authordate,autocite=inline}{biblatex-chicago} 
+\PassOptionsToPackage{defernumbers=true,refsection=chapter}{biblatex-chicago}   
+
+%% nice format for quotations
+\RequirePackage{epigraph}
+
+%% graphics
+\RequirePackage{tikz}
+\usetikzlibrary{arrows.meta,positioning, calc, shapes,shapes.geometric,patterns, shadings,decorations}
+\RequirePackage{tikzit}
+\RequirePackage{tikz-3dplot}
+\usetikzlibrary{3d}
+\input{sample.tikzstyles}
+
+% format table of contents (TOC)
+\RequirePackage[titles]{tocloft}
+\setlength{\cftsubsecnumwidth}{3.5em}
+\newenvironment{optional}
+{
+    \renewcommand{\thesection}{*\thechapter.\arabic{section}}
+    \renewcommand{\theexample}{\thechapter.\arabic{subsection}}
+    \begin{opt}}
+{\end{opt}}
+% set section and subsection numbers in TOC flush left (from the tocloft documentation)
+\newlength{\extralen}
+\setlength{\extralen}{0.5em}    % need some extra space at end of number
+\renewcommand{\cftsecpresnum}{\hfill} % note the double ‘l’ 
+\renewcommand{\cftsecaftersnum}{\hspace*{\extralen}}
+\addtolength{\cftsecnumwidth}{\extralen}
+\renewcommand{\cftsubsecpresnum}{\hfill} % note the double ‘l’ 
+\renewcommand{\cftsubsecaftersnum}{\hspace*{\extralen}}
+\addtolength{\cftsubsecnumwidth}{\extralen}
+
+\RequirePackage{refcount} % different section numbering for subfile when compiled by itself
+
+%% spacing
+\raggedbottom
+\RequirePackage{parskip} % load after tocloft to avoid redefinition of \@starttoc
+%\setlength{\parskip}{0pt} % 1ex plus 0.5ex minus 0.2ex}
+\setlength{\parindent}{0pt}
+\RequirePackage[nodisplayskipstretch]{setspace}
+\setstretch{1.5}
+% space before/after display
+\expandafter\def\expandafter\normalsize\expandafter{%
+  \normalsize  
+  \setlength\abovedisplayskip{1.5ex}
+  \setlength\belowdisplayskip{1.5ex}
+  \setlength\abovedisplayshortskip{1.5ex}
+  \setlength\belowdisplayshortskip{1.5ex}
+}
+
+\RequirePackage{xr}
+\RequirePackage{xr-hyper}
+\RequirePackage[unicode=true]{hyperref}
+\hypersetup{pdftitle={ECON 2080 Lecture Notes},
+bookmarksnumbered=true,
+colorlinks=true,
+linkcolor=MyBlue,
+citecolor=MyRed,
+filecolor=MyBlue,
+urlcolor=MyGreen
+}
+\urlstyle{same}
+
+\RequirePackage[capitalise,nameinlink,noabbrev]{cleveref}
+
+% disable the \footnote command in bookmarks:
+\pdfstringdefDisableCommands{%
+  \def\footnote#1{}%
+}
+
+
+
+%% custom commands
+\newcommand{\blank}{\mathord{{}\cdot{}}} % cdot with more blank space 
+\providecommand{\tabularnewline}{\\} % because html converters don't know tabularnewline
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % ruler
+
+%% custom environments
+\RequirePackage[framemethod=tikz]{mdframed} % custom boxed/framed environments
+\RequirePackage[ruled]{algorithm2e} % algorithms
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{corollary}{Corollary}[section]
+
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[section]
+\newtheorem*{defn*}{Definition}
+\newtheorem{assumption}{Assumption}[section]
+
+
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}[section]
+\newtheorem{example}{Example}[remark]
+\AtEndEnvironment{example}{\null\hfill\qedsymbol}
+\newtheorem*{example*}{Example}
+\AtEndEnvironment{example*}{\null\hfill\qedsymbol}
+
+% Number equations by section and ensure unique hyperref anchors
+\counterwithin{equation}{section}
+\makeatletter
+\renewcommand*\theHequation{\thesection.\arabic{equation}}
+\makeatother
+
+% cleveref names for theorem-like environments
+\crefname{proposition}{proposition}{propositions}
+\Crefname{proposition}{Proposition}{Propositions}
+\crefname{theorem}{theorem}{theorems}
+\Crefname{theorem}{Theorem}{Theorems}
+\crefname{lemma}{lemma}{lemmas}
+\Crefname{lemma}{Lemma}{Lemmas}
+\crefname{corollary}{corollary}{corollaries}
+\Crefname{corollary}{Corollary}{Corollaries}
+\crefname{definition}{definition}{definitions}
+\Crefname{definition}{Definition}{Definitions}
+\crefname{example}{example}{examples}
+\Crefname{example}{Example}{Examples}
+\crefname{remark}{remark}{remarks}
+\Crefname{remark}{Remark}{Remarks}
+\crefname{assumption}{assumption}{assumptions}
+\Crefname{assumption}{Assumption}{Assumptions}
+
+% Canonical notation macros
+\newcommand{\Atech}{A}            % technology (Harrod-neutral)
+\newcommand{\Assets}{\mathcal{A}} % financial assets
+\newcommand{\dep}{\delta}
+\newcommand{\rhoRate}{\rho}
+\newcommand{\nrate}{n}
+\newcommand{\gA}{g_{A}}
+\newcommand{\thetaRA}{\theta}
+\newcommand{\rnet}{r}
+\newcommand{\wage}{w}
+
+
+% boxed warning environment
+% Usage:
+% \begin{warn}[optional title, defaults to "Warning:"]
+%	Contents
+% \end{warn}
+\mdfdefinestyle{warning}{
+	topline=false, bottomline=false,
+	leftline=false, rightline=false,
+	nobreak,
+	singleextra={%
+		\draw(P-|O)++(-0.5em,0)node(tmp1){};
+		\draw(P-|O)++(0.5em,0)node(tmp2){};
+		\fill[black,rotate around={45:(P-|O)}](tmp1)rectangle(tmp2);
+		\node at(P-|O){\color{white}\scriptsize\bf !};
+		\draw[very thick](P-|O)++(0,-1em)--(O);%--(O-|P);
+	}
+}
+\newenvironment{warn}[1][Warning:]{ % Set the default warning to "Warning:"
+	\medskip
+	\begin{mdframed}[style=warning]
+		\noindent{\textbf{#1}}
+}{
+	\end{mdframed}
+}
+
+% boxed info environment
+% Usage:
+% \begin{info}[optional title, defaults to "Info:"]
+% 	contents
+% 	\end{info}
+\mdfdefinestyle{info}{%
+	topline=false, bottomline=false,
+	leftline=false, rightline=false,
+	nobreak=false,
+	singleextra={%
+		\fill[black](P-|O)circle[radius=0.4em];
+		\node at(P-|O){\color{white}\scriptsize\bf i};
+		\draw[very thick](P-|O)++(0,-0.8em)--(O);%--(O-|P);
+	}
+}
+\newenvironment{info}[1][Info:]{ % Set the default title to "Info:"
+	\medskip
+	\begin{mdframed}[style=info]
+		\noindent{\textbf{#1}}
+}{
+	\end{mdframed}
+}
+
+% optional environment
+% Usage:
+% \begin{optional}[optional title, defaults to "Optional: "]
+%	Contents
+% \end{warn}
+\mdfdefinestyle{opt}{
+	%topline=true, bottomline=true,
+	leftline=false, rightline=false,
+        frametitlerule=true,
+        %frametitlerrulewidth=0pt,
+        linecolor=gray!30,
+        outerlinewidth=3pt,
+       % everyline=true,
+        innertopmargin=15pt,
+        skipabove = 10pt,
+        skipbelow = 10pt,
+	firstextra={
+		\draw(P-|O)++(0,0)node[anchor=west,fill=white](tmp2){{\fontfamily{cmss}\selectfont Optional}};
+	}
+}
+\newenvironment{opt}[1][]{
+	\begin{mdframed}[style=opt]            
+		%\noindent{#1}
+            \vspace*{-10pt}
+}{
+	\end{mdframed}
+        \vspace*{5pt}
+}
+
+% header styles
+\RequirePackage{fancyhdr}
+\setlength{\headheight}{15pt}
+\pagestyle{fancy}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{#1}{}}
+\fancyhf{}
+\fancyhead[L,RO]{\thepage}
+\fancyhead[R]{\textbf{\textit{\nouppercase{\leftmark}}}}
+\fancyhead[LO]{\textbf{\textit{\nouppercase{\rightmark}}}}
+\fancypagestyle{plain}{ %
+\fancyhf{} % remove everything
+\renewcommand{\headrulewidth}{0pt} % remove lines as well
+\renewcommand{\footrulewidth}{0pt}}
+
+% step function tikz layers
+\RequirePackage{pgfplots} 
+\pgfplotsset{compat=1.18}
+
+\pgfdeclarelayer{edgelayer}
+\pgfdeclarelayer{nodelayer}
+
+% riemann sums for tikz
+\pgfdeclarelayer{left}
+\pgfdeclarelayer{right}
+\pgfdeclarelayer{plot}
+\pgfsetlayers{  main,plot, right, left,edgelayer,nodelayer}
+\tikzset{
+  pics/riemann sum/.style args={#1:#2:#3}{
+    code={
+      \pgfmathsetmacro{\leftpoint}{#1}
+      \pgfmathsetmacro{\rightpoint}{#2}
+      \pgfmathsetmacro{\movecount}{#3}
+      \pgfmathsetmacro{\step}{(\rightpoint-\leftpoint)/\movecount}
+      \begin{scope}[local bounding box=riemann]         
+      \foreach \i [count=\c from 0] in {1,...,\movecount} {
+      \pgfonlayer{left}
+      \path[riemann sum/left sum,dashed] 
+       		 (\leftpoint+\c*\step, {temp(\leftpoint+\c*\step)}) node [circle, color = black,draw,
+                         fill = black,
+                         line width = 0.3pt,
+                         inner xsep = 1pt,
+                         inner ysep = 0pt,
+                         minimum size=3pt,
+                         solid] {}
+		 (\leftpoint+\c*\step, {temp(\leftpoint+\c*\step)}) -- (\leftpoint+\i*\step,  {temp(\leftpoint+\c*\step)})
+		(\leftpoint+\i*\step,  {temp(\leftpoint+\c*\step)}) node [circle, color = black,
+                         draw,
+                         fill = white,
+                         line width = 0.3pt,
+                         inner xsep = 0pt,
+                         inner ysep = 0pt,
+                         minimum size=3pt,
+                         solid] {};
+        \endpgfonlayer
+        \pgfonlayer{right}
+        \path[riemann sum/right sum] (\rightpoint-\c*\step, {temp(\rightpoint-\c*\step)}) -- (\rightpoint-\i*\step, 0);
+        \endpgfonlayer
+        }
+        \pgfonlayer{plot}
+      	\draw [domain=#1:#2, riemann sum/riemann line] plot (\x, {temp(\x)});
+      	\endpgfonlayer
+         \end{scope}
+
+      \draw[->, riemann sum/riemann axis] ([xshift=-25mm]riemann.west) -- ([xshift=15mm]riemann.east) ;
+      \draw[->, riemann sum/riemann axis] ([yshift=-5mm]riemann.south) -- ([yshift=7mm]riemann.north) ;
+    }
+  },
+  riemann sum/.search also=/tikz,
+  riemann sum/.cd,
+  function/.style 2 args={declare function={temp(#1)=#2;}},
+  left sum/.style={draw},
+  right sum/.style={draw},
+  riemann line/.style={},
+  riemann axis/.style={},
+  left/.style={left sum/.append style={#1}},
+  right/.style={right sum/.append style={#1}},
+  line/.style={riemann line/.append style={#1}},
+  axis/.style={riemann axis/.append style={#1}}
+}
+\newcommand{\riemannsum}[2][-1:1:2]{\pic[riemann sum/.cd,#2] {riemann sum=#1};}
+
+% brownian motion
+\usepgfplotslibrary{fillbetween} % does intersections as well
+\usepgfplotslibrary{groupplots}
+\makeatletter
+        \pgfdeclareplotmark{dot}
+        {%
+            \fill circle [x radius=0.08, y radius=0.32];
+        }%
+\makeatother
+\newcommand{\CreateRandomWalkTable}[4]{%
+\xdef#4{(0,0,0)}
+\xdef\oldy{2.25}
+\foreach \X in {1,...,#1}
+{\pgfmathsetmacro{\myx}{#2*\X}
+\pgfmathsetmacro{\myy}{\oldy+1.5*#2+rand*#3}
+\xdef#4{#4 (\myx,\myy,0)}
+\xdef\oldy{\myy}
+}}
+\pgfmathsetseed{1}
+\CreateRandomWalkTable{140}{0.02}{0.2}{\mytabone}
+\pgfmathsetseed{11}
+\CreateRandomWalkTable{140}{0.02}{0.2}{\mytabtwo}
+\pgfmathsetseed{17}
+\CreateRandomWalkTable{140}{0.02}{0.2}{\mytabthree}
+\pgfmathsetseed{32}
+\CreateRandomWalkTable{140}{0.02}{0.2}{\mytabfour}
+
+\newcommand{\cmark}{\checkmark} % shorthand for check mark
+
+% Create a centered m{} column type for uniform mandate columns
+\newcolumntype{M}{>{\centering\arraybackslash}m{2.3cm}}
+
+% ---------- Brackets ----------
+\newcommand{\bc}[1]{\left\lbrace #1 \right\rbrace} 
+\newcommand{\bp}[1]{\left( #1 \right)} 
+\newcommand{\bs}[1]{\left[ #1 \right]} 
+\newcommand{\of}[1]{{\left( #1 \right)}} % Parentheses without surrounding space, for function arguments
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
+
+% ---------- Derivatives ----------
+\newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\pdx}[2]{\partial #1/\partial #2}
+\newcommand{\od}[2]{\frac{d #1}{d #2}}
+\newcommand{\odx}[2]{d #1/d #2}
+\newcommand{\pdl}[2]{\frac{\partial\ln{#1}}{\partial\ln{#2}}}
+\newcommand{\pdlx}[2]{\partial\ln(#1)/\partial\ln(#2)}
+\newcommand{\odl}[2]{\frac{d\ln{#1}}{d\ln{#2}}}
+\newcommand{\odlx}[2]{d\ln(#1)/d\ln(#2)}
+\newcommand{\pdw}[3]{\left.\frac{\partial #1}{\partial #2}\right\vert_{#3}} 
+\newcommand{\pdwx}[3]{\left.\partial #1/\partial #2\right\vert_{#3}}

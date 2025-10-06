@@ -1,0 +1,51 @@
+% !BIB program = biber
+\providecommand{\topdir}{.} 
+\documentclass[12pt]{report}
+\usepackage{\topdir/classnotes}
+\usepackage{subfiles} 
+
+\begin{document}
+
+\pagenumbering{roman}
+\hypersetup{pageanchor=false}
+\import{./}{title.tex}
+\tableofcontents
+\cleardoublepage
+\hypersetup{pageanchor=true}
+\pagenumbering{arabic}
+
+\chapter{Growth}
+\subfile{sections/growth/kaldor.tex}
+\subfile{sections/growth/solow_swan.tex}
+\subfile{sections/growth/neoclassical_growth.tex}
+\subfile{sections/growth/math_appendix.tex}
+% \subfile{sections/growth/advanced_rck_topics.tex}
+% \subfile{sections/growth/endogenous_growth.tex}
+% \subfile{sections/growth/exercises.tex}
+
+% % Appendices
+% \appendix
+% \subfile{sections/growth/appendix.tex}
+
+\chapter{Mathematical Preliminaries}
+\subfile{sections/math/probability_and_information}
+\subfile{sections/math/stochastic_calculus}
+
+% \chapter{Optimal Control}
+% \subfile{sections/optimal_control/intro}
+% \subfile{sections/optimal_control/dynamic_programming_discrete_time}
+% \newpage
+% \subfile{sections/optimal_control/dynamic_programming_continuous_time}
+
+\chapter{Asset Pricing: Discrete Time}
+\subfile{sections/asset_pricing/asset_pricing_discrete_time}
+
+\chapter{Asset Pricing: Continuous Time}
+\subfile{sections/asset_pricing/asset_pricing_continuous_time}
+
+%\section{Glossary of Key Terms}
+%\nocite{*}
+\clearpage
+\printbibliography
+
+\end{document}
