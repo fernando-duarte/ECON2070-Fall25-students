@@ -1,0 +1,131 @@
+\providecommand{\topdir}{../..} 
+\documentclass[\topdir/lecture\_notes.tex]{subfiles}
+\graphicspath{{\subfix{./images/}}}
+
+\begin{document}
+
+\section{Overview of Control Problems}
+In an \emph{optimal control problem}, we are given a dynamical system that is ``controllable'' in the sense that its behavior depends on some parameters or components that we can choose within certain ranges. More precisely, in an optimal control problem we are given:
+\begin{enumerate}
+  \item A dynamic system, which can be a discrete-time system or a continuous-time system. For instance, a discrete-time dynamic system is of the form
+  \begin{align}
+    x_{t+1}=F_{t}(x_{t}, a_{t}, \xi_{t}) \quad \text { for } \quad t=0,1, \ldots, T , \label{eq: 1.1}
+  \end{align}
+  with some given \emph{initial state} $x_{0}$. In (\ref{eq: 1.1}), at each time $t$, $x_{t}$ denotes the \emph{state variable}, with values in some \emph{state space} $X$; $a_{t}$ is the \emph{control variable} (or action), with values in some \emph{control space} (or action space) $A$ and $\xi_{t}$ is a \emph{disturbance} or perturbation from some set $S$. 
+    
+  \item A set $\Pi$ of \emph{admissible (or feasible) control policies} (or strategies), which are sequences $\pi=\{a_{0}, a_{1}, \ldots\}$ with values $a_{t} \in A$.
+
+  \item A real-valued function $V$ on $\Pi \times X$, which is the \emph{objective function}. The function $V$ can take many different forms. One of the most common is a ``total cost'' function
+  \begin{align}
+    V(\pi, x_{0}):=\sum_{t=0}^{T-1} c_{t}(x_{t}, a_{t})+C_{T}(x_{T}) \label{eq: 1.2}
+  \end{align}
+  where $\pi=\left\{a_{0}, \ldots, a_{T}\right\}$ denotes the control policy being used. The term $c_{t}(x_{t}, a_{t})$, is called the \emph{stage cost} (or period cost, or flow cost), and denotes the cost incurred at time $t$ given that $x_{t}$ is the state of the system and $a_{t}$ is the applied control. The terminal cost function $C_{T}(\cdot)$ in (\ref{eq: 1.2}) depends on the terminal state $x_{T}$ only. In (\ref{eq: 1.2}), $T$ is called the \emph{terminal time} or the \emph{planning horizon} (or simply the horizon), and can be finite or infinite. Sometimes, the sum in equation (\ref{eq: 1.2}) ends at $T$ if the final costs are allowed to depend on the control $a_T$. The infinite-horizon case is obtained from (\ref{eq: 1.2}) taking $C_{T}(\cdot) := 0$ and letting $T \rightarrow \infty$.
+\end{enumerate}
+With the above components, we can now state the optimization control problem as follows: For each initial state $x_{0}$, optimize the objective function $V(\pi, x_{0})$ over all $\pi \in \Pi$ subject to (\ref{eq: 1.1}). Here, depending on the context, ``optimize'' means either ``minimize'' (for instance, if $V$ is a cost function) or ``maximize'' (if $V$ is a utility function). Thus, if we are minimizing $V$, then the problem would be: Find $\pi^{*} \in \Pi$ such that
+\begin{align}
+V(\pi^{*}, x)=\inf_{\pi \in \Pi} V(\pi, x) \quad \forall x_{0}=x, \label{eq: 1.3}
+\end{align}
+subject to (\ref{eq: 1.1}). The policy $\pi^{*}$ that solves the problem is called an \emph{optimal policy} or \emph{optimal solution} to the problem, and the function
+\begin{align}
+V^{*}(x):=\inf _{\pi \in \Pi} V(\pi, x)=V(\pi^{*}, x) \quad \forall x \in X \label{eq: 1.4}
+\end{align}
+is the \emph{optimal value function} (or, simply, the value function). If $V$ is a utility function to be maximized, then in (\ref{eq: 1.3})-(\ref{eq: 1.4}) we write $\sup$ instead of $\inf$\footnote{If the minimum (maximum) exists, then we can replace the infimum $\inf$ (supremum $\sup$) with the minimum $\min$ (maximum $\max$). However sometimes the minimum (maximum) does not exist. In this case, it still makes sense to talk about a greatest lower bound $\inf$ (least upper bound  $\sup$).
+
+For example, the set of all real numbers that are strictly less than 2, $ \{r \in \mathbb{R}: r<2\} $, has no maximum since for any $x \in B$ the element $(x+2)/2$ satisfies $x<(x+2)/2<2$. However it is not hard to see that $\sup B=2$.}.
+
+To ensure that the value function $V^{*}(\cdot)$ in (\ref{eq: 1.4}) is finite-valued, we need to make assumptions. For example, we can make the following: \begin{assumption}[Basic Assumption]
+$ $
+\begin{enumerate}[label=(\alph*)]
+    \item \label{item: basic_a}The cost functions $c_{t}$ and $C_{T}$ are nonnegative;
+    \item \label{item: basic_b}There is a strategy $\pi \in \Pi$ such that $V(\pi, x)<\infty$ for all $x \in X$.
+\end{enumerate}
+\end{assumption}
+The Basic Assumption implies $V^{*}(\cdot)$ is finite-valued. Of course, there are many weaker assumptions that ensure finiteness.
+
+\begin{example}[A production-inventory system] \label{ex: 1.1} 
+Consider a production system in which the state variable $x_{t} \in \mathbb{R}$ is the stock or inventory level of some product. A typical state equation for this system is
+\begin{align}
+x_{t+1}=x_{t}+a_{t}-\xi_{t} \quad \forall t=0,1, \ldots, \label{eq: 1.5}
+\end{align}
+where the control or action variable $a_{t} \geq 0$ is the amount to be  produced (and immediately supplied) at the beginning of period $t$, and the disturbance $\xi_{t} \geq 0$ is the product's demand.
+
+A negative stock, which occurs if $\xi_{t}>x_{t}+a_{t}$ in (\ref{eq: 1.5}), is interpreted as a backlog that will be fulfilled as soon as the stock is replenished. However, if backlogging is not allowed, then the model (\ref{eq: 1.5}) can be replaced with
+\begin{align*}
+x_{t+1}=\max \left\{x_{t}+a_{t}-\xi_{t}, 0\right\}.
+\end{align*}
+We can further specify that the production technology has a finite capacity $C$, so that, at each period $t$, we must have $x_{t}+a_{t} \leq C$ or $a_{t} \leq C-x_{t}$. Therefore, if the state is $x_{t}=x$, then we have the control constraint
+\begin{align*}
+a \in A(x) \text {, with } A(x)=[0, C-x].
+\end{align*}
+Thus, the control or action space is $A=[0, \infty)$, which contains the control constraint set $A(x)$ for every state $x$.
+\end{example}
+
+The system (\ref{eq: 1.1}) (or (\ref{eq: 1.5})) is deterministic, stochastic or uncertain depending on whether the disturbances $\xi_{t}$ are, respectively,
+\begin{itemize}
+  \item given constants in (the disturbance set) $S$,
+  \item $S$-valued random variables, or
+  \item constants in $S$ but with unknown values.
+\end{itemize}
+
+If (\ref{eq: 1.1}) is a stochastic system, the disturbances $\xi_{t}$ are sometimes referred to as the \emph{driving process} if they have a concrete economic meaning. In Example \ref{ex: 1.1}, $\xi_{t}$ was a driving process since it was interpreted as the demand for the product. When (\ref{eq: 1.1}) is stochastic, the cost in the right-hand side of (\ref{eq: 1.2}) is random. In this case, (\ref{eq: 1.2}) is replaced with the \emph{expected total cost}
+\begin{align}
+    V(\pi, x_{0}):=E\left[\sum_{t=0}^{T} c_{t}(x_{t}, a_{t})+C_{T}(x_{T})\right] \label{eq: 1.6}
+\end{align}
+where $E[\blank]$ is the expectations operator.
+
+To introduce a control policy or strategy $\pi=\left\{a_{t}\right\}$ we must specify the information available to the controller. In the simplest case, the control depends on the time parameter only; that is, $a_{t}=g(t)$ for some function $g$. The control can additionally depend on the disturbance $\xi_t$, that is, $a_{t}=g(t,\xi_t)$. In either of these two cases, $\pi$ is called an \emph{open-loop policy}. We use the term \textit{open loop} because the policy can be computed for all time periods at once without knowing the state or the realization of future stochastic elements. Therefore, the control $a_{t}$ can influence states, but states cannot influence the control. The feedback loop between actions and states is \textit{cut} or \textit{open}. The term open loop here is akin to its use in game theory, where it means that a player devises her strategy without taking into account feedback from other players.
+    
+If, on the other hand, the control depends on the current state, that is, $a_{t}=g(x_{t})$ (and possibly also on $t$ and $\xi_t$) then $\pi$ is said to be a \emph{closed-loop policy}, also known as a \emph{feedback policy} or \emph{feedback control}.  
+    
+More generally, if controls are allowed to be of the form
+\[
+    a_{t}=g(x_{0}, a_{0}, x_{1}, a_{1}, \ldots, x_{t-1}, a_{t-1}, x_{t})
+\]
+so that, at each time $t$, the control depends on some or all of the history of the state and control up to time $t$, then $\pi$ is called a \emph{non-anticipative}, \emph{path-dependent} or \emph{history-dependent} policy.
+
+\begin{example}[A portfolio-selection or consumption-investment problem] \label{ex: 1.3} 
+Let $x_{t}$ be an investor's wealth at time $t=0,1, \ldots$. At each time $t$, the investor decides how much to consume of his wealth, denoted by $c_{t}$, and the rest $x_{t}-c_{t}$ is invested in a portfolio that consists of
+\begin{itemize}
+  \item a risk-free asset (bonds) with a fixed interest rate $r$, and
+  \item a risky asset (stocks) with a random returns $\xi_{t}$.
+\end{itemize}
+The control variable is $a_{t}=(c_{t}, p_{t}) \in[0, x_{t}] \times [0,1]$ where $p_{t}$ is the fraction of $x_{t}-c_{t}$ invested in the risky asset (and, consequently, $1-p_{t}$ is the fraction of $x_{t}-c_{t}$ invested in the risk-free asset). Note that we have assumed that $p_t \in [0,1]$, which means that the investor can have neither a negative position in the risky asset (cannot ``short-sell'' the asset) nor a position in the risky asset greater than $x_{t}-c_{t}$ (cannot have ``leverage'' or ``lever up''). The corresponding dynamic model is
+\begin{align*}
+x_{t+1}=[(1-p_{t})(1+r)+p_{t} \xi_{t}](x_{t}-c_{t}), \quad t=0,1, \ldots
+\end{align*}
+with some given initial wealth $x_{0} > 0$.
+
+The objective is to maximize expected utility of consumption
+\begin{align}
+V(\pi, x):=E\left[\sum_{t=0}^{T} \beta^{t} u(c_{t})\right], \label{eq: 1.7}
+\end{align}
+where $u(\cdot)$ is an increasing and concave utility function and $\beta \in (0,1)$ is a rate of time preference or discount rate.
+\end{example} 
+If $T=\infty$ in (\ref{eq: 1.7}), then we have an infinite-horizon discounted utility problem. 
+
+\subsubsection*{Continuous-time control problems}\label{rmk: 1.6} 
+For continuous-time control problems we again distinguish (as in the discrete-time case) between deterministic and stochastic problems. In the former case, the state equation, which is analogous to (\ref{eq: 1.1}), is an ordinary differential equation
+\begin{align}
+\dot{x}(t)=F(t, x(t), a(t)) \quad \text { for } \quad t \in[0, T], \label{eq: 1.10}
+\end{align}
+with some given initial state $x(0)=x_{0}$. In (\ref{eq: 1.10}), for each $t$, the variables $x(t)$ and $a(t)$ denote the state variable and the control that belong to appropriate spaces, say, $X \subset \mathbb{R}^{n}$ and $A \subset \mathbb{R}^{m}$, respectively. The objective function (\ref{eq: 1.2}) replaces the sum by an integral
+\begin{align}
+V(\pi, x_{0}):=\int_{0}^{T} c(t, x(t), a(t)) d t+C_{T}(x(T)) \label{eq: 1.11}
+\end{align}
+where the given function $c(t, x, a)$ is referred to as the \emph{instantaneous cost}, the \emph{running cost}, or the \emph{flow cost}, and the given function $C_{T}(x)$ is the \emph{terminal cost}. If we seek to maximize (\ref{eq: 1.11}), we refer to $c(\blank)$ and $C_{T}(\blank)$ as a utility or reward rather than a cost.
+
+The control variable $a(\blank)$ in (\ref{eq: 1.10}) and (\ref{eq: 1.11}) depends on the information available to the controller and, as in the discrete time case, can be an open-loop control or a closed-loop or feedback control. We also require that the control is measurable (or adapted). In this context, measurable (or adapted) just means that the control must only make use of information that is available at the time of taking the action. For example, the control cannot be a function of shocks whose value is unknown because it has not yet been realized.
+
+In the stochastic case, (\ref{eq: 1.10}) is replaced by a stochastic differential equation
+\begin{align}
+d x(t)=F(t, x(t), a(t)) d t+G(t, x(t), a(t)) d W(t), \label{eq: 1.12}
+\end{align}
+where  $W(\cdot) \in \mathbb{R}^{d}$ is a $d$-dimensional Brownian motion, and $G(t, x, a)$ is a $n-by-d$ matrix function, the state is $x(\cdot)$ and the state space is $X \subset \mathbb{R}^{n}$. We will study Brownian motion in more detail later on. For now, all we need to know is that the Brownian motion is a continuous time stochastic process, that is, a sequence of random variables indexed by $t \in [0,T]$ with $T$ finite or infinite.
+
+The objective function in (\ref{eq: 1.11}) is a random variable and so we consider its expected value:
+\begin{align}
+V(\pi, x_{0}):=E\left[\int_{0}^{T} c(t, x(t), a(t)) d t+C_{T}(x(T))\right] . \label{eq: 1.13}
+\end{align}
+The stochastic control problem is to minimize (\ref{eq: 1.13}) subject to (\ref{eq: 1.12}).
+
+\end{document}

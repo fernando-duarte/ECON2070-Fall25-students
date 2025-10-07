@@ -15,14 +15,15 @@ save_pdf <- function(plot, file, width = 6, height = 4) {
 }
 
 # Paths that match your Overleaf tree exactly
-ol_img_dir <- function(chapter) path("overleaf","Fall 2025","sections",chapter,"images")
+ol_img_dir <- function(chapter) path("overleaf", "Fall 2025", "sections", chapter, "images")
 
 # Notes figure base names (no extension)
-notes_base <- function(chapter, name) path("figures","notes","2025",chapter,name)
+notes_base <- function(chapter, name) path("figures", "notes", "2025", chapter, name)
 
 # Slides figure base names
-slides_base <- function(chapter, lecture, name)
-  path("figures","slides","2025",chapter,lecture,name)
+slides_base <- function(chapter, lecture, name) {
+  path("figures", "slides", "2025", chapter, lecture, name)
+}
 
 save_notes_dual <- function(plot, chapter, name, width = 6, height = 4) {
   # SVG for versioning
