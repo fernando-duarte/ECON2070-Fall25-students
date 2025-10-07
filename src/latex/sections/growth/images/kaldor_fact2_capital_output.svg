@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' class='svglite' width='432.00pt' height='288.00pt' viewBox='0 0 432.00 288.00'>
+<defs>
+  <style type='text/css'><![CDATA[
+    .svglite line, .svglite polyline, .svglite polygon, .svglite path, .svglite rect, .svglite circle {
+      fill: none;
+      stroke: #000000;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-miterlimit: 10.00;
+    }
+    .svglite text {
+      white-space: pre;
+    }
+  ]]></style>
+</defs>
+<rect width='100%' height='100%' style='stroke: none; fill: #FFFFFF;'/>
+<defs>
+  <clipPath id='cpMC4wMHw0MzIuMDB8MC4wMHwyODguMDA='>
+    <rect x='0.00' y='0.00' width='432.00' height='288.00' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpMC4wMHw0MzIuMDB8MC4wMHwyODguMDA=)'>
+</g>
+<defs>
+  <clipPath id='cpNDYuMDR8MjQ4LjAxfDQ3LjIwfDIyNy4wNA=='>
+    <rect x='46.04' y='47.20' width='201.97' height='179.83' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpNDYuMDR8MjQ4LjAxfDQ3LjIwfDIyNy4wNA==)'>
+<rect x='46.04' y='47.20' width='201.97' height='179.83' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
+<polyline points='46.04,218.86 248.01,218.86 ' style='stroke-width: 0.75; stroke: #D9D9D9; stroke-linecap: butt;' />
+<polyline points='46.04,195.51 248.01,195.51 ' style='stroke-width: 0.75; stroke: #D9D9D9; stroke-linecap: butt;' />
+<polyline points='46.04,172.15 248.01,172.15 ' style='stroke-width: 0.75; stroke: #D9D9D9; stroke-linecap: butt;' />
+<polyline points='46.04,148.80 248.01,148.80 ' style='stroke-width: 0.75; stroke: #D9D9D9; stroke-linecap: butt;' />
+<polyline points='46.04,125.44 248.01,125.44 ' style='stroke-width: 0.75; stroke: #D9D9D9; stroke-linecap: butt;' />
+<polyline points='46.04,102.09 248.01,102.09 ' style='stroke-width: 0.75; stroke: #D9D9D9; stroke-linecap: butt;' />
+<polyline points='46.04,78.73 248.01,78.73 ' style='stroke-width: 0.75; stroke: #D9D9D9; stroke-linecap: butt;' />
+<polyline points='46.04,55.38 248.01,55.38 ' style='stroke-width: 0.75; stroke: #D9D9D9; stroke-linecap: butt;' />
+<polyline points='72.17,227.04 72.17,47.20 ' style='stroke-width: 0.75; stroke: #D9D9D9; stroke-linecap: butt;' />
+<polyline points='100.42,227.04 100.42,47.20 ' style='stroke-width: 0.75; stroke: #D9D9D9; stroke-linecap: butt;' />
+<polyline points='128.66,227.04 128.66,47.20 ' style='stroke-width: 0.75; stroke: #D9D9D9; stroke-linecap: butt;' />
+<polyline points='156.91,227.04 156.91,47.20 ' style='stroke-width: 0.75; stroke: #D9D9D9; stroke-linecap: butt;' />
+<polyline points='185.16,227.04 185.16,47.20 ' style='stroke-width: 0.75; stroke: #D9D9D9; stroke-linecap: butt;' />
+<polyline points='213.41,227.04 213.41,47.20 ' style='stroke-width: 0.75; stroke: #D9D9D9; stroke-linecap: butt;' />
+<polyline points='241.65,227.04 241.65,47.20 ' style='stroke-width: 0.75; stroke: #D9D9D9; stroke-linecap: butt;' />
+<line x1='46.04' y1='148.80' x2='248.01' y2='148.80' style='stroke-width: 1.49; stroke: #666666; stroke-dasharray: 7.97,7.97; stroke-linecap: butt;' />
+<text x='58.05' y='145.94' style='font-size: 11.38px;fill: #666666; font-family: "Liberation Sans";' textLength='100.17px' lengthAdjust='spacingAndGlyphs'>K/Y = 3 reference</text>
+</g>
+<g clip-path='url(#cpMC4wMHw0MzIuMDB8MC4wMHwyODguMDA=)'>
+<text x='41.11' y='222.31' text-anchor='end' style='font-size: 10.00px;fill: #333333; font-family: "Palatino Linotype";' textLength='12.51px' lengthAdjust='spacingAndGlyphs'>1.5</text>
+<text x='41.11' y='198.95' text-anchor='end' style='font-size: 10.00px;fill: #333333; font-family: "Palatino Linotype";' textLength='12.51px' lengthAdjust='spacingAndGlyphs'>2.0</text>
+<text x='41.11' y='175.60' text-anchor='end' style='font-size: 10.00px;fill: #333333; font-family: "Palatino Linotype";' textLength='12.51px' lengthAdjust='spacingAndGlyphs'>2.5</text>
+<text x='41.11' y='152.24' text-anchor='end' style='font-size: 10.00px;fill: #333333; font-family: "Palatino Linotype";' textLength='12.51px' lengthAdjust='spacingAndGlyphs'>3.0</text>
+<text x='41.11' y='128.89' text-anchor='end' style='font-size: 10.00px;fill: #333333; font-family: "Palatino Linotype";' textLength='12.51px' lengthAdjust='spacingAndGlyphs'>3.5</text>
+<text x='41.11' y='105.53' text-anchor='end' style='font-size: 10.00px;fill: #333333; font-family: "Palatino Linotype";' textLength='12.51px' lengthAdjust='spacingAndGlyphs'>4.0</text>
+<text x='41.11' y='82.18' text-anchor='end' style='font-size: 10.00px;fill: #333333; font-family: "Palatino Linotype";' textLength='12.51px' lengthAdjust='spacingAndGlyphs'>4.5</text>
+<text x='41.11' y='58.82' text-anchor='end' style='font-size: 10.00px;fill: #333333; font-family: "Palatino Linotype";' textLength='12.51px' lengthAdjust='spacingAndGlyphs'>5.0</text>
+<text x='72.17' y='238.86' text-anchor='middle' style='font-size: 10.00px;fill: #333333; font-family: "Palatino Linotype";' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>1960</text>
+<text x='100.42' y='238.86' text-anchor='middle' style='font-size: 10.00px;fill: #333333; font-family: "Palatino Linotype";' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>1970</text>
+<text x='128.66' y='238.86' text-anchor='middle' style='font-size: 10.00px;fill: #333333; font-family: "Palatino Linotype";' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>1980</text>
+<text x='156.91' y='238.86' text-anchor='middle' style='font-size: 10.00px;fill: #333333; font-family: "Palatino Linotype";' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>1990</text>
+<text x='185.16' y='238.86' text-anchor='middle' style='font-size: 10.00px;fill: #333333; font-family: "Palatino Linotype";' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>2000</text>
+<text x='213.41' y='238.86' text-anchor='middle' style='font-size: 10.00px;fill: #333333; font-family: "Palatino Linotype";' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>2010</text>
+<text x='241.65' y='238.86' text-anchor='middle' style='font-size: 10.00px;fill: #333333; font-family: "Palatino Linotype";' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>2020</text>
+<text x='147.03' y='257.22' text-anchor='middle' style='font-size: 11.00px; font-family: "Palatino Linotype";' textLength='21.56px' lengthAdjust='spacingAndGlyphs'>Year</text>
+<text transform='translate(17.54,137.12) rotate(-90)' text-anchor='middle' style='font-size: 11.00px; font-family: "Palatino Linotype";' textLength='132.08px' lengthAdjust='spacingAndGlyphs'>Capital-Output Ratio (K/Y)</text>
+<text x='258.97' y='92.09' style='font-size: 11.00px; font-family: "Palatino Linotype";' textLength='40.89px' lengthAdjust='spacingAndGlyphs'>Country</text>
+<line x1='263.22' y1='104.87' x2='297.24' y2='104.87' style='stroke-width: 2.13; stroke: #F8766D; stroke-opacity: 0.80; stroke-linecap: butt;' />
+<line x1='263.22' y1='116.39' x2='297.24' y2='116.39' style='stroke-width: 2.13; stroke: #CD9600; stroke-opacity: 0.80; stroke-linecap: butt;' />
+<line x1='263.22' y1='127.91' x2='297.24' y2='127.91' style='stroke-width: 2.13; stroke: #7CAE00; stroke-opacity: 0.80; stroke-linecap: butt;' />
+<line x1='263.22' y1='139.43' x2='297.24' y2='139.43' style='stroke-width: 2.13; stroke: #00BE67; stroke-opacity: 0.80; stroke-linecap: butt;' />
+<line x1='263.22' y1='150.95' x2='297.24' y2='150.95' style='stroke-width: 2.13; stroke: #00BFC4; stroke-opacity: 0.80; stroke-linecap: butt;' />
+<line x1='263.22' y1='162.47' x2='297.24' y2='162.47' style='stroke-width: 2.13; stroke: #00A9FF; stroke-opacity: 0.80; stroke-linecap: butt;' />
+<line x1='263.22' y1='173.99' x2='297.24' y2='173.99' style='stroke-width: 2.13; stroke: #C77CFF; stroke-opacity: 0.80; stroke-linecap: butt;' />
+<line x1='263.22' y1='185.51' x2='297.24' y2='185.51' style='stroke-width: 2.13; stroke: #FF61CC; stroke-opacity: 0.80; stroke-linecap: butt;' />
+<text x='306.97' y='108.32' style='font-size: 10.00px; font-family: "Palatino Linotype";' textLength='34.03px' lengthAdjust='spacingAndGlyphs'>Canada</text>
+<text x='306.97' y='119.84' style='font-size: 10.00px; font-family: "Palatino Linotype";' textLength='41.59px' lengthAdjust='spacingAndGlyphs'>Germany</text>
+<text x='306.97' y='131.36' style='font-size: 10.00px; font-family: "Palatino Linotype";' textLength='29.57px' lengthAdjust='spacingAndGlyphs'>France</text>
+<text x='306.97' y='142.88' style='font-size: 10.00px; font-family: "Palatino Linotype";' textLength='75.10px' lengthAdjust='spacingAndGlyphs'>United Kingdom</text>
+<text x='306.97' y='154.40' style='font-size: 10.00px; font-family: "Palatino Linotype";' textLength='20.11px' lengthAdjust='spacingAndGlyphs'>Italy</text>
+<text x='306.97' y='165.92' style='font-size: 10.00px; font-family: "Palatino Linotype";' textLength='25.17px' lengthAdjust='spacingAndGlyphs'>Japan</text>
+<text x='306.97' y='177.44' style='font-size: 10.00px; font-family: "Palatino Linotype";' textLength='79.56px' lengthAdjust='spacingAndGlyphs'>Republic of Korea</text>
+<text x='306.97' y='188.96' style='font-size: 10.00px; font-family: "Palatino Linotype";' textLength='110.09px' lengthAdjust='spacingAndGlyphs'>United States of America</text>
+<text x='46.04' y='36.42' style='font-size: 10.00px;fill: #4D4D4D; font-family: "Palatino Linotype";' textLength='251.64px' lengthAdjust='spacingAndGlyphs'>Ratio of capital stock to GDP, major economies 1950-2019</text>
+<text x='46.04' y='19.61' style='font-size: 14.00px; font-weight: bold; font-family: "Palatino Linotype";' textLength='273.40px' lengthAdjust='spacingAndGlyphs'>Kaldor Fact 2: Steady Capital-Output Ratio</text>
+<text x='46.04' y='275.78' style='font-size: 8.00px;fill: #7F7F7F; font-family: "Palatino Linotype";' textLength='257.36px' lengthAdjust='spacingAndGlyphs'>Source: Penn World Table 10.01 (rkna/rgdpna at constant national prices)</text>
+</g>
+</svg>
