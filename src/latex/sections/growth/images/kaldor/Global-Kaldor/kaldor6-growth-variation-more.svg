@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' class='svglite' width='720.00pt' height='432.00pt' viewBox='0 0 720.00 432.00'>
+<defs>
+  <style type='text/css'><![CDATA[
+    .svglite line, .svglite polyline, .svglite polygon, .svglite path, .svglite rect, .svglite circle {
+      fill: none;
+      stroke: #000000;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-miterlimit: 10.00;
+    }
+    .svglite text {
+      white-space: pre;
+    }
+  ]]></style>
+</defs>
+<rect width='100%' height='100%' style='stroke: none; fill: #FFFFFF;'/>
+<defs>
+  <clipPath id='cpMC4wMHw3MjAuMDB8MC4wMHw0MzIuMDA='>
+    <rect x='0.00' y='0.00' width='720.00' height='432.00' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw0MzIuMDA=)'>
+</g>
+<defs>
+  <clipPath id='cpNzQuMDZ8NzEyLjAzfDcuOTd8MzgzLjA5'>
+    <rect x='74.06' y='7.97' width='637.97' height='375.12' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpNzQuMDZ8NzEyLjAzfDcuOTd8MzgzLjA5)'>
+<circle cx='151.43' cy='149.54' r='4.62' style='stroke-width: 0.71; stroke: #7F7F7F; fill: #7F7F7F;' />
+<circle cx='536.16' cy='274.29' r='4.62' style='stroke-width: 0.71; stroke: #8C564B; fill: #8C564B;' />
+<circle cx='103.06' cy='256.16' r='4.62' style='stroke-width: 0.71; stroke: #BCBD22; fill: #BCBD22;' />
+<circle cx='378.40' cy='190.06' r='4.62' style='stroke-width: 0.71; stroke: #E377C2; fill: #E377C2;' />
+<circle cx='214.92' cy='35.60' r='4.62' style='stroke-width: 0.71; stroke: #17BECF; fill: #17BECF;' />
+<circle cx='683.03' cy='366.04' r='4.62' style='stroke-width: 0.71; stroke: #1F77B4; fill: #1F77B4;' />
+<text x='153.35' y='138.96' style='font-size: 13.66px;fill: #7F7F7F; font-family: "Arial";' textLength='35.68px' lengthAdjust='spacingAndGlyphs'>China</text>
+<text x='538.09' y='263.70' style='font-size: 13.66px;fill: #8C564B; font-family: "Arial";' textLength='56.16px' lengthAdjust='spacingAndGlyphs'>Germany</text>
+<text x='104.98' y='245.58' style='font-size: 13.66px;fill: #BCBD22; font-family: "Arial";' textLength='29.61px' lengthAdjust='spacingAndGlyphs'>India</text>
+<text x='380.32' y='179.48' style='font-size: 13.66px;fill: #E377C2; font-family: "Arial";' textLength='37.21px' lengthAdjust='spacingAndGlyphs'>Japan</text>
+<text x='216.85' y='25.02' style='font-size: 13.66px;fill: #17BECF; font-family: "Arial";' textLength='75.93px' lengthAdjust='spacingAndGlyphs'>South Korea</text>
+<text x='679.17' y='355.46' text-anchor='end' style='font-size: 13.66px;fill: #1F77B4; font-family: "Arial";' textLength='81.99px' lengthAdjust='spacingAndGlyphs'>United States</text>
+</g>
+<g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw0MzIuMDA=)'>
+<polyline points='74.06,383.09 74.06,7.97 ' style='stroke-width: 0.64; stroke-linecap: butt;' />
+<text x='66.97' y='369.72' text-anchor='end' style='font-size: 15.00px;fill: #4D4D4D; font-family: "Times";' textLength='19.99px' lengthAdjust='spacingAndGlyphs'>2%</text>
+<text x='66.97' y='263.89' text-anchor='end' style='font-size: 15.00px;fill: #4D4D4D; font-family: "Times";' textLength='19.99px' lengthAdjust='spacingAndGlyphs'>3%</text>
+<text x='66.97' y='158.06' text-anchor='end' style='font-size: 15.00px;fill: #4D4D4D; font-family: "Times";' textLength='19.99px' lengthAdjust='spacingAndGlyphs'>4%</text>
+<text x='66.97' y='52.23' text-anchor='end' style='font-size: 15.00px;fill: #4D4D4D; font-family: "Times";' textLength='19.99px' lengthAdjust='spacingAndGlyphs'>5%</text>
+<polyline points='69.80,364.76 74.06,364.76 ' style='stroke-width: 0.64; stroke-linecap: butt;' />
+<polyline points='69.80,258.93 74.06,258.93 ' style='stroke-width: 0.64; stroke-linecap: butt;' />
+<polyline points='69.80,153.10 74.06,153.10 ' style='stroke-width: 0.64; stroke-linecap: butt;' />
+<polyline points='69.80,47.27 74.06,47.27 ' style='stroke-width: 0.64; stroke-linecap: butt;' />
+<polyline points='74.06,383.09 712.03,383.09 ' style='stroke-width: 0.64; stroke-linecap: butt;' />
+<polyline points='156.20,387.35 156.20,383.09 ' style='stroke-width: 0.64; stroke-linecap: butt;' />
+<polyline points='349.06,387.35 349.06,383.09 ' style='stroke-width: 0.64; stroke-linecap: butt;' />
+<polyline points='541.92,387.35 541.92,383.09 ' style='stroke-width: 0.64; stroke-linecap: butt;' />
+<text x='156.20' y='400.10' text-anchor='middle' style='font-size: 15.00px;fill: #4D4D4D; font-family: "Times";' textLength='7.50px' lengthAdjust='spacingAndGlyphs'>7</text>
+<text x='349.06' y='400.10' text-anchor='middle' style='font-size: 15.00px;fill: #4D4D4D; font-family: "Times";' textLength='7.50px' lengthAdjust='spacingAndGlyphs'>8</text>
+<text x='541.92' y='400.10' text-anchor='middle' style='font-size: 15.00px;fill: #4D4D4D; font-family: "Times";' textLength='7.50px' lengthAdjust='spacingAndGlyphs'>9</text>
+<text x='393.04' y='422.17' text-anchor='middle' style='font-size: 17.00px; font-family: "Times";' textLength='428.58px' lengthAdjust='spacingAndGlyphs'>Log Initial Real GDP per Capita in First Available Year ≥1950</text>
+<text transform='translate(19.22,195.53) rotate(-90)' text-anchor='middle' style='font-size: 17.00px; font-family: "Times";' textLength='295.54px' lengthAdjust='spacingAndGlyphs'>Average Annual Growth Rate of Real GDP</text>
+<text transform='translate(37.58,195.53) rotate(-90)' text-anchor='middle' style='font-size: 17.00px; font-family: "Times";' textLength='302.98px' lengthAdjust='spacingAndGlyphs'>per Capita Since First Available Year ≥1950</text>
+</g>
+</svg>
