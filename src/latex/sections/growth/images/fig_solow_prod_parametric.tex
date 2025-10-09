@@ -1,0 +1,153 @@
+% !TEX root = fig_solow_prod_parametric.tex
+% !TEX program = pdflatex
+
+\documentclass{article}
+\usepackage[paperwidth=234.058bp,paperheight=188.739bp,margin=0pt]{geometry}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+% Programmatic Solow diagram using model equations.
+% All elements (curves, intersection, labels, guides) are computed
+% from parameters and update automatically when parameters change.
+
+% Page/inner chart geometry (bp units), matching fig_solow_prod.tex
+\newcommand{\ChartShiftX}{19.271}
+\newcommand{\ChartShiftY}{5.563}
+\newcommand{\ChartW}{194.27399}
+\newcommand{\ChartH}{161.39407}
+
+% Styling constants to match line weights/dashes of current figure
+\newcommand{\AxisLW}{0.3985pt}
+\newcommand{\CurveLW}{0.79701pt}
+\newcommand{\DashLen}{2.98883pt}
+\definecolor{SolowGreen}{rgb}{0,0.55,0}
+\definecolor{SolowBrownRed}{rgb}{0.7,0,0}
+
+% Solow model parameters (change these to update figure)
+% Production: y = A k^alpha
+% Fitted alpha to approximate the reference curve shape
+\pgfmathsetmacro{\alpha}{0.385}
+\pgfmathsetmacro{\A}{1.0}
+
+% Target anchor points from current figure (inner-axis coordinates)
+\pgfmathsetmacro{\kstarTarget}{56.29872}
+\pgfmathsetmacro{\ystarTarget}{63.4818}
+\pgfmathsetmacro{\ysfTarget}{47.189}
+
+% Set s and deltaParam to match targets programmatically
+\pgfmathsetmacro{\s}{\ysfTarget/\ystarTarget}
+\pgfmathsetmacro{\deltaParam}{\ysfTarget/\kstarTarget}
+
+% Derived steady state and values in model-space
+% k* solves s A k^alpha = deltaParam k => k* = (s A / deltaParam)^(1/(1-alpha))
+\pgfmathsetmacro{\kstar}{pow(\s*\A/\deltaParam, 1/(1-\alpha))}
+\pgfmathsetmacro{\ystar}{\A*pow(\kstar,\alpha)}
+\pgfmathsetmacro{\ysf}{\s*\ystar}
+
+% Axis scaling: we treat axis data units as bp to match fig_solow_prod
+% Choose scaling so x(k*) and y(ystar) hit the same bp coordinates as the current figure
+% Compute scales to map model units to bp units
+% xPix = k * xscale ; yPix = y * yscale
+\pgfmathsetmacro{\xscale}{\kstarTarget/\kstar}
+\pgfmathsetmacro{\yscale}{\ystarTarget/\ystar}
+
+% With these, deltaParam implied in pixels equals (ysfTarget/kstarTarget)
+% but we keep model-space deltaParam and s; the scaling maps the line appropriately.
+
+% Curves in pixel-space (bp) as PGF macros for pgfplots
+\pgfmathdeclarefunction{fprod}{1}{% y = A k^alpha
+  \pgfmathparse{\yscale*\A*pow(#1/\xscale,\alpha)}%
+}
+\pgfmathdeclarefunction{sff}{1}{% y = s * A k^alpha
+  \pgfmathparse{\yscale*\s*\A*pow(#1/\xscale,\alpha)}%
+}
+\pgfmathdeclarefunction{deltak}{1}{% y = deltaParam * k
+  \pgfmathparse{\deltaParam*(#1)}%
+}
+
+\begin{document}
+\begin{tikzpicture}[x=1bp,y=1bp]
+  % Place the pgfplots axis exactly at the chart origin used in fig_solow_prod
+  \begin{axis}[
+      scale only axis,
+      width=\ChartW bp,
+      height=\ChartH bp,
+      at={(\ChartShiftX bp,\ChartShiftY bp)},
+      anchor=south west,
+      xmin=0, xmax=\ChartW,
+      ymin=0, ymax=\ChartH,
+      axis lines=none,
+      tick style={draw=none},
+      xtick=\empty, ytick=\empty,
+      clip mode=individual,
+    ]
+
+    % Programmatic computation of steady state position
+    \pgfmathsetmacro{\kstarPix}{\kstar*\xscale}
+    \pgfmathsetmacro{\ystarPix}{\ystar*\yscale}
+    \pgfmathsetmacro{\ysfPix}{\ysf*\yscale}
+
+    % Define shortened axis endpoints (leave room for titles)
+    \pgfmathsetmacro{\AxisEndX}{0.90*\ChartW}
+    \pgfmathsetmacro{\AxisEndY}{0.90*\ChartH}
+
+    % Draw axes at origin without arrows (shortened)
+    \draw[line width=\AxisLW, line cap=butt]
+      (axis cs:0,0) -- (axis cs:\AxisEndX,0);
+    \draw[line width=\AxisLW, line cap=butt]
+      (axis cs:0,0) -- (axis cs:0,\AxisEndY);
+
+    % Define curve end point (80% of axis length to leave room for labels)
+    \pgfmathsetmacro{\curveEnd}{0.80*\AxisEndX}
+
+    % f(k): green concave curve starting from origin
+    \addplot [domain=0:\curveEnd, samples=900, no marks, line width=\CurveLW, color=SolowGreen]
+      ({x}, {fprod(x)});
+
+    % s f(k): black curve starting from origin
+    \addplot [domain=0:\curveEnd, samples=900, no marks, line width=\CurveLW, color=black]
+      ({x}, {sff(x)});
+
+    % δk line passing through origin
+    \addplot [domain=0:\curveEnd, samples=2, no marks, line width=\CurveLW, color=SolowBrownRed]
+      ({x}, {deltak(x)});
+
+    % Dashed guides at steady state (k*, y*)
+    \draw[line width=\AxisLW, line cap=butt, line join=miter, dash pattern=on \DashLen off \DashLen]
+      (axis cs:0,\ystarPix) -- (axis cs:\kstarPix,\ystarPix) -- (axis cs:\kstarPix,0);
+
+    % Tick marks on axes at k* and y*
+    \draw[line width=\AxisLW] (axis cs:\kstarPix,-2) -- (axis cs:\kstarPix,2);
+    \draw[line width=\AxisLW] (axis cs:-2,\ystarPix) -- (axis cs:2,\ystarPix);
+
+    % Dots: moderate size for visibility, same size for both
+    \pgfmathsetmacro{\dotRadius}{1.8pt}
+    % (k*, y*) on f(k) curve
+    \draw[line width=\AxisLW, fill=black] (axis cs:\kstarPix,\ystarPix) circle[radius=\dotRadius];
+    % point on sf(k) at k* (filled and stroked to match)
+    \draw[line width=\AxisLW, fill=black] (axis cs:\kstarPix,\ysfPix) circle[radius=\dotRadius];
+
+    % Calculate y-values at curve end point for label positioning
+    \pgfmathsetmacro{\fEnd}{fprod(\curveEnd)}
+    \pgfmathsetmacro{\sfEnd}{sff(\curveEnd)}
+    \pgfmathsetmacro{\deltaEnd}{deltak(\curveEnd)}
+
+    % Curve labels positioned to the right of where each curve ends
+    \node[anchor=west, color=SolowGreen] at (axis cs:\curveEnd+3,\fEnd) {$f(k_t)$};
+    \node[anchor=west, color=black] at (axis cs:\curveEnd+3,\sfEnd) {$sf(k_t)$};
+    \node[anchor=west, color=SolowBrownRed] at (axis cs:\curveEnd+3,\deltaEnd) {$\delta k_t$};
+
+    % Tick labels on axes (positioned well inside to avoid clipping)
+    \node[anchor=north] at (axis cs:\kstarPix,3) {$k^{*}$};
+    \node[anchor=east] at (axis cs:3,\ystarPix) {$y^{*}$};
+
+    % Axis titles: positioned at the ends of shortened axes
+    % X-axis title: to the right of the x-axis
+    \node[anchor=west] at (axis cs:\AxisEndX,0) {$k_t$};
+    % Y-axis title: above the y-axis
+    \node[anchor=south] at (axis cs:0,\AxisEndY) {$f(k_t)$};
+
+  \end{axis}
+\end{tikzpicture}
+\end{document}
