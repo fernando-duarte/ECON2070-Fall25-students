@@ -1,0 +1,55 @@
+\begin{tikzpicture}
+  % Define Solow model parameters
+  \pgfmathsetmacro{\s}{0.3}        % savings rate
+  \pgfmathsetmacro{\delta}{0.05}   % depreciation rate
+  \pgfmathsetmacro{\alpha}{0.3}    % capital share (Cobb-Douglas)
+
+  % Calculate steady state k* where sf(k*) = delta*k*
+  % For f(k) = k^alpha: k* = (s/delta)^(1/(1-alpha))
+  \pgfmathsetmacro{\kstar}{(\s/\delta)^(1/(1-\alpha))}
+
+  % Calculate the maximum of kdot for plotting range
+  % kdot = s*k^alpha - delta*k
+  % Maximum occurs at k_max = (s*alpha/delta)^(1/(1-alpha))
+  \pgfmathsetmacro{\kmax}{(\s*\alpha/\delta)^(1/(1-\alpha))}
+  \pgfmathsetmacro{\kdotmax}{\s*\kmax^\alpha - \delta*\kmax}
+
+  % Set axis limits
+  \pgfmathsetmacro{\xmax}{1.6*\kstar}
+  \pgfmathsetmacro{\ymax}{1.2*\kdotmax}
+  \pgfmathsetmacro{\ymin}{-0.75*\ymax}
+
+  \begin{axis}[
+    axis lines=middle,
+    xlabel={$k$},
+    ylabel={$\dot{k}$},
+    xlabel style={anchor=west},
+    ylabel style={anchor=south},
+    xmin=0, xmax=\xmax,
+    ymin=\ymin, ymax=\ymax,
+    domain=0.01:\xmax,
+    samples=200,
+    smooth,
+    thick,
+    width=12cm,
+    height=8cm,
+    xtick={\kstar},
+    xticklabels={$k^*$},
+    ytick={0},
+    yticklabels={},
+    tick style={draw=none},
+    every axis x label/.style={at={(ticklabel* cs:1.0)}, anchor=west},
+    every axis y label/.style={at={(ticklabel* cs:1.0)}, anchor=south},
+  ]
+
+    % Plot kdot = s*k^alpha - delta*k
+    \addplot[black, very thick] {(\s)*x^(\alpha) - (\delta)*x};
+
+    % Add vertical line at k* (optional, can be removed)
+    % \addplot[dashed, gray] coordinates {(\kstar,\ymin) (\kstar,0)};
+
+    % Mark the steady state point
+    \node[circle, fill=black, inner sep=2pt] at (axis cs:\kstar,0) {};
+
+  \end{axis}
+\end{tikzpicture}

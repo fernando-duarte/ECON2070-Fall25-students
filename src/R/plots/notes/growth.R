@@ -1,4 +1,5 @@
 # R/plots/notes/growth.R
+
 # Minimal implementations for testing
 
 fetch_kaldor <- function(registry_file) {
