@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' class='svglite' width='720.00pt' height='432.00pt' viewBox='0 0 720.00 432.00'>
+<defs>
+  <style type='text/css'><![CDATA[
+    .svglite line, .svglite polyline, .svglite polygon, .svglite path, .svglite rect, .svglite circle {
+      fill: none;
+      stroke: #000000;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-miterlimit: 10.00;
+    }
+    .svglite text {
+      white-space: pre;
+    }
+  ]]></style>
+</defs>
+<rect width='100%' height='100%' style='stroke: none; fill: #FFFFFF;'/>
+<defs>
+  <clipPath id='cpMC4wMHw3MjAuMDB8MC4wMHw0MzIuMDA='>
+    <rect x='0.00' y='0.00' width='720.00' height='432.00' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw0MzIuMDA=)'>
+</g>
+<defs>
+  <clipPath id='cpNjMuMjB8NzEyLjAzfDMxLjc5fDM1NC41OA=='>
+    <rect x='63.20' y='31.79' width='648.83' height='322.79' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpNjMuMjB8NzEyLjAzfDMxLjc5fDM1NC41OA==)'>
+<polyline points='92.69,261.43 115.38,245.09 138.06,241.22 160.75,233.49 183.44,237.06 206.12,258.29 228.81,269.22 251.50,279.40 274.18,293.87 296.87,300.25 319.56,295.48 342.24,297.70 364.93,306.30 387.61,328.50 410.30,327.64 432.99,323.82 455.67,334.39 478.36,328.74 501.05,317.66 523.73,316.53 546.42,313.62 569.11,313.46 591.79,305.80 614.48,307.19 637.16,334.76 659.85,334.62 682.54,339.91 ' style='stroke-width: 1.92; stroke: #2CA02C; stroke-linecap: butt;' />
+<polyline points='92.69,67.87 115.38,55.28 138.06,52.33 160.75,46.46 183.44,49.16 206.12,65.44 228.81,73.94 251.50,81.95 274.18,93.46 296.87,98.59 319.56,94.76 342.24,96.54 364.93,103.48 387.61,121.69 410.30,120.98 432.99,117.82 455.67,126.59 478.36,121.89 501.05,112.75 523.73,111.82 546.42,109.44 569.11,109.31 591.79,103.07 614.48,104.20 637.16,126.89 659.85,126.77 682.54,131.19 ' style='stroke-width: 1.92; stroke: #1F77B4; stroke-linecap: butt;' />
+<polyline points='92.69,175.26 115.38,160.22 138.06,156.68 160.75,149.61 183.44,152.87 206.12,172.36 228.81,182.47 251.50,191.92 274.18,205.43 296.87,211.41 319.56,206.94 342.24,209.02 364.93,217.10 387.61,238.10 410.30,237.28 432.99,233.65 455.67,243.70 478.36,238.32 501.05,227.82 523.73,226.74 546.42,224.00 569.11,223.85 591.79,216.62 614.48,217.93 637.16,244.06 659.85,243.92 682.54,248.96 ' style='stroke-width: 1.92; stroke: #FF7F0E; stroke-linecap: butt;' />
+</g>
+<g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw0MzIuMDA=)'>
+<polyline points='63.20,354.58 63.20,31.79 ' style='stroke-width: 0.64; stroke-linecap: butt;' />
+<text x='56.11' y='337.66' text-anchor='end' style='font-size: 15.00px;fill: #4D4D4D; font-family: "Times";' textLength='27.50px' lengthAdjust='spacingAndGlyphs'>55%</text>
+<text x='56.11' y='272.67' text-anchor='end' style='font-size: 15.00px;fill: #4D4D4D; font-family: "Times";' textLength='27.50px' lengthAdjust='spacingAndGlyphs'>60%</text>
+<text x='56.11' y='207.69' text-anchor='end' style='font-size: 15.00px;fill: #4D4D4D; font-family: "Times";' textLength='27.50px' lengthAdjust='spacingAndGlyphs'>65%</text>
+<text x='56.11' y='142.71' text-anchor='end' style='font-size: 15.00px;fill: #4D4D4D; font-family: "Times";' textLength='27.50px' lengthAdjust='spacingAndGlyphs'>70%</text>
+<text x='56.11' y='77.73' text-anchor='end' style='font-size: 15.00px;fill: #4D4D4D; font-family: "Times";' textLength='27.50px' lengthAdjust='spacingAndGlyphs'>75%</text>
+<polyline points='58.95,332.70 63.20,332.70 ' style='stroke-width: 0.64; stroke-linecap: butt;' />
+<polyline points='58.95,267.71 63.20,267.71 ' style='stroke-width: 0.64; stroke-linecap: butt;' />
+<polyline points='58.95,202.73 63.20,202.73 ' style='stroke-width: 0.64; stroke-linecap: butt;' />
+<polyline points='58.95,137.75 63.20,137.75 ' style='stroke-width: 0.64; stroke-linecap: butt;' />
+<polyline points='58.95,72.77 63.20,72.77 ' style='stroke-width: 0.64; stroke-linecap: butt;' />
+<polyline points='63.20,354.58 712.03,354.58 ' style='stroke-width: 0.64; stroke-linecap: butt;' />
+<polyline points='160.75,358.83 160.75,354.58 ' style='stroke-width: 0.64; stroke-linecap: butt;' />
+<polyline points='274.18,358.83 274.18,354.58 ' style='stroke-width: 0.64; stroke-linecap: butt;' />
+<polyline points='387.61,358.83 387.61,354.58 ' style='stroke-width: 0.64; stroke-linecap: butt;' />
+<polyline points='501.05,358.83 501.05,354.58 ' style='stroke-width: 0.64; stroke-linecap: butt;' />
+<polyline points='614.48,358.83 614.48,354.58 ' style='stroke-width: 0.64; stroke-linecap: butt;' />
+<text x='160.75' y='371.59' text-anchor='middle' style='font-size: 15.00px;fill: #4D4D4D; font-family: "Times";' textLength='30.01px' lengthAdjust='spacingAndGlyphs'>2000</text>
+<text x='274.18' y='371.59' text-anchor='middle' style='font-size: 15.00px;fill: #4D4D4D; font-family: "Times";' textLength='30.01px' lengthAdjust='spacingAndGlyphs'>2005</text>
+<text x='387.61' y='371.59' text-anchor='middle' style='font-size: 15.00px;fill: #4D4D4D; font-family: "Times";' textLength='30.01px' lengthAdjust='spacingAndGlyphs'>2010</text>
+<text x='501.05' y='371.59' text-anchor='middle' style='font-size: 15.00px;fill: #4D4D4D; font-family: "Times";' textLength='30.01px' lengthAdjust='spacingAndGlyphs'>2015</text>
+<text x='614.48' y='371.59' text-anchor='middle' style='font-size: 15.00px;fill: #4D4D4D; font-family: "Times";' textLength='30.01px' lengthAdjust='spacingAndGlyphs'>2020</text>
+<text transform='translate(19.22,193.18) rotate(-90)' text-anchor='middle' style='font-size: 17.00px; font-family: "Times";' textLength='171.84px' lengthAdjust='spacingAndGlyphs'>Labor share of total costs</text>
+<line x1='128.47' y1='407.42' x2='142.29' y2='407.42' style='stroke-width: 1.92; stroke: #2CA02C; stroke-linecap: butt;' />
+<line x1='310.04' y1='407.42' x2='323.87' y2='407.42' style='stroke-width: 1.92; stroke: #1F77B4; stroke-linecap: butt;' />
+<line x1='484.12' y1='407.42' x2='497.94' y2='407.42' style='stroke-width: 1.92; stroke: #FF7F0E; stroke-linecap: butt;' />
+<text x='151.99' y='412.38' style='font-size: 15.00px; font-family: "Times";' textLength='148.36px' lengthAdjust='spacingAndGlyphs'>100% Operating Surplus</text>
+<text x='333.56' y='412.38' style='font-size: 15.00px; font-family: "Times";' textLength='140.85px' lengthAdjust='spacingAndGlyphs'>50% Operating Surplus</text>
+<text x='507.64' y='412.38' style='font-size: 15.00px; font-family: "Times";' textLength='140.85px' lengthAdjust='spacingAndGlyphs'>75% Operating Surplus</text>
+<text x='63.20' y='19.88' style='font-size: 18.00px; font-family: "Times";' textLength='384.98px' lengthAdjust='spacingAndGlyphs'>Operating surplus treated as capital cost: 50/75/100%</text>
+</g>
+</svg>

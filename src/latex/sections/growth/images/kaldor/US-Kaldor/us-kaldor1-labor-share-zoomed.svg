@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' class='svglite' width='720.00pt' height='432.00pt' viewBox='0 0 720.00 432.00'>
+<defs>
+  <style type='text/css'><![CDATA[
+    .svglite line, .svglite polyline, .svglite polygon, .svglite path, .svglite rect, .svglite circle {
+      fill: none;
+      stroke: #000000;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-miterlimit: 10.00;
+    }
+    .svglite text {
+      white-space: pre;
+    }
+  ]]></style>
+</defs>
+<rect width='100%' height='100%' style='stroke: none; fill: #FFFFFF;'/>
+<defs>
+  <clipPath id='cpMC4wMHw3MjAuMDB8MC4wMHw0MzIuMDA='>
+    <rect x='0.00' y='0.00' width='720.00' height='432.00' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw0MzIuMDA=)'>
+</g>
+<defs>
+  <clipPath id='cpNjMuMjB8NzEyLjAzfDcuOTd8NDAzLjc0'>
+    <rect x='63.20' y='7.97' width='648.83' height='395.77' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpNjMuMjB8NzEyLjAzfDcuOTd8NDAzLjc0)'>
+<polyline points='94.03,209.13 123.38,170.43 152.74,164.00 182.10,130.60 211.46,129.13 240.82,164.08 270.18,186.33 299.54,200.71 328.90,229.31 358.26,231.83 387.61,218.39 416.97,206.94 446.33,249.53 475.69,280.99 505.05,278.22 534.41,279.99 563.77,289.45 593.13,283.46 622.49,266.87 651.84,265.87 681.20,258.76 ' style='stroke-width: 1.92; stroke: #1F77B4; stroke-linecap: butt;' />
+</g>
+<g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw0MzIuMDA=)'>
+<polyline points='63.20,403.74 63.20,7.97 ' style='stroke-width: 0.64; stroke-linecap: butt;' />
+<text x='56.11' y='390.71' text-anchor='end' style='font-size: 15.00px;fill: #4D4D4D; font-family: "Times";' textLength='27.50px' lengthAdjust='spacingAndGlyphs'>50%</text>
+<text x='56.11' y='210.82' text-anchor='end' style='font-size: 15.00px;fill: #4D4D4D; font-family: "Times";' textLength='27.50px' lengthAdjust='spacingAndGlyphs'>55%</text>
+<text x='56.11' y='30.92' text-anchor='end' style='font-size: 15.00px;fill: #4D4D4D; font-family: "Times";' textLength='27.50px' lengthAdjust='spacingAndGlyphs'>60%</text>
+<polyline points='58.95,385.75 63.20,385.75 ' style='stroke-width: 0.64; stroke-linecap: butt;' />
+<polyline points='58.95,205.85 63.20,205.85 ' style='stroke-width: 0.64; stroke-linecap: butt;' />
+<polyline points='58.95,25.96 63.20,25.96 ' style='stroke-width: 0.64; stroke-linecap: butt;' />
+<polyline points='63.20,403.74 712.03,403.74 ' style='stroke-width: 0.64; stroke-linecap: butt;' />
+<polyline points='94.03,407.99 94.03,403.74 ' style='stroke-width: 0.64; stroke-linecap: butt;' />
+<polyline points='240.82,407.99 240.82,403.74 ' style='stroke-width: 0.64; stroke-linecap: butt;' />
+<polyline points='387.61,407.99 387.61,403.74 ' style='stroke-width: 0.64; stroke-linecap: butt;' />
+<polyline points='534.41,407.99 534.41,403.74 ' style='stroke-width: 0.64; stroke-linecap: butt;' />
+<polyline points='681.20,407.99 681.20,403.74 ' style='stroke-width: 0.64; stroke-linecap: butt;' />
+<text x='94.03' y='420.75' text-anchor='middle' style='font-size: 15.00px;fill: #4D4D4D; font-family: "Times";' textLength='30.01px' lengthAdjust='spacingAndGlyphs'>1997</text>
+<text x='240.82' y='420.75' text-anchor='middle' style='font-size: 15.00px;fill: #4D4D4D; font-family: "Times";' textLength='30.01px' lengthAdjust='spacingAndGlyphs'>2002</text>
+<text x='387.61' y='420.75' text-anchor='middle' style='font-size: 15.00px;fill: #4D4D4D; font-family: "Times";' textLength='30.01px' lengthAdjust='spacingAndGlyphs'>2007</text>
+<text x='534.41' y='420.75' text-anchor='middle' style='font-size: 15.00px;fill: #4D4D4D; font-family: "Times";' textLength='30.01px' lengthAdjust='spacingAndGlyphs'>2012</text>
+<text x='681.20' y='420.75' text-anchor='middle' style='font-size: 15.00px;fill: #4D4D4D; font-family: "Times";' textLength='30.01px' lengthAdjust='spacingAndGlyphs'>2017</text>
+<text transform='translate(19.22,205.85) rotate(-90)' text-anchor='middle' style='font-size: 17.00px; font-family: "Times";' textLength='157.19px' lengthAdjust='spacingAndGlyphs'>Labor Share of Income</text>
+</g>
+</svg>
