@@ -6,16 +6,16 @@
 \section{Probability Spaces, Sigma-Algebras, Filtrations}
 \subsection{Discrete time}
 \subsubsection*{Times, states, events}
-Time is indexed by $t \in \{0,1, \ldots, T\}$ for a positive integer $T$. One of a finite number of possible \emph{states} of the world is realized by the \emph{terminal time} $T$ (either before $T$ or exactly at $T$). We refer to the state that is realized by $T$ as the \emph{true state} or the \emph{revealed state}. The possible states are represented by the elements of a finite set $\Omega$, the \emph{state space}. We are not yet concerned with the likelihood of any one state occurring, but every contingency represented by a state in $\Omega$ is possible and every relevant contingency is represented by a state in $\Omega$. Subsets of $\Omega$ are called \emph{events}.
+Time is indexed by \(t \in \{0,1, \ldots, T\}\) for a positive integer \(T\). One of a finite number of possible \emph{states} of the world is realized by the \emph{terminal time} \(T\) (either before \(T\) or exactly at \(T\)). We refer to the state that is realized by \(T\) as the \emph{true state} or the \emph{revealed state}. The possible states are represented by the elements of a finite set \(\Omega\), the \emph{state space}. We are not yet concerned with the likelihood of any one state occurring, but every contingency represented by a state in \(\Omega\) is possible and every relevant contingency is represented by a state in \(\Omega\). Subsets of \(\Omega\) are called \emph{events}.
 \subsubsection*{Information flow, partitions}
-Time-$t$ information is represented by a \emph{partition} $\mathcal{F}_{t}^{0}$ of $\Omega$. A partition is defined as a set of mutually exclusive nonempty events whose union is $\Omega$. Thus, a partition is a collection of subsets of $\Omega$ such that each state belongs to exactly one element of $\mathcal{F}_{t}^{0}$. We use partitions to encode what is known at different times. All that is known at time $t$ is what element of $\mathcal{F}_{t}^{0}$ contains the true state. We assume that at time $0$, it is only known that the true state is an element of $\Omega$ and therefore $\mathcal{F}_{0}^{0}=\{\Omega\}$. At time $T$ the true state is known with certainty and therefore $\mathcal{F}_{T}^{0}=\{\{\omega\} \mid \omega \in \Omega\}$.
+Time-\(t\) information is represented by a \emph{partition} \(\mathcal{F}_{t}^{0}\) of \(\Omega\). A partition is defined as a set of mutually exclusive nonempty events whose union is \(\Omega\). Thus, a partition is a collection of subsets of \(\Omega\) such that each state belongs to exactly one element of \(\mathcal{F}_{t}^{0}\). We use partitions to encode what is known at different times. All that is known at time \(t\) is what element of \(\mathcal{F}_{t}^{0}\) contains the true state. We assume that at time \(0\), it is only known that the true state is an element of \(\Omega\) and therefore \(\mathcal{F}_{0}^{0}=\{\Omega\}\). At time \(T\) the true state is known with certainty and therefore \(\mathcal{F}_{T}^{0}=\{\{\omega\} \mid \omega \in \Omega\}\).
 
 \begin{example}\label{ex:three_coin_tosses}
-Suppose $\Omega$ is the set of the eight possible outcomes of three coin tosses:
+Suppose \(\Omega\) is the set of the eight possible outcomes of three coin tosses:
 \begin{align*}
 \Omega=\{H H H, H H T, H T H, H T T, T H H, T H T, T T H, T T T\},
 \end{align*}
-where we encode heads with $H$ and tails with $T$. Consider the time-$1$ partition
+where we encode heads with \(H\) and tails with \(T\). Consider the time-\(1\) partition
 \begin{align*}
 \mathcal{F}_{1}^{0}&=\{A_{H},A_{T}\},
 \end{align*}
@@ -24,39 +24,39 @@ with%
 A_{H}&=\{H H H, H H T, H T H, H T T\},\\
 A_{T}&=\{T H H, T H T, T T H, T T T\}.
 \end{align*}
-The partition $\mathcal{F}_{1}^{0}$ encodes that at $t=1$ the true state is either in the set $A_{H}$, or in the set $A_{T}$. Thus, what is known at $t=1$ is the outcome of the first coin toss. If the true state is in $A_{H}$, the first coin toss is $H$ since all elements of $A_{H}$ start with $H$. In addition, this is all that is known, since the outcomes of the last two coin tosses of the elements of $A_{H}$ are $\{H H, H T, T H, T T\}$, which are all the possible outcomes of tossing the coin two times. By the same logic, if the true state is in $A_{T}$, the first coin toss is $T$.
+The partition \(\mathcal{F}_{1}^{0}\) encodes that at \(t=1\) the true state is either in the set \(A_{H}\), or in the set \(A_{T}\). Thus, what is known at \(t=1\) is the outcome of the first coin toss. If the true state is in \(A_{H}\), the first coin toss is \(H\) since all elements of \(A_{H}\) start with \(H\). In addition, this is all that is known, since the outcomes of the last two coin tosses of the elements of \(A_{H}\) are \(\{H H, H T, T H, T T\}\), which are all the possible outcomes of tossing the coin two times. By the same logic, if the true state is in \(A_{T}\), the first coin toss is \(T\).
 
-Conversely, if it is known that the first coin toss is $H$, the true state is a state of the form $H X Y$ with $X,Y\in \{H,T\}$, so the true state is in $A_{H}$. Similarly, if the first coin toss is $T$, the true state is an element of $A_{T}$.
+Conversely, if it is known that the first coin toss is \(H\), the true state is a state of the form \(H X Y\) with \(X,Y\in \{H,T\}\), so the true state is in \(A_{H}\). Similarly, if the first coin toss is \(T\), the true state is an element of \(A_{T}\).
 \end{example}
 
 \begin{example}\label{ex:coin_toss}
-Information is generated by observing the outcome of a coin toss at each time $t=1,2, \ldots, \mathcal{T}$. A state is a finite sequence $\omega=(\omega_{1}, \ldots, \omega_{\mathcal{T}})$, where $\omega_{t} \in\{H, T\}$, and the state space is the Cartesian product $\Omega := \{H, T\}^{\mathcal{T}}$. At time $t>0$, the first $t$ coin toss outcomes $\bar{\omega}_{1}, \ldots, \bar{\omega}_{t}$ with $\bar{\omega}_{i} \in \{H, T\}$ have been observed and it is therefore known that the true state is an element of the event $\{\omega \in \Omega \mid \omega_{1}=\bar{\omega}_{1}, \ldots, \omega_{t}=\bar{\omega}_{t}\}$. The partition $\mathcal{F}_{t}^{0}$ is the set of all these events as $(\bar{\omega}_{1}, \ldots, \bar{\omega}_{t})$ ranges over $\{H, T\}^{t}$.
+Information is generated by observing the outcome of a coin toss at each time \(t=1,2, \ldots, \mathcal{T}\). A state is a finite sequence \(\omega=(\omega_{1}, \ldots, \omega_{\mathcal{T}})\), where \(\omega_{t} \in\{H, T\}\), and the state space is the Cartesian product \(\Omega := \{H, T\}^{\mathcal{T}}\). At time \(t>0\), the first \(t\) coin toss outcomes \(\bar{\omega}_{1}, \ldots, \bar{\omega}_{t}\) with \(\bar{\omega}_{i} \in \{H, T\}\) have been observed and it is therefore known that the true state is an element of the event \(\{\omega \in \Omega \mid \omega_{1}=\bar{\omega}_{1}, \ldots, \omega_{t}=\bar{\omega}_{t}\}\). The partition \(\mathcal{F}_{t}^{0}\) is the set of all these events as \((\bar{\omega}_{1}, \ldots, \bar{\omega}_{t})\) ranges over \(\{H, T\}^{t}\).
 \end{example}
 
-As in Example \ref{ex:coin_toss}, when we think of how information is revealed over time, we assume perfect recall. If at some time the true state is known to belong to a partition element, the same remains true at all subsequent times. More formally, we assume that if $u>t$, the partition $\mathcal{F}_{u}^{0}$ is a \emph{refinement} of the partition $\mathcal{F}_{t}^{0}$, meaning that every event in $\mathcal{F}_{t}^{0}$ is the union of events in $\mathcal{F}_{u}^{0}$.
+As in Example \ref{ex:coin_toss}, when we think of how information is revealed over time, we assume perfect recall. If at some time the true state is known to belong to a partition element, the same remains true at all subsequent times. More formally, we assume that if \(u>t\), the partition \(\mathcal{F}_{u}^{0}\) is a \emph{refinement} of the partition \(\mathcal{F}_{t}^{0}\), meaning that every event in \(\mathcal{F}_{t}^{0}\) is the union of events in \(\mathcal{F}_{u}^{0}\).
 
 \subsubsection*{Filtrations}
 Define the sets:
 \begin{align}
 \mathcal{F}_{t}=\left\{F \mid F\right. \text{is a union of elements of }\left.\mathcal{F}_{t}^{0}\right\}, \quad t=0, \ldots, T.
 \end{align}
-An event $F$ belongs to $\mathcal{F}_{t}$ if and only if at time $t$ it is known whether $F$ contains the state to be revealed at time $T$.
+An event \(F\) belongs to \(\mathcal{F}_{t}\) if and only if at time \(t\) it is known whether \(F\) contains the state to be revealed at time \(T\).
 
 \begin{example}
-Let $\Omega :=\{1,2,3,4\}$ and $\mathcal{F}_{1}^{0} :=\{\{1,2\},\{3\},\{4\}\}$. Then
+Let \(\Omega :=\{1,2,3,4\}\) and \(\mathcal{F}_{1}^{0} :=\{\{1,2\},\{3\},\{4\}\}\). Then
 \[
 \mathcal{F}_{1}=\left\{\emptyset,\{1,2\},\{3\},\{4\},\{1,2,3\},\{1,2,4\},\{3,4\}, \Omega \right\}.
 \]
-Suppose state $1$ is realized at time $T := 2$. At time $1$, it is known that the state is either $1$ or $2$. From that, it can be inferred whether every one of the events in $\mathcal{F}_{1}$ contains $1$ or not, and these are all the events about which such a claim can be made.
+Suppose state \(1\) is realized at time \(T := 2\). At time \(1\), it is known that the state is either \(1\) or \(2\). From that, it can be inferred whether every one of the events in \(\mathcal{F}_{1}\) contains \(1\) or not, and these are all the events about which such a claim can be made.
 \end{example}
 
-Every $\mathcal{F}_{t}$ is an \emph{algebra} of events, meaning that it contains $\emptyset$ and $\Omega$, and it is closed relative to the formation of Boolean set operations: For all $A, B \in \mathcal{F}_{t}$, 
+Every \(\mathcal{F}_{t}\) is an \emph{algebra} of events, meaning that it contains \(\emptyset\) and \(\Omega\), and it is closed relative to the formation of Boolean set operations: For all \(A, B \in \mathcal{F}_{t}\), 
 \begin{enumerate}
-    \item the \emph{union} $A \cup B :=\{\omega \mid \omega \in A$ or $\omega \in B\}$,
-    \item the \emph{intersection} $A \cap B :=\{\omega \mid \omega \in A$ and $\omega \in B\}$, and 
-    \item the \emph{set difference} $A \backslash B :=\{\omega \mid \omega \in A$ and $\omega \notin B\}$,
+    \item the \emph{union} \(A \cup B :=\{\omega \mid \omega \in A\) or \(\omega \in B\}\),
+    \item the \emph{intersection} \(A \cap B :=\{\omega \mid \omega \in A\) and \(\omega \in B\}\), and 
+    \item the \emph{set difference} \(A \backslash B :=\{\omega \mid \omega \in A\) and \(\omega \notin B\}\),
 \end{enumerate}
-are all elements of $\mathcal{F}_{t}$. In particular, for all $F \in \mathcal{F}_{t}$, the \emph{complement} $F^{c} := \Omega \backslash F$ is an element of $\mathcal{F}_{t}$. This definition of an algebra is of course redundant. For example, since $A \cap B=(A^{c} \cup B^{c})^{c}$ and $A \backslash B=A \cap B^{c}$, an algebra (of events) is any nonempty set of events that is closed with respect to the formation of unions and complements. Besides providing convenient notation, algebras are key in generalizing to infinite-dimensional state spaces in which algebras are not generated by partitions.
+are all elements of \(\mathcal{F}_{t}\). In particular, for all \(F \in \mathcal{F}_{t}\), the \emph{complement} \(F^{c} := \Omega \backslash F\) is an element of \(\mathcal{F}_{t}\). This definition of an algebra is of course redundant. For example, since \(A \cap B=(A^{c} \cup B^{c})^{c}\) and \(A \backslash B=A \cap B^{c}\), an algebra (of events) is any nonempty set of events that is closed with respect to the formation of unions and complements. Besides providing convenient notation, algebras are key in generalizing to infinite-dimensional state spaces in which algebras are not generated by partitions.
 
 \begin{figure}[htbp] % Placement specifiers (explained below)
     \centering % Center the image
@@ -69,69 +69,69 @@ are all elements of $\mathcal{F}_{t}$. In particular, for all $F \in \mathcal{F}
             every node/.style={text ragged, inner sep=2mm},
             draw, align=center
     ]
-    \node {$(\Omega, 0)$}
+    \node {\((\Omega, 0)\)}
         child {
-            node[below]{$\quad ( \{\omega_3, \omega_4\}, 1)$}
+            node[below]{\(\quad (\{\omega_3, \omega_4\}, 1)\)}
                 child {
-                    node[label=right: {state $\omega_4$}] {}
+                    node[label=right: {state \(\omega_4\)}] {}
                     edge from parent[arrow]
                 }
                 child {
-                    node[label=right: {state $\omega_3$}] {}
+                    node[label=right: {state \(\omega_3\)}] {}
                     edge from parent[arrow]
                 }
                 edge from parent[arrow]
         }
         child {
-            node[above]{$\quad ( \{\omega_1, \omega_2\}, 1)$}
+            node[above]{\(\quad (\{\omega_1, \omega_2\}, 1)\)}
             child {
-                    node[label=right: {state $\omega_2$}] {}
+                    node[label=right: {state \(\omega_2\)}] {}
                     edge from parent[arrow]
                 }
                 child {
-                    node[label=right: {state $\omega_1$}] {}
+                    node[label=right: {state \(\omega_1\)}] {}
                     edge from parent[arrow]
                 }
             edge from parent[arrow]        
         };
     \end{tikzpicture}
-    \caption{Information tree of Example \ref{ex:coin_toss} with $T=2$. Each state $\omega_{i}$ can be identified with the terminal $\operatorname{spot}(\{\omega_{i}\}, 2)$.}
+    \caption{Information tree of Example \ref{ex:coin_toss} with \(T=2\). Each state \(\omega_{i}\) can be identified with the terminal \(\operatorname{spot}(\{\omega_{i}\}, 2)\).}
     \label{fig:coin_toss}
 \end{figure}
 
-The intersection of an arbitrary collection of algebras is also an algebra. The union of two algebras is not necessarily an algebra. The algebra $\sigma(\mathcal{S})$ \emph{generated} by a set of events $\mathcal{S}$ is the intersection of all algebras that include $\mathcal{S}$. It is straightforward to verify that $\mathcal{F}_{t}=\sigma(\mathcal{F}_{t}^{0})$ for all $t$. Conversely, $\mathcal{F}_{t}^{0}$ can be recovered from $\mathcal{F}_{t}$ as the set of nonempty elements of $\mathcal{F}_{t}$ that do not have a nonempty proper subset in $\mathcal{F}_{t}$.
+The intersection of an arbitrary collection of algebras is also an algebra. The union of two algebras is not necessarily an algebra. The algebra \(\sigma(\mathcal{S})\) \emph{generated} by a set of events \(\mathcal{S}\) is the intersection of all algebras that include \(\mathcal{S}\). It is straightforward to verify that \(\mathcal{F}_{t}=\sigma(\mathcal{F}_{t}^{0})\) for all \(t\). Conversely, \(\mathcal{F}_{t}^{0}\) can be recovered from \(\mathcal{F}_{t}\) as the set of nonempty elements of \(\mathcal{F}_{t}\) that do not have a nonempty proper subset in \(\mathcal{F}_{t}\).
 
-Note that $\mathcal{F}_{u}^{0}$ is a refinement of $\mathcal{F}_{t}^{0}$ if and only if $\mathcal{F}_{t} \subseteq \mathcal{F}_{u}$. This motivates the definition of a \emph{filtration} as a time-indexed sequence $\mathcal{F}_{0}, \mathcal{F}_{1}, \ldots, \mathcal{F}_{T}$ of algebras of events, abbreviated to $\{\mathcal{F}_{t}\}$, such that $u \geq t$ implies $\mathcal{F}_{u} \supseteq \mathcal{F}_{t}$. We can therefore specify the information primitive of our model as a filtration $\{\mathcal{F}_{t}\}$ satisfying
+Note that \(\mathcal{F}_{u}^{0}\) is a refinement of \(\mathcal{F}_{t}^{0}\) if and only if \(\mathcal{F}_{t} \subseteq \mathcal{F}_{u}\). This motivates the definition of a \emph{filtration} as a time-indexed sequence \(\mathcal{F}_{0}, \mathcal{F}_{1}, \ldots, \mathcal{F}_{T}\) of algebras of events, abbreviated to \(\{\mathcal{F}_{t}\}\), such that \(u \geq t\) implies \(\mathcal{F}_{u} \supseteq \mathcal{F}_{t}\). We can therefore specify the information primitive of our model as a filtration \(\{\mathcal{F}_{t}\}\) satisfying
 \begin{align}
-\quad \mathcal{F}_{0}=\{\emptyset, \Omega\} \quad \text{ and } \quad \mathcal{F}_{T}=2^{\Omega} \text{ (the set of all subsets of $\Omega$)}, \label{eq:filtration_boundary_conditions}
+\quad \mathcal{F}_{0}=\{\emptyset, \Omega\} \quad \text{ and } \quad \mathcal{F}_{T}=2^{\Omega} \text{ (the set of all subsets of \(\Omega\))}, \label{eq:filtration_boundary_conditions}
 \end{align}
 rather than in terms of partitions. 
 
 \subsubsection*{Information tree}
-Figure \ref{fig:coin_toss}, shows how a filtration $\{\mathcal{F}_{t}\}$ can be thought of as an information tree, whose nodes correspond to what we call ``spots'' or ``nodes''. Formally, a \emph{spot} of the filtration $\{\mathcal{F}_{t}\}$ is a pair $(F, t)$ where $F \in \mathcal{F}_{t}^{0}$ and $t \in\{0, \ldots, T\}$. The root of the information tree corresponds to the \emph{initial spot} $(\Omega, 0)$. A \emph{terminal spot} takes the form $(\{\omega\}, T)$, where $\omega \in \Omega$, and can therefore be identified with the state $\omega$ as well as the unique path on the information tree from the initial spot to the given terminal spot. A non-terminal spot $(F, t-1)$, $t \in\{1, \ldots, T\}$, has \emph{immediate successor spots} $(F_{0}, t), \ldots,(F_{d}, t)$, where $F_{0}, \ldots, F_{d}$ are the elements of $\mathcal{F}_{t}^{0}$ whose union is $F$. The spot $(F, t-1)$ can be thought of as the set of paths on the information tree from the initial spot to every terminal spot corresponding to a state in $F$.
+Figure \ref{fig:coin_toss}, shows how a filtration \(\{\mathcal{F}_{t}\}\) can be thought of as an information tree, whose nodes correspond to what we call ``spots'' or ``nodes''. Formally, a \emph{spot} of the filtration \(\{\mathcal{F}_{t}\}\) is a pair \((F, t)\) where \(F \in \mathcal{F}_{t}^{0}\) and \(t \in\{0, \ldots, T\}\). The root of the information tree corresponds to the \emph{initial spot} \((\Omega, 0)\). A \emph{terminal spot} takes the form \((\{\omega\}, T)\), where \(\omega \in \Omega\), and can therefore be identified with the state \(\omega\) as well as the unique path on the information tree from the initial spot to the given terminal spot. A non-terminal spot \((F, t-1)\), \(t \in\{1, \ldots, T\}\), has \emph{immediate successor spots} \((F_{0}, t), \ldots,(F_{d}, t)\), where \(F_{0}, \ldots, F_{d}\) are the elements of \(\mathcal{F}_{t}^{0}\) whose union is \(F\). The spot \((F, t-1)\) can be thought of as the set of paths on the information tree from the initial spot to every terminal spot corresponding to a state in \(F\).
 
 \begin{optional}
 \subsection{Resolved sets}
-The above construction means that even if at some time $t$ we do not precisely know what the true state is, we can make a list of sets that are sure to contain it and that are sure not to contain it. These are the sets that are \emph{resolved} by the information modeled by the partition $\mathcal{F}_{t}^{0}$.
+The above construction means that even if at some time \(t\) we do not precisely know what the true state is, we can make a list of sets that are sure to contain it and that are sure not to contain it. These are the sets that are \emph{resolved} by the information modeled by the partition \(\mathcal{F}_{t}^{0}\).
 
 \begin{example}\label{ex:resolved_sets}
-Suppose $\Omega$ is the set of the eight possible outcomes of three coin tosses. If we are told the outcome of the first coin toss only, the sets
+Suppose \(\Omega\) is the set of the eight possible outcomes of three coin tosses. If we are told the outcome of the first coin toss only, the sets
 \begin{align*}
 A_{H}=\{H H H, H H T, H T H, H T T\}, \quad A_{T}=\{T H H, T H T, T T H, T T T\}
 \end{align*}
-are resolved. For each of these sets, once we are told the first coin toss, we know if the true state is a member. For example, if we are told the first toss is $H$, we know that the true event is in $A_{H}$ and we also know that the true event is not in $A_{T}$.
+are resolved. For each of these sets, once we are told the first coin toss, we know if the true state is a member. For example, if we are told the first toss is \(H\), we know that the true event is in \(A_{H}\) and we also know that the true event is not in \(A_{T}\).
 
-If instead of knowing the outcome of the first coin toss we were told the outcome of the second coin toss, neither $A_{H}$ nor $A_{T}$ would be resolved, since they both contain events with $H$ and with $T$ in the second coin toss.
+If instead of knowing the outcome of the first coin toss we were told the outcome of the second coin toss, neither \(A_{H}\) nor \(A_{T}\) would be resolved, since they both contain events with \(H\) and with \(T\) in the second coin toss.
 \end{example}
 
-The empty set $\emptyset$ and the whole space $\Omega$ are always resolved, even without any information; the true state never belongs to $\emptyset$ and always belongs to $\Omega$. 
+The empty set \(\emptyset\) and the whole space \(\Omega\) are always resolved, even without any information; the true state never belongs to \(\emptyset\) and always belongs to \(\Omega\). 
 
 \begin{example}
 The four sets that are resolved by the first coin toss in Example \ref{ex:resolved_sets} form the algebra
 \begin{align*}
 \mathcal{F}_{1}=\{\emptyset, A_{H}, A_{T}, \Omega \}.
 \end{align*}
-We think of this algebra as containing the information learned by observing the first coin toss. More precisely, if instead of being told the first coin toss we are told, for each set in $\mathcal{F}_{1}$, whether or not the true state belongs to the set, we know the outcome of the first coin toss and nothing more.
+We think of this algebra as containing the information learned by observing the first coin toss. More precisely, if instead of being told the first coin toss we are told, for each set in \(\mathcal{F}_{1}\), whether or not the true state belongs to the set, we know the outcome of the first coin toss and nothing more.
 
 If we are told the first two coin tosses, we obtain a finer resolution. In particular, the four sets
 \begin{equation*}
@@ -145,11 +145,11 @@ A_{H T}&=\{H T H, H T T\},  \\
 A_{T T}&=\{T T H, T T T\},
 \end{split}
 \end{equation*}
-are resolved. Of course, the sets in $\mathcal{F}_{1}$ are still resolved. Whenever a set is resolved, so is its complement, which means that $A_{H H}^{c}$, $A_{H T}^{c}$, $ A_{T H}^{c}$, and $A_{T T}^{c}$ are resolved. Whenever two sets are resolved, so is their union, which means that $A_{H H} \cup A_{T H}$, $ A_{H H} \cup A_{T T}$, $ A_{H T} \cup A_{T H}$, and $A_{H T} \cup A_{T T}$ are resolved. We have already noted that the two other pairwise unions, $A_{H}=A_{H H} \cup A_{H T}$ and $A_{T}=A_{T H} \cup A_{T T}$, are resolved. The triple unions are also resolved, and these are the complements already mentioned, e.g.,
+are resolved. Of course, the sets in \(\mathcal{F}_{1}\) are still resolved. Whenever a set is resolved, so is its complement, which means that \(A_{H H}^{c}\), \(A_{H T}^{c}\), \( A_{T H}^{c}\), and \(A_{T T}^{c}\) are resolved. Whenever two sets are resolved, so is their union, which means that \(A_{H H} \cup A_{T H}\), \( A_{H H} \cup A_{T T}\), \( A_{H T} \cup A_{T H}\), and \(A_{H T} \cup A_{T T}\) are resolved. We have already noted that the two other pairwise unions, \(A_{H}=A_{H H} \cup A_{H T}\) and \(A_{T}=A_{T H} \cup A_{T T}\), are resolved. The triple unions are also resolved, and these are the complements already mentioned, e.g.,
 \begin{align*}
 A_{H H} \cup A_{H T} \cup A_{T H}=A_{T T}^{c}.
 \end{align*}
-In all, we have 16 resolved sets that together form an algebra we call $\mathcal{F}_{2}$; i.e.,
+In all, we have 16 resolved sets that together form an algebra we call \(\mathcal{F}_{2}\); i.e.,
 \begin{align*}
 \mathcal{F}_{2}=\left\{\begin{array}{l}
 \emptyset, A_{H}, A_{T}, A_{H H}, A_{H T}, A_{T H}, A_{T T}, A_{H H}^{c}, A_{H T}^{c}, A_{T H}^{c}, A_{T T}^{c},  \tag{2.1.3}\\
@@ -158,81 +158,81 @@ A_{H H} \cup A_{T H}, A_{H H} \cup A_{T T}, A_{H T} \cup A_{T H}, A_{H T} \cup A
 \end{align*}
 We think of this algebra as containing the information learned by observing the first two coin tosses.
 
-If we are told all three coin tosses, we know the true state and therefore every subset of $\Omega$ is resolved. There are 256 subsets of $\Omega$ and, taken all together, they constitute the algebra $\mathcal{F}_{3}$:
+If we are told all three coin tosses, we know the true state and therefore every subset of \(\Omega\) is resolved. There are 256 subsets of \(\Omega\) and, taken all together, they constitute the algebra \(\mathcal{F}_{3}\):
 \begin{align*}
 \mathcal{F}_{3}=\text{ The set of all subsets of } \Omega.
 \end{align*}
-If we are told nothing about the coin tosses, the only resolved sets are $\emptyset$ and $\Omega$. We form the ``trivial'' algebra $\mathcal{F}_{0}$ with these two sets:
+If we are told nothing about the coin tosses, the only resolved sets are \(\emptyset\) and \(\Omega\). We form the ``trivial'' algebra \(\mathcal{F}_{0}\) with these two sets:
 \begin{align*}
 \mathcal{F}_{0}=\{\emptyset, \Omega\}.
 \end{align*}
-We have then four algebras, $\mathcal{F}_{0}, \mathcal{F}_{1}, \mathcal{F}_{2}$, and $\mathcal{F}_{3}$, indexed by time. As time moves forward, we obtain finer resolution. In other words, if $n<m$, then $\mathcal{F}_{m}$ contains every set in $\mathcal{F}_{n}$ and also other additional sets. This means that $\mathcal{F}_{m}$ contains more information than $\mathcal{F}_{n}$. The collection of algebras $\mathcal{F}_{0}$, $\mathcal{F}_{1}$, $\mathcal{F}_{2}$, $\mathcal{F}_{3}$ is an example of a filtration.
+We have then four algebras, \(\mathcal{F}_{0}, \mathcal{F}_{1}, \mathcal{F}_{2}\), and \(\mathcal{F}_{3}\), indexed by time. As time moves forward, we obtain finer resolution. In other words, if \(n<m\), then \(\mathcal{F}_{m}\) contains every set in \(\mathcal{F}_{n}\) and also other additional sets. This means that \(\mathcal{F}_{m}\) contains more information than \(\mathcal{F}_{n}\). The collection of algebras \(\mathcal{F}_{0}\), \(\mathcal{F}_{1}\), \(\mathcal{F}_{2}\), \(\mathcal{F}_{3}\) is an example of a filtration.
 \end{example}
 \end{optional}
 
 \subsection{Continuous time}
 \subsubsection*{Sigma-algebras}
-To handle infinite-dimensional state spaces, we formalize the concept of an algebra of events through the concept of $\sigma$-algebras. Infinite dimensional state spaces can occur when time is discrete or continuous. Conversely, we can have finite state spaces in both continuous and discrete time. However, the continuous time models and techniques that we are interested in always require an infinite-dimensional state space, which is why we study them.
+To handle infinite-dimensional state spaces, we formalize the concept of an algebra of events through the concept of \(\sigma\)-algebras. Infinite dimensional state spaces can occur when time is discrete or continuous. Conversely, we can have finite state spaces in both continuous and discrete time. However, the continuous time models and techniques that we are interested in always require an infinite-dimensional state space, which is why we study them.
 
 \begin{defn}\label{defn:sigma_algebra}
-A \emph{$\sigma$-algebra} (or \emph{$\sigma$-field}) over a non-empty set $\Omega$ is a family $\mathcal{A}$ of subsets of $\Omega$ such that:
+A \emph{\(\sigma\)-algebra} (or \emph{\(\sigma\)-field}) over a non-empty set \(\Omega\) is a family \(\mathcal{A}\) of subsets of \(\Omega\) such that:
 \begin{enumerate}
-    \item $\Omega \in \mathcal{A}$,
-    \item $A \in \mathcal{A}$ implies $A^{c} \in \mathcal{A}$ 
-    \item if $(A_{n}, n \geq 1)$ is a countable family of elements in $\mathcal{A}$, then $\bigcup_{n=1}^{\infty} A_{n} \in \mathcal{A}$.
+    \item \(\Omega \in \mathcal{A}\),
+    \item \(A \in \mathcal{A}\) implies \(A^{c} \in \mathcal{A}\) 
+    \item if \((A_{n}, n \geq 1)\) is a countable family of elements in \(\mathcal{A}\), then \(\bigcup_{n=1}^{\infty} A_{n} \in \mathcal{A}\).
 \end{enumerate}
 \end{defn}
 
-The definition of $\sigma$-algebra is applicable to both finite and infinite-dimensional state spaces.
+The definition of \(\sigma\)-algebra is applicable to both finite and infinite-dimensional state spaces.
 
 \begin{defn}
-Given a collection $\mathcal{A}$ of events, the \emph{$\sigma$-algebra generated by $\mathcal{A}$} is the intersection of all $\sigma$-algebras containing $\mathcal{A}$.
+Given a collection \(\mathcal{A}\) of events, the \emph{\(\sigma\)-algebra generated by \(\mathcal{A}\)} is the intersection of all \(\sigma\)-algebras containing \(\mathcal{A}\).
 \end{defn}
 
-When the state space is finite dimensional, we found that the set $\mathcal{F}_{t}$ is generated by the partition $\mathcal{F}_{t}^{0}$. In fact, it can be shown that any finite $\sigma$-algebra can be generated by taking unions of partitions. However, when we move to infinite-dimensional state spaces, restricting ourselves to finite $\sigma$-algebras is very restrictive. For example, a finite $\sigma$-algebra can only encode the realization of finitely many values of a random outcome. If the random outcome can take values in the real numbers, a finite $\sigma$-algebra cannot encode the information contained in it.
+When the state space is finite dimensional, we found that the set \(\mathcal{F}_{t}\) is generated by the partition \(\mathcal{F}_{t}^{0}\). In fact, it can be shown that any finite \(\sigma\)-algebra can be generated by taking unions of partitions. However, when we move to infinite-dimensional state spaces, restricting ourselves to finite \(\sigma\)-algebras is very restrictive. For example, a finite \(\sigma\)-algebra can only encode the realization of finitely many values of a random outcome. If the random outcome can take values in the real numbers, a finite \(\sigma\)-algebra cannot encode the information contained in it.
 
 \subsubsection{Borel Sigma-Algebra}
 To work with infinite-dimensional state spaces, we have the following:
 \begin{defn}
-The \emph{Borel $\sigma$-algebra} on a topological space $X$, denoted by $\mathcal{B}(X)$, is the $\sigma$-algebra generated by the open sets of $X$.
+The \emph{Borel \(\sigma\)-algebra} on a topological space \(X\), denoted by \(\mathcal{B}(X)\), is the \(\sigma\)-algebra generated by the open sets of \(X\).
 \end{defn}
-The elements of a Borel $\sigma$-algebra are called \emph{Borel sets}. A \emph{Borel space} is a pair $(X,B)$, where $B$ is the $\sigma$-algebra of Borel sets of $X$.
+The elements of a Borel \(\sigma\)-algebra are called \emph{Borel sets}. A \emph{Borel space} is a pair \((X,B)\), where \(B\) is the \(\sigma\)-algebra of Borel sets of \(X\).
 
-When we consider infinite-dimensional state spaces, we will only be concerned with the Borel $\sigma$-algebra on $\mathbb{R}^{d}$, $\mathcal{B}(\mathbb{R}^d)$. This $\sigma$-algebra contains all open sets, all closed sets, all countable unions of closed sets, all countable intersections of such countable unions, etc. 
+When we consider infinite-dimensional state spaces, we will only be concerned with the Borel \(\sigma\)-algebra on \(\mathbb{R}^{d}\), \(\mathcal{B}(\mathbb{R}^d)\). This \(\sigma\)-algebra contains all open sets, all closed sets, all countable unions of closed sets, all countable intersections of such countable unions, etc. 
 
 \subsubsection*{Probability Measures}
-We are now ready to discuss the likelihood of events. Roughly speaking, we want to assign a number between $0$ and $1$ ---a probability--- to each possible event. 
+We are now ready to discuss the likelihood of events. Roughly speaking, we want to assign a number between \(0\) and \(1\) ---a probability--- to each possible event. 
 \begin{defn}
-A pair $(\Omega, \mathcal{F})$ is called a \emph{measurable space}.
+A pair \((\Omega, \mathcal{F})\) is called a \emph{measurable space}.
 \end{defn}
 \begin{defn}\label{defn:prob_measure}
-A \emph{probability measure} on a measurable space $(\Omega, \mathcal{F})$ is a function $P: \mathcal{F} \rightarrow[0,1]$ such that
+A \emph{probability measure} on a measurable space \((\Omega, \mathcal{F})\) is a function \(P: \mathcal{F} \rightarrow[0,1]\) such that
 \begin{enumerate}
-  \item $P(\emptyset)=0, P(\Omega)=1$,
-  \item for a countable set of disjoint events $A_{i} \in \mathcal{F}$,
+  \item \(P(\emptyset)=0, P(\Omega)=1\),
+  \item for a countable set of disjoint events \(A_{i} \in \mathcal{F}\),
     \begin{align*}
         P\left(\bigcup_{i=1}^{\infty} A_{i}\right)=\sum_{i=1}^{\infty} P(A_{i})
     \end{align*}
 \end{enumerate}
 \end{defn}
 
-When $\mathcal{F}$ is finite, we can drop the word ``measure'' and just talk about probabilities. In uncountable probability spaces, we need to be more careful. For example, we would like to say that something that has probability zero cannot happen. Likewise, we may want to assert that if an event has probability one, it must happen with certainty. However, neither of the last two statements are necessarily true. For example, if $\mathcal{F}$ is the Borel $\sigma$-algebra in $\Omega = [0,1]$ and we want all numbers in $[0,1]$ to be ``equally likely'', then each number must have a probability measure of zero. If any one number has a probability measure that is non-zero, then our requirement that they are all ``equally likely'' means that they all have non-zero probability measure. By the second property in Definition \ref{defn:prob_measure}, the probability of the event $\{\omega \mid \omega \text{ is a rational number}\}$ is infinity since there are an infinite number of rational numbers. However, this violates the requirement that the probability measure is between $0$ and $1$. We conclude that even though drawing any number is possible and, in fact, all numbers are equally likely, the probability measure of any one number is zero.
+When \(\mathcal{F}\) is finite, we can drop the word ``measure'' and just talk about probabilities. In uncountable probability spaces, we need to be more careful. For example, we would like to say that something that has probability zero cannot happen. Likewise, we may want to assert that if an event has probability one, it must happen with certainty. However, neither of the last two statements are necessarily true. For example, if \(\mathcal{F}\) is the Borel \(\sigma\)-algebra in \(\Omega = [0,1]\) and we want all numbers in \([0,1]\) to be ``equally likely'', then each number must have a probability measure of zero. If any one number has a probability measure that is non-zero, then our requirement that they are all ``equally likely'' means that they all have non-zero probability measure. By the second property in Definition \ref{defn:prob_measure}, the probability of the event \(\{\omega \mid \omega \text{ is a rational number}\}\) is infinity since there are an infinite number of rational numbers. However, this violates the requirement that the probability measure is between \(0\) and \(1\). We conclude that even though drawing any number is possible and, in fact, all numbers are equally likely, the probability measure of any one number is zero.
 
 \subsubsection*{Filtrations}
 
 The extension of filtrations to the continuous-time setting is straightforward.
 \begin{defn}\label{defn:filtration}
-Let $\mathcal{T}$ be an indexed set. A \emph{filtration $\mathbb{F}$} on $\Omega$ is a collection of $\sigma$-algebras $\mathcal{F}_{t}$, for $t \in \mathcal{T}$, such that
+Let \(\mathcal{T}\) be an indexed set. A \emph{filtration \(\mathbb{F}\)} on \(\Omega\) is a collection of \(\sigma\)-algebras \(\mathcal{F}_{t}\), for \(t \in \mathcal{T}\), such that
 \begin{enumerate}
-    \item $\mathcal{F}_{0}=\{\emptyset, \Omega\}$
-    \item $\forall s>t, \quad \mathcal{F}_{t} \subset \mathcal{F}_{s}$
-    \item $\mathcal{F}_{T}=\mathcal{F}$.
+    \item \(\mathcal{F}_{0}=\{\emptyset, \Omega\}\)
+    \item \(\forall s>t, \quad \mathcal{F}_{t} \subset \mathcal{F}_{s}\)
+    \item \(\mathcal{F}_{T}=\mathcal{F}\).
 \end{enumerate}
 \end{defn}
-In discrete time $\mathcal{T}$ is a countable set: $\mathcal{T}=\{0,1,2,..., T\}$ with $T$ finite or infinite. In continuous time $\mathcal{T}$ is uncountable: $\mathcal{T}=[0,T]$ with $T$ finite or infinite.
+In discrete time \(\mathcal{T}\) is a countable set: \(\mathcal{T}=\{0,1,2,..., T\}\) with \(T\) finite or infinite. In continuous time \(\mathcal{T}\) is uncountable: \(\mathcal{T}=[0,T]\) with \(T\) finite or infinite.
 
 \begin{defn}
-A filtered probability space is a probability space with a filtration $\mathbb{F}$. 
+A filtered probability space is a probability space with a filtration \(\mathbb{F}\). 
 \end{defn}
 
 % \begin{info}[Takeaway]
@@ -244,116 +244,116 @@ A filtered probability space is a probability space with a filtration $\mathbb{F
 
 \section{Stochastic Processes}
 
-A \emph{random variable} is a function of the form $x: \Omega \rightarrow \mathbb{R}^d$ with $d$ a positive integer. A \emph{stochastic process}, or simply a \emph{process}, is a time-indexed sequence of random variables. More formally, a stochastic process is defined as a time-indexed sequence of random variables $(x_{t}, t\in\mathcal{T})$ or as a function of the form $x: \Omega \times\mathcal{T} \rightarrow \mathbb{R}^d$, where $x_{t}(\omega)=x(\omega, t)$ for $\omega \in \Omega$, $t \in\mathcal{T}$, and $d$ a positive integer. Sometimes we write $x(t)$ instead of $x_{t}$. The function $x(\omega, \cdot):\mathcal{T} \rightarrow \mathbb{R}^d$, for any fixed $\omega \in \Omega$, is a \emph{path} of the process $x$.
+A \emph{random variable} is a function of the form \(x: \Omega \rightarrow \mathbb{R}^d\) with \(d\) a positive integer. A \emph{stochastic process}, or simply a \emph{process}, is a time-indexed sequence of random variables. More formally, a stochastic process is defined as a time-indexed sequence of random variables \((x_{t}, t\in\mathcal{T})\) or as a function of the form \(x: \Omega \times\mathcal{T} \rightarrow \mathbb{R}^d\), where \(x_{t}(\omega)=x(\omega, t)\) for \(\omega \in \Omega\), \(t \in\mathcal{T}\), and \(d\) a positive integer. Sometimes we write \(x(t)\) instead of \(x_{t}\). The function \(x(\omega, \cdot):\mathcal{T} \rightarrow \mathbb{R}^d\), for any fixed \(\omega \in \Omega\), is a \emph{path} of the process \(x\).
 
-%We identify a scalar $\alpha$ with the process that is identically equal to $\alpha$. For example, $x+\alpha$ denotes the process that takes the value $x(\omega, t)+\alpha$ at state $\omega$ and time $t$. Sums and products of processes are defined point-wise: $(x+y z)(\omega, t) := x(\omega, t)+$ $y(\omega, t) z(\omega, t)$. We write $x \leq y$ to mean $x(\omega, t) \leq y(\omega, t)$ for all $(\omega, t)$, and analogously for any other relation. 
+%We identify a scalar \(\alpha\) with the process that is identically equal to \(\alpha\). For example, \(x+\alpha\) denotes the process that takes the value \(x(\omega, t)+\alpha\) at state \(\omega\) and time \(t\). Sums and products of processes are defined point-wise: \((x+y z)(\omega, t) := x(\omega, t)+\) \(y(\omega, t) z(\omega, t)\). We write \(x \leq y\) to mean \(x(\omega, t) \leq y(\omega, t)\) for all \((\omega, t)\), and analogously for any other relation. 
 
-% A process is said to be \emph{strictly positive} if it is valued in $(0, \infty)$. Analogous conventions apply to random variables (which can, after all, be viewed as processes with $T=0$). Random variables are often used to define events in terms of predicates, as in $\{\omega \in \Omega \mid x(\omega) \leq \alpha\}$. In such cases, we usually simplify the notation by eliminating the state variable, as in $\{x \leq \alpha\}$.
+% A process is said to be \emph{strictly positive} if it is valued in \((0, \infty)\). Analogous conventions apply to random variables (which can, after all, be viewed as processes with \(T=0\)). Random variables are often used to define events in terms of predicates, as in \(\{\omega \in \Omega \mid x(\omega) \leq \alpha\}\). In such cases, we usually simplify the notation by eliminating the state variable, as in \(\{x \leq \alpha\}\).
 
 
 \subsubsection*{Measurable Random Variables}
-Suppose information is represented by a given underlying filtration $\{\mathcal{F}_{t}\}$ on $\Omega$ satisfying (\ref{eq:filtration_boundary_conditions}). If a process is to represent an observed quantity, it cannot reveal more information than implied by the postulated filtration. For example, if $T=1$ and $\Omega=\{0,1\}$, the process $x_{0}(\omega)=x_{1}(\omega)=\omega$ is not consistent with the information structure, because observation of the realization of $x_{0}$ at time zero reveals the state $\omega$. To formalize this type of informational constraint, we introduce the notion of measurability with respect to an algebra.
+Suppose information is represented by a given underlying filtration \(\{\mathcal{F}_{t}\}\) on \(\Omega\) satisfying (\ref{eq:filtration_boundary_conditions}). If a process is to represent an observed quantity, it cannot reveal more information than implied by the postulated filtration. For example, if \(T=1\) and \(\Omega=\{0,1\}\), the process \(x_{0}(\omega)=x_{1}(\omega)=\omega\) is not consistent with the information structure, because observation of the realization of \(x_{0}\) at time zero reveals the state \(\omega\). To formalize this type of informational constraint, we introduce the notion of measurability with respect to an algebra.
 
 \begin{defn}
-Let $(\Omega, \mathcal{F}, P, \mathbb{F})$ be a filtered probability space. A random variable $X: \Omega \rightarrow \mathbb{R}^{d}$ is \emph{measurable with respect to $\mathcal{F}$} or \emph{$\mathcal{F}$-measurable} if and only if for any set $A\in \mathcal{B}(\Omega)$, the set
+Let \((\Omega, \mathcal{F}, P, \mathbb{F})\) be a filtered probability space. A random variable \(X: \Omega \rightarrow \mathbb{R}^{d}\) is \emph{measurable with respect to \(\mathcal{F}\)} or \emph{\(\mathcal{F}\)-measurable} if and only if for any set \(A\in \mathcal{B}(\Omega)\), the set
 \begin{align*}
 \{\omega \in \Omega: X(\omega) \in A\}
 \end{align*}
-belongs to $\mathcal{F}$.
+belongs to \(\mathcal{F}\).
 \end{defn}
 
-We denote by $L(\mathcal{F})$ (or simply $L$ when clear) the set of random variables that are $\mathcal{F}$-measurable, by $L^{1}(\mathcal{F})$ (or $L^{1}$ when clear) the set of $\mathcal{F}$-measurable random variables that are also integrable, and by $L^{2}(\mathcal{F})$ (or $L^{2}$ when clear) the set of $\mathcal{F}$-measurable random variables whose square is integrable.
+We denote by \(L(\mathcal{F})\) (or simply \(L\) when clear) the set of random variables that are \(\mathcal{F}\)-measurable, by \(L^{1}(\mathcal{F})\) (or \(L^{1}\) when clear) the set of \(\mathcal{F}\)-measurable random variables that are also integrable, and by \(L^{2}(\mathcal{F})\) (or \(L^{2}\) when clear) the set of \(\mathcal{F}\)-measurable random variables whose square is integrable.
 
-%A random variable $x$ is said to be \emph{measurable} with respect to a $\sigma$-algebra $\mathcal{A}$, or \emph{$\mathcal{A}$-measurable}, if $\{x \leq \alpha\} \in \mathcal{A}$ for every $\alpha \in \mathbb{R}$. If $\mathcal{A}$ is generated by the partition $\mathcal{A}^{0}=\{A_{1}, \ldots, A_{n}\}$, then $x$ is $\mathcal{A}$-measurable if and only if it can be expressed as $x=\sum_{i=1}^{n} \alpha_{i} 1_{A_{i}}$, where $\alpha_{i} \in \mathbb{R}$ is a constant value $x$ takes on $A_{i}$.
+%A random variable \(x\) is said to be \emph{measurable} with respect to a \(\sigma\)-algebra \(\mathcal{A}\), or \emph{\(\mathcal{A}\)-measurable}, if \(\{x \leq \alpha\} \in \mathcal{A}\) for every \(\alpha \in \mathbb{R}\). If \(\mathcal{A}\) is generated by the partition \(\mathcal{A}^{0}=\{A_{1}, \ldots, A_{n}\}\), then \(x\) is \(\mathcal{A}\)-measurable if and only if it can be expressed as \(x=\sum_{i=1}^{n} \alpha_{i} 1_{A_{i}}\), where \(\alpha_{i} \in \mathbb{R}\) is a constant value \(x\) takes on \(A_{i}\).
 
-%The set of $\mathcal{A}$-measurable random variables, which we denote by $L(\mathcal{A})$, is a linear subspace of $\mathbb{R}^{\Omega}$ that is also closed relative to nonlinear combinations of its elements in the following sense, where $f(x_{1}, \ldots, x_{n})$ denotes the random variable that maps $\omega$ to $f(x_{1}(\omega), \ldots, x_{n}(\omega))$.
+%The set of \(\mathcal{A}\)-measurable random variables, which we denote by \(L(\mathcal{A})\), is a linear subspace of \(\mathbb{R}^{\Omega}\) that is also closed relative to nonlinear combinations of its elements in the following sense, where \(f(x_{1}, \ldots, x_{n})\) denotes the random variable that maps \(\omega\) to \(f(x_{1}(\omega), \ldots, x_{n}(\omega))\).
 
 %\begin{proposition} \label{prop: 1.1.3}
-% If $x_{1}, \ldots, x_{n} \in L(\mathcal{A})$ then $f(x_{1}, \ldots, x_{n}) \in$ $L(\mathcal{A})$ for all $f: \mathbb{R}^{n} \rightarrow \mathbb{R}$, and $\{(x_{1}, \ldots, x_{n}) \in S\} \in \mathcal{A}$ for all $S \subseteq \mathbb{R}^{n}$.
+% If \(x_{1}, \ldots, x_{n} \in L(\mathcal{A})\) then \(f(x_{1}, \ldots, x_{n}) \in\) \(L(\mathcal{A})\) for all \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}\), and \(\{(x_{1}, \ldots, x_{n}) \in S\} \in \mathcal{A}\) for all \(S \subseteq \mathbb{R}^{n}\).
 % \end{proposition}
 % \begin{proof}
-% If each $x_{i}$ is constant over every element of $\mathcal{A}^{0}$, then so is $f(x_{1}, \ldots, x_{n})$. Letting $f(x_{1}, \ldots, x_{n})=2 \times 1_{\{(x_{1}, \ldots, x_{n}) \in S\}}$ shows that $\{(x_{1}, \ldots, x_{n}) \in S\}=\{f(x_{1}, \ldots, x_{n}) \leq 1\} \in \mathcal{A}$.
+% If each \(x_{i}\) is constant over every element of \(\mathcal{A}^{0}\), then so is \(f(x_{1}, \ldots, x_{n})\). Letting \(f(x_{1}, \ldots, x_{n})=2 \times 1_{\{(x_{1}, \ldots, x_{n}) \in S\}}\) shows that \(\{(x_{1}, \ldots, x_{n}) \in S\}=\{f(x_{1}, \ldots, x_{n}) \leq 1\} \in \mathcal{A}\).
 % \end{proof}
 
 \subsubsection{Adapted Processes}
-We can now formalize the requirement that a process respects the given information structure with the notion of adaptedness. The process $x$ is said to be \emph{adapted} to the underlying filtration $\{\mathcal{F}_{t}\}$ if $x_{t} \in L(\mathcal{F}_{t})$ for every time $t$. Since $\mathcal{F}_{0}=\{\emptyset, \Omega\}$ and $\mathcal{F}_{T}=2^{\Omega}$, the initial value of an adapted process is constant, while its terminal value can be any $\mathcal{F}_{T}$-measurable random variable.
+We can now formalize the requirement that a process respects the given information structure with the notion of adaptedness. The process \(x\) is said to be \emph{adapted} to the underlying filtration \(\{\mathcal{F}_{t}\}\) if \(x_{t} \in L(\mathcal{F}_{t})\) for every time \(t\). Since \(\mathcal{F}_{0}=\{\emptyset, \Omega\}\) and \(\mathcal{F}_{T}=2^{\Omega}\), the initial value of an adapted process is constant, while its terminal value can be any \(\mathcal{F}_{T}\)-measurable random variable.
 
-We denote the space of all processes adapted to the filtration $\{\mathcal{F}_{t}\}$ by $\mathcal{L}(\mathcal{F}_{t})$ (or simply $\mathcal{L}$ when clear) and the set of all strictly positive processes adapted to the filtration $\{\mathcal{F}_{t}\}$ by  $\mathcal{L}_{++}(\mathcal{F}_{t})$ (or $\mathcal{L}_{++}$ when clear).
+We denote the space of all processes adapted to the filtration \(\{\mathcal{F}_{t}\}\) by \(\mathcal{L}(\mathcal{F}_{t})\) (or simply \(\mathcal{L}\) when clear) and the set of all strictly positive processes adapted to the filtration \(\{\mathcal{F}_{t}\}\) by  \(\mathcal{L}_{++}(\mathcal{F}_{t})\) (or \(\mathcal{L}_{++}\) when clear).
 
-\subsubsection{$\sigma$-algebra Generated by Random Variables}
-In applications, it is common to specify the filtration $\{\mathcal{F}_{t}\}$ as the information revealed by given processes representing observable quantities. To formally define this way of constructing the information stream, we first define a notion of information revealed by a given set of random variables.
+\subsubsection{\(\sigma\)-algebra Generated by Random Variables}
+In applications, it is common to specify the filtration \(\{\mathcal{F}_{t}\}\) as the information revealed by given processes representing observable quantities. To formally define this way of constructing the information stream, we first define a notion of information revealed by a given set of random variables.
 
-The $\sigma$-algebra \emph{generated} by a set $S$ of random variables is the intersection of all $\sigma$-algebras relative to which every $x \in S$ is measurable, and is denoted by $\sigma(S)$. If $S=\{x_{1}, \ldots, x_{n}\}$, $\sigma(x_{1}, \ldots, x_{n}) := \sigma(S)$ is the same as the $\sigma$-algebra generated by the partition of all nonempty events of the form 
+The \(\sigma\)-algebra \emph{generated} by a set \(S\) of random variables is the intersection of all \(\sigma\)-algebras relative to which every \(x \in S\) is measurable, and is denoted by \(\sigma(S)\). If \(S=\{x_{1}, \ldots, x_{n}\}\), \(\sigma(x_{1}, \ldots, x_{n}) := \sigma(S)\) is the same as the \(\sigma\)-algebra generated by the partition of all nonempty events of the form 
 \[
     \{(x_{1}, \ldots, x_{n}) \mid x_i = \alpha \text{ for all }i=1,\ldots,n \text{ and } \alpha \in \mathbb{R}\}.
 \]
-We interpret $\sigma(x_{1}, \ldots, x_{n})$ as the information that can be inferred by observing the realization of the random variables $x_{1}, \ldots, x_{n}$. Any other variable whose realization is revealed by this information must be determined as a function of the realization of $(x_{1}, \ldots, x_{n})$:
+We interpret \(\sigma(x_{1}, \ldots, x_{n})\) as the information that can be inferred by observing the realization of the random variables \(x_{1}, \ldots, x_{n}\). Any other variable whose realization is revealed by this information must be determined as a function of the realization of \((x_{1}, \ldots, x_{n})\):
 
 \begin{proposition} \label{prop:measurable_function_characterization}
-Given any random variables $x_{1}$, $\ldots$, $x_{n}$, a random variable $y$ is \\
-$\sigma(x_{1},\ldots, x_{n})$-measurable if and only if there exists a function $f: \mathbb{R}^{n} \rightarrow \mathbb{R}$ such that \\
-$y=f(x_{1}, \ldots, x_{n})$.
+Given any random variables \(x_{1}\), \(\ldots\), \(x_{n}\), a random variable \(y\) is \\
+\(\sigma(x_{1},\ldots, x_{n})\)-measurable if and only if there exists a function \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}\) such that \\
+\(y=f(x_{1}, \ldots, x_{n})\).
 \end{proposition}
 \begin{proof}
-That $f(x_{1}, \ldots, x_{n})$ is $\sigma(x_{1}, \ldots, x_{n})$-measurable follows from Proposition 1.1.3. Conversely, suppose $y$ is $\sigma(x_{1}, \ldots, x_{n})$-measurable and let $\{(x_{1}(\omega), \ldots, x_{n}(\omega)) \mid \omega \in \Omega\}=\{\alpha_{1}, \ldots, \alpha_{m}\} \subseteq \mathbb{R}^{n}$. The $\sigma$-algebra $\sigma(x_{1}, \ldots, x_{n})$ is generated by the partition $\{A_{1}, \ldots, A_{m}\}$, where
-$A_{i} :=\{(x_{1}, \ldots, x_{n})=\alpha_{i}\}$. Let $y=\sum_{j=1}^{m} \beta_{i} 1_{A_{i}}$, where $\beta_{i}$ is the constant value of $y$ on $A_{i}$. Selecting any function $f: \mathbb{R}^{n} \rightarrow \mathbb{R}$ such that $\beta_{i}=f(\alpha_{i})$ results in $y=f(x_{1}, \ldots, x_{n})$.
+That \(f(x_{1}, \ldots, x_{n})\) is \(\sigma(x_{1}, \ldots, x_{n})\)-measurable follows from Proposition 1.1.3. Conversely, suppose \(y\) is \(\sigma(x_{1}, \ldots, x_{n})\)-measurable and let \(\{(x_{1}(\omega), \ldots, x_{n}(\omega)) \mid \omega \in \Omega\}=\{\alpha_{1}, \ldots, \alpha_{m}\} \subseteq \mathbb{R}^{n}\). The \(\sigma\)-algebra \(\sigma(x_{1}, \ldots, x_{n})\) is generated by the partition \(\{A_{1}, \ldots, A_{m}\}\), where
+\(A_{i} :=\{(x_{1}, \ldots, x_{n})=\alpha_{i}\}\). Let \(y=\sum_{j=1}^{m} \beta_{i} 1_{A_{i}}\), where \(\beta_{i}\) is the constant value of \(y\) on \(A_{i}\). Selecting any function \(f: \mathbb{R}^{n} \rightarrow \mathbb{R}\) such that \(\beta_{i}=f(\alpha_{i})\) results in \(y=f(x_{1}, \ldots, x_{n})\).
 \end{proof}
 \subsubsection{Filtration Generated by Stochastic Processes}
-A filtration is said to be \emph{generated} by the processes $B_t^{1}, \ldots, B_t^{d}$,
-where each time-$0$ value $B_{0}^{i}$ is a constant, if for all $t$, $ \mathcal{F}_{t}=\sigma(\{B_{s}^{1}, \ldots, B_{s}^{d} \mid s \leq t\})$. Writing $B=(B^{1}, \ldots, B^{d})$, it follows from Proposition \ref{prop:measurable_function_characterization} that in this case a process $x$ is adapted if and only if $x_{0}$ is constant and for every time $t>0$, there exists a function $f(t, \cdot): \mathbb{R}^{d \times t} \rightarrow \mathbb{R}$ such that
+A filtration is said to be \emph{generated} by the processes \(B_t^{1}, \ldots, B_t^{d}\),
+where each time-\(0\) value \(B_{0}^{i}\) is a constant, if for all \(t\), \( \mathcal{F}_{t}=\sigma(\{B_{s}^{1}, \ldots, B_{s}^{d} \mid s \leq t\})\). Writing \(B=(B^{1}, \ldots, B^{d})\), it follows from Proposition \ref{prop:measurable_function_characterization} that in this case a process \(x\) is adapted if and only if \(x_{0}\) is constant and for every time \(t>0\), there exists a function \(f(t, \cdot): \mathbb{R}^{d \times t} \rightarrow \mathbb{R}\) such that
 \begin{align*}
 x(\omega, t)=f(t, B(\omega, 1), \ldots, B(\omega, t)), \quad \omega \in \Omega .
 \end{align*}
-In other words, $x_{t}$ is a function of the path of $B$ up to time $t$.
+In other words, \(x_{t}\) is a function of the path of \(B\) up to time \(t\).
 \begin{optional}
 \subsection{Stopping Time}
 \subsubsection{Indicator Function}
-We define the \emph{indicator function} $1_{A}$ of a set $A$ as the function that takes the value $1$ on $A$ and $0$ on the complement of $A$ in the implied domain. For example, if $A$ is an event, then $1_{A}$ is the random variable
+We define the \emph{indicator function} \(1_{A}\) of a set \(A\) as the function that takes the value \(1\) on \(A\) and \(0\) on the complement of \(A\) in the implied domain. For example, if \(A\) is an event, then \(1_{A}\) is the random variable
 \begin{align*}
 1_{A}(\omega)= \begin{cases}1, & \text { if } \omega \in A \\ 0, & \text { if } \omega \notin A\end{cases}
 \end{align*}
-If $A \subseteq \Omega \times\{0, \ldots, T\}$, then $1_{A}$ denotes the process defined as above, but with $(\omega, t)$ in place of $\omega$.
+If \(A \subseteq \Omega \times\{0, \ldots, T\}\), then \(1_{A}\) denotes the process defined as above, but with \((\omega, t)\) in place of \(\omega\).
 \subsubsection{Stopping Time}
-Related to the notion of an adapted process is that of a \emph{stopping time}, defined as a function of the form $\tau: \Omega \to \mathcal{T} \cup\{\infty\}$ for some time index $\mathcal{T}$, provided that $\{\tau \leq t\} \in \mathcal{F}_{t}$ for every time $t$. The last restriction is equivalent to the adaptedness of the \emph{indicator process} $1_{\{\tau \leq t\}}$, which takes the value zero prior to the (random) time $\tau$, and the value one from time $\tau$ on (which on the event $\{\tau=\infty\}$ is never). A stopping time, or corresponding indicator process, announces the (first) arrival of an event which is consistent with the information stream encoded in the underlying filtration. For example, if $x$ is an adapted process, then the first time that $x_{t} \geq 1$ defines a stopping time (with the value $\infty$ being assigned on the event that $x$ always remains below one). On the other hand, the first time that $x$ reaches its path maximum is not generally a stopping time. For any process $x$ and stopping time $\tau$, the random variable $x_{\tau}$ or $x(\tau)$ is defined by letting $x_{\tau}(\omega)=x(\omega, \tau(\omega))$, with the convention $x(\omega, \infty)=0$.
+Related to the notion of an adapted process is that of a \emph{stopping time}, defined as a function of the form \(\tau: \Omega \to \mathcal{T} \cup\{\infty\}\) for some time index \(\mathcal{T}\), provided that \(\{\tau \leq t\} \in \mathcal{F}_{t}\) for every time \(t\). The last restriction is equivalent to the adaptedness of the \emph{indicator process} \(1_{\{\tau \leq t\}}\), which takes the value zero prior to the (random) time \(\tau\), and the value one from time \(\tau\) on (which on the event \(\{\tau=\infty\}\) is never). A stopping time, or corresponding indicator process, announces the (first) arrival of an event which is consistent with the information stream encoded in the underlying filtration. For example, if \(x\) is an adapted process, then the first time that \(x_{t} \geq 1\) defines a stopping time (with the value \(\infty\) being assigned on the event that \(x\) always remains below one). On the other hand, the first time that \(x\) reaches its path maximum is not generally a stopping time. For any process \(x\) and stopping time \(\tau\), the random variable \(x_{\tau}\) or \(x(\tau)\) is defined by letting \(x_{\tau}(\omega)=x(\omega, \tau(\omega))\), with the convention \(x(\omega, \infty)=0\).
 \end{optional}
-% The $\sigma$-algebra obtained by beginning with closed intervals and adding everything else necessary in order to have a $\sigma$-algebra is called the \emph{Borel $\sigma$-algebra} of subsets of $[0,1]$, sometimes denoted by $\mathcal{B}[0,1]$. The sets in the $\sigma$-algebra are called \emph{Borel sets}. All sets we will deal with are Borel sets.
+% The \(\sigma\)-algebra obtained by beginning with closed intervals and adding everything else necessary in order to have a \(\sigma\)-algebra is called the \emph{Borel \(\sigma\)-algebra} of subsets of \([0,1]\), sometimes denoted by \(\mathcal{B}[0,1]\). The sets in the \(\sigma\)-algebra are called \emph{Borel sets}. All sets we will deal with are Borel sets.
 % \begin{defn}
-% Let $\Omega$ be a metric space, the Borel $\sigma$-algebra $\mathcal{B}_{\Omega}$ of $\Omega$ is the smallest $\sigma$-algebra which contains all open sets. $\mathcal{B}_{\mathbb{R}}$ is also the smallest $\sigma$-algebra which contains all open intervals.
+% Let \(\Omega\) be a metric space, the Borel \(\sigma\)-algebra \(\mathcal{B}_{\Omega}\) of \(\Omega\) is the smallest \(\sigma\)-algebra which contains all open sets. \(\mathcal{B}_{\mathbb{R}}\) is also the smallest \(\sigma\)-algebra which contains all open intervals.
 % \end{defn}
 
 % \begin{example}\label{ex: 2.1.2}
-% Suppose our sample space is $\Omega=C_{0}[0, T]$, the set of continuous functions defined on $[0, T]$ taking the value zero at time zero. Suppose one of these functions, $\bar{\omega}$, is chosen at random and we get to observe it up to time $t$, where $0 \leq t < T$. That is to say, we know the value of $\bar{\omega}(s)$ for $0 \leq s \leq t$, but we do not know the value of $\bar{\omega}(s)$ for $t < s \leq T$. Certain subsets of $\Omega$ are resolved. For example, the set $\{\omega \in \Omega; \; \max_{0 \leq s \leq t} \omega(s) \leq 1\}$ 
-% is resolved. It belongs in the $\sigma$-algebra $\mathcal{F}(t)$. Other subsets of $\Omega$ are not resolved by time $t$. For example, the set $\{\omega \in \Omega ; \; \omega(T)>0\}$ is not resolved by time $t$. Indeed, the sets that are resolved by time $t$ are just those sets that can be described in terms of the path of $\omega$ up to time $t$.\footnote{
-% For technical reasons, we would not include in $\mathcal{F}(t)$ sets such as $\{\omega \in$ $\left.\Omega ; \; \max _{0 \leq s \leq t} \omega(s) \in B\right\}$ if $B$ is a subset of $\mathbb{R}$ that is not Borel measurable. This technical issue can safely be ignored.} Every reasonable\footnote{
-% There are pathological sets such as $\{\omega \in \Omega ; \; \omega(T) \in B\}$, where $B$ is a subset of $\mathbb{R}$ that is not Borel measurable. These are not included in $\mathcal{F}(T)$, but we will never encounter such cases.} subset of $\Omega = C_{0}[0, T]$ is resolved by time $T$. By contrast, at time zero we see only the value of $\bar{\omega}(0)$, which is equal to zero by the definition of $\Omega$. We learn nothing about the outcome of the random experiment of choosing $\bar{\omega}$ by observing this. The only sets resolved at time zero are $\emptyset$ and $\Omega$, and consequently $\mathcal{F}(0)=\{\emptyset, \Omega\}$.
+% Suppose our sample space is \(\Omega=C_{0}[0, T]\), the set of continuous functions defined on \([0, T]\) taking the value zero at time zero. Suppose one of these functions, \(\bar{\omega}\), is chosen at random and we get to observe it up to time \(t\), where \(0 \leq t < T\). That is to say, we know the value of \(\bar{\omega}(s)\) for \(0 \leq s \leq t\), but we do not know the value of \(\bar{\omega}(s)\) for \(t < s \leq T\). Certain subsets of \(\Omega\) are resolved. For example, the set \(\{\omega \in \Omega; \; \max_{0 \leq s \leq t} \omega(s) \leq 1\}\) 
+% is resolved. It belongs in the \(\sigma\)-algebra \(\mathcal{F}(t)\). Other subsets of \(\Omega\) are not resolved by time \(t\). For example, the set \(\{\omega \in \Omega ; \; \omega(T)>0\}\) is not resolved by time \(t\). Indeed, the sets that are resolved by time \(t\) are just those sets that can be described in terms of the path of \(\omega\) up to time \(t\).\footnote{
+% For technical reasons, we would not include in \(\mathcal{F}(t)\) sets such as \(\{\omega \in\) \(\left.\Omega ; \; \max _{0 \leq s \leq t} \omega(s) \in B\right\}\) if \(B\) is a subset of \(\mathbb{R}\) that is not Borel measurable. This technical issue can safely be ignored.} Every reasonable\footnote{
+% There are pathological sets such as \(\{\omega \in \Omega ; \; \omega(T) \in B\}\), where \(B\) is a subset of \(\mathbb{R}\) that is not Borel measurable. These are not included in \(\mathcal{F}(T)\), but we will never encounter such cases.} subset of \(\Omega = C_{0}[0, T]\) is resolved by time \(T\). By contrast, at time zero we see only the value of \(\bar{\omega}(0)\), which is equal to zero by the definition of \(\Omega\). We learn nothing about the outcome of the random experiment of choosing \(\bar{\omega}\) by observing this. The only sets resolved at time zero are \(\emptyset\) and \(\Omega\), and consequently \(\mathcal{F}(0)=\{\emptyset, \Omega\}\).
 % \end{example}
-% Example \ref{ex: 2.1.2} provides the simplest setting in which we may construct a Brownian motion. It remains only to assign probability to the sets in $\mathcal{F}=\mathcal{F}(T)$, and then the paths $\omega \in C_{0}[0, T]$ will be the paths of the Brownian motion.
+% Example \ref{ex: 2.1.2} provides the simplest setting in which we may construct a Brownian motion. It remains only to assign probability to the sets in \(\mathcal{F}=\mathcal{F}(T)\), and then the paths \(\omega \in C_{0}[0, T]\) will be the paths of the Brownian motion.
 
-% Besides observing the evolution of an economy over time, which is the idea behind Example \ref{ex: 2.1.2}, there is a second way we might acquire information about the value of $\omega$. Let $X$ be a random variable. We assume throughout that there is a ``formula'' for $X$, and that we know this formula even before the random experiment is performed. Because we already know this formula, we are waiting only to learn the value of $\omega$ to substitute into the formula so we can evaluate $X(\omega)$. But suppose that rather than being told the value of $\omega$ we are told only the value of $X(\omega)$. This resolves certain sets. For example, if we know the value of $X(\omega)$, then we know if $\omega$ is in the set $\{X \leq 1\}$ (yes if $X(\omega) \leq 1$ and no if $X(\omega)>1$). Indeed, every set of the form $\{X \in B\}$, where $B$ is a subset of $\mathbb{R}$, is resolved. Again, for technical reasons, we restrict attention to subsets $B$ that are Borel measurable.
+% Besides observing the evolution of an economy over time, which is the idea behind Example \ref{ex: 2.1.2}, there is a second way we might acquire information about the value of \(\omega\). Let \(X\) be a random variable. We assume throughout that there is a ``formula'' for \(X\), and that we know this formula even before the random experiment is performed. Because we already know this formula, we are waiting only to learn the value of \(\omega\) to substitute into the formula so we can evaluate \(X(\omega)\). But suppose that rather than being told the value of \(\omega\) we are told only the value of \(X(\omega)\). This resolves certain sets. For example, if we know the value of \(X(\omega)\), then we know if \(\omega\) is in the set \(\{X \leq 1\}\) (yes if \(X(\omega) \leq 1\) and no if \(X(\omega)>1\)). Indeed, every set of the form \(\{X \in B\}\), where \(B\) is a subset of \(\mathbb{R}\), is resolved. Again, for technical reasons, we restrict attention to subsets \(B\) that are Borel measurable.
 % \begin{defn}\label{defn: 2.1.3}
-% Let $X$ be a random variable defined on a nonempty sample space $\Omega$. The $\sigma$-algebra generated by $X$, denoted $\sigma(X)$, is the collection of all subsets of $\Omega$ of the form $\{X \in B\}$,\footnote{We recall that $\{X \in B\}$ is shorthand notation for the subset $\{\omega \in \Omega ; \; X(\omega) \in B\}$} where $B$ ranges over the Borel subsets of $\mathbb{R}$.
+% Let \(X\) be a random variable defined on a nonempty sample space \(\Omega\). The \(\sigma\)-algebra generated by \(X\), denoted \(\sigma(X)\), is the collection of all subsets of \(\Omega\) of the form \(\{X \in B\}\),\footnote{We recall that \(\{X \in B\}\) is shorthand notation for the subset \(\{\omega \in \Omega ; \; X(\omega) \in B\}\)} where \(B\) ranges over the Borel subsets of \(\mathbb{R}\).
 % \end{defn}
 
 % \begin{defn}\label{2.1.5}
-% Let $X$ be a random variable defined on a nonempty sample space $\Omega$. Let $\mathcal{G}$ be a $\sigma$-algebra of subsets of $\Omega$. If every set in $\sigma(X)$ is also in $\mathcal{G}$, we say that $X$ is $\mathcal{G}$-measurable.
+% Let \(X\) be a random variable defined on a nonempty sample space \(\Omega\). Let \(\mathcal{G}\) be a \(\sigma\)-algebra of subsets of \(\Omega\). If every set in \(\sigma(X)\) is also in \(\mathcal{G}\), we say that \(X\) is \(\mathcal{G}\)-measurable.
 % \end{defn}
-% A random variable $X$ is $\mathcal{G}$-measurable if and only if the information in $\mathcal{G}$ is sufficient to determine the value of $X$. If $X$ is $\mathcal{G}$-measurable, then $f(X)$ is also $\mathcal{G}$-measurable for any Borel-measurable function $f$; if the information in $\mathcal{G}$ is sufficient to determine the value of $X$, it will also determine the value of $f(X)$. If $X$ and $Y$ are $\mathcal{G}$-measurable, then $f(X, Y)$ is $\mathcal{G}$-measurable for any Borel-measurable function $f(x, y)$ of two variables. In particular, $X+Y$ and $X Y$ are $\mathcal{G}$-measurable.
+% A random variable \(X\) is \(\mathcal{G}\)-measurable if and only if the information in \(\mathcal{G}\) is sufficient to determine the value of \(X\). If \(X\) is \(\mathcal{G}\)-measurable, then \(f(X)\) is also \(\mathcal{G}\)-measurable for any Borel-measurable function \(f\); if the information in \(\mathcal{G}\) is sufficient to determine the value of \(X\), it will also determine the value of \(f(X)\). If \(X\) and \(Y\) are \(\mathcal{G}\)-measurable, then \(f(X, Y)\) is \(\mathcal{G}\)-measurable for any Borel-measurable function \(f(x, y)\) of two variables. In particular, \(X+Y\) and \(X Y\) are \(\mathcal{G}\)-measurable.
 % \begin{defn}\label{def: 2.1.6}
-% Let $\Omega$ be a nonempty sample space equipped with a filtration $\mathcal{F}(t), 0 \leq t \leq T$. Let $X(t)$ be a collection of random variables indexed by $t \in[0, T]$. We say this collection of random variables is an adapted stochastic process if, for each $t$, the random variable $X(t)$ is $\mathcal{F}(t)$-measurable.
+% Let \(\Omega\) be a nonempty sample space equipped with a filtration \(\mathcal{F}(t), 0 \leq t \leq T\). Let \(X(t)\) be a collection of random variables indexed by \(t \in[0, T]\). We say this collection of random variables is an adapted stochastic process if, for each \(t\), the random variable \(X(t)\) is \(\mathcal{F}(t)\)-measurable.
 % \end{defn}
 
 % \begin{defn}
-% A measure over $(\Omega, \mathcal{A})$ is a mapping $\mu: \mathcal{A} \mapsto \overline{\mathbb{R}}_{+}:=[0,+\infty]$ such that if $A_{n}, n \geq 1$ is a disjoint countable family of elements of $\mathcal{A}$ then
+% A measure over \((\Omega, \mathcal{A})\) is a mapping \(\mu: \mathcal{A} \mapsto \overline{\mathbb{R}}_{+}:=[0,+\infty]\) such that if \(A_{n}, n \geq 1\) is a disjoint countable family of elements of \(\mathcal{A}\) then
 % \begin{align*}
 % \mu\left(\bigcup_{n=1}^{\infty} A_{n}\right)=\sum_{n=1}^{\infty} \mu\left(A_{n}\right)
 % \end{align*}
 % \end{defn}
 % \begin{defn}
-% A Probability $P$ is a measure such that $P(\Omega)=1$. If $P$ is a Probability over $(\Omega, \mathcal{A}),(\Omega, \mathcal{A}, P)$ is called a Probability space. A Probability space is complete (with respect to $P$ ) if for all $A \in \mathcal{A}$ with $P(A)=0$, every subset of $A$ is also in $\mathcal{A}$ i.e. each $P$-negligible set is in $\mathcal{A}$.
+% A Probability \(P\) is a measure such that \(P(\Omega)=1\). If \(P\) is a Probability over \((\Omega, \mathcal{A}),(\Omega, \mathcal{A}, P)\) is called a Probability space. A Probability space is complete (with respect to \(P\) ) if for all \(A \in \mathcal{A}\) with \(P(A)=0\), every subset of \(A\) is also in \(\mathcal{A}\) i.e. each \(P\)-negligible set is in \(\mathcal{A}\).
 % \end{defn}
 
-% A \emph{probability space} is a triplet $(\Omega, \mathcal{F}, P)$. A \emph{filtered probability space} is a
-% probability space with a corresponding filtration $\mathcal{F}(t)$.
+% A \emph{probability space} is a triplet \((\Omega, \mathcal{F}, P)\). A \emph{filtered probability space} is a
+% probability space with a corresponding filtration \(\mathcal{F}(t)\).
 
 \end{document}
 
