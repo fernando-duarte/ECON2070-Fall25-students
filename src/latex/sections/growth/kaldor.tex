@@ -1,5 +1,5 @@
 % !BIB program = biber
-\providecommand{\topdir}{../..} 
+\providecommand{\topdir}{../..}
 \documentclass[\topdir/lecture\_notes.tex]{subfiles}
 \graphicspath{{\subfix{./images/}}}
 
@@ -46,15 +46,15 @@ By contrast, economies with slower structural change have tended to display more
 %
 % Environment
 %
-% There is a single good produced in quantity $Y=F(K,L)$, where $F(\cdot,\cdot)$ is the \new{production function} that describes how much output can be produced with a stock of physical capital $K$ and a quantity of labor $L$. The inputs to production---in this case capital and labor---are called \new{factors of production}.
+% There is a single good produced in quantity \(Y=F(K,L)\), where \(F(\cdot,\cdot)\) is the \new{production function} that describes how much output can be produced with a stock of physical capital \(K\) and a quantity of labor \(L\). The inputs to production---in this case capital and labor---are called \new{factors of production}.
 %
-% The \new{marginal product of labor} is the amount of output produced by an additional unit of labor, $\frac{\partial F}{\partial L}$, while the \new{marginal product of capital} is the amount of output produced by an additional unit of capital, $\frac{\partial F}{\partial K}$. Consider increasing all factors of production by a factor $k>0$. The production function is said to have \new{constant returns to scale} if output increases by the same factor, $Y(k L, k K) = k Y(L, K)$. It is said to have \new{increasing returns to scale} if $Y(k L, k K) > k Y(L, K)$ and \new{decreasing returns to scale} if $Y(k L, k K) < k Y(L, K)$.
+% The \new{marginal product of labor} is the amount of output produced by an additional unit of labor, \(\frac{\partial F}{\partial L}\), while the \new{marginal product of capital} is the amount of output produced by an additional unit of capital, \(\frac{\partial F}{\partial K}\). Consider increasing all factors of production by a factor \(k>0\). The production function is said to have \new{constant returns to scale} if output increases by the same factor, \(Y(k L, k K) = k Y(L, K)\). It is said to have \new{increasing returns to scale} if \(Y(k L, k K) > k Y(L, K)\) and \new{decreasing returns to scale} if \(Y(k L, k K) < k Y(L, K)\).
 %
-% A representative firm chooses $(K,L)$ to maximize profits
+% A representative firm chooses \((K,L)\) to maximize profits
 % \[
 %     \pi = F(K,L) - wL - rK,
 % \]
-% taking wages $w$ and the rental rate of capital $r$ as given. The first-order conditions (FOC) for this firm problem are
+% taking wages \(w\) and the rental rate of capital \(r\) as given. The first-order conditions (FOC) for this firm problem are
 % \begin{equation}
 %     w=\frac{\partial F}{\partial L},\qquad r=\frac{\partial F}{\partial K},\label{eq:kaldor-foc}
 % \end{equation}
@@ -63,11 +63,11 @@ By contrast, economies with slower structural change have tended to display more
 %     s_{L}:=\frac{w L}{Y},\qquad s_{K}:=\frac{r K}{Y}. \label{eq:kaldor-shares}
 % \end{equation}
 %
-% The production function $F(\cdot,\cdot)$ is said to be \new{Cobb---Douglas} when it has the form
+% The production function \(F(\cdot,\cdot)\) is said to be \new{Cobb---Douglas} when it has the form
 % \[
 %     F(K,L) = A K^{\alpha}L^{\beta}
 % \]\label{eq:FOC_firm}
-% where $A$ is the level of technology, and $\alpha$, $\beta$ are parameters between zero and one. The Cobb---Douglas production function has constant returns to scale when $\alpha+\beta=1$, increasing returns to scale when $\alpha+\beta>1$, and decreasing returns to scale when $\alpha+\beta<1$. Equation \eqref{eq:kaldor-foc} specialized to Cobb---Douglas gives
+% where \(A\) is the level of technology, and \(\alpha\), \(\beta\) are parameters between zero and one. The Cobb---Douglas production function has constant returns to scale when \(\alpha+\beta=1\), increasing returns to scale when \(\alpha+\beta>1\), and decreasing returns to scale when \(\alpha+\beta<1\). Equation \eqref{eq:kaldor-foc} specialized to Cobb---Douglas gives
 % \begin{equation}
 %     w=\frac{\partial F}{\partial L}=\beta \frac{Y}{L},\qquad r=\frac{\partial F}{\partial K}=\alpha \frac{Y}{K},\label{eq:kaldor-foc-cd}
 % \end{equation}
@@ -105,7 +105,7 @@ Kaldor emphasized the remarkable stability of long-run labor productivity growth
 
 Postwar experience refines the picture.
 For the United States and the United Kingdom, the drivers of growth in output per worker mirror those of capital per worker already discussed.
-Decelerations across other advanced economies following the Global Financial Crisis have been marked by unusually weak productivity growth, prompting debates over secular stagnation, measurement, and the pace of innovation.\parencite{oecd2015productivity,gordon2016rise,byrnefernaldreinsdorf2016,syverson2017}. 
+Decelerations across other advanced economies following the Global Financial Crisis have been marked by unusually weak productivity growth, prompting debates over secular stagnation, measurement, and the pace of innovation.\parencite{oecd2015productivity,gordon2016rise,byrnefernaldreinsdorf2016,syverson2017}.
 
 Over sufficiently long horizons, however, frontier economies display striking regularities.
 Many developed countries trace near-linear paths for log GDP per capita, implying similar average growth rates on the order of 2 percent per year and suggesting convergence to a common steady growth path among the leaders.
@@ -119,13 +119,13 @@ China, in particular, combined exceptionally high investment with rapid producti
 % A multi-sector perspective helps rationalize observed trend breaks without positing an exogenous halt in frontier technology. When sectors exhibit different productivity trends and expenditure shares evolve over time, aggregate real GDP growth can slow even if each sector continues to follow a steady technological path \parencite{herrendorf2014growth,herrendorf2019kaldor}. Declining relative prices for investment goods, associated with investment-specific technical change, further complicate inference from nominal spending to real quantities \parencite{greenwoodhercowitzkrusell1997,byrneolinersichel2017}. These forces are central to explanations of the post-1970s slowdown and the weak business-sector productivity growth observed in the 2000s \parencite{oecd2015productivity,fernald2015productivity,gordon2016rise}.
 
 % Two-sector measurement perspective commented out for brevity
-% A two-sector measurement perspective makes the mechanisms transparent. Let a consumption sector with TFP $A_{c}$ and an investment sector with TFP $A_{x}$ produce $C$ and $X$, respectively. Under competitive pricing with common factor shares across sectors, the relative price of consumption in units of investment satisfies
+% A two-sector measurement perspective makes the mechanisms transparent. Let a consumption sector with TFP \(A_{c}\) and an investment sector with TFP \(A_{x}\) produce \(C\) and \(X\), respectively. Under competitive pricing with common factor shares across sectors, the relative price of consumption in units of investment satisfies
 %
-% $$
+% \[
 %     p_{c}=\frac{A_{x}}{A_{c}}.
-% $$
+% \]
 %
-% Consider an aggregate balanced growth path expressed in investment units in which $A_{x}$ grows at a constant rate, while the growth rate of $A_{c}$ may vary over time. If real GDP is measured in current investment units as $Y=p_{c}C+X$, then by construction $Y$ grows at the constant rate associated with $A_{x}$, so the one-sector Kaldor relations continue to hold in investment units. In contrast, when statistical agencies measure real GDP with a chained Fisher index, the measured growth rate of GDP per worker slows whenever the growth rate of $p_{c}$ rises, equivalently when the growth rate of $A_{c}$ declines; a persistent slowdown in measured aggregate productivity can therefore arise in a two-sector economy that remains on an aggregate balanced growth path in investment units \parencite{duernecker2021productivity,herrendorf2019kaldor}. Moreover, in this environment the chained Fisher index provides an appropriate welfare metric, whereas the classic result that net domestic product measured in consumption units tracks welfare requires constant sectoral TFP growth and fails when sectoral growth rates vary over time \parencite{weitzman1976welfare,duernecker2021productivity}.
+% Consider an aggregate balanced growth path expressed in investment units in which \(A_{x}\) grows at a constant rate, while the growth rate of \(A_{c}\) may vary over time. If real GDP is measured in current investment units as \(Y=p_{c}C+X\), then by construction \(Y\) grows at the constant rate associated with \(A_{x}\), so the one-sector Kaldor relations continue to hold in investment units. In contrast, when statistical agencies measure real GDP with a chained Fisher index, the measured growth rate of GDP per worker slows whenever the growth rate of \(p_{c}\) rises, equivalently when the growth rate of \(A_{c}\) declines; a persistent slowdown in measured aggregate productivity can therefore arise in a two-sector economy that remains on an aggregate balanced growth path in investment units \parencite{duernecker2021productivity,herrendorf2019kaldor}. Moreover, in this environment the chained Fisher index provides an appropriate welfare metric, whereas the classic result that net domestic product measured in consumption units tracks welfare requires constant sectoral TFP growth and fails when sectoral growth rates vary over time \parencite{weitzman1976welfare,duernecker2021productivity}.
 
 % In sum, sustained growth of output per worker remains a central empirical fact, particularly among frontier economies with long-run average growth near 2 percent, but the presumption of a strictly constant trend is too strong. Since the 1970s, advanced economies have experienced pronounced downshifts and episodic upswings in productivity growth, while emerging economies exhibit much greater dispersion tied to distance from the frontier and structural transformation. Modern growth analysis retains Kaldor's insight as a baseline while allowing for transitions, sectoral reallocation, and measurement effects that produce medium-run departures from a single constant growth rate \parencite{solow1956contribution,herrendorf2014growth,herrendorf2019kaldor,greenwoodhercowitzkrusell1997,byrneolinersichel2017,jones2016facts,vollrath2020fullygrown}.
 
@@ -162,15 +162,15 @@ Eventually, as growth moderates and investment rates stabilize, the capital-outp
 \section{Rate of Return on Capital}
 
 Kaldor emphasized the near constancy of the aggregate return to capital over long horizons in industrial economies, an observation that can be expressed transparently with national accounting objects.
-Let $Y^K$ denote nominal payments to ``reproducible private capital net of depreciation'', $Y$ nominal value added, $K$ the replacement-cost capital stock, and $\alpha=Y^K/Y$ the net capital share.
-Define the average net return on reproducible capital as $r=Y^K/K$.
+Let \(Y^K\) denote nominal payments to ``reproducible private capital net of depreciation'', \(Y\) nominal value added, \(K\) the replacement-cost capital stock, and \(\alpha=Y^K/Y\) the net capital share.
+Define the average net return on reproducible capital as \(r=Y^K/K\).
 Then, by definition,
-$$
-    r=\frac{Y^K}{K}=\frac{\alpha Y}{K}=\frac{\alpha}{K/Y}.
-$$
-Stability of the net capital share $\alpha$ together with stability of the replacement-cost ratio $K/Y$ mechanically implies stability of the average net return on capital  \parencite{kaldor1957model,kaldor1961capital,solow1956contribution,jones2016facts}.
+\[
+  r=\frac{Y^K}{K}=\frac{\alpha Y}{K}=\frac{\alpha}{K/Y}.
+\]
+Stability of the net capital share \(\alpha\) together with stability of the replacement-cost ratio \(K/Y\) mechanically implies stability of the average net return on capital  \parencite{kaldor1957model,kaldor1961capital,solow1956contribution,jones2016facts}.
 
-Long-run evidence is broadly consistent with a roughly stable average return on broad private wealth in advanced economies. 
+Long-run evidence is broadly consistent with a roughly stable average return on broad private wealth in advanced economies.
 
 Data for emerging and developing economies are thinner and returns are more volatile, reflecting greater macroeconomic and institutional risk.
 Nonetheless, the qualitative pattern is consistent with no clear evidence of a systematic long-run trend.\parencite{jones2016facts,reinhartrogoff2009}.
@@ -179,7 +179,7 @@ Measurement matters for aligning evidence with the theory.
 The relevant average return is computed as nominal payments to reproducible productive capital divided by the replacement-cost value of that capital, an object that is invariant to the choice of numeraire and avoids mixing market-valuation effects from asset price swings with the quantity of productive capital \parencite{herrendorf2019kaldor}.
 This distinction is essential when comparing replacement-cost returns used in growth accounting with market-value returns.
 
-% Using harmonized data for 16 rich countries since 1870, \textcite{jorda2019rate} find that real returns on risky private assets such as equity and housing have averaged on the order of 6 to 7 percent per year, while real government bond returns average nearer 1 to 3 percent, so that diversified portfolios deliver a fairly stable long-run real return despite large historical shocks. At the same time, business-sector profitability in the United States has shown no secular decline, with several studies documenting elevated profits and markups in recent decades even as the labor share fell or failed to recover, a pattern consistent with sustained returns on private capital \parencite{deloecker2020markups,barkai2020declining,imf2017weo}. These facts align with the identity above: near-constancy of replacement-cost $K/Y$ and the behavior of capital-related income shares together support a roughly stable average return on reproducible capital \parencite{herrendorf2019kaldor,eggertsson2018kaldor}.
+% Using harmonized data for 16 rich countries since 1870, \textcite{jorda2019rate} find that real returns on risky private assets such as equity and housing have averaged on the order of 6 to 7 percent per year, while real government bond returns average nearer 1 to 3 percent, so that diversified portfolios deliver a fairly stable long-run real return despite large historical shocks. At the same time, business-sector profitability in the United States has shown no secular decline, with several studies documenting elevated profits and markups in recent decades even as the labor share fell or failed to recover, a pattern consistent with sustained returns on private capital \parencite{deloecker2020markups,barkai2020declining,imf2017weo}. These facts align with the identity above: near-constancy of replacement-cost \(K/Y\) and the behavior of capital-related income shares together support a roughly stable average return on reproducible capital \parencite{herrendorf2019kaldor,eggertsson2018kaldor}.
 
 % A key evolution, however, is the divergence between the safe real interest rate and the average return on private capital. Estimates of the natural real rate have trended down markedly since the 1980s across advanced economies, reaching historic lows by the 2010s \parencite{holstonlaubachwilliams2017,rachelsmith2015}. Yet measures linked to the return on private capital, including returns on equity and housing and profits net of depreciation, have not fallen commensurately, implying a widening wedge between the risk-free rate and the average return on capital \parencite{jorda2019rate,eggertsson2018kaldor}. The literature attributes this wedge to forces such as rising market power, increased rents, and the growing role of intangibles that are imperfectly captured in measured capital stocks, all of which can sustain high profitability in a low safe-rate environment \parencite{deloecker2020markups,corradohultensichel2005,crouzeteberly2019,eggertsson2018kaldor}. These developments clarify that Kaldor's statement is best interpreted as a claim about the average return on reproducible private capital rather than about the risk-free interest rate.
 
@@ -202,7 +202,139 @@ Cross-country accounting points to the centrality of social infrastructure and h
 International technology diffusion is incomplete and heterogeneous, with faster integration and adoption associated with stronger growth \parencite{keller2004,cominhobijn2010,cominmestieri2018}.
 Demographic transitions can further tilt growth trajectories by altering labor force growth and savings behavior, as illustrated by episodes of rapid expansion in parts of East and Southeast Asia \parencite{bloomwilliamson1998,jones2016facts}.
 
-\input{kaldor_table}
+\pagestyle{empty}
+
+\begin{landscape}
+    \begingroup
+    \setlength{\tabcolsep}{4pt}
+    \renewcommand{\arraystretch}{1}
+    \footnotesize
+
+    \begin{longtable}{>{\RaggedRight}p{0.24\linewidth}
+        >{\RaggedRight}p{0.36\linewidth}
+        >{\RaggedRight\arraybackslash}p{0.36\linewidth}}
+
+        \caption{Evolution of Kaldor's Facts: Contemporary Evidence}\label{tab:kaldor-updates} \\
+
+        \toprule
+        \facthead{Kaldor's Original Fact} &
+        \facthead{Advanced Economies Update} &
+        \facthead{Emerging \& Developing Economies Update} \\
+        \midrule
+        \endfirsthead
+
+        \toprule
+        \facthead{Kaldor's Original Fact} &
+        \facthead{Advanced Economies Update} &
+        \facthead{Emerging \& Developing Economies Update} \\
+        \midrule
+        \endhead
+
+        \multicolumn{3}{r}{\textit{Continued on next page}} \\
+        \endfoot
+
+        \bottomrule
+        \endlastfoot
+
+        1. Constant labor and capital income shares &
+        \vspace{-0.5\baselineskip}\begin{itemize}[leftmargin=*, topsep=0pt, itemsep=2pt, parsep=0pt, partopsep=0pt]
+            \item Labor share declined since 1980s
+            \item Capital share rose correspondingly
+            \item Drivers: automation, globalization, weaker unions
+            \item More stable when excluding pure profits
+        \end{itemize}\vspace{-0.3\baselineskip} &
+        \vspace{-0.5\baselineskip}\begin{itemize}[leftmargin=*, topsep=0pt, itemsep=2pt, parsep=0pt, partopsep=0pt]
+            \item Many economies saw declining labor shares
+            \item Rapid capital deepening shifted income to capital
+            \item Global value chains altered distribution
+            \item Limited structural change: more stability
+        \end{itemize}\vspace{-0.3\baselineskip}
+        \\
+        \midrule
+
+        2. Constant growth of capital per worker &
+        \vspace{-0.5\baselineskip}\begin{itemize}[leftmargin=*, topsep=0pt, itemsep=2pt, parsep=0pt, partopsep=0pt]
+            \item Capital per worker continues rising
+            \item Growth rate slowed post-1970s
+            \item Slower than mid-20th century pace
+            \item Reflects productivity and investment slowdown
+        \end{itemize}\vspace{-0.3\baselineskip} &
+        \vspace{-0.5\baselineskip}\begin{itemize}[leftmargin=*, topsep=0pt, itemsep=2pt, parsep=0pt, partopsep=0pt]
+            \item Very fast growth during catch-up phases
+            \item East Asia: exceptionally rapid \(K/L\) increases
+            \item Other countries: low or volatile growth
+            \item Successful convergers stabilize near advanced rates
+        \end{itemize}\vspace{-0.3\baselineskip}
+        \\
+        \midrule
+
+        3. Constant growth of output per worker &
+        \vspace{-0.5\baselineskip}\begin{itemize}[leftmargin=*, topsep=0pt, itemsep=2pt, parsep=0pt, partopsep=0pt]
+            \item 2--3\% growth mid-20th century
+            \item Slowed to 1--2\% after 1970s
+            \item Further slowdowns in recent decades
+            \item Near 2\% average over long horizons
+        \end{itemize}\vspace{-0.3\baselineskip} &
+        \vspace{-0.5\baselineskip}\begin{itemize}[leftmargin=*, topsep=0pt, itemsep=2pt, parsep=0pt, partopsep=0pt]
+            \item Range: near zero to over 7\%
+            \item East Asian tigers: 5--7\% for decades
+            \item Many countries: below 1\% growth
+            \item Greater variance farther from frontier
+        \end{itemize}\vspace{-0.3\baselineskip}
+        \\
+        \midrule
+
+        4. Constant capital-output ratio &
+        \vspace{-0.5\baselineskip}\begin{itemize}[leftmargin=*, topsep=0pt, itemsep=2pt, parsep=0pt, partopsep=0pt]
+            \item Ratio typically 2.5--3.5
+            \item Mild upward drift in some countries
+            \item Wealth-income ratio risen with housing/assets
+            \item Investment rates near 20\% of GDP
+        \end{itemize}\vspace{-0.3\baselineskip} &
+        \vspace{-0.5\baselineskip}\begin{itemize}[leftmargin=*, topsep=0pt, itemsep=2pt, parsep=0pt, partopsep=0pt]
+            \item Initially low \(K/Y\) in poor countries
+            \item Rises during industrialization
+            \item Heavy investment phases push ratio up
+            \item Stabilizes as growth matures
+        \end{itemize}\vspace{-0.3\baselineskip}
+        \\
+        \midrule
+
+        5. Constant rate of return on capital &
+        \vspace{-0.5\baselineskip}\begin{itemize}[leftmargin=*, topsep=0pt, itemsep=2pt, parsep=0pt, partopsep=0pt]
+            \item Long-run returns around 4--5\% real
+            \item Corporate profits and equity returns robust
+            \item Risk-free rates declined significantly
+            \item Risk premiums and markups increased
+        \end{itemize}\vspace{-0.3\baselineskip} &
+        \vspace{-0.5\baselineskip}\begin{itemize}[leftmargin=*, topsep=0pt, itemsep=2pt, parsep=0pt, partopsep=0pt]
+            \item Returns high but volatile
+            \item Higher marginal returns than advanced economies
+            \item Risks and crises affect realized returns
+            \item Convergence toward global average with integration
+        \end{itemize}\vspace{-0.3\baselineskip}
+        \\
+        \midrule
+
+        6. Persistent cross-country growth differences &
+        \vspace{-0.5\baselineskip}\begin{itemize}[leftmargin=*, topsep=0pt, itemsep=2pt, parsep=0pt, partopsep=0pt]
+            \item Growth rates cluster around 1--2\% per capita
+            \item Differences persist across countries
+            \item Variation over 10--20 year periods
+            \item Relatively narrow dispersion
+        \end{itemize}\vspace{-0.3\baselineskip} &
+        \vspace{-0.5\baselineskip}\begin{itemize}[leftmargin=*, topsep=0pt, itemsep=2pt, parsep=0pt, partopsep=0pt]
+            \item Wide range of growth outcomes
+            \item Some sustain over 5\% annual growth
+            \item Others below 1\% or negative
+            \item Greater variation farther from frontier
+        \end{itemize}\vspace{-0.3\baselineskip}
+        \\
+    \end{longtable}
+    \endgroup
+\end{landscape}
+
+\pagestyle{fancy}
 
 \section{Conclusion}
 

@@ -22,27 +22,27 @@
 The securities market model consists of
 
 \begin{enumerate}
-  \item a probability space $(\Omega, \mathcal{F}, P)$,
+  \item a probability space \((\Omega, \mathcal{F}, P)\),
 
-  \item a time inverval $\mathcal{T}=[0, T]$,
+  \item a time inverval \(\mathcal{T}=[0, T]\),
 
-  \item a Brownian motion $Z=\left(Z_{1}, . ., Z_{d}\right)$ on $(\Omega, \mathcal{F}, P)$,
+  \item a Brownian motion \(Z=\left(Z_{1}, . ., Z_{d}\right)\) on \((\Omega, \mathcal{F}, P)\),
 
-  \item the standard filtration $\mathbb{F}$ of $Z$,
+  \item the standard filtration \(\mathbb{F}\) of \(Z\),
 
-  \item $N+1$ securities indexed by $n=0, . ., N$.
+  \item \(N+1\) securities indexed by \(n=0, . ., N\).
 
 \end{enumerate}
 
-(a) Security 0 is the ``riskless'' security, and can be interpreted as the value of a bank account. Its price at time 0 is $B_{0} \equiv S_{0,0}=1$, and its price at time $t$ is given by
+(a) Security 0 is the ``riskless'' security, and can be interpreted as the value of a bank account. Its price at time 0 is \(B_{0} \equiv S_{0,0}=1\), and its price at time \(t\) is given by
 
 \begin{equation*}
 d B_{t}=r_{t} B_{t} d t
 \end{equation*}
 
-where $r$ is the short rate process.
+where \(r\) is the short rate process.
 
-(b) Securities $1, \ldots, N$ are the ``risky'' securities. Their prices are given by an Ito process
+(b) Securities \(1, \ldots, N\) are the ``risky'' securities. Their prices are given by an Ito process
 
 \begin{equation*}
 d\left(\begin{array}{c}
@@ -52,17 +52,17 @@ S_{N, t}
 \end{array}\right)=\mu_{t} d t+\sigma_{t} d Z_{t}
 \end{equation*}
 
-where $\mu \in\left(\mathcal{L}^{1}\right)^{N}$ and $\sigma \in\left(\mathcal{L}^{2}\right)^{N \times d}$.
+where \(\mu \in\left(\mathcal{L}^{1}\right)^{N}\) and \(\sigma \in\left(\mathcal{L}^{2}\right)^{N \times d}\).
 
-We set $S=\left(S_{0}, . ., S_{N}\right)$ and $S_{1 N}=\left(S_{1}, . ., S_{N}\right)$.
+We set \(S=\left(S_{0}, . ., S_{N}\right)\) and \(S_{1 N}=\left(S_{1}, . ., S_{N}\right)\).
 
 Implicit in this formulation is that securities do not pay dividends. We also assume that there is no intermediate consumption. We will introduce dividends and intermediate consumption later on.
 
 \begin{defn}\label{def:trading_strategy}
-A trading strategy is a process $\theta \in \mathcal{L}(S)$.
+A trading strategy is a process \(\theta \in \mathcal{L}(S)\).
 \end{defn}
 
-For a trading strategy $\theta$, we use $\theta_{1 N}=\left(\theta_{1}, . ., \theta_{N}\right)$ to denote the investment in the risky assets. We define the stochastic integral $\int_{0}^{t} \theta_{s} d S_{s}$ as the Ito process
+For a trading strategy \(\theta\), we use \(\theta_{1 N}=\left(\theta_{1}, . ., \theta_{N}\right)\) to denote the investment in the risky assets. We define the stochastic integral \(\int_{0}^{t} \theta_{s} d S_{s}\) as the Ito process
 
 \begin{equation*}
 \int_{0}^{t} \theta_{s} d S_{s}=\int_{0}^{t}\left(\theta_{0, s} r_{s} B_{s}+\theta_{1 N, s} \mu_{s}\right) d s+\int_{0}^{t} \theta_{1 N, s} \sigma_{s} d Z_{s}
@@ -95,21 +95,21 @@ Therefore,
 \theta_{t} S_{t}=\theta_{0} S_{0}+\sum_{s=0}^{t-1} \theta_{s}\left(S_{s+1}-S_{s}\right)
 \end{equation*}
 
-In continuous time, the latter sum is the stochastic integral $\int_{0}^{t} \theta_{t} d S_{t}$.
+In continuous time, the latter sum is the stochastic integral \(\int_{0}^{t} \theta_{t} d S_{t}\).
 
 \begin{defn}\label{def:cash_flow}
-$A$ cash flow is a pair $\left(C_{0}, C_{T}\right)$ where $C_{0} \in \mathbb{R}$ and $C_{T}$ is $\mathcal{F}_{T}$-measurable.
+\(A\) cash flow is a pair \(\left(C_{0}, C_{T}\right)\) where \(C_{0} \in \mathbb{R}\) and \(C_{T}\) is \(\mathcal{F}_{T}\)-measurable.
 \end{defn}
 
 \begin{defn}\label{def:finances_cash_flow}
-A self-financing trading strategy $\theta$ finances a cash flow $\left(C_{0}, C_{T}\right)$ iff $C_{0}=-\theta_{0} S_{0}$, and $C_{T}=\theta_{T} S_{T}$.
+A self-financing trading strategy \(\theta\) finances a cash flow \(\left(C_{0}, C_{T}\right)\) iff \(C_{0}=-\theta_{0} S_{0}\), and \(C_{T}=\theta_{T} S_{T}\).
 \end{defn}
 
 \begin{defn}\label{def:marketable_cash_flow}
-A cash flow is marketable iff it is financed by a trading strategy $\theta$.
+A cash flow is marketable iff it is financed by a trading strategy \(\theta\).
 \end{defn}
 
-We denote by $M$ the set of marketable cash flows.
+We denote by \(M\) the set of marketable cash flows.
 
 \subsection{SPD and EMM}
 In discrete time we showed that absence of arbitrage is equivalent to the existence of strictly positive state prices. Strictly positive state prices are in turn equivalent to a (strictly positive) state-price density (SPD), and to an equivalent martingale measure (EMM).
@@ -119,15 +119,15 @@ In continuous time things are more complicated. Existence of a SPD or an EMM doe
 In this section we define SPD and EMM, and show that existence of one is equivalent to existence of the other.
 
 \begin{defn}\label{def:arbitrage_continuous}
-An arbitrage is a marketable cash flow such that $C_{0} \geq 0, C_{T} \geq 0$, and $C_{0}>0$ or $\operatorname{prob}\left(C_{T}>0\right)>0$.
+An arbitrage is a marketable cash flow such that \(C_{0} \geq 0, C_{T} \geq 0\), and \(C_{0}>0\) or \(\operatorname{prob}\left(C_{T}>0\right)>0\).
 \end{defn}
 
 \begin{defn}\label{def:spd}
-A \emph{SPD} is a strictly positive Ito process $\pi$ such that $\pi S$ is a martingale, and $\pi_{0}=1$.
+A \emph{SPD} is a strictly positive Ito process \(\pi\) such that \(\pi S\) is a martingale, and \(\pi_{0}=1\).
 \end{defn}
 
 \begin{defn}\label{def:emm}
-An \emph{EMM} is a probability measure $Q$ such that $\hat{S} \equiv S / B$ is a martingale under $Q$, and $Q$ is equivalent to $P$.
+An \emph{EMM} is a probability measure \(Q\) such that \(\hat{S} \equiv S / B\) is a martingale under \(Q\), and \(Q\) is equivalent to \(P\).
 \end{defn}
 
 \begin{proposition}\label{prop:spd_emm_equivalence}
@@ -135,36 +135,36 @@ A SPD exists iff an EMM exists.
 \end{proposition}
 
 \begin{proof}
-Suppose that a SPD exists. Denote the SPD by $\pi$ and set $\xi=\pi B$. The function $\xi_{T}$ is a Radon-Nikodym derivative and thus defines a probability measure $Q$. Indeed, $\xi_{T}>0$ and, since $\xi$ is a martingale, $E\left(\xi_{T}\right)=\xi_{0}=1$. The probability measure $Q$ is equivalent to $P$ since $\xi_{T}>0$ a.s. Therefore, $Q$ is an EMM if $\hat{S}=S / B$ is a martingale under $Q$. We have
+Suppose that a SPD exists. Denote the SPD by \(\pi\) and set \(\xi=\pi B\). The function \(\xi_{T}\) is a Radon-Nikodym derivative and thus defines a probability measure \(Q\). Indeed, \(\xi_{T}>0\) and, since \(\xi\) is a martingale, \(E\left(\xi_{T}\right)=\xi_{0}=1\). The probability measure \(Q\) is equivalent to \(P\) since \(\xi_{T}>0\) a.s. Therefore, \(Q\) is an EMM if \(\hat{S}=S / B\) is a martingale under \(Q\). We have
 
 \begin{equation*}
 E_{t}^{Q}\left(\hat{S}_{s}\right)=\frac{E_{t}\left(\hat{S}_{s} \xi_{T}\right)}{E_{t}\left(\xi_{T}\right)}=\frac{E_{t}\left(\hat{S}_{s} \xi_{s}\right)}{\xi_{t}}=\frac{E_{t}\left(\pi_{s} S_{s}\right)}{\xi_{t}}
 \end{equation*}
 
-Since $\pi S$ is a martingale under $P$, this is equal to
+Since \(\pi S\) is a martingale under \(P\), this is equal to
 
 \begin{equation*}
 \frac{S_{t}}{B_{t}} \frac{\pi_{t}}{\pi_{t}}=\hat{S}_{t}
 \end{equation*}
 
-Therefore, $\hat{S}$ is a martingale under $Q$.
+Therefore, \(\hat{S}\) is a martingale under \(Q\).
 
-Suppose that an EMM exists. Denote the EMM by $Q$, its Radon-Nikodym derivative w.r.t. $P$ by $\xi_{T}$, and set $\xi_{t}=E_{t}\left(\xi_{T}\right)$ and $\pi=\xi / B$. Since $Q$ is equivalent to $P, \xi_{T}>0$ a.s. and thus $\pi_{T}>0$ a.s. By the martingale representation theorem, $\xi$ is an Ito process, and thus $\pi$ is also an Ito process. Therefore, $\pi$ is an SPD if $\pi S$ is a martingale under $P$. We have
+Suppose that an EMM exists. Denote the EMM by \(Q\), its Radon-Nikodym derivative w.r.t. \(P\) by \(\xi_{T}\), and set \(\xi_{t}=E_{t}\left(\xi_{T}\right)\) and \(\pi=\xi / B\). Since \(Q\) is equivalent to \(P, \xi_{T}>0\) a.s. and thus \(\pi_{T}>0\) a.s. By the martingale representation theorem, \(\xi\) is an Ito process, and thus \(\pi\) is also an Ito process. Therefore, \(\pi\) is an SPD if \(\pi S\) is a martingale under \(P\). We have
 
 \begin{equation*}
 E_{t}\left(\pi_{s} S_{s}\right)=E_{t}\left(\frac{\xi_{s}}{B_{s}} S_{s}\right)=E_{t}\left(\xi_{T} \frac{S_{s}}{B_{s}}\right)=E_{t}^{Q}\left(\frac{S_{s}}{B_{s}}\right) E_{t}\left(\xi_{T}\right)=E_{t}^{Q}\left(\frac{S_{s}}{B_{s}}\right) \xi_{t}
 \end{equation*}
 
-Since $S / B$ is a martingale under $Q$, this is equal to
+Since \(S / B\) is a martingale under \(Q\), this is equal to
 
 \begin{equation*}
 \frac{S_{t}}{B_{t}} \xi_{t}=\pi_{t} S_{t}
 \end{equation*}
 
-Therefore, $\pi S$ is a martingale under $P$.
+Therefore, \(\pi S\) is a martingale under \(P\).
 \end{proof}
 
-Notice that if $Q$ is an EMM, we have
+Notice that if \(Q\) is an EMM, we have
 
 \begin{equation*}
 \hat{S}_{t}=E_{t}^{Q}\left(\hat{S_{T}}\right)
@@ -182,30 +182,30 @@ we get
 S_{t}=E_{t}^{Q}\left[\exp \left(-\int_{t}^{T} r_{s} d s\right) S_{T}\right]
 \end{equation*}
 
-The price at time $t$ is equal to the expectation under $Q$ of the price at time $T$, discounted at the riskless rate.
+The price at time \(t\) is equal to the expectation under \(Q\) of the price at time \(T\), discounted at the riskless rate.
 
 \subsection{Doubling Strategies}
-In continuous time, existence of a SPD or an EMM does not preclude arbitrage. Arbitrages can be constructed by following doubling strategies. The idea behind doubling strategies can be understood in the following example. Suppose that $T=1$ and there are two securities. The first is a riskless bond whose price is equal to 1. (The short rate is thus equal to 0 .) The second is a risky stock. At $t=0$ the stock price is equal to 1 . The stock price is then constant, except for times $t=1-1 / 2^{n}$, when it jumps. The jump at time $t=1-1 / 2^{n}$ is either $1 / 2^{n}$ or $-1 / 2^{n}$ with equal probabilities. The stock price is not a Brownian motion, but is a martingale.
+In continuous time, existence of a SPD or an EMM does not preclude arbitrage. Arbitrages can be constructed by following doubling strategies. The idea behind doubling strategies can be understood in the following example. Suppose that \(T=1\) and there are two securities. The first is a riskless bond whose price is equal to 1. (The short rate is thus equal to 0 .) The second is a risky stock. At \(t=0\) the stock price is equal to 1 . The stock price is then constant, except for times \(t=1-1 / 2^{n}\), when it jumps. The jump at time \(t=1-1 / 2^{n}\) is either \(1 / 2^{n}\) or \(-1 / 2^{n}\) with equal probabilities. The stock price is not a Brownian motion, but is a martingale.
 
-The trading strategy starts with one share in the stock and -1 in the bond. The wealth at $t=0$ is thus 0 . If at $t=1 / 2$ the stock price goes up, the stock is sold, and the proceeds are invested in the bond until $t=1$. The wealth at $t=1$ is thus $1 / 2$. If the stock price goes down, 3 shares of the stock are bought. If at $t=3 / 4$ the stock price goes up, the stock is sold and the proceeds are invested in the bond until $t=1$. The wealth at $t=1$ is thus
+The trading strategy starts with one share in the stock and -1 in the bond. The wealth at \(t=0\) is thus 0 . If at \(t=1 / 2\) the stock price goes up, the stock is sold, and the proceeds are invested in the bond until \(t=1\). The wealth at \(t=1\) is thus \(1 / 2\). If the stock price goes down, 3 shares of the stock are bought. If at \(t=3 / 4\) the stock price goes up, the stock is sold and the proceeds are invested in the bond until \(t=1\). The wealth at \(t=1\) is thus
 
 \begin{equation*}
 -1-\frac{1}{2} \times 3+\frac{3}{4} \times(3+1)=\frac{1}{2}
 \end{equation*}
 
-If the stock price goes down, 21 shares of the stock are bought, and so on. The wealth at $t=1$ is $1 / 2$ with probability 1 . This is an arbitrage.
+If the stock price goes down, 21 shares of the stock are bought, and so on. The wealth at \(t=1\) is \(1 / 2\) with probability 1 . This is an arbitrage.
 
 In this example the stock price is not a Brownian motion. Duffie 6.C. presents a doubling strategy in a Brownian motion context.
 
-Mathematically, the important feature of a doubling strategy $\theta$ is that, even when the price $S$ is a martingale, the stochastic integral $\int_{0}^{t} \theta_{s} d S_{s}$ is not a martingale. The stochastic integral is in fact only a local martingale.
+Mathematically, the important feature of a doubling strategy \(\theta\) is that, even when the price \(S\) is a martingale, the stochastic integral \(\int_{0}^{t} \theta_{s} d S_{s}\) is not a martingale. The stochastic integral is in fact only a local martingale.
 
 A doubling strategy can be criticized on two grounds. First, trading can take place an arbitrarily large number of times. Second, wealth can become arbitrarily negative, and there is thus no bankruptcy. This suggests two plausible restrictions on the set of trading strategies.
 
-The first restriction is that trading can take place only a finite number of times. Trading strategies thus have to be simple. With simple strategies, the stochastic integral $\int_{0}^{t} \theta_{s} d \hat{S}_{s}$ is a martingale. However, with simple strategies, the continuous-time model loses much of its power. The replicating strategies in the Black-Scholes model, for instance, involve continuous trading.
+The first restriction is that trading can take place only a finite number of times. Trading strategies thus have to be simple. With simple strategies, the stochastic integral \(\int_{0}^{t} \theta_{s} d \hat{S}_{s}\) is a martingale. However, with simple strategies, the continuous-time model loses much of its power. The replicating strategies in the Black-Scholes model, for instance, involve continuous trading.
 
-The second restriction is that (discounted) wealth has to stay above a threshold. Under this restriction, the stochastic integral $\int_{0}^{t} \theta_{s} d \hat{S}_{s}$ turns out to be a super-martingale, and this suffices for absence of arbitrage.
+The second restriction is that (discounted) wealth has to stay above a threshold. Under this restriction, the stochastic integral \(\int_{0}^{t} \theta_{s} d \hat{S}_{s}\) turns out to be a super-martingale, and this suffices for absence of arbitrage.
 
-A third restriction is motivated by the mathematics of the stochastic integral. The stochastic integral $\int_{0}^{t} \theta_{s} d \hat{S}_{s}$ is a local martingale because $\theta \in \mathcal{L}(\hat{S})$. If, however, $\theta \in \mathcal{H}^{2}(\hat{S})$, then $\int_{0}^{t} \theta_{s} d \hat{S}_{s}$ is a martingale.
+A third restriction is motivated by the mathematics of the stochastic integral. The stochastic integral \(\int_{0}^{t} \theta_{s} d \hat{S}_{s}\) is a local martingale because \(\theta \in \mathcal{L}(\hat{S})\). If, however, \(\theta \in \mathcal{H}^{2}(\hat{S})\), then \(\int_{0}^{t} \theta_{s} d \hat{S}_{s}\) is a martingale.
 
 We will focus on the second and third restrictions. Moreover, we will discount prices and wealth by the riskless rate. The second restriction is that trading strategies belong to the set
 
@@ -213,19 +213,19 @@ We will focus on the second and third restrictions. Moreover, we will discount p
 \underline{\Theta}(\hat{S}) \equiv\left\{\theta: \exists k, \text { s.t. } \quad \theta_{t} \hat{S}_{t} \geq k \forall t\right\}
 \end{equation*}
 
-Discounted wealth thus has to be greater than a threshold $k$. The third restriction is that trading strategies belong to the set $\theta \in \mathcal{H}^{2}(\hat{S})$. Notice that when the short rate is bounded, we have $\underline{\Theta}(\hat{S})=\underline{\Theta}(S)$ and $\mathcal{H}^{2}(\hat{S})=\mathcal{H}^{2}(S)$.
+Discounted wealth thus has to be greater than a threshold \(k\). The third restriction is that trading strategies belong to the set \(\theta \in \mathcal{H}^{2}(\hat{S})\). Notice that when the short rate is bounded, we have \(\underline{\Theta}(\hat{S})=\underline{\Theta}(S)\) and \(\mathcal{H}^{2}(\hat{S})=\mathcal{H}^{2}(S)\).
 
 \subsection{From SPD/EMM to No Arbitrage}
 Theorem \ref{thm:fundamental_asset_pricing} provides conditions under which existence of an EMM implies absence of arbitrage.
 
 \begin{theorem}\label{thm:fundamental_asset_pricing}
-Suppose that an EMM $Q$ exists. If trading strategies belong to $\mathcal{H}^{2}(\hat{S})$, and the Radon-Nikodym derivative $d Q / d P \in L^{2}$, then there is no arbitrage. Alternatively, if trading strategies belong to $\underline{\Theta}(\hat{S})$, then there is no arbitrage.
+Suppose that an EMM \(Q\) exists. If trading strategies belong to \(\mathcal{H}^{2}(\hat{S})\), and the Radon-Nikodym derivative \(d Q / d P \in L^{2}\), then there is no arbitrage. Alternatively, if trading strategies belong to \(\underline{\Theta}(\hat{S})\), then there is no arbitrage.
 \end{theorem}
 
 \begin{proof}
-The idea of the first part of the proof is that the discounted stock prices are martingales, therefore the discounted gain process is a martingale, and hence as long as $C_{T}$ is positive, $C_{0}$ must be negative, because $\hat{C}_{0}=E^{Q}\left[\hat{C}_{T}\right]$.
+The idea of the first part of the proof is that the discounted stock prices are martingales, therefore the discounted gain process is a martingale, and hence as long as \(C_{T}\) is positive, \(C_{0}\) must be negative, because \(\hat{C}_{0}=E^{Q}\left[\hat{C}_{T}\right]\).
 
-Consider a cash flow $\left(C_{0}, C_{T}\right)$ financed by a trading strategy $\theta$. We have
+Consider a cash flow \(\left(C_{0}, C_{T}\right)\) financed by a trading strategy \(\theta\). We have
 
 \begin{equation*}
 d\left(\theta_{t} S_{t}/B_{t}\right)=\frac{d\left(\theta_{t} S_{t}\right)}{B_{t}}-\frac{\theta_{t} S_{t} r_{t}}{B_{t}} d t=\frac{\theta_{t} d S_{t}}{B_{t}}-\frac{\theta_{t} S_{t} r_{t}}{B_{t}} d t=\theta_{t} d\left(\frac{S_{t}}{B_{t}}\right)
@@ -237,31 +237,31 @@ where we used first Ito's lemma, then the self-financing constraint (equation 5.
 \theta_{t} \hat{S}_{t}=\theta_{0} \hat{S}_{0}+\int_{0}^{t} \theta_{s} d \hat{S}_{s}
 \end{equation*}
 
-Equation (5.4.1) implies that that the strategy $\theta$ is self-financing w.r.t. the discounted price process $\hat{S}$. It also implies that
+Equation (5.4.1) implies that the strategy \(\theta\) is self-financing w.r.t. the discounted price process \(\hat{S}\). It also implies that
 
 \begin{equation*}
 \hat{C}_{T} \equiv \frac{C_{T}}{B_{T}}=\theta_{T} \hat{S_{T}}=\theta_{0} \hat{S}_{0}+\int_{0}^{T} \theta_{t} d \hat{S}_{t}=-\hat{C}_{0}+\int_{0}^{T} \theta_{t} d \hat{S}_{t}
 \end{equation*}
 
-Suppose that $\theta \in \mathcal{H}^{2}(\hat{S})$. Below we will show that the stochastic integral $\int_{0}^{t} \theta_{s} d\left(\hat{S}_{s}\right)$ is a martingale under $Q$. This will imply that
+Suppose that \(\theta \in \mathcal{H}^{2}(\hat{S})\). Below we will show that the stochastic integral \(\int_{0}^{t} \theta_{s} d\left(\hat{S}_{s}\right)\) is a martingale under \(Q\). This will imply that
 
 \begin{equation*}
 E^{Q}\left[\int_{0}^{T} \theta_{t} d \hat{S}_{t}\right]=0
 \end{equation*}
 
-and thus that the cash flow $\left(C_{0}, C_{T}\right)$ is not an arbitrage, since
+and thus that the cash flow \(\left(C_{0}, C_{T}\right)\) is not an arbitrage, since
 
 \begin{equation*}
 E^{Q} \hat{C}_{T}+\hat{C}_{0}=0
 \end{equation*}
 
-The rest is purely technical. To show that $\int_{0}^{t} \theta_{s} d \hat{S}_{s}$ is a martingale under $Q$, we write it in terms of a Brownian motion. Ito's lemma implies that
+The rest is purely technical. To show that \(\int_{0}^{t} \theta_{s} d \hat{S}_{s}\) is a martingale under \(Q\), we write it in terms of a Brownian motion. Ito's lemma implies that
 
 \begin{equation*}
 d \hat{S}_{1 N, t}=\frac{\mu_{t}-r_{t} S_{1 N, t}}{B_{t}} d t+\frac{\sigma_{t}}{B_{t}} d Z_{t} \equiv \hat{\mu}_{t} d t+\hat{\sigma}_{t} d Z_{t}
 \end{equation*}
 
-Since $\hat{S}_{1 N}$ is a martingale under $Q$, the diffusion invariance principle implies that there exists a Brownian motion $Z^{Q}$ under $Q$ such that
+Since \(\hat{S}_{1 N}\) is a martingale under \(Q\), the diffusion invariance principle implies that there exists a Brownian motion \(Z^{Q}\) under \(Q\) such that
 
 \begin{equation*}
 d \hat{S}_{1 N, t}=\hat{\sigma}_{t} d Z_{t}^{Q}
@@ -273,7 +273,7 @@ Therefore,
 \int_{0}^{t} \theta_{s} d \hat{S}_{s}=\int_{0}^{t} \theta_{1 N, s} d \hat{S}_{1 N, s}=\int_{0}^{t} \theta_{1 N, s} \hat{\sigma}_{s} d Z_{s}^{Q}
 \end{equation*}
 
-This is a martingale under $Q$ if
+This is a martingale under \(Q\) if
 
 \begin{equation*}
 E^{Q}\left[\left(\int_{0}^{T}\left(\theta_{1 N, t} \hat{\sigma}_{t}\right)^{2} d t\right)^{\frac{1}{2}}\right]<\infty
@@ -288,9 +288,9 @@ E^{Q}\left[\left(\int_{0}^{T}\left(\theta_{1 N, t} \hat{\sigma}_{t}\right)^{2} d
 \end{gathered}
 \end{equation*}
 
-where we used first the fact that $d Q / d P$ is the Radon-Nikodym derivative of $Q$ w.r.t. $P$, and then the Cauchy-Schwarz inequality. Since $d Q / d P \in L^{2}$ and $\theta \in \mathcal{H}^{2}(\hat{S})$, both terms are finite.
+where we used first the fact that \(d Q / d P\) is the Radon-Nikodym derivative of \(Q\) w.r.t. \(P\), and then the Cauchy-Schwarz inequality. Since \(d Q / d P \in L^{2}\) and \(\theta \in \mathcal{H}^{2}(\hat{S})\), both terms are finite.
 
-Suppose next that $\theta \in \underline{\Theta}(\hat{S})$. The stochastic integral $\int_{0}^{t} \theta_{s} d\left(\hat{S}_{s}\right)$ is a local martingale under Q. This stochastic integral is bounded below since
+Suppose next that \(\theta \in \underline{\Theta}(\hat{S})\). The stochastic integral \(\int_{0}^{t} \theta_{s} d\left(\hat{S}_{s}\right)\) is a local martingale under Q. This stochastic integral is bounded below since
 
 \begin{equation*}
 \int_{0}^{t} \theta_{s} d \hat{S}_{s}=\theta_{t} \hat{S}_{t}-\theta_{0} \hat{S}_{0} \geq k-\theta_{0} \hat{S}_{0}
@@ -308,25 +308,25 @@ Equation (5.4.2) implies that
 E^{Q}\left[\hat{C_{T}}\right]+C_{0} \leq 0
 \end{equation*}
 
-and thus the cash flow $\left(C_{0}, C_{T}\right)$ is not an arbitrage.
+and thus the cash flow \(\left(C_{0}, C_{T}\right)\) is not an arbitrage.
 \end{proof}
 
 Combining Proposition \ref{prop:spd_emm_equivalence} and Theorem \ref{thm:fundamental_asset_pricing}, we get the following corollary:
 
 \begin{corollary}\label{cor:no_arbitrage_conditions}
-Suppose that an SPD, $\pi$, exists. If trading strategies belong to $\mathcal{H}^{2}(\hat{S})$, and $\pi_{T} B_{T} \in L^{2}$, then there is no arbitrage. Alternatively, if trading strategies belong to $\underline{\Theta}(\hat{S})$, then there is no arbitrage.
+Suppose that an SPD, \(\pi\), exists. If trading strategies belong to \(\mathcal{H}^{2}(\hat{S})\), and \(\pi_{T} B_{T} \in L^{2}\), then there is no arbitrage. Alternatively, if trading strategies belong to \(\underline{\Theta}(\hat{S})\), then there is no arbitrage.
 \end{corollary}
 
 \subsection{From Security Prices to EMM}
 Whether an EMM exists or not, depends on security prices. We now determine conditions on security prices so that an EMM exists.
 
-To write security prices under the EMM, we will use Girsanov's theorem. Therefore we look for an EMM whose Radon-Nikodym derivative w.r.t. $P$ has the form required in that theorem. More precisely, we consider a process $\eta \in\left(\mathcal{L}^{2}\right)^{d}$ that satisfies Novikov's condition. We also consider the process
+To write security prices under the EMM, we will use Girsanov's theorem. Therefore we look for an EMM whose Radon-Nikodym derivative w.r.t. \(P\) has the form required in that theorem. More precisely, we consider a process \(\eta \in\left(\mathcal{L}^{2}\right)^{d}\) that satisfies Novikov's condition. We also consider the process
 
 \begin{equation*}
 \xi_{t}^{\eta}=\exp \left(-\int_{0}^{t} \eta_{s}^{\prime} d Z_{s}-\frac{1}{2} \int_{0}^{t} \eta_{s}^{2} d s\right)
 \end{equation*}
 
-and the probability measure $Q^{\eta}$ whose Radon-Nikodym derivative w.r.t. $P$ is equal to $\xi_{T}^{\eta}$.
+and the probability measure \(Q^{\eta}\) whose Radon-Nikodym derivative w.r.t. \(P\) is equal to \(\xi_{T}^{\eta}\).
 
 Discounted security prices follow the process
 
@@ -334,40 +334,40 @@ Discounted security prices follow the process
 d\left(\frac{S_{1 N, t}}{B_{t}}\right)=\frac{\mu_{t}-r_{t} S_{1 N, t}}{B_{t}} d t+\frac{\sigma_{t}}{B_{t}} d Z_{t}=\hat{\mu}_{t} d t+\hat{\sigma}_{t} d Z_{t}
 \end{equation*}
 
-Girsanov's theorem implies that, under $Q^{\eta}$, discounted security prices follow the process
+Girsanov's theorem implies that, under \(Q^{\eta}\), discounted security prices follow the process
 
 \begin{equation*}
 d\left(\frac{S_{1 N, t}}{B_{t}}\right)=\left(\hat{\mu}_{t}-\hat{\sigma}_{t} \eta_{t}\right) d t+\hat{\sigma}_{t} d Z_{t}^{\eta}
 \end{equation*}
 
-Discounted security prices are thus a martingale under $Q^{\eta}$ if
+Discounted security prices are thus a martingale under \(Q^{\eta}\) if
 
 \begin{equation}
 \hat{\mu}_{t}-\hat{\sigma}_{t} \eta_{t}=0 \label{eq:martingale_condition}
 \end{equation}
 
-and $\hat{\sigma}_{t} \in\left(\mathcal{H}^{2}\right)^{N \times d}$.
+and \(\hat{\sigma}_{t} \in\left(\mathcal{H}^{2}\right)^{N \times d}\).
 
 Therefore, the conditions for an EMM to exist are
 
 \begin{enumerate}
-  \item equation (5.5.1) has a solution $\eta_{t}$.
-  \item $\hat{\sigma}_{t} \in\left(\mathcal{H}^{2}\right)^{N \times d}$.
-  \item $\eta$ satisfies Novikov's condition.
+  \item equation (5.5.1) has a solution \(\eta_{t}\).
+  \item \(\hat{\sigma}_{t} \in\left(\mathcal{H}^{2}\right)^{N \times d}\).
+  \item \(\eta\) satisfies Novikov's condition.
 \end{enumerate}
 
-Equation 5.5.1 has an economic interpretation. We can write the $n$ 'th ``component'' of this equation as
+Equation 5.5.1 has an economic interpretation. We can write the \(n\) 'th ``component'' of this equation as
 
 \begin{equation*}
 \frac{\mu_{n, t}}{S_{n, t}}-r_{t}=\sum_{i=1}^{d} \frac{\sigma_{n, i, t}}{S_{n, t}} \eta_{i, t}
 \end{equation*}
 
-The LHS of equation 5.5.2 is equal to the instantaneous expected return on security $n$ minus the riskless rate. This is the risk premium of security $n$. The term $\sigma_{n, i, t} / S_{n, t}$ is the loading of the instantaneous return on security $n$ on the $i$ 'th Brownian motion. Finally, $\eta_{i, t}$ is the risk premium of the $i$ 'th Brownian motion. Equation 5.5.2 thus states that the risk premium of security $n$ is the sum over Brownian motions of the security's loading on each Brownian motion, times the Brownian motion's risk premium.
+The LHS of equation 5.5.2 is equal to the instantaneous expected return on security \(n\) minus the riskless rate. This is the risk premium of security \(n\). The term \(\sigma_{n, i, t} / S_{n, t}\) is the loading of the instantaneous return on security \(n\) on the \(i\) 'th Brownian motion. Finally, \(\eta_{i, t}\) is the risk premium of the \(i\) 'th Brownian motion. Equation 5.5.2 thus states that the risk premium of security \(n\) is the sum over Brownian motions of the security's loading on each Brownian motion, times the Brownian motion's risk premium.
 
 The condition that equation 5.5.1 has a solution, means that the risk premia of the securities are ``consistent'', in that they can be derived from risk premia of the underlying Brownian motions. If equation 5.5.1 did not have a solution, there would exist two securities, or portfolios of securities that would have the same loadings on the Brownian motions, but different risk premia. Therefore, there would be an arbitrage.
 
 \begin{proposition}\label{prop:arbitrage_from_inconsistent_risk_premia}
-Suppose that equation \eqref{eq:martingale_condition} does not have a solution. Then there are arbitrages, both for trading strategies in $\mathcal{H}^{2}(\hat{S})$ and in $\underline{\Theta}(\hat{S})$.
+Suppose that equation \eqref{eq:martingale_condition} does not have a solution. Then there are arbitrages, both for trading strategies in \(\mathcal{H}^{2}(\hat{S})\) and in \(\underline{\Theta}(\hat{S})\).
 \end{proposition}
 
 \begin{proof}
@@ -384,15 +384,15 @@ The conditions for an EMM to exist thus have an economic interpretation. The EMM
 d \xi_{t}^{\eta}=-\xi_{t}^{\eta} \eta_{t}^{\prime} d Z_{t}
 \end{equation*}
 
-$\xi_{t}^{\eta}$ is the ratio of the probabilities, under $Q$ and under $P$, of the Brownian motion path up to time $t$. Suppose that the risk premium of a Brownian motion is positive. Then, the ratio $\xi^{\eta}$ will increase at time $t+d t$ if the Brownian motion goes down. Therefore, $Q$ will put more weight than $P$ on high marginal utility states. This is because $Q$ incorprorates risk-aversion.
+\(\xi_{t}^{\eta}\) is the ratio of the probabilities, under \(Q\) and under \(P\), of the Brownian motion path up to time \(t\). Suppose that the risk premium of a Brownian motion is positive. Then, the ratio \(\xi^{\eta}\) will increase at time \(t+d t\) if the Brownian motion goes down. Therefore, \(Q\) will put more weight than \(P\) on high marginal utility states. This is because \(Q\) incorprorates risk-aversion.
 
-The SPD corresponding to the EMM also has an economic interpretation. The SPD is given by $\pi=\xi^{\eta} / B$. Ito's lemma and equation 5.5.3 imply that
+The SPD corresponding to the EMM also has an economic interpretation. The SPD is given by \(\pi=\xi^{\eta} / B\). Ito's lemma and equation 5.5.3 imply that
 
 \begin{equation*}
 d \pi_{t}=-\pi_{t} r_{t} d t-\pi_{t} \eta_{t}^{\prime} d Z_{t}
 \end{equation*}
 
-The interpretation of the drift term $-\pi_{t} r_{t} d t$, is that the SPD decreases over time, since it incorporates discounting. The interpretation of the diffusion term $-\pi_{t} \eta_{t}^{\prime} d Z_{t}$, is the same as for the EMM: the SPD puts more weight on high marginal utility states, since it incorporates risk-aversion.
+The interpretation of the drift term \(-\pi_{t} r_{t} d t\), is that the SPD decreases over time, since it incorporates discounting. The interpretation of the diffusion term \(-\pi_{t} \eta_{t}^{\prime} d Z_{t}\), is the same as for the EMM: the SPD puts more weight on high marginal utility states, since it incorporates risk-aversion.
 
 
 \subsection{From No Arbitrage to Security Prices}
@@ -410,15 +410,15 @@ When time is continuous, absence of arbitrage does not imply existence of a SPD 
 We consider a securities market model consisting of
 
 \begin{enumerate}
-  \item a probability space $(\Omega, \mathcal{F}, P)$,
+  \item a probability space \((\Omega, \mathcal{F}, P)\),
 
-  \item a time inverval $\mathcal{T}=[0, T]$,
+  \item a time inverval \(\mathcal{T}=[0, T]\),
 
-  \item a Brownian motion $Z=\left(Z_{1}, . ., Z_{d}\right)$ on $(\Omega, \mathcal{F}, P)$,
+  \item a Brownian motion \(Z=\left(Z_{1}, . ., Z_{d}\right)\) on \((\Omega, \mathcal{F}, P)\),
 
-  \item the standard filtration $\mathbb{F}$ of $Z$,
+  \item the standard filtration \(\mathbb{F}\) of \(Z\),
 
-  \item $N+1$ securities indexed by $n=0, . ., N$.\\
+  \item \(N+1\) securities indexed by \(n=0, . ., N\).\\
 (a) Security 0 is the ``riskless'' security, and its price is given by
 
 \end{enumerate}
@@ -427,7 +427,7 @@ We consider a securities market model consisting of
 d B_{t}=r_{t} B_{t} d t .
 \end{equation*}
 
-(b) Securities $1, \ldots, N$ are the ``risky'' securities. Their prices are given by an Ito process
+(b) Securities \(1, \ldots, N\) are the ``risky'' securities. Their prices are given by an Ito process
 
 \begin{equation*}
 d\left(\begin{array}{c}
@@ -437,9 +437,9 @@ S_{N, t}
 \end{array}\right)=\mu_{t} d t+\sigma_{t} d Z_{t}
 \end{equation*}
 
-where $\mu \in\left(\mathcal{L}^{1}\right)^{N}$ and $\sigma \in\left(\mathcal{L}^{2}\right)^{N \times d}$.
+where \(\mu \in\left(\mathcal{L}^{1}\right)^{N}\) and \(\sigma \in\left(\mathcal{L}^{2}\right)^{N \times d}\).
 
-We set $S=\left(S_{0}, . ., S_{N}\right)$ and $S_{1 N}=\left(S_{1}, . ., S_{N}\right)$. We assume that securities pay no dividends, and there is no intermediate consumption. We denote $S_{0}$ by $B$.
+We set \(S=\left(S_{0}, . ., S_{N}\right)\) and \(S_{1 N}=\left(S_{1}, . ., S_{N}\right)\). We assume that securities pay no dividends, and there is no intermediate consumption. We denote \(S_{0}\) by \(B\).
 
 Discounted prices follow the process
 
@@ -447,30 +447,30 @@ Discounted prices follow the process
 d \hat{S}_{1 N, t}=d\left(\frac{S_{1 N, t}}{B_{t}}\right)=\frac{\mu_{t}-r_{t} S_{1 N, t}}{B_{t}} d t+\frac{\sigma_{t}}{B_{t}} d Z_{t} \equiv \hat{\mu}_{t} d t+\hat{\sigma}_{t} d Z_{t}
 \end{equation*}
 
-We assume that $\hat{\mu}_{t}$ and $\hat{\sigma}_{t}$ satisfy the conditions that guarantee existence of an EMM. We denote by $\eta_{t}$ the risk premia associated to the Brownian motions. These are the solutions to
+We assume that \(\hat{\mu}_{t}\) and \(\hat{\sigma}_{t}\) satisfy the conditions that guarantee existence of an EMM. We denote by \(\eta_{t}\) the risk premia associated to the Brownian motions. These are the solutions to
 
 \begin{equation*}
 \hat{\mu}_{t}=\hat{\sigma}_{t} \eta_{t} .
 \end{equation*}
 
-We denote the EMM by $Q$, and the Brownian motion under $Q$, obtained from Girsanov's theorem, by $Z^{Q}$. We can write the dynamics of discounted prices as
+We denote the EMM by \(Q\), and the Brownian motion under \(Q\), obtained from Girsanov's theorem, by \(Z^{Q}\). We can write the dynamics of discounted prices as
 
 \begin{equation*}
 d \hat{S}_{1 N, t}=d\left(\frac{S_{1 N, t}}{B_{t}}\right)=\hat{\sigma}_{t} d Z_{t}^{Q}
 \end{equation*}
 
-We assume that trading strategies are in $\mathcal{L}(S)$ and are such that the stochastic integral $\int_{0}^{t} \theta_{s} d\left(S_{s} / B_{s}\right)$ is a martingale under $Q$.
+We assume that trading strategies are in \(\mathcal{L}(S)\) and are such that the stochastic integral \(\int_{0}^{t} \theta_{s} d\left(S_{s} / B_{s}\right)\) is a martingale under \(Q\).
 
 \begin{defn}\label{def:replicates}
-A self-financing trading strategy $\theta$ replicates an $\mathcal{F}_{T}$-measurable random variable $C_{T}$ iff $C_{T}=\theta_{T} S_{T}$.
+A self-financing trading strategy \(\theta\) replicates an \(\mathcal{F}_{T}\)-measurable random variable \(C_{T}\) iff \(C_{T}=\theta_{T} S_{T}\).
 \end{defn}
 
 \begin{defn}\label{def:redundant_security}
-A new security with time $T$ payoff $\tilde{S}_{T}$ is redundant iff there exists an admissible trading strategy $\tilde{\theta}$ that replicates $\tilde{S}_{T}$.
+A new security with time \(T\) payoff \(\tilde{S}_{T}\) is redundant iff there exists an admissible trading strategy \(\tilde{\theta}\) that replicates \(\tilde{S}_{T}\).
 \end{defn}
 
 \begin{proposition}\label{prop:redundant_security_pricing}
-For a redundant security, $\tilde{S}_{t}=\tilde{\theta}_{t} S_{t}$.
+For a redundant security, \(\tilde{S}_{t}=\tilde{\theta}_{t} S_{t}\).
 \end{proposition}
 
 \begin{proof}
@@ -492,7 +492,7 @@ For a redundant security,
 \end{proposition}
 
 \begin{proof}
-We denote by $\tilde{\theta}$ the replicating strategy of the redundant security. Since $\tilde{\theta}$ is selffinancing, it is also self-financing w.r.t. the discounted price process $S / B$. Therefore,
+We denote by \(\tilde{\theta}\) the replicating strategy of the redundant security. Since \(\tilde{\theta}\) is selffinancing, it is also self-financing w.r.t. the discounted price process \(S / B\). Therefore,
 
 \begin{equation*}
 d\left(\frac{\tilde{\theta}_{t} S_{t}}{B_{t}}\right)=\tilde{\theta}_{t} d\left(\frac{S_{t}}{B_{t}}\right)
@@ -504,7 +504,7 @@ Integrating, we get,
 \frac{\tilde{S}_{T}}{B_{T}}=\frac{\tilde{\theta}_{T} S_{T}}{B_{T}}=\tilde{\theta}_{t} \hat{S}_{t}+\int_{t}^{T} \tilde{\theta}_{s} d\left(\hat{S}_{s}\right)
 \end{equation*}
 
-Since the stochastic integral $\int_{0}^{t} \theta_{s} d\left(S_{s} / B_{s}\right)$ is a martingale under $Q$, we have
+Since the stochastic integral \(\int_{0}^{t} \theta_{s} d\left(S_{s} / B_{s}\right)\) is a martingale under \(Q\), we have
 
 \begin{equation*}
 \frac{\tilde{\theta}_{t} S_{t}}{B_{t}}=E_{t}^{Q}\left[\frac{\tilde{S}_{T}}{B_{T}}\right]
@@ -527,44 +527,44 @@ and thus
 The redundant security is said to be priced by arbitrage.
 
 \subsection{Complete Markets}
-Consider a market in which there exists a bounded market price of risk process $\eta_{t}: \quad \hat{\sigma}_{t} \hat{\eta}_{t}=$ $\mu_{t}$, an therefore there exists an EMM Q and there is no arbitrage. To apply arbitrage pricing, we need to characterize the set of cash flows that can be replicated. As always, we limit the admissible trading strategies to belong to $\underline{\Theta}(\hat{S})$ or $\underline{\Theta}(\hat{S})$. It would be easy to demonstrate replication if we allowed for a larger class of trading strategies, e.g., $\mathcal{L}^{2}$, in fact, it would appear that all markets are complete. But such strategies can produce arbitrage gains.
+Consider a market in which there exists a bounded market price of risk process \(\eta_{t}: \quad \hat{\sigma}_{t} \hat{\eta}_{t}=\) \(\mu_{t}\), an therefore there exists an EMM Q and there is no arbitrage. To apply arbitrage pricing, we need to characterize the set of cash flows that can be replicated. As always, we limit the admissible trading strategies to belong to \(\underline{\Theta}(\hat{S})\) or \(\underline{\Theta}(\hat{S})\). It would be easy to demonstrate replication if we allowed for a larger class of trading strategies, e.g., \(\mathcal{L}^{2}\), in fact, it would appear that all markets are complete. But such strategies can produce arbitrage gains.
 
-We denote by $L^{2}(Q)$ the set of random variables that are square-integrable w.r.t. $Q$.
+We denote by \(L^{2}(Q)\) the set of random variables that are square-integrable w.r.t. \(Q\).
 
 \begin{defn}\label{def:6.2.1}
-Markets are complete iff all $\mathcal{F}_{T}$-measurable random variables $C_{T}$ such that $C_{T} / B_{T} \in L^{2}(Q)$ can be replicated by a trading strategy in $\mathcal{H}^{2}(\hat{S})$ or (if $C_{T} \geq 0$ ) by a trading strategy in $\underline{\Theta}(\hat{S})$.
+Markets are complete iff all \(\mathcal{F}_{T}\)-measurable random variables \(C_{T}\) such that \(C_{T} / B_{T} \in L^{2}(Q)\) can be replicated by a trading strategy in \(\mathcal{H}^{2}(\hat{S})\) or (if \(C_{T} \geq 0\) ) by a trading strategy in \(\underline{\Theta}(\hat{S})\).
 \end{defn}
 
 \begin{theorem}\label{thm:6.2.1}
-Markets are complete iff the rank of $\sigma_{t}$ is equal to $d$ a.s.
+Markets are complete iff the rank of \(\sigma_{t}\) is equal to \(d\) a.s.
 \end{theorem}
 
 \begin{proof}
 Here we outline the main ideas of the proof.
 
-Suppose that the rank of $\sigma_{t}$ is equal to $d$ a.s. Consider an $\mathcal{F}_{T}$-measurable random variable $C_{T}$ such that $C_{T} / B_{T} \in L^{2}(Q)$. By the law of iterative expectations, the process $E_{t}^{Q}\left(C_{T} / B_{T}\right)$ is a martingale under $Q$. Using the martingale representation part of the Girsanov's theorem, there exists a process $\zeta \in\left(\mathcal{L}^{2}\right)^{d}$ such that
+Suppose that the rank of \(\sigma_{t}\) is equal to \(d\) a.s. Consider an \(\mathcal{F}_{T}\)-measurable random variable \(C_{T}\) such that \(C_{T} / B_{T} \in L^{2}(Q)\). By the law of iterative expectations, the process \(E_{t}^{Q}\left(C_{T} / B_{T}\right)\) is a martingale under \(Q\). Using the martingale representation part of the Girsanov's theorem, there exists a process \(\zeta \in\left(\mathcal{L}^{2}\right)^{d}\) such that
 
 \begin{equation}
 E_{t}^{Q}\left[\frac{C_{T}}{B_{T}}\right]=E^{Q}\left[\frac{C_{T}}{B_{T}}\right]+\int_{0}^{t} \zeta_{s} d Z_{s}^{Q} \label{eq:6.2.1}
 \end{equation}
 
-In fact, since $C_{T} / B_{T} \in L^{2}(Q), \zeta \in\left(\mathcal{H}^{2}\right)^{d}$ (standard result, e.g., Protter (2004, Thm. 27, Corollary 3), which says that a local martingale is in fact a square integrable martingale iff the isometry relation holds).
+In fact, since \(C_{T} / B_{T} \in L^{2}(Q), \zeta \in\left(\mathcal{H}^{2}\right)^{d}\) (standard result, e.g., Protter (2004, Thm. 27, Corollary 3), which says that a local martingale is in fact a square integrable martingale iff the isometry relation holds).
 
-Since the rank of $\sigma_{t}$ is equal to $d$, we can find a process $\theta_{1 N}$ such that
+Since the rank of \(\sigma_{t}\) is equal to \(d\), we can find a process \(\theta_{1 N}\) such that
 
 \begin{equation}
 \theta_{1 N, t} \hat{\sigma}_{t}=\zeta_{t} . \label{eq:6.2.2}
 \end{equation}
 
-The process $\theta_{1 N}$ represents the investment in the risky assets. We define the investment in the riskless asset by
+The process \(\theta_{1 N}\) represents the investment in the risky assets. We define the investment in the riskless asset by
 
 \begin{equation}
 E_{t}^{Q}\left[\hat{C}_{T}\right]=\theta_{t} \hat{S}_{t} \label{eq:6.2.3}
 \end{equation}
 
-Since $\theta_{1 N} \hat{\sigma}=\zeta \in\left(\mathcal{H}^{2}\right)^{d}$, we know that $\theta_{1 N} \hat{\sigma} \in \mathcal{L}^{2}$. Also, since $\theta^{1 N} \hat{\mu}=\theta^{1 N} \hat{\sigma} \eta=\zeta \eta$, and $\zeta, \eta \in$ $\left(\mathcal{L}^{2}\right)^{d}$, Cauchy-Schwarz inequality implies that $\theta_{1 N} \hat{\mu} \in \mathcal{L}^{1}$. Thus, $\theta_{t}$ is a mathematically valid trading strategy, i.e., the corresponding gain process is well defined.
+Since \(\theta_{1 N} \hat{\sigma}=\zeta \in\left(\mathcal{H}^{2}\right)^{d}\), we know that \(\theta_{1 N} \hat{\sigma} \in \mathcal{L}^{2}\). Also, since \(\theta^{1 N} \hat{\mu}=\theta^{1 N} \hat{\sigma} \eta=\zeta \eta\), and \(\zeta, \eta \in\) \(\left(\mathcal{L}^{2}\right)^{d}\), Cauchy-Schwarz inequality implies that \(\theta_{1 N} \hat{\mu} \in \mathcal{L}^{1}\). Thus, \(\theta_{t}\) is a mathematically valid trading strategy, i.e., the corresponding gain process is well defined.
 
-We now need to show that the strategy $\theta$ is self-financing, replicates $C_{T}$, and in $\mathcal{H}^{2}(\hat{S})$ and in $\underline{\Theta}(\hat{S})$. To show that $\theta$ is self-financing, we plug equation (6.2.2) into equation (6.2.1) and get
+We now need to show that the strategy \(\theta\) is self-financing, replicates \(C_{T}\), and in \(\mathcal{H}^{2}(\hat{S})\) and in \(\underline{\Theta}(\hat{S})\). To show that \(\theta\) is self-financing, we plug equation (6.2.2) into equation (6.2.1) and get
 
 \begin{equation}
 \begin{aligned}
@@ -580,24 +580,24 @@ Combining with equation (6.2.3), we get
 \theta_{t} \hat{S}_{t}=\theta_{0} S_{0}+\int_{0}^{t} \theta_{s} d \hat{S}_{s}
 \end{equation}
 
-Therefore, $\theta$ is self-financing w.r.t. the discounted price process $\hat{S} \equiv S / B$. This implies that $\theta$ is self-financing w.r.t. to the undiscounted price process $S$.
+Therefore, \(\theta\) is self-financing w.r.t. the discounted price process \(\hat{S} \equiv S / B\). This implies that \(\theta\) is self-financing w.r.t. to the undiscounted price process \(S\).
 
-Equation 6.2.3 for $t=T$ implies that $\theta$ replicates $C_{T}$.
+Equation 6.2.3 for \(t=T\) implies that \(\theta\) replicates \(C_{T}\).
 
-Finally, we need to show that $\theta$ is in $\mathcal{H}^{2}(\hat{S})$ and in $\underline{\Theta}(\hat{S})$, if $C_{T} \geq 0$. We will not prove the first result, it can be found in Duffie Thm 6.I., p. 118.
+Finally, we need to show that \(\theta\) is in \(\mathcal{H}^{2}(\hat{S})\) and in \(\underline{\Theta}(\hat{S})\), if \(C_{T} \geq 0\). We will not prove the first result, it can be found in Duffie Thm 6.I., p. 118.
 
-Note: While we didn't prove that $\theta \in \mathcal{H}^{2}(\hat{S})$, remember that such condition itself was only sufficient for absence of doubling strategies (or for existence of EMM to imply absence of arbitrage), it was not necessary. In fact, a weaker condition would suffice, that $\theta$ must be martingale-generating under $Q$, i.e., that $\int \theta_{t} d \hat{S}_{t}$ is a martingale under $Q$. It is easy to see that in our case we obtained such a $\theta: \int_{0}^{t} \theta_{s} d \hat{S}_{s}$ is a martingale under $Q$ since
+Note: While we didn't prove that \(\theta \in \mathcal{H}^{2}(\hat{S})\), remember that such condition itself was only sufficient for absence of doubling strategies (or for existence of EMM to imply absence of arbitrage), it was not necessary. In fact, a weaker condition would suffice, that \(\theta\) must be martingale-generating under \(Q\), i.e., that \(\int \theta_{t} d \hat{S}_{t}\) is a martingale under \(Q\). It is easy to see that in our case we obtained such a \(\theta: \int_{0}^{t} \theta_{s} d \hat{S}_{s}\) is a martingale under \(Q\) since
 
 \begin{equation}
 \int_{0}^{t} \theta_{s} d \hat{S}_{s}=E_{t}^{Q}\left[\hat{C}_{T}\right]-E^{Q}\left[\hat{C}_{T}\right] \label{eq:6.2.4}
 \end{equation}
 
-The results that $\theta \in \underline{\Theta}(\hat{S})$ is easier to show. Eq. (6.2.3) implies that $\theta_{t} \hat{S}_{t}=E_{t}^{Q}\left[\hat{C}_{T}\right] \geq 0$, since $C_{T} \geq 0$.
+The results that \(\theta \in \underline{\Theta}(\hat{S})\) is easier to show. Eq. (6.2.3) implies that \(\theta_{t} \hat{S}_{t}=E_{t}^{Q}\left[\hat{C}_{T}\right] \geq 0\), since \(C_{T} \geq 0\).
 
 For the converse implication, see Duffie 6.I.
 \end{proof}
 
-The condition for market completeness has a similar flavor to the condition in discrete time. In discrete time, markets are complete iff the number of linearly independent securities is equal to the number of nodes one period ahead. In continuous time, the number of nodes one period ahead is replaced by the number of Brownian motions. Moreover, linear independence of securities is measured by the rank of the diffusion matrix $\sigma_{t}$, and thus corresponds to an infinitesimal time interval
+The condition for market completeness has a similar flavor to the condition in discrete time. In discrete time, markets are complete iff the number of linearly independent securities is equal to the number of nodes one period ahead. In continuous time, the number of nodes one period ahead is replaced by the number of Brownian motions. Moreover, linear independence of securities is measured by the rank of the diffusion matrix \(\sigma_{t}\), and thus corresponds to an infinitesimal time interval
 
 In continuous time, we can replicate an infinite-dimensional set of cash flows, with a finite number of securities. To some extent, this is not surprising, since trading can take place infinitely often.
 
@@ -608,13 +608,13 @@ Markets are complete iff the EMM is unique.
 \end{theorem}
 
 \begin{proof}
-Suppose that markets are complete. Then the rank of $\sigma_{t}$ is equal to $d$ a.s. Consider an EMM $Q$, denote its Radon-Nikodym derivative w.r.t. $P$ by $\xi_{T}$, and set $\xi_{t}=E_{t}\left(\xi_{T}\right)$. By the law of iterative expectations, the process $\xi$ is a martingale under $P$. The martingale representation theorem implies that there exists a process $\rho \in\left(\mathcal{L}^{2}\right)^{d}$ such that
+Suppose that markets are complete. Then the rank of \(\sigma_{t}\) is equal to \(d\) a.s. Consider an EMM \(Q\), denote its Radon-Nikodym derivative w.r.t. \(P\) by \(\xi_{T}\), and set \(\xi_{t}=E_{t}\left(\xi_{T}\right)\). By the law of iterative expectations, the process \(\xi\) is a martingale under \(P\). The martingale representation theorem implies that there exists a process \(\rho \in\left(\mathcal{L}^{2}\right)^{d}\) such that
 
 \begin{equation}
 \xi_{t}=\xi_{0}-\int_{0}^{t} \rho_{s}^{\prime} d Z_{s}=1-\int_{0}^{t} \rho_{s}^{\prime} d Z_{s} \label{eq:6.2.5}
 \end{equation}
 
-Therefore, $d \xi_{t}=-\rho_{t}^{\prime} d Z_{t}$, and Ito's lemma implies that
+Therefore, \(d \xi_{t}=-\rho_{t}^{\prime} d Z_{t}\), and Ito's lemma implies that
 
 \begin{equation}
 d\left(\log \left(\xi_{t}\right)\right)=-\frac{\rho_{t}^{\prime}}{\xi_{t}} d Z_{t}-\frac{1}{2} \frac{\left\|\rho_{t}\right\|^{2}}{\xi_{t}^{2}} d t
@@ -626,26 +626,26 @@ Integrating, we get
 \xi_{t}=\exp \left(-\int_{0}^{t} \frac{\rho_{s}^{\prime}}{\xi_{s}} d Z_{s}-\frac{1}{2} \int_{0}^{t} \frac{\left\|\rho_{s}\right\|^{2}}{\xi_{s}^{2}} d s\right)
 \end{equation}
 
-Since $\xi_{t}$ is a martingale, Girsanov's theorem implies that, under $Q$, discounted security prices follow the process
+Since \(\xi_{t}\) is a martingale, Girsanov's theorem implies that, under \(Q\), discounted security prices follow the process
 
 \begin{equation}
 d\left(\frac{S_{1 N, t}}{B_{t}}\right)=\left(\hat{\mu}_{t}-\hat{\sigma}_{t} \frac{\rho_{t}}{\xi_{t}}\right) d t+\hat{\sigma}_{t} d Z_{t}^{Q}
 \end{equation}
 
-where $Z^{Q}$ is a Brownian motion under $Q$. Since $Q$ is an EMM, discounted security prices are a martingale, and thus
+where \(Z^{Q}\) is a Brownian motion under \(Q\). Since \(Q\) is an EMM, discounted security prices are a martingale, and thus
 
 \begin{equation}
 \hat{\mu}_{t}-\hat{\sigma}_{t} \frac{\rho_{t}}{\xi_{t}}=0
 \end{equation}
 
-Since the rank of $\sigma_{t}$ is equal to $d$, this equation uniquely determines $\rho_{t} / \xi_{t}$. Therefore, $Q$ is unique.
+Since the rank of \(\sigma_{t}\) is equal to \(d\), this equation uniquely determines \(\rho_{t} / \xi_{t}\). Therefore, \(Q\) is unique.
 
 The converse is left as an exercise.
 \end{proof}
 
 \subsection{The Black-Scholes model}
 \subsubsection{The Model}
-We assume that there are 2 securities. The price of the first security is given by $B_{0}=1$ and
+We assume that there are 2 securities. The price of the first security is given by \(B_{0}=1\) and
 
 \begin{equation}
 d B_{t}=r B_{t} d t \label{eq:6.3.1}
@@ -657,7 +657,7 @@ The short rate is thus constant. We refer to the first security as the bond. The
 d S_{t}^{1}=\mu S_{1, t} d t+\sigma S_{1, t} d Z_{t} \label{eq:6.3.2}
 \end{equation}
 
-where $Z_{t}$ is an one-dimensional Brownian motion. The drift and the diffusion are thus proportional to the price. Such an Ito process is called a Geometric Brownian Motion. We refer to the second security as a stock, and denote its price by $S_{t}$. Ito's lemma implies that
+where \(Z_{t}\) is an one-dimensional Brownian motion. The drift and the diffusion are thus proportional to the price. Such an Ito process is called a Geometric Brownian Motion. We refer to the second security as a stock, and denote its price by \(S_{t}\). Ito's lemma implies that
 
 \begin{equation}
 d\left(\log \left(S_{t}\right)\right)=\left(\mu-\frac{1}{2} \sigma^{2}\right) d t+\sigma d Z_{t}
@@ -683,28 +683,28 @@ The conditions that guarantee existence of an EMM are satisfied. The risk-premiu
 \eta=\frac{\mu-r}{\sigma} .
 \end{equation}
 
-The Radon-Nikodym derivative of the EMM $Q$ w.r.t. $P$ is
+The Radon-Nikodym derivative of the EMM \(Q\) w.r.t. \(P\) is
 
 \begin{equation}
 \xi_{T}=\exp \left(-\eta Z_{T}-\frac{1}{2} \eta^{2} T\right)
 \end{equation}
 
-The Brownian motion under $Q$, obtained from Girsanov's theorem is
+The Brownian motion under \(Q\), obtained from Girsanov's theorem is
 
 \begin{equation}
 Z_{t}^{Q}=Z_{t}+\eta t
 \end{equation}
 
-Since $\sigma>0$, markets are complete, and the EMM is unique.
+Since \(\sigma>0\), markets are complete, and the EMM is unique.
 
 \subsubsection{Pricing: The Martingale Approach}
-Consider now a new security with a time $T$ payoff $\tilde{S}_{T} \in L^{1}(Q)$. This security is redundant, and its time $t$ price is given by
+Consider now a new security with a time \(T\) payoff \(\tilde{S}_{T} \in L^{1}(Q)\). This security is redundant, and its time \(t\) price is given by
 
 \begin{equation}
 \tilde{S}_{t}=E_{t}^{Q}\left[\exp (-r(T-t)) \tilde{S}_{T}\right] .
 \end{equation}
 
-If the time $T$ payoff is a function of $S_{T}$, i.e. $\tilde{S}_{T}=G\left(S_{T}\right)$, we have
+If the time \(T\) payoff is a function of \(S_{T}\), i.e. \(\tilde{S}_{T}=G\left(S_{T}\right)\), we have
 
 \begin{equation}
 \tilde{S}_{t}=E_{t}^{Q}\left[\exp (-r(T-t)) G\left(S_{T}\right)\right] \label{eq:6.3.3}
@@ -722,15 +722,15 @@ Therefore,
 S_{T}=S_{t} \exp \left[\left(r-\frac{1}{2} \sigma^{2}\right)(T-t)+\sigma\left(Z_{T}^{Q}-Z_{t}^{Q}\right)\right]
 \end{equation*}
 
-Since $Z_{t}^{Q}$ is a Brownian motion under $Q$, the expectation (6.3.3) is
+Since \(Z_{t}^{Q}\) is a Brownian motion under \(Q\), the expectation (6.3.3) is
 
 \begin{equation*}
 \exp (-r(T-t)) E\left[G\left\{S_{t} \exp \left[\left(r-\frac{1}{2} \sigma^{2}\right)(T-t)+(\sigma \sqrt{T-t}) \tilde{\epsilon}\right]\right\}\right]
 \end{equation*}
 
-where $\tilde{\epsilon}$ is a standardized normal variable, i.e. a normal variable with mean 0 and variance 1. Notice that the expectation (6.3.4) depends only on $S_{t}$ and $t$.
+where \(\tilde{\epsilon}\) is a standardized normal variable, i.e. a normal variable with mean 0 and variance 1. Notice that the expectation (6.3.4) depends only on \(S_{t}\) and \(t\).
 
-When the new security is a European call or a European put, we get the Black-Scholes prices. We denote the price of a European call by $C\left(S_{t}, t\right)$, and that of a European put by $P\left(S_{t}, t\right)$.
+When the new security is a European call or a European put, we get the Black-Scholes prices. We denote the price of a European call by \(C\left(S_{t}, t\right)\), and that of a European put by \(P\left(S_{t}, t\right)\).
 
 \begin{proposition}\label{prop:black_scholes_formulas}
 We have
@@ -745,7 +745,7 @@ and
 P\left(S_{t}, t\right)=\exp (-r(T-t)) K N\left(-z_{2}\right)-S_{t} N\left(-z_{1}\right)
 \end{equation*}
 
-where $N($.$) is the cumulative distribution function of the standard normal distribu-$ tion,
+where \(N(\).\() is the cumulative distribution function of the standard normal distribu-\) tion,
 
 \begin{equation*}
 z_{1}=\frac{\log \left(\frac{S_{t}}{K}\right)+\left(r+\frac{1}{2} \sigma^{2}\right)(T-t)}{\sigma \sqrt{T-t}}
@@ -765,7 +765,7 @@ We compute the price of the call. The price of the put follows by a similar argu
 P\left(S_{t}, t\right)=C\left(S_{t}, t\right)+K \exp (-r(T-t))-S_{t} .
 \end{equation}
 
-The time $T$ payoff of the call is
+The time \(T\) payoff of the call is
 
 \begin{equation}
 \begin{aligned}
@@ -815,7 +815,7 @@ and
 C_{2}=-\exp (-r(T-t)) \frac{1}{\sqrt{2 \pi}} \int_{-z_{2}}^{\infty} K \exp \left(-\frac{1}{2} y^{2}\right) d y
 \end{equation}
 
-The term $C_{2}$ is equal to
+The term \(C_{2}\) is equal to
 
 \begin{equation}
 C_{2}=-\exp (-r(T-t)) K\left(1-N\left(-z_{2}\right)\right)=-\exp (-r(T-t)) K N\left(z_{2}\right) .
@@ -823,7 +823,7 @@ C_{2}=-\exp (-r(T-t)) K\left(1-N\left(-z_{2}\right)\right)=-\exp (-r(T-t)) K N\l
 
 Therefore, it is equal to the second term in the Black-Scholes equation (6.3.5).
 
-The term $C_{1}$ is equal to
+The term \(C_{1}\) is equal to
 
 \begin{equation}
 \begin{aligned}
@@ -832,19 +832,19 @@ C_{1} & =\exp (-r(T-t)) S_{t} \exp (r(T-t)) \frac{1}{\sqrt{2 \pi}} \int_{-z_{2}}
 \end{aligned}
 \end{equation}
 
-Setting $z_{1}=z_{2}+\sigma \sqrt{T-t}$, we can write $C_{1}$ as
+Setting \(z_{1}=z_{2}+\sigma \sqrt{T-t}\), we can write \(C_{1}\) as
 
 \begin{equation}
 C_{1}=S_{t}\left(1-N\left(-z_{1}\right)\right)=S_{t} N\left(z_{1}\right) .
 \end{equation}
 
-Therefore, $C_{1}$ is equal to the first term in the Black-Scholes equation \eqref{eq:black_scholes_call}.
+Therefore, \(C_{1}\) is equal to the first term in the Black-Scholes equation \eqref{eq:black_scholes_call}.
 \end{proof}
 
 \subsubsection{Pricing: The PDE Approach}
 So far, we priced redundant securities by following the martingale approach, i.e. by using the fact that the price of a redundant security is the expectation, under the EMM, of the security's discounted payoff. The original approach to arbitrage pricing was the PDE approach. It consists in deriving a Partial Differential Equation (PDE) for the price of the redundant security. We now present the PDE approach, in the context of the Black-Scholes model. We also explain the relation between the martingale and the PDE approaches.
 
-We assume that the time $T$ payoff of the redundant security is $G\left(S_{T}\right)$, and denote the time $t$ price of the security by $g\left(S_{t}, t\right)$. The martingale approach implies that
+We assume that the time \(T\) payoff of the redundant security is \(G\left(S_{T}\right)\), and denote the time \(t\) price of the security by \(g\left(S_{t}, t\right)\). The martingale approach implies that
 
 \begin{equation}
 g\left(S_{t}, t\right)=E_{t}^{Q}\left[\exp (-r(T-t)) G\left(S_{T}\right)\right] .
@@ -856,9 +856,9 @@ We can write this as
 \exp (-r t) g\left(S_{t}, t\right)=E_{t}^{Q}\left[\exp (-r T) G\left(S_{T}\right)\right] \label{eq:6.3.9}
 \end{equation}
 
-By the law of iterative expectations, the process $\exp (-r t) g\left(S_{t}, t\right)$ is a martingale under $Q$.
+By the law of iterative expectations, the process \(\exp (-r t) g\left(S_{t}, t\right)\) is a martingale under \(Q\).
 
-Suppose that the function $g(S, t)$ is twice continuously differentiable. Noting that
+Suppose that the function \(g(S, t)\) is twice continuously differentiable. Noting that
 
 \begin{equation}
 d S_{t}=r S_{t} d t+\sigma S_{t} d Z_{t}^{Q}
@@ -877,27 +877,27 @@ where
 \mathcal{D}_{S} g\left(S_{t}, t\right)=g_{S}\left(S_{t}, t\right) r S_{t}+\frac{1}{2} g_{S S}\left(S_{t}, t\right) \sigma^{2} S_{t}^{2} \label{eq:6.3.11}
 \end{equation}
 
-Since the process $\exp (-r t) g\left(S_{t}, t\right)$ is a martingale under $Q$, the drift is equal to 0 . Therefore, the function $g(S, t)$ solves the PDE
+Since the process \(\exp (-r t) g\left(S_{t}, t\right)\) is a martingale under \(Q\), the drift is equal to 0 . Therefore, the function \(g(S, t)\) solves the PDE
 
 \begin{equation}
 -g(S, t) r+\mathcal{D}_{S} g(S, t)+g_{t}(S, t)=0 \label{eq:6.3.12}
 \end{equation}
 
-The PDE approach consists in solving the PDE (6.3.12), with the terminal condition $g(S, T)=$ $G(S)$.
+The PDE approach consists in solving the PDE (6.3.12), with the terminal condition \(g(S, T)=\) \(G(S)\).
 
-Conversely, suppose that the function $g(S, t)$ solves the PDE (6.3.12), with the terminal condition $g(S, T)=G(S)$. Then, equation (6.3.9) follows from the Feynman-Kac theorem. The Feynman-Kac theorem concerns the general PDE
+Conversely, suppose that the function \(g(S, t)\) solves the PDE (6.3.12), with the terminal condition \(g(S, T)=G(S)\). Then, equation (6.3.9) follows from the Feynman-Kac theorem. The Feynman-Kac theorem concerns the general PDE
 
 \begin{equation}
 h(S, t)-g(S, t) r(S, t)+\left[g_{S}(S, t) \mu(S, t)+\frac{1}{2} g_{S S}(S, t) \sigma(S, t)^{2}+g_{t}(S, t)\right]=0, \label{eq:6.3.13}
 \end{equation}
 
-with the terminal condition $g(S, T)=G(S)$. To this PDE, is associated a stochastic differential equation (SDE)
+with the terminal condition \(g(S, T)=G(S)\). To this PDE, is associated a stochastic differential equation (SDE)
 
 \begin{equation}
 d S_{t}=\mu\left(S_{t}, t\right) d t+\sigma\left(S_{t}, t\right) d Z_{t}, \label{eq:6.3.14}
 \end{equation}
 
-Under regularity conditions, there exists an Ito process $S^{x}$ that solves the SDE (6.3.14) with the initial condition $S_{t}=x$. The Feynman-Kac theorem is that, under regularity conditions, a solution to the PDE (6.3.13) is given by
+Under regularity conditions, there exists an Ito process \(S^{x}\) that solves the SDE (6.3.14) with the initial condition \(S_{t}=x\). The Feynman-Kac theorem is that, under regularity conditions, a solution to the PDE (6.3.13) is given by
 
 \begin{equation}
 g(x, t)=E\left[\int_{t}^{T} \phi(t, s) h\left(S_{s}^{x}, s\right) d s+\phi(t, T) G\left(S_{T}^{x}\right)\right]
@@ -912,25 +912,25 @@ where
 
 
 \subsection{Portfolio Choice: Martingale Approach}
-We assume that trading strategies are in $\mathcal{L}(S)$ and are such that the stochastic integral $\int_{0}^{t} \theta_{s} d\left(S_{s} / B_{s}\right)$ is a martingale under $Q$. (Alternatively, we could assume that trading strategies are in $\mathcal{L}(S) \cap \underline{\Theta}(S / B)$.)
+We assume that trading strategies are in \(\mathcal{L}(S)\) and are such that the stochastic integral \(\int_{0}^{t} \theta_{s} d\left(S_{s} / B_{s}\right)\) is a martingale under \(Q\). (Alternatively, we could assume that trading strategies are in \(\mathcal{L}(S) \cap \underline{\Theta}(S / B)\).)
 
 \begin{defn}\label{def:6.5.1}
-A consumption plan is a pair $\left(c, C_{T}\right)$ where $c \in \mathcal{L}, C_{T}$ is $\mathcal{F}_{T}$-measurable, $c \geq 0$, and $C_{T} \geq 0$.
+A consumption plan is a pair \(\left(c, C_{T}\right)\) where \(c \in \mathcal{L}, C_{T}\) is \(\mathcal{F}_{T}\)-measurable, \(c \geq 0\), and \(C_{T} \geq 0\).
 \end{defn}
 
-We consider an investor who consumes over time. The investor has wealth $W$ in period 0 . The investor's preferences are given by a time-additive expected utility function
+We consider an investor who consumes over time. The investor has wealth \(W\) in period 0 . The investor's preferences are given by a time-additive expected utility function
 
 \begin{equation}
 U\left(c, C_{T}\right)=E\left[\int_{0}^{T} u_{t}\left(c_{t}\right) d t+U_{T}\left(C_{T}\right)\right] \label{eq:6.5.15}
 \end{equation}
 
-where the functions $u_{t}$ and $U_{T}$ are strictly increasing and concave. The integral and the expectation in (6.5.15) are well-defined if both $u_{t}$ and $U_{T}$ are bounded. If this is not the case (for instance $u_{t}(c)=\log \left(c_{t}\right)$ ) then we consider only those consumption plans for which the integral and the expectation can be defined.
+where the functions \(u_{t}\) and \(U_{T}\) are strictly increasing and concave. The integral and the expectation in (6.5.15) are well-defined if both \(u_{t}\) and \(U_{T}\) are bounded. If this is not the case (for instance \(u_{t}(c)=\log \left(c_{t}\right)\) ) then we consider only those consumption plans for which the integral and the expectation can be defined.
 
 \begin{defn}\label{def:6.5.2}
-A consumption plan is feasible iff the cash flow $\left(-W, c, C_{T}\right)$ is marketable.
+A consumption plan is feasible iff the cash flow \(\left(-W, c, C_{T}\right)\) is marketable.
 \end{defn}
 
-We denote by $\mathcal{C}$ the set of feasible consumption plans. The investor's problem, $\mathcal{P}$, is
+We denote by \(\mathcal{C}\) the set of feasible consumption plans. The investor's problem, \(\mathcal{P}\), is
 
 \begin{equation}
 \begin{gathered}
@@ -940,16 +940,16 @@ We denote by $\mathcal{C}$ the set of feasible consumption plans. The investor's
 \end{equation}
 
 \begin{defn}\label{def:6.5.3}
-A consumption plan $\left(c, C_{T}\right)$ is optimal iff it solves $\mathcal{P}$. A trading strategy is optimal iff it finances $\left(-W, c, C_{T}\right)$, where $\left(c, C_{T}\right)$ is an optimal consumption plan.
+A consumption plan \(\left(c, C_{T}\right)\) is optimal iff it solves \(\mathcal{P}\). A trading strategy is optimal iff it finances \(\left(-W, c, C_{T}\right)\), where \(\left(c, C_{T}\right)\) is an optimal consumption plan.
 \end{defn}
 
-As in discrete time, we can solve $\mathcal{P}$ using the martingale approach or the dynamic programming approach.
+As in discrete time, we can solve \(\mathcal{P}\) using the martingale approach or the dynamic programming approach.
 
-As in discrete time, the martingale approach is most powerful when there are complete markets. This is because, when markets are complete, the optimization problem $\mathcal{P}$ is equivalent to a simple static problem. We first assume complete markets (the rank of the diffusion matrix $\sigma_{t}$ is equal to $d$ a.s.) and proceed in four steps. First, we show the equivalence between the problem $\mathcal{P}$ and the static problem. Second, we solve the static problem, and determine the optimal consumption plan. Third, we determine the optimal trading strategy and fourth, we solve the problem $\mathcal{P}$ in a special case. We next assume incomplete markets and explain how the martingale approach extends.
+As in discrete time, the martingale approach is most powerful when there are complete markets. This is because, when markets are complete, the optimization problem \(\mathcal{P}\) is equivalent to a simple static problem. We first assume complete markets (the rank of the diffusion matrix \(\sigma_{t}\) is equal to \(d\) a.s.) and proceed in four steps. First, we show the equivalence between the problem \(\mathcal{P}\) and the static problem. Second, we solve the static problem, and determine the optimal consumption plan. Third, we determine the optimal trading strategy and fourth, we solve the problem \(\mathcal{P}\) in a special case. We next assume incomplete markets and explain how the martingale approach extends.
 
 \subsubsection{The Static Problem}
 \begin{proposition}\label{prop:complete_markets_equivalence}
-When markets are complete, the problem $\mathcal{P}$ is equivalent to the problem $\mathcal{P}_{Q}$ given by
+When markets are complete, the problem \(\mathcal{P}\) is equivalent to the problem \(\mathcal{P}_{Q}\) given by
 
 \begin{equation}
 \max _{c, C_{T}} U\left(c, C_{T}\right), \quad \text { subject to } \\
@@ -959,13 +959,13 @@ c \geq 0, \quad C_{T} \geq 0 .
 \end{proposition}
 
 \begin{proof}
-We first show that a feasible consumption plan $\left(c, C_{T}\right)$ satisfies equation (6.5.16). Denote by $\theta$ the trading strategy that finances the cash flow $\left(-W, c, C_{T}\right)$. Since $\theta$ finances the discounted cash flow $\left(-W, c / B, C_{T} / B_{T}\right)$ under the discounted price process $S / B$, we have
+We first show that a feasible consumption plan \(\left(c, C_{T}\right)\) satisfies equation (6.5.16). Denote by \(\theta\) the trading strategy that finances the cash flow \(\left(-W, c, C_{T}\right)\). Since \(\theta\) finances the discounted cash flow \(\left(-W, c / B, C_{T} / B_{T}\right)\) under the discounted price process \(S / B\), we have
 
 \begin{equation}
 \theta_{t} S_{t}/B_{t}=W+\int_{0}^{t} \theta_{s} d\left(\frac{S_{s}}{B_{s}}\right)-\int_{0}^{t} c_{s}/B_{s} d s \label{eq:6.5.17}
 \end{equation}
 
-Since the stochastic integral $\int_{0}^{t} \theta_{s} d\left(S_{s} / B_{s}\right)$ is a martingale under $Q$, we have
+Since the stochastic integral \(\int_{0}^{t} \theta_{s} d\left(S_{s} / B_{s}\right)\) is a martingale under \(Q\), we have
 
 \begin{equation}
 E^{Q}\left[\int_{0}^{t} \theta_{s} d\left(\frac{S_{s}}{B_{s}}\right)\right]=0 \label{eq:6.5.18}
@@ -977,50 +977,50 @@ Equations (6.5.17) and (6.5.18) imply that
 E^{Q}\!\left[\int_{0}^{t} c_{s}/B_{s} \, d s\right]=W-E^{Q}\!\left[\theta_{t} S_{t}/B_{t}\right]. \label{eq:6.5.19}
 \end{equation}
 
-Setting $t=T$ in equation (6.5.19), and noting that $\theta_{T} S_{T}=C_{T}$, we get equation (6.5.16).
+Setting \(t=T\) in equation (6.5.19), and noting that \(\theta_{T} S_{T}=C_{T}\), we get equation (6.5.16).
 
-We next show the converse, i.e., that if a consumption plan $\left(c, C_{T}\right)$ satisfies equation (6.5.16), then it is feasible. We use the martingale representation theorem and construct a strategy that finances the cash flow $\left(-W, c, C_{T}\right)$. The random variable
+We next show the converse, i.e., that if a consumption plan \(\left(c, C_{T}\right)\) satisfies equation (6.5.16), then it is feasible. We use the martingale representation theorem and construct a strategy that finances the cash flow \(\left(-W, c, C_{T}\right)\). The random variable
 
 \begin{equation}
 X=\int_{0}^{T} \frac{c_{t}}{B_{t}} d t+\frac{C_{T}}{B_{T}}
 \end{equation}
 
-belongs to $L^{1}(Q)$ since it is positive and has finite expectation (and equal to $W$ ). By the law of iterative expectations, the process $E_{t}^{Q}(X)$ is a martingale under $Q$. The martingale representation theorem implies that there exists a process $\zeta \in\left(\mathcal{L}^{2}\right)^{d}$ such that
+belongs to \(L^{1}(Q)\) since it is positive and has finite expectation (and equal to \(W\) ). By the law of iterative expectations, the process \(E_{t}^{Q}(X)\) is a martingale under \(Q\). The martingale representation theorem implies that there exists a process \(\zeta \in\left(\mathcal{L}^{2}\right)^{d}\) such that
 
 \begin{equation}
 E_{t}^{Q}(X)=E^{Q}(X)+\int_{0}^{t} \zeta_{s} d Z_{s}^{Q} \label{eq:6.5.20}
 \end{equation}
 
-Since the rank of $\sigma_{t}$ is equal to $d$, we can find a process $\theta_{1 N}$ such that
+Since the rank of \(\sigma_{t}\) is equal to \(d\), we can find a process \(\theta_{1 N}\) such that
 
 \begin{equation}
 \theta_{1 N, t} \hat{\sigma}_{t}=\zeta_{t} \label{eq:6.5.21}
 \end{equation}
 
-The process $\theta_{1 N, t}$ represents the investment in the risky assets. We define the investment in the riskless asset by
+The process \(\theta_{1 N, t}\) represents the investment in the risky assets. We define the investment in the riskless asset by
 
 \begin{equation}
 E_{t}^{Q}\left[\int_{t}^{T} c_{s}/B_{s} d s+\frac{C_{T}}{B_{T}}\right]=\theta_{t} S_{t}/B_{t} \label{eq:6.5.22}
 \end{equation}
 
-We need to show that the strategy $\theta$ finances the cash flow $\left(-W, c, C_{T}\right)$, satisfies $\theta_{T} S_{T}=C_{T}$, is in $\mathcal{L}(S)$, and is such that the stochastic integral $\int_{0}^{t} \theta_{s} d\left(S_{s} / B_{s}\right)$ is a martingale under $Q$. To show that $\theta$ finances the cash flow $\left(W, c, C_{T}\right.$ ), we note that equations (6.1.4, 6.5.16, 6.5.20, and 6.5.21), imply that
+We need to show that the strategy \(\theta\) finances the cash flow \(\left(-W, c, C_{T}\right)\), satisfies \(\theta_{T} S_{T}=C_{T}\), is in \(\mathcal{L}(S)\), and is such that the stochastic integral \(\int_{0}^{t} \theta_{s} d\left(S_{s} / B_{s}\right)\) is a martingale under \(Q\). To show that \(\theta\) finances the cash flow \(\left(W, c, C_{T}\right.\) ), we note that equations (6.1.4, 6.5.16, 6.5.20, and 6.5.21), imply that
 
 \begin{equation}
 E_{t}^{Q}(X)=W+\int_{0}^{t} \theta_{s} d\left(\frac{S_{s}}{B_{s}}\right) \label{eq:6.5.23}
 \end{equation}
 
-Equations (6.5.22) and (6.5.23) imply equation (6.5.17). Therefore, $\theta$ finances the discounted cash flow $\left(W, c / B, C_{T} / B_{T}\right)$ under the discounted price process $S / B$. It thus also finances the undiscounted cash flow $\left(-W, c, C_{T}\right.$ ) under the undiscounted price process $S$.
+Equations (6.5.22) and (6.5.23) imply equation (6.5.17). Therefore, \(\theta\) finances the discounted cash flow \(\left(W, c / B, C_{T} / B_{T}\right)\) under the discounted price process \(S / B\). It thus also finances the undiscounted cash flow \(\left(-W, c, C_{T}\right.\) ) under the undiscounted price process \(S\).
 
-The proof of the remaining properties of $\theta$ is as in the theorem that markets are complete iff the rank of $\sigma_{t}$ is equal to $d$.
+The proof of the remaining properties of \(\theta\) is as in the theorem that markets are complete iff the rank of \(\sigma_{t}\) is equal to \(d\).
 
 \end{proof}
 
-Proposition \ref{prop:complete_markets_equivalence} implies that when markets are complete, the problem $\mathcal{P}$ is equivalent to the simple ``static'' problem $\mathcal{P}_{Q}$. This static problem consists in maximizing utility subject to the static budget constraint (6.5.16).
+Proposition \ref{prop:complete_markets_equivalence} implies that when markets are complete, the problem \(\mathcal{P}\) is equivalent to the simple ``static'' problem \(\mathcal{P}_{Q}\). This static problem consists in maximizing utility subject to the static budget constraint (6.5.16).
 
-Note: When the horizon is infinite, a similar static formulation can be obtained by setting $T=\infty$. Huang and Pages (1992) show under what conditions the infinite-horizon problem has a solution and when this solution can be recovered as a limit $T \rightarrow \infty$ of solutions for finite-horizon economies. Note one important issue for infinite-horizon problems: the measure $Q$ is no longer equivalent to $P$ on $\mathcal{F}_{\infty}$. In fact, the two measures are typically mutually singular, i.e., there exists a set $K \in \mathcal{F}_{\infty}$, such $E^{P}\left[1_{\{K\}}\right]=1$ while $E^{Q}\left[1_{\{K\}}\right]=0$. This is because when $\int_{0}^{\infty} \eta_{t}^{2} d t=\infty$ with P-probability $1, \lim _{t \rightarrow \infty} \xi_{t}^{\eta}=0$ almost surely as well (see Huang and Pages 1992, Lemma 1).
+Note: When the horizon is infinite, a similar static formulation can be obtained by setting \(T=\infty\). Huang and Pages (1992) show under what conditions the infinite-horizon problem has a solution and when this solution can be recovered as a limit \(T \rightarrow \infty\) of solutions for finite-horizon economies. Note one important issue for infinite-horizon problems: the measure \(Q\) is no longer equivalent to \(P\) on \(\mathcal{F}_{\infty}\). In fact, the two measures are typically mutually singular, i.e., there exists a set \(K \in \mathcal{F}_{\infty}\), such \(E^{P}\left[1_{\{K\}}\right]=1\) while \(E^{Q}\left[1_{\{K\}}\right]=0\). This is because when \(\int_{0}^{\infty} \eta_{t}^{2} d t=\infty\) with P-probability \(1, \lim _{t \rightarrow \infty} \xi_{t}^{\eta}=0\) almost surely as well (see Huang and Pages 1992, Lemma 1).
 
 \subsubsection{Optimal Consumption}
-To solve the static problem $\mathcal{P}_{Q}$, we write the static budget constraint (6.5.16) in terms of the probability measure $P$ rather than $Q$. We denote the Radon-Nikodym derivative of $Q$ w.r.t. $P$ by $\xi_{T}$, and set $\xi_{t}=E_{t}\left(\xi_{T}\right)$. We have
+To solve the static problem \(\mathcal{P}_{Q}\), we write the static budget constraint (6.5.16) in terms of the probability measure \(P\) rather than \(Q\). We denote the Radon-Nikodym derivative of \(Q\) w.r.t. \(P\) by \(\xi_{T}\), and set \(\xi_{t}=E_{t}\left(\xi_{T}\right)\). We have
 
 \begin{equation}
 \begin{aligned}
@@ -1029,7 +1029,7 @@ To solve the static problem $\mathcal{P}_{Q}$, we write the static budget constr
 \end{aligned}
 \end{equation}
 
-(For the second equality we used Fubini's theorem, and for the third the relation between the EMM and the SPD.) Therefore, we can write the static problem $\mathcal{P}_{Q}$ as
+(For the second equality we used Fubini's theorem, and for the third the relation between the EMM and the SPD.) Therefore, we can write the static problem \(\mathcal{P}_{Q}\) as
 
 \begin{equation}
 \max _{c, C_{T}} E\left[\int_{0}^{T} u_{t}\left(c_{t}\right) d t+U_{T}\left(C_{T}\right)\right]
@@ -1053,7 +1053,7 @@ Let's proceed heuristically, and write the Lagrangian
 L=E\left[\int_{0}^{T} u_{t}\left(c_{t}\right) d t+U_{T}\left(C_{T}\right)\right]+\lambda\left[W-E\left[\int_{0}^{T} \pi_{t} c_{t} d t+\pi_{T} C_{T}\right]\right]
 \end{equation}
 
-where $\lambda$ is the Lagrange multiplier of the static budget constraint (6.5.24). The first-order conditions are
+where \(\lambda\) is the Lagrange multiplier of the static budget constraint (6.5.24). The first-order conditions are
 
 \begin{equation}
 u_{t}^{\prime}\left(c_{t}^{*}\right)=\lambda \pi_{t} \label{eq:6.5.25}
@@ -1065,15 +1065,15 @@ and
 U_{T}^{\prime}\left(C_{T}^{*}\right)=\lambda \pi_{T} \label{eq:6.5.26}
 \end{equation}
 
-and are equalities as long as $c_{t}^{*}, C_{T}^{*}>0$. To ensure that $c_{t}^{*}, C_{T}^{*}>0$, we assume from now on that the functions $u_{t}$ and $U_{T}$ satisfy the Inada conditions. These are
+and are equalities as long as \(c_{t}^{*}, C_{T}^{*}>0\). To ensure that \(c_{t}^{*}, C_{T}^{*}>0\), we assume from now on that the functions \(u_{t}\) and \(U_{T}\) satisfy the Inada conditions. These are
 
 \begin{equation*}
 \lim _{c_{t} \rightarrow 0} u_{t}^{\prime}\left(c_{t}\right)=\infty \quad \lim _{c_{t} \rightarrow \infty} u_{t}^{\prime}\left(c_{t}\right)=0
 \end{equation*}
 
-and similarly for $U_{T}$. Notice that equations (6.5.25) and (6.5.26) are the same as in discrete time.
+and similarly for \(U_{T}\). Notice that equations (6.5.25) and (6.5.26) are the same as in discrete time.
 
-Denoting by $i_{t}(y)$ the inverse of $u_{t}^{\prime}$ and by $I_{t}(y)$ the inverse of $U_{T}^{\prime}$, we can write the first-order conditions as
+Denoting by \(i_{t}(y)\) the inverse of \(u_{t}^{\prime}\) and by \(I_{t}(y)\) the inverse of \(U_{T}^{\prime}\), we can write the first-order conditions as
 
 \begin{equation}
 c_{t}^{*}=i_{t}\left(\lambda \pi_{t}\right) \label{eq:optimal_consumption}
@@ -1085,7 +1085,7 @@ and
 C_{T}^{*}=I_{T}\left(\lambda \pi_{T}\right) \label{eq:optimal_terminal_consumption}
 \end{equation}
 
-To determine $c_{t}^{*}$ and $C_{T}^{*}$, we need to determine the Lagrange multiplier $\lambda . \lambda$ is determined by the static budget constraint (6.5.24)
+To determine \(c_{t}^{*}\) and \(C_{T}^{*}\), we need to determine the Lagrange multiplier \(\lambda . \lambda\) is determined by the static budget constraint (6.5.24)
 
 \begin{equation}
 E\left[\int_{0}^{T} \pi_{t} i_{t}\left(\lambda \pi_{t}\right) d t+\pi_{T} I_{T}\left(\lambda \pi_{T}\right)\right]=W \label{eq:lagrange_multiplier_condition}
@@ -1094,11 +1094,11 @@ E\left[\int_{0}^{T} \pi_{t} i_{t}\left(\lambda \pi_{t}\right) d t+\pi_{T} I_{T}\
 Proposition \ref{prop:optimal_consumption_solution} makes the above heuristic analysis rigorous.
 
 \begin{proposition}\label{prop:optimal_consumption_solution}
-Suppose that there exists $\lambda$ solving equation \eqref{eq:lagrange_multiplier_condition}. Then the solution to $\mathcal{P}_{Q}$ is given by equations \eqref{eq:optimal_consumption} and \eqref{eq:optimal_terminal_consumption}.
+Suppose that there exists \(\lambda\) solving equation \eqref{eq:lagrange_multiplier_condition}. Then the solution to \(\mathcal{P}_{Q}\) is given by equations \eqref{eq:optimal_consumption} and \eqref{eq:optimal_terminal_consumption}.
 \end{proposition}
 
 \begin{proof}
-Consider a consumption plan $\left(c, C_{T}\right)$ that satisfies the static budget constraint (6.5.24). We will show that expected utility is smaller than under the consumption plan $\left(c^{*}, C_{T}^{*}\right)$. Since $u_{t}$ is concave, we have
+Consider a consumption plan \(\left(c, C_{T}\right)\) that satisfies the static budget constraint (6.5.24). We will show that expected utility is smaller than under the consumption plan \(\left(c^{*}, C_{T}^{*}\right)\). Since \(u_{t}\) is concave, we have
 
 \begin{equation*}
 \begin{gathered}
@@ -1107,7 +1107,7 @@ u_{t}\left(c_{t}\right) \leq u_{t}\left(c_{t}^{*}\right)+u_{t}^{\prime}\left(c_{
 \end{gathered}
 \end{equation*}
 
-and similarly for $U_{T}$. Integrating and taking expectations, we get
+and similarly for \(U_{T}\). Integrating and taking expectations, we get
 
 \begin{equation*}
 U\left(c, C_{T}\right) \leq U\left(c^{*}, C_{T}^{*}\right)+\lambda\left[F\left(c, C_{T}\right)-F\left(c^{*}, C_{T}^{*}\right)\right],
@@ -1119,28 +1119,28 @@ where
 F\left(c, C_{T}\right)=E\left[\int_{0}^{T} \pi_{t} c_{t} d t+\pi_{T} C_{T}\right]
 \end{equation*}
 
-Since $\left(c, C_{T}\right)$ satisfies the static budget constraint, we have $F\left(c, C_{T}\right)=W$. Since $\lambda$ solves equation \eqref{eq:lagrange_multiplier_condition}, we have $F\left(c^{*}, C_{T}^{*}\right)=W$. Therefore, $\left(c^{*}, C_{T}^{*}\right)$ dominates $\left(c, C_{T}\right)$.
+Since \(\left(c, C_{T}\right)\) satisfies the static budget constraint, we have \(F\left(c, C_{T}\right)=W\). Since \(\lambda\) solves equation \eqref{eq:lagrange_multiplier_condition}, we have \(F\left(c^{*}, C_{T}^{*}\right)=W\). Therefore, \(\left(c^{*}, C_{T}^{*}\right)\) dominates \(\left(c, C_{T}\right)\).
 \end{proof}
 
 \subsubsection{Optimal Trading Strategy}
-In Proposition \ref{prop:complete_markets_equivalence} we constructed a trading strategy that finances a cash flow $\left(W, c, C_{T}\right)$. This general construction applies to the cash flow $\left(W, c^{*}, C_{T}^{*}\right)$ that corresponds to the optimal consumption plan. However, the construction is based on the martingale representation theorem, and does not explicitly determine the investment in the risky assets. We now determine this investment.
+In Proposition \ref{prop:complete_markets_equivalence} we constructed a trading strategy that finances a cash flow \(\left(W, c, C_{T}\right)\). This general construction applies to the cash flow \(\left(W, c^{*}, C_{T}^{*}\right)\) that corresponds to the optimal consumption plan. However, the construction is based on the martingale representation theorem, and does not explicitly determine the investment in the risky assets. We now determine this investment.
 
-We consider the wealth $W_{t}^{*}$ required at time $t$ to finance the optimal consumption plan from time $t$ on. This is equal to the expectation under $Q$ of the discounted value of the consumption plan at time $t$, i.e.
+We consider the wealth \(W_{t}^{*}\) required at time \(t\) to finance the optimal consumption plan from time \(t\) on. This is equal to the expectation under \(Q\) of the discounted value of the consumption plan at time \(t\), i.e.
 
 \begin{equation}
 W_{t}^{*}=B_{t} E_{t}^{Q}\left[\int_{t}^{T} \frac{c_{s}^{*}}{B_{s}} d s+\frac{C_{T}^{*}}{B_{T}}\right]=\frac{1}{\pi_{t}} E_{t}\left[\int_{t}^{T} \pi_{s} i_{s}\left(\lambda \pi_{s}\right) d s+\pi_{T} I_{T}\left(\lambda \pi_{T}\right)\right] . \label{eq:6.5.30}
 \end{equation}
 
-We want to write the wealth $W_{t}^{*}$ as function of some ``state'' variables. For notational simplicity, we set $S=\left(S_{1}, . ., S_{N}\right)$ from now on. We assume that the short rate $r_{t}$, and the drift $\mu_{t}$ and diffusion $\sigma_{t}$ of the Ito process $S$, depend only on the value of some state variables, $X$, at time $t$, and on $t$. For simplicity, we further assume that the state variables are the prices, i.e. $X=S$. We also recall that the SPD $\pi$ evolves according to
+We want to write the wealth \(W_{t}^{*}\) as function of some ``state'' variables. For notational simplicity, we set \(S=\left(S_{1}, . ., S_{N}\right)\) from now on. We assume that the short rate \(r_{t}\), and the drift \(\mu_{t}\) and diffusion \(\sigma_{t}\) of the Ito process \(S\), depend only on the value of some state variables, \(X\), at time \(t\), and on \(t\). For simplicity, we further assume that the state variables are the prices, i.e. \(X=S\). We also recall that the SPD \(\pi\) evolves according to
 
 \begin{equation}
 d \pi_{t}=-\pi_{t} r_{t} d t-\pi_{t} \eta_{t}^{\prime} d Z_{t} . \label{eq:6.5.31}
 \end{equation}
 
-Since the risk premia $\eta_{t}$ depend only on $S_{t}$ and $t$, the wealth $W_{t}^{*}$ depends only on $\pi_{t}, S_{t}$, and $t$. We can thus set $W_{t}^{*}=F\left(\pi_{t}, S_{t}, t\right)$. The optimal trading strategy can be derived from the function $F$. The function $F$ can be computed in two equivalent ways. First, directly, as an expectation, and second, indirectly, as a solution of a PDE. We will derive the PDE, and then show how the optimal trading strategy can be derived from $F$.
+Since the risk premia \(\eta_{t}\) depend only on \(S_{t}\) and \(t\), the wealth \(W_{t}^{*}\) depends only on \(\pi_{t}, S_{t}\), and \(t\). We can thus set \(W_{t}^{*}=F\left(\pi_{t}, S_{t}, t\right)\). The optimal trading strategy can be derived from the function \(F\). The function \(F\) can be computed in two equivalent ways. First, directly, as an expectation, and second, indirectly, as a solution of a PDE. We will derive the PDE, and then show how the optimal trading strategy can be derived from \(F\).
 
 \section{The PDE}
-The derivation of the PDE is very similar to that of the Black-Scholes PDE. The differences are that there is intermediate consumption, and that there are $N+2$ variables $(\pi, S$, and $t$ ), instead of just 2.
+The derivation of the PDE is very similar to that of the Black-Scholes PDE. The differences are that there is intermediate consumption, and that there are \(N+2\) variables \((\pi, S\), and \(t\) ), instead of just 2.
 
 The process
 
@@ -1148,7 +1148,7 @@ The process
 \int_{0}^{t} \frac{c_{s}^{*}}{B_{s}} d s+\frac{F\left(\pi_{t}, S_{t}, t\right)}{B_{t}}
 \end{equation}
 
-is a martingale under $Q$ since it is equal to $E_{t}^{Q}(X)$, where
+is a martingale under \(Q\) since it is equal to \(E_{t}^{Q}(X)\), where
 
 \begin{equation}
 X=\int_{0}^{T} \frac{c_{t}^{*}}{B_{t}} d t+\frac{C_{T}}{B_{T}}
@@ -1166,7 +1166,7 @@ and equation (6.1.4) implies that
 d S_{t}=r_{t} S_{t} d t+\sigma_{t} d Z_{t}^{Q}
 \end{equation}
 
-Ito's lemma implies that the drift term of the process $E_{t}^{Q}(X)$ is
+Ito's lemma implies that the drift term of the process \(E_{t}^{Q}(X)\) is
 
 \begin{equation}
 \frac{1}{B_{t}}\left(c_{t}^{*}-r_{t} F\left(\pi_{t}, S_{t}, t\right)+\mathcal{D}_{\pi S} F\left(\pi_{t}, S_{t}, t\right)+F_{t}\left(\pi_{t}, S_{t}, t\right)\right)
@@ -1178,28 +1178,28 @@ where
 \mathcal{D}_{\pi S} F=F_{\pi} \pi_{t}\left(-r_{t}+\eta_{t}^{2}\right)+F_{S} r_{t} S_{t}+\frac{1}{2}\left(\pi_{t}^{2} \eta_{t}^{2} F_{\pi \pi}-2 \pi_{t} F_{\pi S}^{\prime} \sigma_{t} \eta_{t}+\operatorname{tr}\left(\sigma_{t} \sigma_{t}^{\prime} F_{S S}\right)\right)
 \end{equation}
 
-and the diffusion term (the coefficient of $d Z_{t}^{Q}$ ) is
+and the diffusion term (the coefficient of \(d Z_{t}^{Q}\) ) is
 
 \begin{equation}
 \frac{1}{B_{t}}\left(-F_{\pi}\left(\pi_{t}, S_{t}, t\right) \pi_{t} \eta_{t}^{\prime}+F_{S}^{\prime}\left(\pi_{t}, S_{t}, t\right) \sigma_{t}\right)
 \end{equation}
 
-Since the process $E_{t}^{Q}(X)$ is a martingale under $Q$, the drift term is equal to 0 . Therefore, the function $F(\pi, S, t)$ solves the PDE
+Since the process \(E_{t}^{Q}(X)\) is a martingale under \(Q\), the drift term is equal to 0 . Therefore, the function \(F(\pi, S, t)\) solves the PDE
 
 \begin{equation}
 c_{t}^{*}-r_{t} F(\pi, S, t)+\mathcal{D}_{\pi S} F(\pi, S, t)+F_{t}(\pi, S, t)=0 \label{eq:6.5.32}
 \end{equation}
 
-with the terminal condition $F(\pi, S, T)=C_{T}^{*}$. We have thus shown that the function $F(\pi, S, t)$ defined by
+with the terminal condition \(F(\pi, S, T)=C_{T}^{*}\). We have thus shown that the function \(F(\pi, S, t)\) defined by
 
 \begin{equation}
 F\left(\pi_{t}, S_{t}, t\right)=B_{t} E_{t}^{Q}\left[\int_{t}^{T} \frac{c_{s}^{*}}{B_{s}} d t+\frac{C_{T}^{*}}{B_{T}}\right]
 \end{equation}
 
-solves the PDE (6.5.32) with the terminal condition $F(\pi, S, T)=C_{T}^{*}$. The converse follows from the Feynman-Kac theorem.
+solves the PDE (6.5.32) with the terminal condition \(F(\pi, S, T)=C_{T}^{*}\). The converse follows from the Feynman-Kac theorem.
 
 \section{Optimal Trading Strategy}
-Since the drift term of the process $E_{t}^{Q}(X)$ is equal to 0 , we have
+Since the drift term of the process \(E_{t}^{Q}(X)\) is equal to 0 , we have
 
 \begin{equation}
 E_{t}^{Q}(X)=E^{Q}(X)+\int_{0}^{t} \frac{-F_{\pi}\left(\pi_{s}, S_{s}, s\right) \pi_{s} \eta_{s}^{\prime}+F_{S}^{\prime}\left(\pi_{s}, S_{s}, s\right) \sigma_{s}}{B_{s}} d Z_{s}^{Q}
@@ -1211,7 +1211,7 @@ Comparing this equation with equations (6.5.20 and 6.5.21), we define the invest
 \left(\theta_{1 N, t}^{*}\right) \sigma_{t}=-F_{\pi}\left(\pi_{t}, S_{t}, t\right) \pi_{t} \eta_{t}^{\prime}+F_{S}^{\prime}\left(\pi_{t}, S_{t}, t\right) \sigma_{t} \label{eq:6.5.33}
 \end{equation}
 
-Equation (6.5.33) has a unique solution iff $N=d$. To obtain the solution for $N=d$, we multiply equation (6.5.33) from the left by $\sigma_{t}^{\prime}$, and use equation (6.1.3). We get
+Equation (6.5.33) has a unique solution iff \(N=d\). To obtain the solution for \(N=d\), we multiply equation (6.5.33) from the left by \(\sigma_{t}^{\prime}\), and use equation (6.1.3). We get
 
 \begin{equation}
 \left[\theta_{1 N, t}^{*}\right]^{\prime}=-F_{\pi}\left(\pi_{t}, S_{t}, t\right) \pi_{t}\left(\sigma_{t} \sigma_{t}^{\prime}\right)^{-1}\left(\mu_{t}-r_{t} S_{t}\right)+F_{S}\left(\pi_{t}, S_{t}, t\right) \label{eq:6.5.34}
@@ -1223,42 +1223,42 @@ We define the investment in the riskless asset by
 F\left(\pi_{t}, S_{t}, t\right)=\theta_{0, t}^{*} B_{t}+\theta_{1 N, t}^{*} S_{t} .
 \end{equation}
 
-The optimal trading strategy can thus be derived from the function $F$.
+The optimal trading strategy can thus be derived from the function \(F\).
 
 
 
 
 \subsubsection{Incomplete Markets}
-When markets are incomplete, things are more complicated. The problem $\mathcal{P}$ is no longer equivalent to a simple static problem of maximizing utility subject to a single budget constraint 6.5.16. In fact, since there are many EMMs, there is a budget constraint associated to each EMM.
+When markets are incomplete, things are more complicated. The problem \(\mathcal{P}\) is no longer equivalent to a simple static problem of maximizing utility subject to a single budget constraint 6.5.16. In fact, since there are many EMMs, there is a budget constraint associated to each EMM.
 
-As in discrete time, we can show a duality result. This is that the problem $\mathcal{P}$ is equivalent to a dual problem, which consists of (i) solving the complete markets problem for each EMM and (ii) minimizing the maximum value over all EMMs.
+As in discrete time, we can show a duality result. This is that the problem \(\mathcal{P}\) is equivalent to a dual problem, which consists of (i) solving the complete markets problem for each EMM and (ii) minimizing the maximum value over all EMMs.
 
 
 \section{Equilibrium: Continuous-Time Models}
 \
 
 \subsection{The Model}
-We consider a probability space $(\Omega, \mathcal{F}, P)$, a time inverval $\mathcal{T}=[0, T]$, a Brownian motion $Z=\left(Z_{1}, . ., Z_{d}\right)$ on $(\Omega, \mathcal{F}, P)$, and the standard filtration $\mathbb{F}$ of $Z$. We assume that there are $N$ securities that pay dividends at a rate $\delta=\left(\delta_{1, t}, . ., \delta_{N, t}\right) \in\left(\mathcal{L}^{1}\right)^{N}$, and have a time $T$ price equal to $S_{T}=\left(S_{1, T}, . ., S_{N, T}\right)$. The supply of the securities is $x=\left(x_{1}, . ., x_{N}\right)$. Abusing notation, we denote by $x$ the process that is always equal to $x$. There are $I$ agents. Agent $i$ 's preferences are given by a time-additive expected utility function
+We consider a probability space \((\Omega, \mathcal{F}, P)\), a time inverval \(\mathcal{T}=[0, T]\), a Brownian motion \(Z=\left(Z_{1}, . ., Z_{d}\right)\) on \((\Omega, \mathcal{F}, P)\), and the standard filtration \(\mathbb{F}\) of \(Z\). We assume that there are \(N\) securities that pay dividends at a rate \(\delta=\left(\delta_{1, t}, . ., \delta_{N, t}\right) \in\left(\mathcal{L}^{1}\right)^{N}\), and have a time \(T\) price equal to \(S_{T}=\left(S_{1, T}, . ., S_{N, T}\right)\). The supply of the securities is \(x=\left(x_{1}, . ., x_{N}\right)\). Abusing notation, we denote by \(x\) the process that is always equal to \(x\). There are \(I\) agents. Agent \(i\) 's preferences are given by a time-additive expected utility function
 
 \begin{equation}
 U_{i}\left(c_{i}, C_{i, T}\right)=E\left[\int_{0}^{T} u_{i, t}\left(c_{i, t}\right) d t+U_{i, T}\left(C_{i, T}\right)\right]
 \end{equation}
 
-where the functions $u_{i, t}$ and $U_{i, T}$ are strictly increasing and concave. Agent $i$ receives an endowment of the consumption good at a rate $e_{i} \in \mathcal{L}^{1}$. He also receives an endowment of the securities at time 0 . Denoting the latter endowment by $\bar{\theta}_{i, 0}$, we have
+where the functions \(u_{i, t}\) and \(U_{i, T}\) are strictly increasing and concave. Agent \(i\) receives an endowment of the consumption good at a rate \(e_{i} \in \mathcal{L}^{1}\). He also receives an endowment of the securities at time 0 . Denoting the latter endowment by \(\bar{\theta}_{i, 0}\), we have
 
 \begin{equation}
 \sum_{i=1}^{I} \bar{\theta}_{i, 0}=x
 \end{equation}
 
-We consider security price processes that are equal to $S_{T}$ at time $T$, and are of the form
+We consider security price processes that are equal to \(S_{T}\) at time \(T\), and are of the form
 
 \begin{equation}
 d S_{t}=\mu_{t} d t+\sigma_{t} d Z_{t},
 \end{equation}
 
-where $\mu \in\left(\mathcal{L}^{1}\right)^{N}$ and $\sigma \in\left(\mathcal{L}^{2}\right)^{N \times d}$. We set $\mu_{t}=I_{S_{t}} \bar{\mu}_{t}$ and $I_{S_{t}} \bar{\sigma}_{t}$, where $I_{S_{t}}$ is a $N \times N$ diagonal matrix with $n$ 'th diagonal element equal to $S_{n, t}$. We assume that trading strategies are in $\mathcal{L}(S)$ and are such that the stochastic integral $\int_{0}^{t} \theta_{s} d\left(S_{s} / B_{s}\right)$ is a martingale under $Q$. (Alternatively, we could assume that trading strategies are in $\mathcal{L}(S) \cap \underline{\Theta}(S / B)$.)
+where \(\mu \in\left(\mathcal{L}^{1}\right)^{N}\) and \(\sigma \in\left(\mathcal{L}^{2}\right)^{N \times d}\). We set \(\mu_{t}=I_{S_{t}} \bar{\mu}_{t}\) and \(I_{S_{t}} \bar{\sigma}_{t}\), where \(I_{S_{t}}\) is a \(N \times N\) diagonal matrix with \(n\) 'th diagonal element equal to \(S_{n, t}\). We assume that trading strategies are in \(\mathcal{L}(S)\) and are such that the stochastic integral \(\int_{0}^{t} \theta_{s} d\left(S_{s} / B_{s}\right)\) is a martingale under \(Q\). (Alternatively, we could assume that trading strategies are in \(\mathcal{L}(S) \cap \underline{\Theta}(S / B)\).)
 
-To a price process $S$, we associate a set of marketable cash flows. A consumption plan $\left(c_{i}, C_{i, T}\right)$ is feasible for agent $i$ iff the cash flow $\left(-\bar{\theta}_{i, 0} S_{0}, c_{i}-e_{i}, C_{i, T}\right)$ is marketable. We denote by $\mathcal{C}_{i}$ the set of feasible cash flows for agent $i$. Agent $i$ 's problem $\mathcal{P}_{i}$ is
+To a price process \(S\), we associate a set of marketable cash flows. A consumption plan \(\left(c_{i}, C_{i, T}\right)\) is feasible for agent \(i\) iff the cash flow \(\left(-\bar{\theta}_{i, 0} S_{0}, c_{i}-e_{i}, C_{i, T}\right)\) is marketable. We denote by \(\mathcal{C}_{i}\) the set of feasible cash flows for agent \(i\). Agent \(i\) 's problem \(\mathcal{P}_{i}\) is
 
 \begin{equation}
 \begin{gathered}
@@ -1267,12 +1267,12 @@ To a price process $S$, we associate a set of marketable cash flows. A consumpti
 \end{gathered}
 \end{equation}
 
-A consumption plan $\left(c_{i}, C_{i, T}\right)$ is optimal iff it solves $\mathcal{P}_{i}$. A trading strategy $\theta_{i}$ is optimal iff it finances the cash flow $\left(-\bar{\theta}_{i, 0} S_{0}, c_{i}-e_{i}, C_{i, T}\right)$.
+A consumption plan \(\left(c_{i}, C_{i, T}\right)\) is optimal iff it solves \(\mathcal{P}_{i}\). A trading strategy \(\theta_{i}\) is optimal iff it finances the cash flow \(\left(-\bar{\theta}_{i, 0} S_{0}, c_{i}-e_{i}, C_{i, T}\right)\).
 
-Definition 8.1.1 A securities market (SM) equilibrium is a price process $S$, a vector of trading strategies $\left(\theta_{1}, . ., \theta_{I}\right)$, and consumption policies $\left(c_{1}, . ., c_{I}\right)$, such that
+Definition 8.1.1 A securities market (SM) equilibrium is a price process \(S\), a vector of trading strategies \(\left(\theta_{1}, . ., \theta_{I}\right)\), and consumption policies \(\left(c_{1}, . ., c_{I}\right)\), such that
 
 \begin{enumerate}
-  \item (optimization) $\left(c_{i}, \theta_{i}\right)$ is optimal for agent $i$
+  \item (optimization) \(\left(c_{i}, \theta_{i}\right)\) is optimal for agent \(i\)
 
   \item (market-clearing)
 
@@ -1286,7 +1286,7 @@ Definition 8.1.1 A securities market (SM) equilibrium is a price process $S$, a 
 \end{equation}
 
 \subsection{CAPMs}
-We assume that an equilibrium exists. We also assume that there exists an equilibrium short rate process $r_{t}$. This process is such that the instantaneous demand for riskless borrowing and lending is 0 . For simplicity, we will assume that risky assets do not pay dividends.
+We assume that an equilibrium exists. We also assume that there exists an equilibrium short rate process \(r_{t}\). This process is such that the instantaneous demand for riskless borrowing and lending is 0 . For simplicity, we will assume that risky assets do not pay dividends.
 
 Since in equilibrium there is no arbitrage, the equation
 
@@ -1294,19 +1294,19 @@ Since in equilibrium there is no arbitrage, the equation
 \bar{\mu}_{t}-r_{t} 1=\bar{\sigma}_{t} \eta_{t} \label{eq:8.2.1}
 \end{equation}
 
-has a solution $\eta$. This solution is unique only when markets are complete.
+has a solution \(\eta\). This solution is unique only when markets are complete.
 
 We will derive two CAPM-type equations that link the expected return on a security to its covariance with aggregate variables. To derive these equations, we start from equation
 
-(8.2.1). The $n$ 'th ``component'' of this equation is
+(8.2.1). The \(n\) 'th ``component'' of this equation is
 
 \begin{equation}
 \bar{\mu}_{n, t}-r_{t}=\sum_{j=1}^{d} \bar{\sigma}_{n, j, t} \eta_{j, t} \label{eq:8.2.2}
 \end{equation}
 
-The LHS of equation (8.2.2) is equal to the instantaneous expected return on security $n$, $\bar{\mu}_{n, t}$, minus the riskless rate, $r_{t}$. This is the risk premium of security $n$. Equation (8.2.2) links this risk premium to the loadings, $\bar{\sigma}_{n, j, t}$, of security $n$ on the Brownian motions, and to the risk premia, $\eta_{j, t}$, of the Brownian motions.
+The LHS of equation (8.2.2) is equal to the instantaneous expected return on security \(n\), \(\bar{\mu}_{n, t}\), minus the riskless rate, \(r_{t}\). This is the risk premium of security \(n\). Equation (8.2.2) links this risk premium to the loadings, \(\bar{\sigma}_{n, j, t}\), of security \(n\) on the Brownian motions, and to the risk premia, \(\eta_{j, t}\), of the Brownian motions.
 
-We next write equation (8.2.2) in terms of the instantaneous covariance of security $n$ with the SPD $\pi$ that corresponds to a solution $\eta$ of equation (8.2.1). $\pi$ evolves according to
+We next write equation (8.2.2) in terms of the instantaneous covariance of security \(n\) with the SPD \(\pi\) that corresponds to a solution \(\eta\) of equation (8.2.1). \(\pi\) evolves according to
 
 \begin{equation}
 d \pi_{t}=-\pi_{t} r_{t} d t-\pi_{t} \eta_{t}^{\prime} d Z_{t} .
@@ -1330,7 +1330,7 @@ we can write equation (8.2.2) as
 \frac{E_{t}\left(d S_{n, t}\right)}{S_{n, t}}-r_{t} d t=-\operatorname{Cov}_{t}\left(\frac{d S_{n, t}}{S_{n, t}}, \frac{d \pi_{t}}{\pi_{t}}\right) \label{eq:8.2.3}
 \end{equation}
 
-The risk premium of security $n$ is thus proportional to minus the instantaneous covariance of the security with the SPD. When markets are complete, equation (8.2.3) holds for the unique SPD. When markets are incomplete, it holds for any SPD. The intuition behind equation (8.2.3) is that a security is valuable, and thus has a low risk premium, if it has a high payoff in high SPD states, i.e. in states where consumption is valuable.
+The risk premium of security \(n\) is thus proportional to minus the instantaneous covariance of the security with the SPD. When markets are complete, equation (8.2.3) holds for the unique SPD. When markets are incomplete, it holds for any SPD. The intuition behind equation (8.2.3) is that a security is valuable, and thus has a low risk premium, if it has a high payoff in high SPD states, i.e. in states where consumption is valuable.
 
 An important implication of (8.2.3) is that the instantaneous Sharpe ratio of stock returns is bounded from above by the volatility of the state-price density:
 
@@ -1341,13 +1341,13 @@ An important implication of (8.2.3) is that the instantaneous Sharpe ratio of st
 Thus, for any model to generate high Sharpe ratios, it needs to have a sufficiently high volatility of the state-price density. This is a very important result, which is known in discrete time as the Hansen-Jaganathan bound.
 
 \subsubsection{CCAPM}
-The first CAPM equation is the consumption CAPM (CCAPM). When markets are complete, the optimal consumption of agent $i$ is given by
+The first CAPM equation is the consumption CAPM (CCAPM). When markets are complete, the optimal consumption of agent \(i\) is given by
 
 \begin{equation}
 u_{i, t}^{\prime}\left(c_{i, t}\right)=\lambda_{i} \pi_{t} \label{eq:8.2.5}
 \end{equation}
 
-where $\pi$ is the unique SPD. When markets are incomplete, equation (8.2.5) holds for some SPD $\pi$, because of the duality result. Equation (8.2.5) implies that
+where \(\pi\) is the unique SPD. When markets are incomplete, equation (8.2.5) holds for some SPD \(\pi\), because of the duality result. Equation (8.2.5) implies that
 
 \begin{equation}
 d \pi_{t}=\frac{1}{\lambda_{i}} d\left[u_{i, t}^{\prime}\left(c_{i, t}\right)\right]=\frac{1}{\lambda_{i}}\left[u_{i, t}^{\prime \prime}\left(c_{i, t}\right) d c_{i, t}+\text { terms in } d t\right] \label{eq:8.2.6}
@@ -1359,15 +1359,15 @@ Equations (8.2.3, 8.2.5, and 8.2.6) imply that
 \frac{E_{t}\left(d S_{n, t}\right)}{S_{n, t}}-r_{t} d t=\left[-\frac{u_{i, t}^{\prime \prime}\left(c_{i, t}\right)}{u_{i, t}^{\prime}\left(c_{i, t}\right)}\right] \operatorname{Cov}_{t}\left(\frac{d S_{n, t}}{S_{n, t}}, d c_{i, t}\right) \label{eq:8.2.7}
 \end{equation}
 
-Equation (8.2.7) links the risk premium of security $n$ to the instantaneous covariance of the security with the consumption of agent $i$. Note that, when markets are complete, (8.2.5) implies that consumption growth is perfectly instantaneously correlated across agents, since
+Equation (8.2.7) links the risk premium of security \(n\) to the instantaneous covariance of the security with the consumption of agent \(i\). Note that, when markets are complete, (8.2.5) implies that consumption growth is perfectly instantaneously correlated across agents, since
 
 \begin{equation}
 d c_{i, t}=[\ldots] d t+\lambda_{i} i_{i, t}^{\prime}\left(\lambda_{i} \pi_{t}\right) d \pi_{t}
 \end{equation}
 
-where $i_{i, t}(\cdot)$ denotes the inverse of $u_{i, t}^{\prime}(\cdot)$.
+where \(i_{i, t}(\cdot)\) denotes the inverse of \(u_{i, t}^{\prime}(\cdot)\).
 
-To obtain the covariance with the aggregate consumption, we divide (8.2.7) by the term in brackets and sum across agents. Denoting the aggregate consumption by $c_{t}$, we get
+To obtain the covariance with the aggregate consumption, we divide (8.2.7) by the term in brackets and sum across agents. Denoting the aggregate consumption by \(c_{t}\), we get
 
 \begin{equation}
 \frac{E_{t}\left(d S_{n, t}\right)}{S_{n, t}}-r_{t} d t=A_{t} \operatorname{Cov}_{t}\left(\frac{d S_{n, t}}{S_{n, t}}, d c_{t}\right) \label{eq:8.2.8}
@@ -1390,13 +1390,13 @@ If we are considering a representative-agent economy, or a complete-market econo
 \left|\frac{\bar{\mu}_{n}-r}{\bar{\sigma}_{n}}\right| \leq \gamma_{t} \sigma_{c, t}
 \end{equation}
 
-where $\gamma_{t}$ is the curvature of the utility function (of the representative agent) at the current consumption level, $\gamma_{t}=c_{t} u_{t}^{\prime \prime}\left(c_{t}\right) / u_{t}^{\prime}\left(c_{t}\right)$, and $\sigma_{c, t}$ is the instantaneous volatility of consumption growth. The above constraint has important implications for building models with empirically realistic quantitative implications.
+where \(\gamma_{t}\) is the curvature of the utility function (of the representative agent) at the current consumption level, \(\gamma_{t}=c_{t} u_{t}^{\prime \prime}\left(c_{t}\right) / u_{t}^{\prime}\left(c_{t}\right)\), and \(\sigma_{c, t}\) is the instantaneous volatility of consumption growth. The above constraint has important implications for building models with empirically realistic quantitative implications.
 
 The CCAPM is often associated with complete financial markets. This is too restrictive. We do not need market to be dynamically complete to obtain the CCAPM relation, as shown above. In fact, one can generalize the CCAPM even further. Our analysis below is somewhat heuristic and emphasizes the intuition behind the results. Proving the formal statements can be quite difficult in continuous-time models.
 
 
 \subsubsection{ICAPM}
-The second CAPM equation is the intertemporal CAPM (ICAPM). Suppose that the drift $\mu_{t}$ and diffusion $\sigma_{t}$ of the Ito process $S$ depend only on the value of some state variables, $X$, at time $t$, and on $t$. Then the value function of agent $i$ at time $t$ depends on the agent's wealth $W_{i, t}$, on $X_{t}$, and on $t$. We denote this value function by $V_{i}\left(W_{i, t}, X_{t}, t\right)$. The first order condition for consumption is
+The second CAPM equation is the intertemporal CAPM (ICAPM). Suppose that the drift \(\mu_{t}\) and diffusion \(\sigma_{t}\) of the Ito process \(S\) depend only on the value of some state variables, \(X\), at time \(t\), and on \(t\). Then the value function of agent \(i\) at time \(t\) depends on the agent's wealth \(W_{i, t}\), on \(X_{t}\), and on \(t\). We denote this value function by \(V_{i}\left(W_{i, t}, X_{t}, t\right)\). The first order condition for consumption is
 
 \begin{equation}
 u_{i, t}^{\prime}\left(c_{i, t}\right)=V_{i, W}\left(W_{i, t}, X_{t}, t\right) \label{eq:8.2.11}
@@ -1414,13 +1414,13 @@ Equations (8.2.3, 8.2.5, 8.2.11, and 8.2.12) imply that
 \frac{E_{t}\left(d S_{n, t}\right)}{S_{n, t}}-r_{t} d t=\left(-\frac{V_{i, W W}}{V_{i, W}}\right) \operatorname{Cov}_{t}\left(\frac{d S_{n, t}}{S_{n, t}}, d W_{i, t}\right)+\left(-\frac{\left(V_{i, W X}\right)^{\prime}}{V_{i, W}}\right) \operatorname{Cov}_{t}\left(\frac{d S_{n, t}}{S_{n, t}}, d X_{t}\right) . \label{eq:8.2.13}
 \end{equation}
 
-Equation (8.2.13) links the risk premium of security $n$ to the instantaneous covariance of the security with the wealth of agent $i$ and with the state variables $X$. To obtain the covariance with the aggregate wealth $W_{t}$, we proceed as for the CCAPM, and get
+Equation (8.2.13) links the risk premium of security \(n\) to the instantaneous covariance of the security with the wealth of agent \(i\) and with the state variables \(X\). To obtain the covariance with the aggregate wealth \(W_{t}\), we proceed as for the CCAPM, and get
 
 \begin{equation}
 \frac{E_{t}\left(d S_{n, t}\right)}{S_{n, t}}-r_{t} d t=A_{t}^{W} \operatorname{Cov}_{t}\left(\frac{d S_{n, t}}{S_{n, t}}, d W_{t}\right)+A_{t}^{X} \operatorname{Cov}_{t}\left(\frac{d S_{n, t}}{S_{n, t}}, d X_{t}\right) \label{eq:8.2.14}
 \end{equation}
 
-for two processes $A_{t}^{W}>0$ and $A_{t}^{X}$. This is the ICAPM. It states that the risk premium of a security depends on the instantaneous covariance of the security with aggregate wealth and with the state variables $X$. Note that instead of the covariance with changes in the state variable $X$, one can equivalently use the covariance with returns on the hedging portfolios, which are portfolios of assets with maximum correlation with changes in $X$, i.e. portfolios given by
+for two processes \(A_{t}^{W}>0\) and \(A_{t}^{X}\). This is the ICAPM. It states that the risk premium of a security depends on the instantaneous covariance of the security with aggregate wealth and with the state variables \(X\). Note that instead of the covariance with changes in the state variable \(X\), one can equivalently use the covariance with returns on the hedging portfolios, which are portfolios of assets with maximum correlation with changes in \(X\), i.e. portfolios given by
 
 \begin{equation}
 \left(\bar{\sigma}_{t} \bar{\sigma}_{t}^{\prime}\right)^{-1} \bar{\sigma}_{t} \sigma_{X, t}^{\prime}
@@ -1444,19 +1444,19 @@ This is the standard CAPM.
 Unconditional properties (average behavior).
 
 \begin{itemize}
-  \item Real stock returns have high mean and high variance: in the post-war sample, the average aggregate stock returns are approximately $8 \%$ per year, and volatility is around $15-16 \%$.
-  \item The average risk-free rate is low. Using 3-month T-bills as a proxy, obtain an average real rate of $1 \%$ per year. (Caveat: T-bills are nominal, so in real terms returns are not exactly risk-free). Volatility of interest rates in low, estimated at approximately $1 \%$ per year.
-  \item Real consumption growth has very low volatility. For non-durables, annual volatility is approximately $1 \%$. The mean of the growth rate is approximately $2 \%$ per year. In the longer sample, including the pre-war period, consumption growth is more volatile, up to $4 \%$ annual standard deviation.
+  \item Real stock returns have high mean and high variance: in the post-war sample, the average aggregate stock returns are approximately \(8 \%\) per year, and volatility is around \(15-16 \%\).
+  \item The average risk-free rate is low. Using 3-month T-bills as a proxy, obtain an average real rate of \(1 \%\) per year. (Caveat: T-bills are nominal, so in real terms returns are not exactly risk-free). Volatility of interest rates in low, estimated at approximately \(1 \%\) per year.
+  \item Real consumption growth has very low volatility. For non-durables, annual volatility is approximately \(1 \%\). The mean of the growth rate is approximately \(2 \%\) per year. In the longer sample, including the pre-war period, consumption growth is more volatile, up to \(4 \%\) annual standard deviation.
   \item Real consumption growth and stock returns have correlation of approximately 0.3 (at one-year horizon).
-  \item Real dividend growth is more volatile than that of consumption, but much less volatile than stock returns. Annual standard deviation is approximately $6 \%$.
-  \item Correlation between consumption and dividend growth is approximately $25 \%$.
+  \item Real dividend growth is more volatile than that of consumption, but much less volatile than stock returns. Annual standard deviation is approximately \(6 \%\).
+  \item Correlation between consumption and dividend growth is approximately \(25 \%\).
 \end{itemize}
 
 \section{Conditional properties (predictability).}
 \begin{itemize}
-  \item Excess stock returns are forecastable. The log price-dividend ratio forecasts $10 \%$ of the variance at a 1 -year horizon and almost $40 \%$ at a 4 -year horizon. Other variables can predict stock returns, e.g., the term spread.
-  \item Consumption growth is not well forecast by it own history or by the price-dividend ratio. The $R^{2}$ of the predictive regression (with the price-dividend ratio) is about $4 \%$ at horizons of 1 to 4 years.
-  \item Dividend growth is not well forecasted by the $\log$ of the price-dividend ratio. The $R^{2}$ is about $8 \%$ at horizons of 1 to 4 years.
+  \item Excess stock returns are forecastable. The log price-dividend ratio forecasts \(10 \%\) of the variance at a 1 -year horizon and almost \(40 \%\) at a 4 -year horizon. Other variables can predict stock returns, e.g., the term spread.
+  \item Consumption growth is not well forecast by it own history or by the price-dividend ratio. The \(R^{2}\) of the predictive regression (with the price-dividend ratio) is about \(4 \%\) at horizons of 1 to 4 years.
+  \item Dividend growth is not well forecasted by the \(\log\) of the price-dividend ratio. The \(R^{2}\) is about \(8 \%\) at horizons of 1 to 4 years.
 \end{itemize}
 
 \subsection{A Benchmark Model}
@@ -1468,15 +1468,15 @@ Consider an economy with a representative agent, who has CRRA preferences:
 E_{0}\left[\int_{0}^{T} e^{-\rho t} \frac{c_{t}^{1-\gamma}}{1-\gamma} d t\right], \quad \gamma>0
 \end{equation}
 
-It is common to assume that $T$ is very large and treat it as infinite.
+It is common to assume that \(T\) is very large and treat it as infinite.
 
-There are two assets in the economy, a stock and a bond. The stock pays a stream of dividends $\delta_{t}$, given by
+There are two assets in the economy, a stock and a bond. The stock pays a stream of dividends \(\delta_{t}\), given by
 
 \begin{equation}
 \frac{d \delta_{t}}{\delta_{t}}=\mu_{\delta} d t+\sigma_{\delta} d Z_{t}
 \end{equation}
 
-The risk-free interest rate is denoted by $r_{t}$. The agent is endowed with a single share of the stock.
+The risk-free interest rate is denoted by \(r_{t}\). The agent is endowed with a single share of the stock.
 
 Because of the market-clearing conditions, the optimal consumption policy is given by
 
@@ -1496,7 +1496,7 @@ We can now compute the risk-free interest rate (using Ito's Lemma):
 r_{t}=r=\frac{-E_{t}\left[d \pi_{t}\right] / \pi_{t}}{d t}=\rho+\gamma \mu-\frac{1}{2} \gamma(\gamma+1) \sigma^{2} \label{eq:9.1.1}
 \end{equation}
 
-The price of the stock, $S_{t}$, is given by the standard formula, $S_{t}=E_{t}\left[\int_{t}^{T}\left(\pi_{s} / \pi_{t}\right) \delta_{s} d s\right]$, which now takes form
+The price of the stock, \(S_{t}\), is given by the standard formula, \(S_{t}=E_{t}\left[\int_{t}^{T}\left(\pi_{s} / \pi_{t}\right) \delta_{s} d s\right]\), which now takes form
 
 \begin{equation}
 S_{t}=E_{t}\left[\int_{t}^{T} e^{-\rho(s-t)}\left(\delta_{s} / \delta_{t}\right)^{-\gamma} \delta_{s} d s\right]=\delta_{t} E_{t}\left[\int_{t}^{T} e^{-\rho(s-t)}\left(\delta_{s} / \delta_{t}\right)^{1-\gamma} d s\right]=A_{t} \delta_{t}, \label{eq:9.1.2}
@@ -1508,7 +1508,7 @@ where
 A_{t} \equiv E_{t}\left[\int_{t}^{T} e^{-\rho(s-t)}\left(\delta_{s} / \delta_{t}\right)^{1-\gamma} d s\right]
 \end{equation}
 
-$A_{t}$ is a deterministic function of time, and when $T \rightarrow \infty, A_{t}$ becomes a constant. Note that the diffusion part of $d S_{t} / S_{t}$ equals the diffusion part of $d \delta_{t} / \delta_{t}$, for that we don't need infinite $T$. We can immediately compute the moments of stock returns:
+\(A_{t}\) is a deterministic function of time, and when \(T \rightarrow \infty, A_{t}\) becomes a constant. Note that the diffusion part of \(d S_{t} / S_{t}\) equals the diffusion part of \(d \delta_{t} / \delta_{t}\), for that we don't need infinite \(T\). We can immediately compute the moments of stock returns:
 
 \begin{align}
 \sigma_{R} & =\sigma_{\delta}  \label{eq:9.1.3}\\
@@ -1521,7 +1521,7 @@ We can identify three problems with the benchmark model. These problems came to 
 
 First, note that the volatility of stock returns equals the volatility of consumption growth. In our model, consumption is the same as dividends, so we cannot distinguish the two, but in either case, we cannot match the level of stock return volatility in the data.
 
-Second, the model cannot simultaneously match the level of the interest rate and the level of the equity premium (in a robust way and with realistic parameter values). Suppose we use $\gamma=5$. Then, with $\sigma_{\delta}=1 \%$, we obtain equity premium of 0.0005 . This is the so-called equity-premium puzzle. At the same time, the interest rate equals approximately
+Second, the model cannot simultaneously match the level of the interest rate and the level of the equity premium (in a robust way and with realistic parameter values). Suppose we use \(\gamma=5\). Then, with \(\sigma_{\delta}=1 \%\), we obtain equity premium of 0.0005 . This is the so-called equity-premium puzzle. At the same time, the interest rate equals approximately
 
 \begin{equation}
 r=\rho+0.1>10 \%,
@@ -1530,7 +1530,7 @@ r=\rho+0.1>10 \%,
 which is too high. This is known as the risk-free rate puzzle.
 
 One could object that our model equates consumption with dividends, which is counterfactual. Indeed, a model could do a better job if we allowed dividends to be more volatile than consumption. But note that the fundamental puzzles still remain. The risk-free rate\\
-is determined entirely by consumption growth. So, we still have the same expression. The instantaneous Sharpe ratio of stock returns is bounded from above by the volatility of the growth rate of the state-price density, which equals $\gamma \sigma_{c^{*}}$, where $\sigma_{c^{*}}$ denotes the volatility of growth of equilibrium consumption. To get the right equity premium, Sharpe ratio must be approximately $0.06 / 0.15=0.4$. That means $\gamma \geq 40$. Most economists would like to see a risk-aversion parameter below 5 or at most 10. Note also that at such high values of $\gamma$ the model has ridiculous implications for the risk-free rate. A tiny change in parameters of the consumption growth process implies huge swings in interest rates.
+is determined entirely by consumption growth. So, we still have the same expression. The instantaneous Sharpe ratio of stock returns is bounded from above by the volatility of the growth rate of the state-price density, which equals \(\gamma \sigma_{c^{*}}\), where \(\sigma_{c^{*}}\) denotes the volatility of growth of equilibrium consumption. To get the right equity premium, Sharpe ratio must be approximately \(0.06 / 0.15=0.4\). That means \(\gamma \geq 40\). Most economists would like to see a risk-aversion parameter below 5 or at most 10. Note also that at such high values of \(\gamma\) the model has ridiculous implications for the risk-free rate. A tiny change in parameters of the consumption growth process implies huge swings in interest rates.
 
 Finally, note that we could test the plausibility of our state-price density process without solving the equilibrium model, but rather by directly estimating the Euler equations. For example, the observed stock returns should satisfy
 
@@ -1553,7 +1553,7 @@ E_{t}\left[\frac{S_{t+1}+\delta_{t+1}}{S_{t}} \frac{\pi_{t+1}}{\pi_{t}}-1\right]
 Such empirical tests (e.g., Hansen and Singleton (1982)) reject the simple ``CRRA'' model.
 
 \subsection{First Attempt: Recursive Preferences}
-One obvious limitation of of our time-separable CRRA model of preferences is that the same parameter $\gamma$ controls investor's aversion to risk and willingness to substitute over time. In fact, the elasticity of intertemporal substitution $\psi$ is equal to $1 / \gamma$ for such preferences. It is natural to investigate more general forms of preferences in order to generate a more realistic state-price density process. One such extension is to allow for the utility function to be non-separable over time. In particular, we consider recursive preferences.
+One obvious limitation of our time-separable CRRA model of preferences is that the same parameter \(\gamma\) controls investor's aversion to risk and willingness to substitute over time. In fact, the elasticity of intertemporal substitution \(\psi\) is equal to \(1 / \gamma\) for such preferences. It is natural to investigate more general forms of preferences in order to generate a more realistic state-price density process. One such extension is to allow for the utility function to be non-separable over time. In particular, we consider recursive preferences.
 
 A recursive utility function is defined as a solution to
 
@@ -1561,13 +1561,13 @@ A recursive utility function is defined as a solution to
 U_{t}=G\left(c_{t}, m\left(U_{t+1}\right)\right)
 \end{equation}
 
-where $m\left(U_{t+1}\right)$ denotes the distribution of continuation utility values $U_{t+1}$. A common specialization of this relation is
+where \(m\left(U_{t+1}\right)\) denotes the distribution of continuation utility values \(U_{t+1}\). A common specialization of this relation is
 
 \begin{equation}
 U_{t}=G\left(c_{t}, v^{-1} E_{t}\left[v\left(U_{t+1}\right)\right]\right),
 \end{equation}
 
-where $v$ is another utility function. The standard time-separable utility function is a special case. There are many ways to recover it. For example, let $v(x)=x$ and $G(x, y)=u(x)+\delta y$. We obtain a familiar recursive relation on the expected utility:
+where \(v\) is another utility function. The standard time-separable utility function is a special case. There are many ways to recover it. For example, let \(v(x)=x\) and \(G(x, y)=u(x)+\delta y\). We obtain a familiar recursive relation on the expected utility:
 
 \begin{equation}
 U_{t}=u\left(c_{t}\right)+E_{t}\left[U_{t+1}\right] .
@@ -1579,13 +1579,13 @@ There are other possibilities, however. For example, let
 G(x, y)=\left(x^{\theta}+\delta y^{\theta}\right)^{1 / \theta}
 \end{equation}
 
-Also, let $v(x)=x^{\theta}$. Then,
+Also, let \(v(x)=x^{\theta}\). Then,
 
 \begin{equation}
 U_{t}^{\theta}=c_{t}^{\theta}+\delta E_{t}\left[U_{t+1}^{\theta}\right]
 \end{equation}
 
-We see that $U_{t}^{\theta}$ is our standard time-separable utility function, so $U_{t}$ is obtained by a nonlinear transformation, which preserves ranking of all consumption streams, i.e., is ordinally equivalent. The widely used Epstein-Zin formulation assumes that $v(x)=x^{\alpha}$, where $\alpha$ is generally different from $\theta$. As we discussed earlier, this model of preferences disentangles risk aversion from elasticity of intertemporal substitution, which helps match quantitative properties of asset prices and consumption data and is often a useful feature to build into a model. Tractability is an issue, however.
+We see that \(U_{t}^{\theta}\) is our standard time-separable utility function, so \(U_{t}\) is obtained by a nonlinear transformation, which preserves ranking of all consumption streams, i.e., is ordinally equivalent. The widely used Epstein-Zin formulation assumes that \(v(x)=x^{\alpha}\), where \(\alpha\) is generally different from \(\theta\). As we discussed earlier, this model of preferences disentangles risk aversion from elasticity of intertemporal substitution, which helps match quantitative properties of asset prices and consumption data and is often a useful feature to build into a model. Tractability is an issue, however.
 
 Duffie and Epstein show that the continuous-time analog of recursive utility, known as stochastic differential utility, can be expressed as a solution of
 
@@ -1593,13 +1593,13 @@ Duffie and Epstein show that the continuous-time analog of recursive utility, kn
 U_{t}=E_{t}\left[\int_{t}^{T} f\left(c_{s}, U_{s}\right) d s\right]
 \end{equation}
 
-where $f(\cdot, \cdot)$ is called an intertemporal aggregator.
+where \(f(\cdot, \cdot)\) is called an intertemporal aggregator.
 
 \paragraph{Exercise.} Use Ito's lemma to check that the standard time-separable utility function
 \[
 E\Bigg[\int_{0}^{T} e^{-\rho t} u(c_{t}) \, d t\Bigg]
 \]
-satisfies the recursive formulation with $f(c, U)=u(c)-\rho U$.
+satisfies the recursive formulation with \(f(c, U)=u(c)-\rho U\).
 
 We consider a particular functional form of the aggregator, which makes preferences homothetic:
 
@@ -1607,19 +1607,19 @@ We consider a particular functional form of the aggregator, which makes preferen
 f(c, U)=\frac{1}{1-\psi^{-1}}\left\{\frac{\rho c^{1-\psi^{-1}}}{((1-\gamma) U)^{\frac{\gamma-\psi^{-1}}{1-\gamma}}}-\rho(1-\gamma) U\right\} .
 \end{equation}
 
-Here $\rho$ will play the role of the time-preference parameter, $\gamma$ controls risk aversion, and $\psi$ the elasticity of intertemporal substitution. The standard Bellman equation must be modified only slightly. In particular, if the investment opportunity set is constant, the value function equals $e^{-\rho t} V\left(W_{t}, t\right)$, where $V$ solves
+Here \(\rho\) will play the role of the time-preference parameter, \(\gamma\) controls risk aversion, and \(\psi\) the elasticity of intertemporal substitution. The standard Bellman equation must be modified only slightly. In particular, if the investment opportunity set is constant, the value function equals \(e^{-\rho t} V\left(W_{t}, t\right)\), where \(V\) solves
 
 \begin{equation}
 \max _{c, \phi} f(c, V)+V_{t}+V_{W}\left[\left(r+\left(\mu_{R}-r\right) \phi\right) W-c\right]+\frac{1}{2} V_{W W} \sigma_{R}^{2} \phi^{2} W^{2}=0,
 \end{equation}
 
-where $\mu_{R}$ and $\sigma_{R}$ denote the mean and volatility of stock returns. The guess $V\left(W_{t}, t\right)=$ $A(t) W_{t}^{1-\gamma}$ still works and the portfolio composition is the same as in the Merton's model,
+where \(\mu_{R}\) and \(\sigma_{R}\) denote the mean and volatility of stock returns. The guess \(V\left(W_{t}, t\right)=\) \(A(t) W_{t}^{1-\gamma}\) still works and the portfolio composition is the same as in the Merton's model,
 
 \begin{equation}
 \phi^{*}=\frac{\mu_{R}-r}{\sigma_{R}^{2}}
 \end{equation}
 
-What differs is the consumption policy, which now depends on $\psi$ and $\gamma$ separately. We can solve for equilibrium in our simple model by conjecturing that the moments of stock returns and the risk-free rate are constant and then imposing market clearing conditions to pin down the precise values. Skipping the algebra, we find that
+What differs is the consumption policy, which now depends on \(\psi\) and \(\gamma\) separately. We can solve for equilibrium in our simple model by conjecturing that the moments of stock returns and the risk-free rate are constant and then imposing market clearing conditions to pin down the precise values. Skipping the algebra, we find that
 
 \begin{equation}
 \sigma_{R}=\sigma_{\delta}
