@@ -1,0 +1,92 @@
+\begin{tikzpicture}
+  % Define Solow model parameters
+  \pgfmathsetmacro{\s}{0.3}        % savings rate
+  \pgfmathsetmacro{\delta}{0.05}   % depreciation rate
+  \pgfmathsetmacro{\alpha}{0.3}    % capital share (Cobb-Douglas)
+
+  % Calculate steady state k* where sf(k*) = delta*k*
+  % For f(k) = k^alpha: k* = (s/delta)^(1/(1-alpha))
+  \pgfmathsetmacro{\kstar}{(\s/\delta)^(1/(1-\alpha))}
+
+  % Calculate the maximum of kdot for plotting range
+  % kdot = s*k^alpha - delta*k
+  % Maximum occurs at k_max = (s*alpha/delta)^(1/(1-alpha))
+  \pgfmathsetmacro{\kmax}{(\s*\alpha/\delta)^(1/(1-\alpha))}
+  \pgfmathsetmacro{\kdotmax}{\s*\kmax^\alpha - \delta*\kmax}
+
+  % Set axis limits (extended x-axis)
+  \pgfmathsetmacro{\xmax}{1.8*\kstar}
+  \pgfmathsetmacro{\ymax}{1.2*\kdotmax}
+  \pgfmathsetmacro{\ymin}{-0.75*\ymax}
+
+  % Line widths to match fig_solow_prod_parametric.tex
+  \pgfmathsetmacro{\AxisLW}{0.3985pt}
+  \pgfmathsetmacro{\CurveLW}{0.79701pt}
+
+  % Arrow positions (equally spaced)
+  % 3 arrows to the left of k* (pointing right)
+  \pgfmathsetmacro{\arrowOne}{0.25*\kstar}
+  \pgfmathsetmacro{\arrowTwo}{0.50*\kstar}
+  \pgfmathsetmacro{\arrowThree}{0.75*\kstar}
+  % 3 arrows to the right of k* (pointing left)
+  \pgfmathsetmacro{\arrowFour}{1.20*\kstar}
+  \pgfmathsetmacro{\arrowFive}{1.40*\kstar}
+  \pgfmathsetmacro{\arrowSix}{1.60*\kstar}
+
+  \begin{axis}[
+    axis lines=none,
+    xmin=0, xmax=\xmax,
+    ymin=\ymin, ymax=\ymax,
+    domain=0.01:\xmax,
+    samples=200,
+    smooth,
+    width=12cm,
+    height=8cm,
+    xtick={\kstar},
+    xticklabels={\(k^*\)},
+    ytick={0},
+    yticklabels={},
+    tick style={draw=none},
+    clip mode=individual,
+  ]
+
+    % Draw axes manually with matching line width (no arrows at ends)
+    \draw[line width=\AxisLW, line cap=butt]
+      (axis cs:0,0) -- (axis cs:\xmax,0);
+    \draw[line width=\AxisLW, line cap=butt]
+      (axis cs:0,\ymin) -- (axis cs:0,\ymax);
+
+    % Plot kdot = s*k^alpha - delta*k
+    \addplot[black, line width=\CurveLW] {(\s)*x^(\alpha) - (\delta)*x};
+
+    % Mark the steady state point (using node to ensure circular shape)
+    \node[circle, fill=black, inner sep=0pt, minimum size=4pt] at (axis cs:\kstar,0) {};
+
+    % Arrowheads on x-axis pointing toward k* (larger arrowheads, minimal line)
+    % Left of k* - pointing right (3 arrows)
+    \draw[-{Stealth[length=3mm,width=2mm]}, line width=0.1pt, black]
+      (axis cs:\arrowOne,0) -- (axis cs:\arrowOne+0.001,0);
+    \draw[-{Stealth[length=3mm,width=2mm]}, line width=0.1pt, black]
+      (axis cs:\arrowTwo,0) -- (axis cs:\arrowTwo+0.001,0);
+    \draw[-{Stealth[length=3mm,width=2mm]}, line width=0.1pt, black]
+      (axis cs:\arrowThree,0) -- (axis cs:\arrowThree+0.001,0);
+
+    % Right of k* - pointing left (3 arrows)
+    \draw[-{Stealth[length=3mm,width=2mm]}, line width=0.1pt, black]
+      (axis cs:\arrowFour,0) -- (axis cs:\arrowFour-0.001,0);
+    \draw[-{Stealth[length=3mm,width=2mm]}, line width=0.1pt, black]
+      (axis cs:\arrowFive,0) -- (axis cs:\arrowFive-0.001,0);
+    \draw[-{Stealth[length=3mm,width=2mm]}, line width=0.1pt, black]
+      (axis cs:\arrowSix,0) -- (axis cs:\arrowSix-0.001,0);
+
+    % Axis labels positioned like in fig_solow_prod_parametric.tex
+    % X-axis title: to the southeast (anchor=north west positions it to the right and below)
+    \node[anchor=north west] at (axis cs:\xmax,0) {\(k\)};
+    % Y-axis title: to the northwest (anchor=south east positions it to the left and above)
+    \node[anchor=south east] at (axis cs:0,\ymax) {\(\dot{k}\)};
+
+    % Tick label
+    \node[anchor=north east, xshift=3pt] at (axis cs:\kstar,0) {\(k^*\)};
+
+  \end{axis}
+\end{tikzpicture}
