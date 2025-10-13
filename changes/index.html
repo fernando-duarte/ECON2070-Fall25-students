@@ -162,7 +162,7 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><strong>Time window:</strong> since 2025-10-05T19:18:58Z (UTC).</p>
+<p><strong>Time window:</strong> since 2025-10-06T06:51:30Z (UTC).</p>
 <section id="class-repo-commits" class="level3">
 <h3 class="anchored" data-anchor-id="class-repo-commits">Class repo commits</h3>
 <p><em>Temporarily unavailable (HTTP 404). Try again later.</em></p>
@@ -170,21 +170,17 @@ ul.task-list li input[type="checkbox"] {
 <section id="student-repo-commits" class="level3">
 <h3 class="anchored" data-anchor-id="student-repo-commits">Student repo commits</h3>
 <ul>
-<li><p>2025-10-06 07:14:24 UTC — Add comprehensive issue templates and update PR template</p></li>
-<li><p>Add bug-report template for technical issues</p></li>
-<li><p>Add clarification template for concept questions</p></li>
-<li><p>Add content-error template for material errors</p></li>
-<li><p>Add feature-request template for suggestions</p></li>
-<li><p>Simplify typo template by making description optional</p></li>
-<li><p>Streamline PR template with clearer structure (ff36266)</p></li>
-<li><p>2025-10-06 06:05:30 UTC — CI: update public sources (2025-10-06) (#7)</p></li>
+<li>2025-10-12 19:43:20 UTC — Merge pull request #32 from fernando-duarte/ci-update-sources-20251012-191855</li>
 </ul>
-<p>Co-authored-by: CI Bot <a href="mailto:ci-bot@users.noreply.github.com" class="email">ci-bot@users.noreply.github.com</a> (717ab0c) - 2025-10-06 03:55:08 UTC — fix: update backport trigger with complete payload and pagination</p>
-<p>Critical fixes: - Add merge_commit_sha field (required for provenance) - Add files array with pagination support (handles PRs with &gt;100 files) - Add path filter (only trigger on src/latex/** or src/R/** changes) - Use repository-dispatch action instead of curl - Include all file metadata (status, previous_filename, additions, deletions)</p>
-<p>This matches the specification in STUDENT_REPO_WORKFLOW_UPDATE.md (4a82174) - 2025-10-06 02:19:06 UTC — feat: add workflow to trigger backport on PR merge</p>
-<p>When a PR is merged in the student repo, this workflow triggers a repository_dispatch event in the private repo to backport the changes.</p>
-<p>The backport workflow will: - Fetch the PR patch - Remap paths (src/latex -&gt; overleaf/Fall 2025, src/R -&gt; R) - Apply changes directly if clean, or create PR if conflicts exist - Include attribution: “(students#N by <span class="citation" data-cites="author">@author</span>)” (75dd489) - 2025-10-06 00:44:54 UTC — Merge pull request #3 from fernando-duarte/ci-update-sources-20251005-222304</p>
-<p>CI: Update public sources (2025-10-05) (8917e1f) - 2025-10-05 22:23:04 UTC — CI: update public sources (2025-10-05) (64bd1c0)</p>
+<p>CI: Update public sources (2025-10-12) (4ca4c4f) - 2025-10-12 19:18:55 UTC — CI: update public sources (2025-10-12) (c802be9) - 2025-10-06 07:14:24 UTC — Add comprehensive issue templates and update PR template</p>
+<ul>
+<li>Add bug-report template for technical issues</li>
+<li>Add clarification template for concept questions</li>
+<li>Add content-error template for material errors</li>
+<li>Add feature-request template for suggestions</li>
+<li>Simplify typo template by making description optional</li>
+<li>Streamline PR template with clearer structure (ff36266)</li>
+</ul>
 
 
 </section>
