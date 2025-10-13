@@ -67,7 +67,7 @@
     "href": "changes/index.html",
     "title": "What changed in the last 7 days",
     "section": "",
-    "text": "Time window: since 2025-10-06T06:51:30Z (UTC).\n\nClass repo commits\nTemporarily unavailable (HTTP 404). Try again later.\n\n\nStudent repo commits\n\n2025-10-12 19:43:20 UTC — Merge pull request #32 from fernando-duarte/ci-update-sources-20251012-191855\n\nCI: Update public sources (2025-10-12) (4ca4c4f) - 2025-10-12 19:18:55 UTC — CI: update public sources (2025-10-12) (c802be9) - 2025-10-06 07:14:24 UTC — Add comprehensive issue templates and update PR template\n\nAdd bug-report template for technical issues\nAdd clarification template for concept questions\nAdd content-error template for material errors\nAdd feature-request template for suggestions\nSimplify typo template by making description optional\nStreamline PR template with clearer structure (ff36266)"
+    "text": "Time window: since 2025-10-06T08:02:47Z (UTC).\n\nClass repo commits\nTemporarily unavailable (HTTP 404). Try again later.\n\n\nStudent repo commits\n\n2025-10-12 19:43:20 UTC — Merge pull request #32 from fernando-duarte/ci-update-sources-20251012-191855\n\nCI: Update public sources (2025-10-12) (4ca4c4f) - 2025-10-12 19:18:55 UTC — CI: update public sources (2025-10-12) (c802be9)"
   },
   {
     "objectID": "problem_sets/index.html",
