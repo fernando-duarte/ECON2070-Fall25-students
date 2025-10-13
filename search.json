@@ -2,7 +2,7 @@
   {
     "objectID": "notes/index.html",
     "href": "notes/index.html",
-    "title": "Notes (2025)",
+    "title": "Notes",
     "section": "",
     "text": "Lecture Notes PDF"
   },
@@ -30,23 +30,23 @@
   {
     "objectID": "code/index.html",
     "href": "code/index.html",
-    "title": "Shared R Code (2025)",
+    "title": "Shared R Code",
     "section": "",
-    "text": "#| error: false\nfind static/code/2025 -type f -name '*.R' 2&gt;/dev/null | sort | sed 's|^|- [|; s|$|](../&){download=true}|' || echo \"*No R code available yet*\""
+    "text": "#| error: false\nfind static/code -type f -name '*.R' 2&gt;/dev/null | sort | sed 's|^|- [|; s|$|](../&){download=true}|' || echo \"*No R code available yet*\""
   },
   {
-    "objectID": "notability/2025/index.html",
-    "href": "notability/2025/index.html",
-    "title": "In-class Notability Notes (2025)",
+    "objectID": "notability/index.html",
+    "href": "notability/index.html",
+    "title": "In-class Notability Notes",
     "section": "",
     "text": "Quick links - Latest - All classes (merged)"
   },
   {
-    "objectID": "notability/2025/index.html#all-lectures",
-    "href": "notability/2025/index.html#all-lectures",
-    "title": "In-class Notability Notes (2025)",
+    "objectID": "notability/index.html#all-lectures",
+    "href": "notability/index.html#all-lectures",
+    "title": "In-class Notability Notes",
     "section": "All lectures",
-    "text": "All lectures\nls -1 static/notability/2025/*-In-class-notes.pdf 2&gt;/dev/null | sort | sed 's|^|- [|; s|$|](../../&){download=true}|'"
+    "text": "All lectures\nls -1 static/notability/*-In-class-notes.pdf 2&gt;/dev/null | sort | sed 's|^|- [|; s|$|](../../&){download=true}|'"
   },
   {
     "objectID": "index.html",
@@ -58,29 +58,29 @@
   {
     "objectID": "slides/index.html",
     "href": "slides/index.html",
-    "title": "Slides (2025)",
+    "title": "Slides",
     "section": "",
-    "text": "#| error: false\nls -1 static/slides/2025 2&gt;/dev/null | sed 's|^|- [|; s|$|](../static/slides/2025/&)|' || echo \"*No slides available yet*\""
+    "text": "#| error: false\nls -1 static/slides 2&gt;/dev/null | sed 's|^|- [|; s|$|](../static/slides/&)|' || echo \"*No slides available yet*\""
   },
   {
     "objectID": "changes/index.html",
     "href": "changes/index.html",
     "title": "What changed in the last 7 days",
     "section": "",
-    "text": "Time window: since 2025-10-06T08:02:47Z (UTC).\n\nClass repo commits\nTemporarily unavailable (HTTP 404). Try again later.\n\n\nStudent repo commits\n\n2025-10-12 19:43:20 UTC — Merge pull request #32 from fernando-duarte/ci-update-sources-20251012-191855\n\nCI: Update public sources (2025-10-12) (4ca4c4f) - 2025-10-12 19:18:55 UTC — CI: update public sources (2025-10-12) (c802be9)"
+    "text": "Time window: since 2025-10-06T09:22:27Z (UTC).\n\nClass repo commits\nTemporarily unavailable (HTTP 404). Try again later.\n\n\nStudent repo commits\n\n2025-10-12 19:43:20 UTC — Merge pull request #32 from fernando-duarte/ci-update-sources-20251012-191855\n\nCI: Update public sources (2025-10-12) (4ca4c4f) - 2025-10-12 19:18:55 UTC — CI: update public sources (2025-10-12) (c802be9)"
   },
   {
     "objectID": "problem_sets/index.html",
     "href": "problem_sets/index.html",
-    "title": "Problem Sets (2025)",
+    "title": "Problem Sets",
     "section": "",
-    "text": "#| error: false\nfind static/problem_sets/2025 -maxdepth 1 -mindepth 1 -type d 2&gt;/dev/null | sort | sed 's|^|- [|; s|$|](../&/)|' || echo \"*No problem sets available yet*\"\nEach folder contains the questions PDF and flattened TeX before the deadline; after the deadline, solutions PDFs are added."
+    "text": "#| error: false\nfind static/problem_sets -maxdepth 1 -mindepth 1 -type d 2&gt;/dev/null | sort | sed 's|^|- [|; s|$|](../&/)|' || echo \"*No problem sets available yet*\"\nEach folder contains the questions PDF and flattened TeX before the deadline; after the deadline, solutions PDFs are added."
   },
   {
     "objectID": "problem_sets/index.html#released-problem-sets",
     "href": "problem_sets/index.html#released-problem-sets",
-    "title": "Problem Sets (2025)",
+    "title": "Problem Sets",
     "section": "",
-    "text": "#| error: false\nfind static/problem_sets/2025 -maxdepth 1 -mindepth 1 -type d 2&gt;/dev/null | sort | sed 's|^|- [|; s|$|](../&/)|' || echo \"*No problem sets available yet*\"\nEach folder contains the questions PDF and flattened TeX before the deadline; after the deadline, solutions PDFs are added."
+    "text": "#| error: false\nfind static/problem_sets -maxdepth 1 -mindepth 1 -type d 2&gt;/dev/null | sort | sed 's|^|- [|; s|$|](../&/)|' || echo \"*No problem sets available yet*\"\nEach folder contains the questions PDF and flattened TeX before the deadline; after the deadline, solutions PDFs are added."
   }
 ]
